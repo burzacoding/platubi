@@ -1,2 +1,0 @@
-let hola = "holaaa"
-export {}
