@@ -1,0 +1,2 @@
+let hola = "holaaa"
+export {}
