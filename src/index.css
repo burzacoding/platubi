@@ -3,3 +3,12 @@
   padding: 0%;
   box-sizing: border-box;
 }
+
+body {
+  font-family: 'Montserrat';
+}
+
+.filler {
+  width: 100vw;
+  height: 96px;
+}

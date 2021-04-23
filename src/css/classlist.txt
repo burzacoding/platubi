@@ -1,0 +1,16 @@
+-NavBar:
+navbar
+base-white
+base-dark
+light-body-color
+header
+logo-container
+logo
+nav
+buttons-guests
+buttons-guests-register
+buttons-guests-login
+theme-switch
+theme-switch-svg
+horizontal-bar
+light-bar
