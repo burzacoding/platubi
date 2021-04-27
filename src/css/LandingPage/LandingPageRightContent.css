@@ -1,0 +1,15 @@
+.blob {
+  height: 938px;
+  position: absolute;
+  z-index: 0;
+  right: 0;
+  opacity: 0;
+}
+
+.t1s-opacity {
+  transition: opacity 1s;
+}
+
+.show {
+  opacity: 1 !important;
+}

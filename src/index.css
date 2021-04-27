@@ -6,9 +6,38 @@
 
 body {
   font-family: 'Montserrat';
+  height: 2744px;
+  background-color: #050D16;
 }
 
 .filler {
   width: 100vw;
   height: 96px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #030910;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #133c6b;
+  border-radius: 12px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #15B74E;
 }

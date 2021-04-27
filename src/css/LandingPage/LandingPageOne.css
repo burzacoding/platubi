@@ -1,0 +1,24 @@
+.first-page-container {
+  width: 100vw;
+  max-width: 100%;
+  height: 938px;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.first-main-container {
+  width: 100%;
+  height: 100%;
+  max-width: 1440px;
+
+  margin: 0 auto;
+  padding-left: 128px;
+
+  display: flex;
+  align-items: center;
+}
+
+
+

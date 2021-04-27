@@ -1,0 +1,128 @@
+footer {
+  position: relative;
+  height: 248px;
+  width: 100vw;
+  max-width: 100%;
+  z-index: 10;
+}
+
+.footer-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  max-width: 100%;
+  height: 100%;
+  z-index: -20;
+}
+.footer-content {
+  display: flex;
+  align-items: flex-start;
+}
+
+.footer-social {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 72px;
+}
+.social-cont-footer img:nth-child(1) {
+  margin-right: 18px;
+}
+.social-cont-footer {
+  margin-top: 8px;
+}
+.footer-update {
+  margin-right: 44px;
+}
+.footer-update h3 {
+  background: linear-gradient(92.46deg, #096635 9.73%, #2BA665 74.92%);
+  background-clip: text;
+  color: transparent;
+
+  font-size: 24px;
+  font-weight: 500;
+  height: 32px;
+  width: 420px;
+}
+
+.footer-update p {
+  margin-top: 6px;
+  height: 66px;
+  width: 416px;
+
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 22px;
+
+  color: #BBBBBB;
+}
+.input-update-req {
+  position: relative;
+  display: flex;
+  width: 416px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+.footer-update input:focus, .footer-update input:active {
+  outline: none;
+}
+.footer-update input[type="email"] {
+  width: 416px;
+  height: 32px;
+  padding-left: 8px;
+  padding-right: 44px;
+  background-color: rgba(0,0,0,.4);
+  color: #BBBBBB;
+  border: none;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 20px;
+}
+.footer-update input[type="email"]::placeholder {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 20px;
+}
+.send-svg {
+  position: absolute;
+  right: 0;
+  width: 44px;
+  height: 32px;
+  background: linear-gradient(92.46deg, #096635 9.73%, #2BA665 74.92%);
+  cursor: pointer;
+}
+
+.footer-support h3, .footer-nav h3 {
+  width: 98px;
+  height: 30px;
+
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 29px;
+
+  background: linear-gradient(92.46deg, #096635 9.73%, #2BA665 74.92%);
+  background-clip: text;
+  color: transparent;
+}
+
+.p-cont {
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+
+  font-weight: 300;
+  line-height: 22px;
+  color: #BBBBBB;
+}
+
+.sup-footer {
+  margin-right: 44px;
+  width: 174px;
+  height: 66px;
+}
+.nav-footer {
+  width: 96px;
+  height: 66px;
+}
