@@ -3,13 +3,26 @@
   position: absolute;
   z-index: 0;
   right: 0;
+  transition:opacity 0.4s ease;
+  opacity: 1;
+}
+.t1s-opacity {
+  transition: opacity 2s ease;
+}
+.right-deco-cont {
   opacity: 0;
 }
 
-.t1s-opacity {
-  transition: opacity 1s;
-}
 
 .show {
   opacity: 1 !important;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.rightContShow {
+  transition: opacity 2s ease;
+  opacity: 1;
 }

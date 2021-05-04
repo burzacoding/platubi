@@ -3,10 +3,9 @@
   max-width: 100%;
 
   height: 760px;
-  margin-top: 80px;
-  margin-bottom: -30px;
 
   position: relative;
+  transition: all 0.4s ease;
 }
 
 .third-main-container {
@@ -15,10 +14,10 @@
   height: 100%;
 
   margin: 0 auto;
-  margin-top: 172px;
 
   position: relative;
   z-index: 0;
+  transition: all 0.4s ease;
 }
 
 
@@ -37,28 +36,33 @@
   width: 450px;
   height: 120px;
   text-align: center;
+  transition: all 0.4s ease;
 }
 .title span {
   background-image: linear-gradient(90deg, #024E8F -3.62%, #15B74E 103.62%);
   background-clip: text;
   color: transparent;
+  transition: all 0.4s ease;
 }
 
 .title p, .title span {
   font-size: 32px;
   font-weight: 400;
   line-height: 39px;
+  transition: all 0.4s ease;
 }
 .body-content {
   margin-top: 16px;
   width: 450px;
   height: 96px;
   text-align: center;
+  transition: all 0.4s ease;
 }
 .body-content p {
   font-weight: 300;
   font-size: 24px;
   line-height: 29px;
+  transition: all 0.4s ease;
 }
 
 .register-content {
@@ -69,12 +73,14 @@
 
   background: linear-gradient(90deg, #3480C1 -3.62%, #0DCA4F 103.62%);
   border-radius: 8px;
+  transition: all 0.4s ease;
 }
 
 .register-content span {
   font-weight: 300;
   font-size: 24px;
   line-height: 140%;
+  transition: all 0.4s ease;
 }
 .ffffff {
   color: #ffffff;
@@ -91,15 +97,15 @@
 .fb-bg {
   width: 100%;
   height: 100%;
-  background-image: url('../../res/Landing/tech-background-dark.svg');
   opacity: 0;
   transition: opacity 3s;
 
   position: absolute;
-  top: 0;
+  top: 30px;
   left: 0;
   z-index: -10;
-  }
+  transition: all 0.4s ease;
+}
 
 .fb-bg-full {
   opacity: 1;

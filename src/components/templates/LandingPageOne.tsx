@@ -1,4 +1,3 @@
-import * as React from 'react';
 import '../../css/LandingPage/LandingPageOne.css'
 import LandingPageOneLeftContent from '../molecules/LandingPage/LandingPageOneLeftContent';
 import LandingPageOneRightContent from '../molecules/LandingPage/LandingPageOneRightContent';
@@ -16,7 +15,7 @@ const LandingPageOne: React.FC<LandingPageOneProps> = ({theme}) => {
     <article className={`first-page-container ${classBaseColor}`}>
       <div className="first-main-container">
         <LandingPageOneLeftContent theme={theme} />
-        <LandingPageOneRightContent />
+        <LandingPageOneRightContent theme={theme} />
       </div>
     </article>
   );

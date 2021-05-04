@@ -4,9 +4,11 @@
 
   height: 388px;
   width: 658px;
+  min-width: 500px;
 
   margin: auto 0;
   opacity: 0;
+  transition: all 0.4s ease;
 }
 
 .content-container h1 {
@@ -20,14 +22,15 @@
   color: transparent;
 
   margin-bottom: 32px;
+  transition: all 0.4s ease;
 }
 
 .content-container p {
   font-size: 22px;
   line-height: 150%;
-  color: #ACACAC;
 
   margin-bottom: 60px;
+  transition: all 0.4s ease;
 }
 
 .buttonsPageOneLeft {
@@ -40,6 +43,7 @@
   height: 62px;
   background: linear-gradient(90deg, #3480C1 -3.62%, #0DCA4F 103.62%);
   border-radius: 8px;
+  transition: all 0.4s ease;
 }
 
 .button-one {
@@ -49,14 +53,15 @@
 .inner-container {
   width: 308px;
   height: 58px;
-  background-color:#050d16;
   border-radius: 8px;
+  transition: all 0.4s ease;
 }
 
 .button-one span {
   font-size: 20px;
   line-height: 140%;
   color: #f1f1f1;
+  transition: all 0.4s ease;
 }
 
 .inner-container span {

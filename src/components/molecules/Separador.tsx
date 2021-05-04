@@ -1,4 +1,3 @@
-import * as React from 'react';
 import separador from '../../res/Landing/separator.svg'
 import '../../css/Separador.css'
 

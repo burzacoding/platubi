@@ -1,20 +1,36 @@
-import * as React from 'react';
-import { useEffect } from 'react'
-import blob from '../../../res/Landing/blob-dark-desktop.png'
+import { useEffect, useRef } from 'react'
+import blobD from '../../../res/Landing/blob-dark-desktop.png'
+import blobW from '../../../res/Landing/blob-light-desktop.png'
 import '../../../css/LandingPage/LandingPageRightContent.css'
 
 export interface LandingPageOneRightContentProps {
-  
+  theme: 'dark' | 'light'
 }
  
-const LandingPageOneRightContent: React.FC<LandingPageOneRightContentProps> = () => {
+const LandingPageOneRightContent: React.FC<LandingPageOneRightContentProps> = ({theme}) => {
+  const counter = useRef(0)
+  const rightCont = useRef<HTMLDivElement>(null)
+  const darkBlob = useRef<HTMLImageElement>(null)
+  const lightBlob = useRef<HTMLImageElement>(null)
+
+  
+
   useEffect(() => {
-    const landingBlob = document.getElementById("blob");
-    if (landingBlob) landingBlob.classList.add("t1s-opacity", "show");
-  }, [])
+    if (counter.current === 1) {
+      darkBlob.current?.classList.toggle('hidden')
+      lightBlob.current?.classList.toggle('hidden')
+    }
+    if (counter.current === 0) {
+      rightCont.current?.classList.add('rightContShow')
+      counter.current++
+    }
+  }, [theme])
+
+
   return (
-    <div className="right-deco-cont center">
-      <img className="blob" src={blob} alt="blob" id="blob"/>
+    <div className="right-deco-cont center" id="rightCont" ref={rightCont}>
+      <img className='blob' src={blobD} alt="blobD" id='blobD' ref={darkBlob} />
+      <img className='blob hidden' src={blobW} alt="blobW" id="blobW" ref={lightBlob} />
     </div>
   );
 }
