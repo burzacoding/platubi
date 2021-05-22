@@ -6,9 +6,6 @@
 
 body {
   font-family: 'Montserrat';
-  height: 2744px;
-  background-color: #050D16;
-  z-index: -30;
 }
 
 .filler {
@@ -20,14 +17,4 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-
-.App {
-  background: #050D16;
-  transition: all 0.4s ease;
-}
-
-.light-body {
-  background-color: #F8F8F8;
 }
