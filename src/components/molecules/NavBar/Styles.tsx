@@ -127,6 +127,7 @@ export const ButtonDesktopNav = styled(Link)<buttonColor>`
 
 
 export const NavBarMobileContainer = styled.div`
+  pointer-events: none;
   width: 100vw;
   max-width: 100%;
   height: 100vh;
@@ -145,6 +146,7 @@ export const NavBarMobileContainer = styled.div`
 export const NavBarMobileTop = styled.div`
 `
 export const ContentTop = styled.div`
+pointer-events: auto;
   height: 10vh;
   min-height: 52px;
   max-height: 86px;
@@ -231,6 +233,7 @@ interface mobileNav {
   desktop?: boolean
 }
 export const MenuMobileNav = styled(motion.div)<mobileNav>`
+pointer-events: auto;
   position: absolute;
   height: 100vh;
   width: 120vw;

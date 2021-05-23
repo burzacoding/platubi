@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components'
 import { themes } from './AppStyles'
 
 import NavBar from "./components/molecules/NavBar/NavBar";
+import LandingPage from './components/pages/LandingPage/LandingPage';
 // import LandingPageOne from "./components/templates/LandingPageOne";
 // import LandingPageThree from "./components/templates/LandingPageThree";
 // import LandingPageTwo from "./components/templates/LandingPageTwo";
@@ -19,6 +20,7 @@ function App() {
     <Router>
       <ThemeProvider theme={themes[theme]}>
         <NavBar setTheme={setTheme} theme={theme} />
+        <LandingPage />
         {/* <LandingPageOne theme={theme} />
         <LandingPageTwo theme={theme} />
         <LandingPageThree theme={theme} />

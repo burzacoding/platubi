@@ -2,16 +2,18 @@ import { motion, Variants } from 'framer-motion'
 
 export interface MoonProps {
   variants: Variants,
-  keyID: string
+  keyID: string,
+  mobile?: boolean
 }
  
-const Moon: React.FC<MoonProps> = ({variants, keyID}) => {
+const Moon: React.FC<MoonProps> = ({variants, keyID, mobile}) => {
   return (
     <motion.svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"
       variants={variants}
       initial="hiddenSVG"
       animate="visibleSVG"
       exit="exitSVG"
+      style={{ scale: mobile ? '1.2' : '1'}}
     >
       <g id="mymoon">
         <g id="moon">

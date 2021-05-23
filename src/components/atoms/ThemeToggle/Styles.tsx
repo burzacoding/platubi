@@ -16,7 +16,8 @@ export const ThemeImg = styled.div<ThemeInterface>`
   align-items: center;
   svg {
     position: absolute;
-    left: 0;
+    left: ${p => p.mobile ? '5px' : '0'};
+    transform: ${p => p.mobile ? 'scale(1.2)' : 'scale(1)'};
   }
   span {
     width: 164px;
