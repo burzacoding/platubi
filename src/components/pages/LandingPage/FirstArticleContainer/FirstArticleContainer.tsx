@@ -32,12 +32,12 @@ const FirstArticleContainer: React.FC<FirstArticleContainerProps> = () => {
           </BodyText>
         </TextContent>
         <ActionContent>
+          <PlatubiNOL keyID="tablet" />
           <ButtonsContainer>
             <ButtonAction to="/register" text="Quiero abrir una cuenta!" />
             <ButtonAction to="/faq" text="Más información" ghost key="botonMasInfoMobile"/>
           </ButtonsContainer>
         </ActionContent>
-
       </InnerContainer>
     </MainContent>
   );

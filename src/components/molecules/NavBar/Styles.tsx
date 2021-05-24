@@ -233,7 +233,7 @@ interface mobileNav {
   desktop?: boolean
 }
 export const MenuMobileNav = styled(motion.div)<mobileNav>`
-pointer-events: auto;
+  pointer-events: auto;
   position: absolute;
   height: 100vh;
   width: 120vw;

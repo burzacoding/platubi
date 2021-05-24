@@ -11,9 +11,13 @@ export const LandingPageContainer = styled('div')`
 export const NavSpacer = styled.div`
   height: 10vh;
   min-height: 52px;
-  max-height: 86px;
+  max-height: 90px;
   width: 100vw;
   max-width: 100%;
+  
+  @media screen and (min-width: 769px) {
+    height: 92px;
+  }
 `
 /* ESTILOS DEL PRIMER ARTÍCULO - PAGINA UNO DE LA LANDING PAGE - RESPONSIVE*/
 
@@ -23,4 +27,7 @@ export const FirstArticle = styled.div`
   position: relative;
 
   display: flex;
+  @media screen and (min-width: 668px) {
+    padding: 0 48px;
+  }
 `

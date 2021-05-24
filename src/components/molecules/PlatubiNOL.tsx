@@ -15,12 +15,16 @@ const SVGContainer = styled.div<SVGContainerProps>`
   height: 32px;
   margin: auto;
   margin-bottom: ${p => p.mobile ? '20px' : '32px'};
+  display: ${p => p.mobile ? 'block' : 'none'};
 
   svg {
+    display: block;
     margin: auto;
   }
 
-  ${p => p.mobile && ('@media screen and (min-width: 668px) { display: none }')}
+  @media screen and (min-width: 668px) { 
+    display: ${p => p.mobile ? 'none' : 'block'} 
+  };
 `
 
 const PlatubiNOL: React.FC<PlatubiNOLProps> = ({mobile, keyID}) => {

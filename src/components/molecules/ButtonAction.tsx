@@ -21,13 +21,13 @@ const ButtonContainer = styled(Link)<ButtonContainerProps>`
 
   width: 222px;
   height: 38px;
-  border-radius: 8px;
+  border-radius: 0.5em;
 
   text-decoration: none;
   text-align: center;
   span {
     display: block;
-    font-size: 14px;
+    font-size: 0.8em;
     line-height: 140%;
     ${p => p.ghost ? (`
       background-image: linear-gradient(to right,#1269B4, #3BBC76);
@@ -42,14 +42,13 @@ const ButtonContainer = styled(Link)<ButtonContainerProps>`
 `
 const GhostContainer = styled.div`
   background-color: ${p => p.theme.divBackground};
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  transition: background-color 0.25s;
 
   width: 218px;
   height: 34px;
-  border-radius: 6px;
+  border-radius: 0.375em;
   margin: auto;
+  padding: 0.5em 0;
 `
  
 const ButtonAction: React.FC<ButtonActionProps> = ({to, ghost, text = 'Texto default'}) => {
