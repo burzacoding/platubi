@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import Separador from '../molecules/Separador';
+// import Separador from '../molecules/Separador';
 import '../../css/LandingPage/LandingPageThree.css'
 import firebaseLogo from '../../res/Landing/firebase-logo.svg'
 import bg_tech from '../../res/Landing/bg_tech.png'
@@ -25,7 +25,7 @@ const LandingPageThree: React.FC<LandingPageThreeProps> = ({theme}) => {
 
   return (
     <article className={`third-page-container ${classBaseColor}`}>
-      <Separador position="top" />
+      {/* <Separador position="top" /> */}
       <div className="third-main-container center">
         <div>
           <img src={bg_tech} alt="firebase-background-tech" className="fb-bg"  id="fb-bg"/>

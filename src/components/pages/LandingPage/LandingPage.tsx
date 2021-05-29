@@ -1,3 +1,6 @@
+import DecoratorRight from "../../atoms/DecoratorRight";
+import DecoratorSvg from "../../molecules/DecoratorSvg";
+import Separador from "../../molecules/Separador";
 import FirstArticleContainer from "./FirstArticleContainer/FirstArticleContainer";
 import { NavSpacer, LandingPageContainer, FirstArticle } from "./Styles";
 
@@ -10,11 +13,13 @@ const LandingPage: React.FC<LandingPageProps> = () => {
     <LandingPageContainer>
       <NavSpacer />
       <FirstArticle>
-        {/* ACA VAN LAS DECORACIONES*/}
-        <FirstArticleContainer /> {/* ESTE DIV SOLO ES EL MAIN CONTENT*/}
-        {/* ACA VAN LAS DECORACIONES*/}
+        <DecoratorSvg keyID="top" position="top"  />
+        <FirstArticleContainer />
+        <DecoratorSvg keyID="bottom" position="bottom" />
+        <Separador position="bottom" keyID="first" />
+        <DecoratorRight KeyID="first" />
       </FirstArticle>
-
+      <NavSpacer bottom />
     </LandingPageContainer>
   );
 }

@@ -27,17 +27,32 @@ const ButtonContainer = styled(Link)<ButtonContainerProps>`
   text-align: center;
   span {
     display: block;
-    font-size: 0.8em;
     line-height: 140%;
     ${p => p.ghost ? (`
       background-image: linear-gradient(to right,#1269B4, #3BBC76);
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;`
-    ): `color: #FFFFFF`}
+    ): `color: #FFFFFF`};
+    @media screen and (min-width: 1025px) {
+      font-size: 1.2em;
+    }
   }
   &:nth-child(1) {
     margin-bottom: 16px;
+    @media screen and (min-width: 1368px) {
+      margin-bottom: 0;
+      margin-right: 34px;
+    }
+  }
+
+  @media screen and (min-width: 1025px) {
+    width: 280px;
+    height: 54px;
+  }
+  @media screen and (min-width: 1368px) {
+    width: 312px;
+    height: 62px;
   }
 `
 const GhostContainer = styled.div`
@@ -49,6 +64,17 @@ const GhostContainer = styled.div`
   border-radius: 0.375em;
   margin: auto;
   padding: 0.5em 0;
+  @media screen and (min-width: 1025px) {
+    width: 276px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  @media screen and (min-width: 1368px) {
+    width: 308px;
+    height: 58px;
+  }
 `
  
 const ButtonAction: React.FC<ButtonActionProps> = ({to, ghost, text = 'Texto default'}) => {

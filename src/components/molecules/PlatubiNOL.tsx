@@ -25,6 +25,9 @@ const SVGContainer = styled.div<SVGContainerProps>`
   @media screen and (min-width: 668px) { 
     display: ${p => p.mobile ? 'none' : 'block'} 
   };
+  @media screen and (min-width: 1368px) {
+    display: none;
+  }
 `
 
 const PlatubiNOL: React.FC<PlatubiNOLProps> = ({mobile, keyID}) => {

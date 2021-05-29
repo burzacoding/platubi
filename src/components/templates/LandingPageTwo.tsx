@@ -4,7 +4,7 @@ import logo from '../../res/platubi-logo.svg'
 import item1 from '../../res/Landing/calcu.svg'
 import item2 from '../../res/Landing/donut.svg'
 import item3 from '../../res/Landing/linea-chart.svg'
-import Separador from '../molecules/Separador';
+// import Separador from '../molecules/Separador';
 
 export interface LandingPageTwoProps {
   theme: "dark" | "light"
@@ -31,7 +31,7 @@ const LandingPageTwo: React.FC<LandingPageTwoProps> = ({theme}) => {
   return (
     <article className={`second-page-container ${classBaseColor}`}>
       <div className="second-main-container center">
-      <Separador position="top" />
+      {/* <Separador position="top" /> */}
       <div className="second-sub-container" id="second-sub-container">
         <div className="world-map" id="world-map"></div>
         <div className="logo-container-small">

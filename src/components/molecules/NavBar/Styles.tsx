@@ -147,9 +147,7 @@ export const NavBarMobileTop = styled.div`
 `
 export const ContentTop = styled.div`
 pointer-events: auto;
-  height: 10vh;
-  min-height: 52px;
-  max-height: 86px;
+  height: 52px;
   width: 100vw;
   max-width: 100%;
   background-color: ${props => props.theme.divBackground};
@@ -168,8 +166,7 @@ pointer-events: auto;
   }
 `
 export const ContentBottom = styled(ContentTop)`
-  height: 12vh;
-  min-height: 58px;
+  height: 58px;
   padding: 0 26px;
 `
 export const NavBarMobileBottom = styled.div`
@@ -208,12 +205,6 @@ export const OptionNavMobile = styled(Link)`
 
   img {
     width: 28px;
-    @media screen and (min-width: 620px) and (min-height: 580px) {
-      width: 32px;
-    }
-    @media screen and (min-width: 720px) {
-      width: 36px;
-    }
   }
   span {
     width: 100%;
@@ -221,12 +212,6 @@ export const OptionNavMobile = styled(Link)`
     margin-top: 4px;
     text-align: center;
     font-weight: 500;
-    @media screen and (min-width: 620px) and (min-height: 580px){
-      font-size: 12px;
-    }
-    @media screen and (min-width: 720px) and (min-height: 660px) {
-      font-size: 14px;
-    }
   }
 `
 interface mobileNav {
@@ -272,24 +257,6 @@ export const SwitchContainerStyled = styled.div`
   svg {
     @media screen and (min-height: 570px) {
       transform: scale(1.1);
-    }
-    @media screen and (min-height: 670px) {
-      transform: scale(1.2);
-    }
-    @media screen and (min-height: 720px) {
-      transform: scale(1.35);
-    }
-    @media screen and (min-width: 620px) {
-      transform: scale(1.125);
-    }
-    @media screen and (min-width: 620px) and (min-height: 640px) {
-      transform: scale(1.25);
-    }
-    @media screen and (min-width: 620px) and (min-height: 800px) {
-      transform: scale(1.35);
-    }
-    @media screen and (min-width: 700px) {
-      transform: scale(1.1625);
     }
   }
 `
