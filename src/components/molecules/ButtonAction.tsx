@@ -10,7 +10,7 @@ export interface ButtonActionProps {
 }
 
 interface ButtonContainerProps {
-  ghost?: boolean
+  ghost?: boolean | string
 }
 const ButtonContainer = styled(Link)<ButtonContainerProps>`
   display: flex;
@@ -22,6 +22,7 @@ const ButtonContainer = styled(Link)<ButtonContainerProps>`
   width: 222px;
   height: 38px;
   border-radius: 0.5em;
+  font-size: 0.85em;
 
   text-decoration: none;
   text-align: center;
@@ -58,18 +59,17 @@ const ButtonContainer = styled(Link)<ButtonContainerProps>`
 const GhostContainer = styled.div`
   background-color: ${p => p.theme.divBackground};
   transition: background-color 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   width: 218px;
   height: 34px;
   border-radius: 0.375em;
   margin: auto;
-  padding: 0.5em 0;
   @media screen and (min-width: 1025px) {
     width: 276px;
     height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
   @media screen and (min-width: 1368px) {
     width: 308px;
@@ -79,7 +79,7 @@ const GhostContainer = styled.div`
  
 const ButtonAction: React.FC<ButtonActionProps> = ({to, ghost, text = 'Texto default'}) => {
   return (
-    <ButtonContainer to={to} ghost={ghost ? true : false} >
+    <ButtonContainer to={to} ghost={ghost ? "true" : undefined} >
       {
         ghost
         ?

@@ -1,0 +1,14 @@
+export interface MailSendSVGProps {
+  
+}
+ 
+const MailSendSVG: React.FC<MailSendSVGProps> = () => {
+  return (
+    <svg width="100%" height="100%" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M22.5556 3H5.44444C4.09633 3 3 4.0764 3 5.4V11.4H5.44444V7.8L13.2667 13.56C13.4783 13.7156 13.7356 13.7997 14 13.7997C14.2644 13.7997 14.5217 13.7156 14.7333 13.56L22.5556 7.8V18.6H12.7778V21H22.5556C23.9037 21 25 19.9236 25 18.6V5.4C25 4.0764 23.9037 3 22.5556 3ZM14 11.1L6.25844 5.4H21.7416L14 11.1Z" />
+    <path d="M1 13H9.55556V15.5H1V13ZM3.44444 16.75H10.7778V19.25H3.44444V16.75ZM7.11111 20.5H12V23H7.11111V20.5Z" />
+    </svg>
+  );
+}
+ 
+export default MailSendSVG;

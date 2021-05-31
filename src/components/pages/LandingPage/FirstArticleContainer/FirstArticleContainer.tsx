@@ -21,10 +21,10 @@ const variants: Variants = {
 const FirstArticleContainer: React.FC<FirstArticleContainerProps> = () => {
   return (
     <MainContent>
-      <InnerContainer>
+      <InnerContainer variants={variants} custom={1} initial="hidden" animate="visible">
         <TextContent>
           <PlatubiNOL keyID="mobile" mobile />
-          <Title variants={variants} custom={1} initial="hidden" animate="visible">
+          <Title>
             Conozca segundo a segundo el valor de su billetera.
           </Title>
           <BodyText>
@@ -34,7 +34,7 @@ const FirstArticleContainer: React.FC<FirstArticleContainerProps> = () => {
         <ActionContent>
           <PlatubiNOL keyID="tablet" />
           <ButtonsContainer>
-            <ButtonAction to="/register" text="Quiero abrir una cuenta!" />
+            <ButtonAction to="/registrarse" text="Quiero abrir una cuenta!" />
             <ButtonAction to="/faq" text="Más información" ghost key="botonMasInfoMobile"/>
           </ButtonsContainer>
         </ActionContent>

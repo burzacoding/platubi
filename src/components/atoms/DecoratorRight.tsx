@@ -49,14 +49,14 @@ const DecoratorRight: React.FC<DecoratorRightProps> = ({KeyID}) => {
     <Container>
       <svg width="100%" height="100%" viewBox="0 0 606 900" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
         <g filter={`url(#filter0_i${KeyID})`}>
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M606 0V900H25.0789C-52.5824 771.068 73.9638 552.575 84.3658 405.755C99.3444 194.341 2.3133 126.142 116.385 0H606Z"/>
+        <path fillRule="evenodd" clipRule="evenodd" d="M606 0V900H25.0789C-52.5824 771.068 73.9638 552.575 84.3658 405.755C99.3444 194.341 2.3133 126.142 116.385 0H606Z"/>
         </g>
         <clipPath id="right" clipPathUnits="objectBoundingBox" >
             <path d="M606 0V900H25.0789C-52.5824 771.068 73.9638 552.575 84.3658 405.755C99.3444 194.341 2.3133 126.142 116.385 0H606Z"  />          
         </clipPath>
         <defs>
-        <filter id={`filter0_i${KeyID}`} x="0" y="0" width="620" height="904" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+        <filter id={`filter0_i${KeyID}`} x="0" y="0" width="620" height="904" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+        <feFlood floodOpacity="0" result="BackgroundImageFix"/>
         <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
         <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
         <feOffset dx="14" dy="4"/>

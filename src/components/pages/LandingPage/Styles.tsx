@@ -3,7 +3,8 @@ import styled from 'styled-components'
 /* ESTILOS DEL CONTENEDOR DE LA LANDING PAGE - RESPONSIVE */
 
 interface NavSpacerProps {
-  bottom?: boolean
+  bottom?: boolean,
+  desktop?: boolean
 }
 
 export const LandingPageContainer = styled('div')`
@@ -25,12 +26,12 @@ export const NavSpacer = styled.div<NavSpacerProps>`
     display: ${p => p.bottom ? 'none' : 'block'};
   };
   @media screen and (min-width: 1368px) {
-    display: none;
+    display: ${p => p.desktop ? 'none' : 'block'};
   };
 `
 /* ESTILOS DEL PRIMER ARTÍCULO - PAGINA UNO DE LA LANDING PAGE - RESPONSIVE*/
 
-export const FirstArticle = styled.div`
+export const ArticleContainer = styled.div`
   width: 100vw;
   max-width: 100%;
   position: relative;

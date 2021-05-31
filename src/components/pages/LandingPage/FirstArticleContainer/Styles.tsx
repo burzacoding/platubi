@@ -5,8 +5,8 @@ import { motion } from 'framer-motion'
 
 export const MainContent = styled.div`
   background-color: ${p => p.theme.divBackground};
-  display: flex;
   transition: background-color 0.25s;
+  display: flex;
   width: 100%;
   margin: 30px auto 36px auto;
   min-width: 320px;
@@ -22,10 +22,10 @@ export const MainContent = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin: 0 auto;
-    padding: 196px 0 156px 128px;
+    padding: 164px 0 156px 128px;
   }
 `
-export const InnerContainer = styled.div`
+export const InnerContainer = styled(motion.div)`
   margin: 0 auto;
   margin-top: 36px;
   @media screen and (min-width: 668px) {
@@ -41,7 +41,7 @@ export const InnerContainer = styled.div`
     flex-direction: column;
   }
 `
-export const Title = styled(motion.h1)`
+export const Title = styled.h1`
 font-weight: 500;
 font-size: 20px;
 line-height: 140%;

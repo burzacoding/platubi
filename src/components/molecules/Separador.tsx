@@ -18,6 +18,13 @@ const SeparadorContainer = styled.div<SeparadorContProps>`
   transform-origin: center;
   transform: ${p => p.position === 'top' ? 'translateY(-50%)' : 'translateY(50%)'};
   z-index: 10;
+  @media screen and (min-width: 1368px) {
+    transform: translateY(0);
+  }
+
+  svg {
+    max-height: 100px;
+  }
 `
  
 const Separador: React.FC<SeparadorProps> = ({position, keyID}) => {
