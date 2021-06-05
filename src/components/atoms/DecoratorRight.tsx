@@ -36,7 +36,7 @@ const UpVariants: Variants = {
   visible: (custom) => ({
       y: -916 + 916 * custom,
       transition: {
-          duration: 128,
+          duration: 96,
           type: 'tween',
           ease: 'linear',
           repeat: Infinity,

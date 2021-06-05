@@ -3,7 +3,7 @@ import DecoratorSvg from "../../molecules/DecoratorSvg";
 import Separador from "../../molecules/Separador";
 import FirstArticleContainer from "./FirstArticleContainer/FirstArticleContainer";
 import SecondArticleContainer from "./SecondArticleContainer/SecondArticleContainer";
-import { NavSpacer, LandingPageContainer, ArticleContainer } from "./Styles";
+import { NavSpacer, LandingPageContainer, ArticleContainer } from "../../../elements/LandingPage";
 
 export interface LandingPageProps {
   

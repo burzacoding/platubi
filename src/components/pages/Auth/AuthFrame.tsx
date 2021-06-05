@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { NavSpacer } from '../LandingPage/Styles'
+import { NavSpacer } from '../../../elements/LandingPage'
 
 export interface AuthFrameProps {
   

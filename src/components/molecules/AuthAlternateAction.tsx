@@ -19,6 +19,7 @@ const Title = styled.p`
   margin-bottom: 6px;
 `
 const Action = styled(Link)`
+user-select: none;
   height: 24px;
   font-weight: 500;
   font-size: 16px;

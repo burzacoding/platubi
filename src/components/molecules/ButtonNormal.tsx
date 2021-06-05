@@ -28,6 +28,7 @@ const ButtonContainer = styled.div<ButtonContainerProps>`
   text-decoration: none;
   text-align: center;
   span {
+  user-select: none;
     display: block;
     line-height: 140%;
     color: #f0f0f0;
