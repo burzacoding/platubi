@@ -22,7 +22,7 @@ const color = {
 
 
 const RegStepOne: React.FC<RegStepOneProps> = ({setStep}) => {
-  const {Reduce} = useStepUpdater(setStep);
+  const {Add, Reduce} = useStepUpdater(setStep);
   
   return (
     <Form action="">
@@ -53,7 +53,7 @@ const RegStepOne: React.FC<RegStepOneProps> = ({setStep}) => {
       />
       <ButtonsContainer>
         <ButtonBack colorObj={color} onClick={Reduce}><BackArrow colorObj={color} /></ButtonBack>
-        <ButtonNormal ghost text="Siguiente" />
+        <ButtonNormal ghost text="Siguiente" onClick={Add} />
       </ButtonsContainer>
     </Form>
   );

@@ -13,6 +13,7 @@ import {
 import UserSVG from '../atoms/SVG/UserSVG'
 import LockSVG from '../atoms/SVG/LockSVG'
 import EyeSVG from '../atoms/SVG/EyeSVG'
+import { selectBorders } from '../../Utils/Utils'
 
 export interface LoginFormProps {
   
@@ -36,57 +37,25 @@ const onSubmit = (values: initialValuesProps) => {
 }
 
 // ESQUEMA DE VALIDACIÓN DE YUP
+
+const errors = {
+  email: {
+    email: 'Ingrese un mail válido.',
+    required: 'El email no puede estar en blanco.'
+  },
+  password: {
+    required: 'La contraseña no puede estar en blanco.'
+  }
+}
+
 const ValidationSchema = Yup.object({
-  email: Yup.string().email('Ingrese un mail válido').required('Ingrese un mail válido'),
-  password: Yup.string().required('La contraseña no puede estar en blanco.')
+  email: Yup.string().email(errors.email.email).required(errors.email.required),
+  password: Yup.string().required(errors.password.required)
 })
 
 // FUNCIONES UTILES
 
 const isFar = (formik: FormikProps<initialValuesProps>) => formik.errors.password && formik.touched.password ? 'true' : undefined
-const selectBorders = (formik: FormikProps<initialValuesProps>, name: 'email' | 'password') => {
-  if (name === 'email') {
-    if (!formik.touched.email) {
-      return {
-        dark: 'none',
-        light: 'none'
-      }
-    }
-    if  (formik.errors.email) {
-      return {
-        dark: '0 0 1px 2px #800000',
-        light: '0 0 1px 2px #ca17177a', 
-      }
-    }
-    return {
-      dark: '0 0 1px 2px #044abb92',
-      light: '0 0 1px 2px #00378f92',
-    }
-  }
-  if (name === 'password') {
-    if (!formik.touched.password) {
-      return {
-        dark: 'none',
-        light: 'none'
-      }
-    }
-    if  (formik.errors.password) {
-      return {
-        dark: '0 0 1px 2px #800000',
-        light: '0 0 1px 2px #ca17177a', 
-      }
-    }
-    return {
-      dark: '0 0 1px 2px #044abb92',
-      light: '0 0 1px 2px #00378f92',
-    }
-  }
-  
-  return {
-    dark: 'none',
-    light: 'none'
-  }
-}
 
 //COMPONENTE PRINCIPAL
 const LoginForm: React.FC<LoginFormProps> = () => {

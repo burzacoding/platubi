@@ -1,5 +1,6 @@
-import { Formik } from "formik";
+import { Form, Formik } from "formik";
 import { useState } from "react";
+import * as Yup from 'yup'
 import AuthFrame from "../AuthFrame";
 import StepOne from "./StepOne";
 import StepThree from "./StepThree";
@@ -9,30 +10,39 @@ export interface RegIndexProps {
   
 }
 
-export interface savedDataProps {
-  mail: {
-    value: string,
-    isValid: string
+const initialValues = { email: '', password: '', confirmPassword: '', name: '', username: ''}
+const errors = {
+  email: {
+    email: 'Ingrese un mail válido.',
+    required: 'Ingrese un mail.'
   },
   password: {
-    value: string,
-    isValid: string
+    min: 'La contraseña debe tener más de 6 caracteres.',
+    max: 'La contraseña no puede exceder los 32 caracteres.',
+    required: 'La contraseña no puede estar vacía.'
+  },
+  confirmPassword: {
+    oneOf: 'Las contraseñas no coinciden.',
+    required: 'Confirme su contraseña.'
   },
   name: {
-    value: string,
-    isValid: string
-  },
-  surname: {
-    value: string,
-    isValid: string
+    max: 'El nombre no puede exceder los 64 caracteres.',
+    required: 'El nombre no puede estar vacío.'
   },
   username: {
-    value: string,
-    isValid: string
+    min: 'El nombre de usuario debe tener más de 4 caracteres.',
+    max: 'El nombre de usuario no puede exceder los 32 caracteres.',
+    required: 'El nombre de usuario no puede estar vacío.'
   }
-}
 
-const initialValues = { mail: '', password: '', name: '', surname:  '', username: ''}
+}
+const validationSchema = Yup.object({
+  email: Yup.string().email(errors.email.email).required(errors.email.required),
+  password: Yup.string().min(6, errors.password.min).max(32, errors.password.max).required(errors.password.required),
+  confirmPassword: Yup.string().oneOf([Yup.ref('password')], errors.confirmPassword.oneOf).required(errors.confirmPassword.required),
+  name: Yup.string().max(64, errors.name.max).required(errors.name.required),
+  username: Yup.string().min(4, errors.username.min).max(32, errors.username.max).required(errors.username.required)
+})
 
 
 const RegIndex: React.FC<RegIndexProps> = () => {
@@ -41,16 +51,23 @@ const RegIndex: React.FC<RegIndexProps> = () => {
 
   return (
     <AuthFrame>
-        {step === 1 && (<StepOne setStep={setStep} key="step1" />)}
-        {/* <Formik
-          initialValues={initialValues}
-          onSubmit={() => {console.log('Formulario enviado')}}  
-        >
-        {step === 2 && (<StepTwo setStep={setStep} key="step2" />)}
-        {step === 3 && (<StepThree setStep={setStep} key="step3" />)}
-        </Formik> */}
+          <Formik
+            initialValues={initialValues}
+            onSubmit={() => {console.log('Formulario enviado')}}
+            validationSchema={validationSchema} 
+          >
+          {formik => (
+            <Form>
+              {step === 1 && (<StepOne setStep={setStep} key="step1" />)}
+              {step === 2 && (<StepTwo setStep={setStep} key="step2" formik={formik} />)}
+              {step === 3 && (<StepThree setStep={setStep} key="step3" formik={formik} />)}
+            </Form>
+          )}
+          </Formik>
     </AuthFrame>
   );
 }
  
 export default RegIndex;
+// {step === 2 && (<StepTwo setStep={setStep} key="step2" />)}
+// {step === 3 && (<StepThree setStep={setStep} key="step3" />)}

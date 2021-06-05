@@ -1,5 +1,5 @@
 import { Field } from 'formik'
-import ThemeColorPicker from '../Utils/ThemeColorPicker'
+import { ThemeColorPicker } from '../Utils/Utils'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
@@ -59,7 +59,9 @@ const Input = styled(Field)`
   height: 100%;
   outline: none;
   border: none;
+  margin-right: 4px;
   &:-webkit-autofill {
+    border-radius: 0 1px 1px 0;
     box-shadow: 0 0 0 50px ${p => p.theme.divDarkerBackground} inset;
     -webkit-box-shadow:0 0 0 50px ${p => p.theme.divDarkerBackground} inset; /* Change the color to your own background color */
     -webkit-text-fill-color: ${p => p.theme.fontContrastFive};

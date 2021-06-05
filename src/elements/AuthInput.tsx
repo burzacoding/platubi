@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import ThemeColorPicker from '../Utils/ThemeColorPicker'
+import { ThemeColorPicker } from '../Utils/Utils'
 
 
 interface InputContainerProps {

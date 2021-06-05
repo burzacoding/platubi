@@ -8,6 +8,9 @@ width: 100%;
 max-width: 484px;
 margin: 0 auto;
 `
+export const AuthContainer = styled(ContainerBase)`
+  color: ${p => p.theme.fontContrastFive}
+`
 
 export const Title = styled.h3`
   width: 100%;

@@ -3,8 +3,7 @@ import styled from 'styled-components'
 import AuthAlternateAction from "../../molecules/AuthAlternateAction";
 import RecoverForm from '../../molecules/RecoverForm';
 import AuthFrame from "./AuthFrame";
-import { Container } from "./Register/StepTwo";
-import { Title } from "./Styles";
+import { AuthContainer, Title } from "./Styles";
 
 export interface RecoverPageProps {
   
@@ -22,12 +21,12 @@ const RecoverPage: React.FC<RecoverPageProps> = () => {
 
   return (
     <AuthFrame>
-      <Container>
+      <AuthContainer>
         <Title>Recuperar contraseña</Title>
         <Subtitle>No te preocupes! Podrás recuperar acceso a tu cuenta de forma muy fácil.</Subtitle>
         <RecoverForm />
         <AuthAlternateAction type="login" />
-      </Container>
+      </AuthContainer>
     </AuthFrame>
   );
 }

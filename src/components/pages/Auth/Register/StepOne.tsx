@@ -6,7 +6,6 @@ import SocialAuthButton from '../SocialAuthButton';
 import ButtonNormal from '../../../molecules/ButtonNormal'
 import { ContainerBase, SocialAuthButtonsContainer, Title } from '../Styles';
 import AuthAlternateAction from '../../../molecules/AuthAlternateAction';
-import { savedDataProps } from './RegisterIndex';
 
 
 export interface StepOneProps {
