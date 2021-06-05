@@ -2,11 +2,15 @@ import { ErrorMessage, FormikProps } from 'formik';
 import { useState } from 'react';
 import styled from 'styled-components'
 import { Container as ContainerInput, Error, Input, InputContainer, Label, Password, SvgContainer } from '../../../../elements/AuthStyles';
+import { ButtonBack, ButtonsContainer } from '../../../../elements/RegStep';
+import useStepUpdater from '../../../../Hooks/useStepNumber';
 import { selectBorders } from '../../../../Utils/Utils';
+import BackArrow from '../../../atoms/SVG/BackArrow';
 import EyeSVG from '../../../atoms/SVG/EyeSVG';
 import LockSVG from '../../../atoms/SVG/LockSVG';
 import UserSVG from '../../../atoms/SVG/UserSVG';
 import AuthAlternateAction from '../../../molecules/AuthAlternateAction';
+import ButtonNormal from '../../../molecules/ButtonNormal';
 import { Title, ContainerBase } from "../Styles";
 
 export interface StepTwoProps {
@@ -25,14 +29,29 @@ color: ${p => p.theme.fontContrastFive};
 `
  
 const StepTwo: React.FC<StepTwoProps> = ({setStep, formik}) => {
+
+  const color = {
+    dark: '#096635',
+    light: '#1C4B73'
+  }
+
   const [open, setIsOpen] = useState(false);
   const [openTwo, setIsOpenTwo] = useState(false);
+  const {Add, Reduce} = useStepUpdater(setStep)
+
+  const Next = () => {
+    if (!formik.errors.email && !formik.errors.password && !formik.errors.confirmPassword) {
+      Add()
+    }
+  }
 
   const toggleOpen = () => setIsOpen(p => !p)
   const toggleVisibility = () => open ? 'text' : 'password'
 
   const toggleOpenTwo = () => setIsOpenTwo(p => !p)
   const toggleVisibilityTwo = () => openTwo ? 'text' : 'password'
+
+
 
   return (
     <Container>
@@ -66,6 +85,10 @@ const StepTwo: React.FC<StepTwoProps> = ({setStep, formik}) => {
         </Password>
       </ContainerInput>
 
+      <ButtonsContainer>
+        <ButtonBack colorObj={color} onClick={Reduce}><BackArrow colorObj={color} /></ButtonBack>
+        <ButtonNormal ghost text="Siguiente" onClick={Next} />
+      </ButtonsContainer>
 
       <AuthAlternateAction type="register" />
     </Container>
@@ -73,34 +96,3 @@ const StepTwo: React.FC<StepTwoProps> = ({setStep, formik}) => {
 }
  
 export default StepTwo;
-
-/*
-      <AuthInput 
-      placeholder="Tu dirección de mail" 
-      label="Email" svg={<MailSendSVG />} 
-      type="email" 
-      errorMessageProp="Ingrese un correo válido"
-      autoComplete="username"
-      />
-
-      <AuthInput 
-      placeholder="Elija una contraseña segura" 
-      label="Contraseña" 
-      svg={<LockSVG />} 
-      type="password" 
-      errorMessageProp="La contraseña debe tener más de 6 carácteres"
-      autoComplete="new-password"
-      
-      />
-      <AuthInput 
-      placeholder="Vuelve a ingresar tu contraseña" 
-      label="Confirma tu contraseña" 
-      svg={<LockSVG />} 
-      type="password" 
-      errorMessageProp="Las contraseñas no coinciden"
-      autoComplete="new-password"
-      />
-      <ButtonsContainer>
-        <ButtonBack colorObj={color} onClick={Reduce}><BackArrow colorObj={color} /></ButtonBack>
-        <ButtonNormal ghost text="Siguiente" onClick={Add} />
-      </ButtonsContainer>*/

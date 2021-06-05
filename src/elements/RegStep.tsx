@@ -16,7 +16,7 @@ export const ButtonsContainer = styled.div`
   grid-template-columns: 42px 1fr;
   align-items: center;
   gap: 4px;
-  margin-top: 36px;
+  margin-top: 4px;
 `
 
 export const ButtonBack = styled.div<ButtonProps>`

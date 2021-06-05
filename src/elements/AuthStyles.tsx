@@ -14,8 +14,7 @@ const Container = styled.div`
   width: 100%;
   margin-bottom: 26px;
 `
-const Label = styled.label`
-  display: inline-block;
+const Label = styled.h3`
   margin-bottom: 6px;
 `
 const InputContainer = styled.div<InputContainerProps>`
