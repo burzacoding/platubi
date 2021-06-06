@@ -1,6 +1,6 @@
 import { ErrorMessage, FormikProps } from 'formik';
+import { Variants } from 'framer-motion';
 import { useState } from 'react';
-import styled from 'styled-components'
 import { Container as ContainerInput, Error, Input, InputContainer, Label, Password, SvgContainer } from '../../../../elements/AuthStyles';
 import { ButtonBack, ButtonsContainer } from '../../../../elements/RegStep';
 import useStepUpdater from '../../../../Hooks/useStepNumber';
@@ -11,7 +11,7 @@ import LockSVG from '../../../atoms/SVG/LockSVG';
 import UserSVG from '../../../atoms/SVG/UserSVG';
 import AuthAlternateAction from '../../../molecules/AuthAlternateAction';
 import ButtonNormal from '../../../molecules/ButtonNormal';
-import { Title, ContainerBase } from "../Styles";
+import { Title, AuthContainerMotion } from "../Styles";
 
 export interface StepTwoProps {
   setStep: React.Dispatch<React.SetStateAction<number>>,
@@ -21,14 +21,15 @@ export interface StepTwoProps {
     confirmPassword: string,
     name: string;
     username: string;
-}>
+}>,
+  variants: Variants,
+  custom: number,
+  setCustom: React.Dispatch<React.SetStateAction<number>>
 }
 
-const Container = styled(ContainerBase)`
-color: ${p => p.theme.fontContrastFive};
-`
- 
-const StepTwo: React.FC<StepTwoProps> = ({setStep, formik}) => {
+const StepTwo: React.FC<StepTwoProps> = ({setStep, formik, variants, custom, setCustom}) => {
+
+
 
   const color = {
     dark: '#096635',
@@ -39,8 +40,9 @@ const StepTwo: React.FC<StepTwoProps> = ({setStep, formik}) => {
   const [openTwo, setIsOpenTwo] = useState(false);
   const {Add, Reduce} = useStepUpdater(setStep)
 
-  const Next = () => {
+  const fireAdd = () => {
     if (!formik.errors.email && !formik.errors.password && !formik.errors.confirmPassword) {
+      setCustom(1);
       Add()
     }
   }
@@ -51,10 +53,14 @@ const StepTwo: React.FC<StepTwoProps> = ({setStep, formik}) => {
   const toggleOpenTwo = () => setIsOpenTwo(p => !p)
   const toggleVisibilityTwo = () => openTwo ? 'text' : 'password'
 
-
+  const fireReduce = () => {
+    setCustom(-1);
+    console.log(custom);
+    Reduce();
+  }
 
   return (
-    <Container>
+    <AuthContainerMotion variants={variants} initial="hidden" animate="visible" exit="exit" custom={custom}>
       <Title>Registrarse</Title>
       <ContainerInput>
         <Label>Email</Label>
@@ -85,11 +91,11 @@ const StepTwo: React.FC<StepTwoProps> = ({setStep, formik}) => {
         </Password>
       </ContainerInput>
       <ButtonsContainer>
-        <ButtonBack colorObj={color} onClick={Reduce}><BackArrow colorObj={color} /></ButtonBack>
-        <ButtonNormal ghost text="Siguiente" onClick={Next} />
+        <ButtonBack colorObj={color} onClick={fireReduce}><BackArrow colorObj={color} /></ButtonBack>
+        <ButtonNormal ghost text="Siguiente" onClick={fireAdd} />
       </ButtonsContainer>
       <AuthAlternateAction type="register" />
-    </Container>
+    </AuthContainerMotion>
   )
 }
  

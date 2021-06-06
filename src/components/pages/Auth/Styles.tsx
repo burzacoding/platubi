@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { motion } from 'framer-motion'
 
 export const ContainerBase = styled.div`
 display: flex;
@@ -8,8 +9,22 @@ width: 100%;
 max-width: 484px;
 margin: 0 auto;
 `
+
+export const PresenceContainer = styled(ContainerBase)`position: relative;`
+
 export const AuthContainer = styled(ContainerBase)`
-  color: ${p => p.theme.fontContrastFive}
+  color: ${p => p.theme.fontContrastFive};
+`
+
+export const AuthContainerMotion = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  color: ${p => p.theme.fontContrastFour};
+  width: 100%;
+  max-width: 484px;
+  position: absolute; 
+  left: 0;
+  color: ${p => p.theme.fontContrastFive};
 `
 
 export const Title = styled.h3`

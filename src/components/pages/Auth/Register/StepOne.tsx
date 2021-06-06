@@ -4,16 +4,19 @@ import FacebookSVG from '../../../atoms/SVG/FacebookSVG';
 import GoogleSVG from '../../../atoms/SVG/GoogleSVG';
 import SocialAuthButton from '../SocialAuthButton';
 import ButtonNormal from '../../../molecules/ButtonNormal'
-import { ContainerBase, SocialAuthButtonsContainer, Title } from '../Styles';
+import { AuthContainerMotion, SocialAuthButtonsContainer, Title } from '../Styles';
 import AuthAlternateAction from '../../../molecules/AuthAlternateAction';
+import { Variants } from 'framer-motion';
+// import { useEffect, useRef } from 'react';
 
 
 export interface StepOneProps {
   setStep: React.Dispatch<React.SetStateAction<number>>,
+  variants: Variants,
+  custom: number,
+  setCustom: React.Dispatch<React.SetStateAction<number>>
 }
 
-const Container = styled(ContainerBase)`
-`
 const Colors = {
   Google: {dark: '#121212', light: '#FFFFFF'},
   Facebook: {dark: '#012646', light: '#E9F5FF'}
@@ -42,11 +45,17 @@ text-align: center;
 
 
 
-const StepOne: React.FC<StepOneProps> = ({setStep}) => {
+const StepOne: React.FC<StepOneProps> = ({setStep, variants, setCustom, custom}) => {
 
   const { Add } = useStepUpdater(setStep)
+
+  const fireAdd = () => {
+    setCustom(1);
+    console.log(custom);
+    Add()
+  }
   return (
-    <Container>
+    <AuthContainerMotion variants={variants} initial="hidden" animate="visible" exit="exit" custom={custom} >
       <Title>Registrarse</Title>
       <SocialAuthButtonsContainer>
         <SocialAuthButton icon={<GoogleSVG />} label="Entrar con Google" colors={Colors.Google} />
@@ -57,9 +66,9 @@ const StepOne: React.FC<StepOneProps> = ({setStep}) => {
         <Text>O introduce tus datos de registro</Text>
         <Side />
       </Separador>
-      <ButtonNormal onClick={Add}  text="Registrarse con email y contraseña" />
+      <ButtonNormal onClick={fireAdd}  text="Registrarse con email y contraseña" />
       <AuthAlternateAction type="register" />
-    </Container>
+    </AuthContainerMotion>
   );
 }
  

@@ -1,7 +1,9 @@
 import { Form, Formik } from "formik";
+import { AnimatePresence, Variants } from "framer-motion";
 import { useState } from "react";
 import * as Yup from 'yup'
 import AuthFrame from "../AuthFrame";
+import { PresenceContainer } from "../Styles";
 import StepOne from "./StepOne";
 import StepThree from "./StepThree";
 import StepTwo from "./StepTwo";
@@ -50,9 +52,30 @@ const onSubmit = (values:  any) => {
   
 }
 
+const variants: Variants = {
+  hidden: (custom) => {
+    return({
+      x: 120 * custom,
+      opacity: 0,
+    })
+  },
+  visible: {
+      x: 0,
+      opacity: 1,
+  },
+  exit: (custom) => {
+    return({
+      x: -120 * custom,
+      opacity: 0,
+    })
+  },
+
+}
+
 const RegIndex: React.FC<RegIndexProps> = () => {
 
   const [step, setStep] = useState(1);
+  const [custom, setCustom] = useState(1)
 
   return (
     <AuthFrame>
@@ -64,9 +87,13 @@ const RegIndex: React.FC<RegIndexProps> = () => {
           >
           {formik => (
             <Form>
-              {step === 1 && (<StepOne setStep={setStep} key="step1" />)}
-              {step === 2 && (<StepTwo setStep={setStep} key="step2" formik={formik} />)}
-              {step === 3 && (<StepThree setStep={setStep} key="step3" formik={formik} />)}
+              <AnimatePresence initial={false} custom={custom}>
+                <PresenceContainer>
+                  {step === 1 && (<StepOne setStep={setStep} key="step1" variants={variants} custom={custom} setCustom={setCustom} />)}
+                  {step === 2 && (<StepTwo setStep={setStep} key="step2" formik={formik} variants={variants} custom={custom} setCustom={setCustom} />)}
+                  {step === 3 && (<StepThree setStep={setStep} key="step3" formik={formik} variants={variants} custom={custom} setCustom={setCustom} />)}
+                </PresenceContainer>
+              </AnimatePresence>
             </Form>
           )}
           </Formik>
@@ -75,5 +102,3 @@ const RegIndex: React.FC<RegIndexProps> = () => {
 }
  
 export default RegIndex;
-// {step === 2 && (<StepTwo setStep={setStep} key="step2" />)}
-// {step === 3 && (<StepThree setStep={setStep} key="step3" />)}
