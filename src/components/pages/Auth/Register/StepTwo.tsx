@@ -84,12 +84,10 @@ const StepTwo: React.FC<StepTwoProps> = ({setStep, formik}) => {
           <Error><ErrorMessage name="confirmPassword"/></Error>
         </Password>
       </ContainerInput>
-
       <ButtonsContainer>
         <ButtonBack colorObj={color} onClick={Reduce}><BackArrow colorObj={color} /></ButtonBack>
         <ButtonNormal ghost text="Siguiente" onClick={Next} />
       </ButtonsContainer>
-
       <AuthAlternateAction type="register" />
     </Container>
   )

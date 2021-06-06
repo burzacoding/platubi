@@ -44,6 +44,11 @@ const validationSchema = Yup.object({
   username: Yup.string().min(4, errors.username.min).max(32, errors.username.max).required(errors.username.required)
 })
 
+const onSubmit = (values:  any) => {
+  alert('Registro exitoso, revisa la consola para confirmar los datos.')
+  console.log(values);
+  
+}
 
 const RegIndex: React.FC<RegIndexProps> = () => {
 
@@ -53,8 +58,9 @@ const RegIndex: React.FC<RegIndexProps> = () => {
     <AuthFrame>
           <Formik
             initialValues={initialValues}
-            onSubmit={() => {console.log('Formulario enviado')}}
-            validationSchema={validationSchema} 
+            onSubmit={onSubmit}
+            validationSchema={validationSchema}
+            validateOnMount
           >
           {formik => (
             <Form>

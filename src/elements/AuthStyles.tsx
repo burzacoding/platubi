@@ -133,6 +133,25 @@ const IngresarMT = styled(Ingresar)`
   margin-top: 4px;
 `
 
+const ButtonSubmit = styled.button`
+  background: ${p => p.theme.colorBackground};
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+
+  width: 100%;
+  height: 42px;
+  border-radius: 0.5em;
+  border: none;
+
+  text-decoration: none;
+  text-align: center;
+  color: #f0f0f0;
+  font-family: 'Montserrat';
+  font-size: 14px;
+  @media screen and (min-width: 1025px) {
+    font-size: 1em;
+  }
+`
+
 export { 
   Container,
   Label,
@@ -144,4 +163,5 @@ export {
   Error,
   Subtitle,
   Ingresar,
-  IngresarMT}
+  IngresarMT,
+  ButtonSubmit}
