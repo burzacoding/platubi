@@ -7,7 +7,6 @@ import ButtonNormal from '../../../molecules/ButtonNormal'
 import { AuthContainerMotion, SocialAuthButtonsContainer, Title } from '../Styles';
 import AuthAlternateAction from '../../../molecules/AuthAlternateAction';
 import { Variants } from 'framer-motion';
-// import { useEffect, useRef } from 'react';
 
 
 export interface StepOneProps {

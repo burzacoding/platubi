@@ -1,5 +1,6 @@
-import { Variants } from 'framer-motion'
 import styled from 'styled-components'
+import { Variants } from 'framer-motion'
+
 import DesktopTextSvg from './DesktopTextSvg'
 
 export interface DecoratorRightProps {

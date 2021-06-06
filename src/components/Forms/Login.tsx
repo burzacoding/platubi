@@ -9,11 +9,12 @@ import {
   SvgContainer,
   Input,
   Error,
-  Ingresar} from '../../elements/AuthStyles'
-import UserSVG from '../atoms/SVG/UserSVG'
-import LockSVG from '../atoms/SVG/LockSVG'
-import EyeSVG from '../atoms/SVG/EyeSVG'
-import { selectBorders } from '../../Utils/Utils'
+  Ingresar} from '@styles/AuthStyles'
+import UserSVG from '@SVG/UserSVG'
+import LockSVG from '@SVG/LockSVG'
+import EyeSVG from '@SVG/EyeSVG'
+import { selectBorders } from '@utils/Utils'
+import { loginValidationSchema } from '@utils/Validation/Login'
 
 export interface LoginFormProps {
   
@@ -38,34 +39,20 @@ const onSubmit = (values: initialValuesProps) => {
 
 // ESQUEMA DE VALIDACIÓN DE YUP
 
-const errors = {
-  email: {
-    email: 'Ingrese un mail válido.',
-    required: 'El email no puede estar en blanco.'
-  },
-  password: {
-    required: 'La contraseña no puede estar en blanco.'
-  }
-}
-
-const ValidationSchema = Yup.object({
-  email: Yup.string().email(errors.email.email).required(errors.email.required),
-  password: Yup.string().required(errors.password.required)
-})
 
 // FUNCIONES UTILES
 
 const isFar = (formik: FormikProps<initialValuesProps>) => formik.errors.password && formik.touched.password ? 'true' : undefined
 
 //COMPONENTE PRINCIPAL
-const LoginForm: React.FC<LoginFormProps> = () => {
+const Login: React.FC<LoginFormProps> = () => {
 
 
   return (
     <Formik
       initialValues={initialValues}
       onSubmit={onSubmit}
-      validationSchema={ValidationSchema}
+      validationSchema={loginValidationSchema}
     >
       {formik => (
         <Form>
@@ -94,4 +81,4 @@ const LoginForm: React.FC<LoginFormProps> = () => {
   );
 }
  
-export default LoginForm;
+export default Login;

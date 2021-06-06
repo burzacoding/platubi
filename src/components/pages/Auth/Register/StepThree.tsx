@@ -1,12 +1,12 @@
 import { AuthContainerMotion, Title } from "../Styles";
-import AuthAlternateAction from '../../../molecules/AuthAlternateAction';
-import { Container as ContainerInput, Error, Input, InputContainer, Label, NameField, SvgContainer, ButtonSubmit } from '../../../../elements/AuthStyles';
+import AuthAlternateAction from '@comp/molecules/AuthAlternateAction';
+import { Container as ContainerInput, Error, Input, InputContainer, Label, NameField, SvgContainer, ButtonSubmit } from '@styles/AuthStyles';
 import { FormikProps, ErrorMessage } from "formik";
-import { selectBorders } from '../../../../Utils/Utils';
-import { ButtonBack, ButtonsContainer } from '../../../../elements/RegStep';
-import BackArrow from '../../../atoms/SVG/BackArrow';
-import useStepUpdater from '../../../../Hooks/useStepNumber';
-import UserSVG from '../../../atoms/SVG/UserSVG';
+import { selectBorders } from '@utils/Utils';
+import { ButtonBack, ButtonsContainer } from '@styles/RegStep';
+import BackArrow from '@SVG/BackArrow';
+import useStepUpdater from '@hooks/useStepNumber';
+import UserSVG from '@SVG/UserSVG';
 import { Variants } from "framer-motion";
 
 export interface StepThreeProps {

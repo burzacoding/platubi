@@ -1,7 +1,7 @@
 import FacebookSVG from "../../atoms/SVG/FacebookSVG";
 import GoogleSVG from "../../atoms/SVG/GoogleSVG";
 import AuthAlternateAction from "../../molecules/AuthAlternateAction";
-import LoginForm from "../../molecules/LoginForm";
+import LoginForm from "@form/Login";
 import AuthFrame from "./AuthFrame";
 import { Separador, Side, Text } from "./Register/StepOne";
 import SocialAuthButton from "./SocialAuthButton";

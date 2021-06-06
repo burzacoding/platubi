@@ -1,8 +1,8 @@
+import { recoverValidationSchema } from "@utils/Validation/Recover";
 import { Formik, Form, ErrorMessage } from "formik";
-import * as Yup from 'yup'
-import { Container, Error, Input, InputContainer, Label, SvgContainer, IngresarMT as Ingresar } from "../../elements/AuthStyles";
-import { selectBorders } from "../../Utils/Utils";
-import UserSVG from "../atoms/SVG/UserSVG";
+import { Container, Error, Input, InputContainer, Label, SvgContainer, IngresarMT as Ingresar } from "@styles/AuthStyles";
+import { selectBorders } from "@utils//Utils";
+import UserSVG from "@SVG/UserSVG";
 
 export interface RecoverFormProps {
     
@@ -12,17 +12,13 @@ const onSubmit = () => {
   alert('Recover password formulario enviado con éxito.')
 }
 
-const errors = {
-  email: 'Ingrese un mail válido',
-  required: 'Ingrese un mail'
-}
 
-const RecoverForm: React.FC<RecoverFormProps> = () => {
+const Recover: React.FC<RecoverFormProps> = () => {
   return (
     <Formik
       initialValues={{email: ''}}
       onSubmit={onSubmit}
-      validationSchema={Yup.object({email: Yup.string().email(errors.email).required(errors.required)})}
+      validationSchema={recoverValidationSchema}
     >
       {formik => (
         <Form>
@@ -41,4 +37,4 @@ const RecoverForm: React.FC<RecoverFormProps> = () => {
   );
 }
  
-export default RecoverForm;
+export default Recover;

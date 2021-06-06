@@ -1,5 +1,5 @@
-import { motion, Variants } from 'framer-motion'
 import styled from 'styled-components'
+import { motion, Variants } from 'framer-motion'
 
 const SvgCont = styled(motion.svg)`
 opacity: ${p => p.theme.theme === 'dark' ? '0.5' : '0.75'};

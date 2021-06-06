@@ -18,7 +18,16 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
-    "noEmit": true
+    "noEmit": true,
+    "paths": {
+      "@styles/*" : ["./src/elements/*"],
+      "@comp/*" : ["./src/components/*"],
+      "@utils/*" : ["./src/Utils/*"],
+      "@hooks/*" : ["./src/Hooks/*"],
+      "@form/*" : ["./src/components/Forms/*"],
+      "@SVG/*" : ["./src/components/atoms/SVG/*"],
+
+    }
   },
   "include": [
     "src"

@@ -1,6 +1,6 @@
 import { forwardRef, useState } from 'react'
-import { ThemeImg, SVGContainer } from './Styles'
 import { AnimatePresence, Variants } from 'framer-motion'
+import { ThemeImg, SVGContainer } from '@styles/ThemeToggle'
 import Moon from './Moon'
 import Sun from './Sun'
 
