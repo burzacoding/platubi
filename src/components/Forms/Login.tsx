@@ -1,4 +1,3 @@
-import * as Yup from 'yup'
 import { Formik, Form, ErrorMessage, FormikProps } from 'formik'
 import { 
   Container,
@@ -9,12 +8,12 @@ import {
   SvgContainer,
   Input,
   Error,
-  Ingresar} from '@styles/AuthStyles'
-import UserSVG from '@SVG/UserSVG'
-import LockSVG from '@SVG/LockSVG'
-import EyeSVG from '@SVG/EyeSVG'
-import { selectBorders } from '@utils/Utils'
-import { loginValidationSchema } from '@utils/Validation/Login'
+  Ingresar} from '../../elements/AuthStyles'
+import UserSVG from '../atoms/SVG/UserSVG'
+import LockSVG from '../atoms/SVG/LockSVG'
+import EyeSVG from '../atoms/SVG/EyeSVG'
+import { selectBorders } from '../../Utils/Utils'
+import { loginValidationSchema } from '../../Utils/Validation/Login'
 
 export interface LoginFormProps {
   

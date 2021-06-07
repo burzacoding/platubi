@@ -1,4 +1,4 @@
-import { registerValidationSchema } from "@utils/Validation/Register";
+import { registerValidationSchema } from "../../../../Utils/Validation/Register";
 import { Form, Formik } from "formik";
 import { AnimatePresence, Variants } from "framer-motion";
 import { useState } from "react";

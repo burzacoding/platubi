@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import AuthAlternateAction from "../../molecules/AuthAlternateAction";
-import RecoverForm from '@form/Recover';
+import RecoverForm from '../../Forms/Recover';
 import AuthFrame from "./AuthFrame";
 import { AuthContainer, Title } from "./Styles";
 
