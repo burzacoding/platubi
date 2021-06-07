@@ -1,8 +1,8 @@
+import UserSVG from "@SVG/UserSVG";
+import { selectBorders } from "@utils//Utils";
 import { recoverValidationSchema } from "@utils/Validation/Recover";
 import { Formik, Form, ErrorMessage } from "formik";
 import { Container, Error, Input, InputContainer, Label, SvgContainer, IngresarMT as Ingresar } from "@styles/AuthStyles";
-import { selectBorders } from "@utils//Utils";
-import UserSVG from "@SVG/UserSVG";
 
 export interface RecoverFormProps {
     

@@ -1,9 +1,9 @@
-import DecoratorRight from "../../atoms/DecoratorRight";
-import DecoratorSvg from "../../molecules/DecoratorSvg";
-import Separador from "../../molecules/Separador";
+import DecoratorRight from "@comp/atoms/DecoratorRight";
+import DecoratorSvg from "@comp/molecules/DecoratorSvg";
+import Separador from "@comp/molecules/Separador";
 import FirstArticleContainer from "./FirstArticleContainer/FirstArticleContainer";
 import SecondArticleContainer from "./SecondArticleContainer/SecondArticleContainer";
-import { NavSpacer, LandingPageContainer, ArticleContainer } from "../../../elements/LandingPage";
+import { NavSpacer, LandingPageContainer, ArticleContainer } from "@styles/LandingPage";
 
 export interface LandingPageProps {
   

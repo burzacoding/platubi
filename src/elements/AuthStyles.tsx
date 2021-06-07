@@ -1,7 +1,7 @@
-import { Field } from 'formik'
-import { ThemeColorPicker } from '../Utils/Utils'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { Field } from 'formik'
+import { ThemeColorPicker } from '@utils/Utils'
 
 interface InputContainerProps {
   border: {
