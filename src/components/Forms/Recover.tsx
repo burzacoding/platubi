@@ -26,7 +26,7 @@ const Recover: React.FC<RecoverFormProps> = () => {
             <Label>Email</Label>
             <InputContainer border={selectBorders(formik, 'email')}>
               <SvgContainer children={<UserSVG />} />
-              <Input type='email' name='email' id='email' placeholder='Introduce tu email' required />
+              <Input type='email' name='email' id='email' placeholder='Introduce tu email' />
               <Error><ErrorMessage name="email"/></Error>
             </InputContainer>
           </Container>

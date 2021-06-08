@@ -59,7 +59,7 @@ const Login: React.FC<LoginFormProps> = () => {
             <Label>Email</Label>
             <InputContainer border={selectBorders(formik, 'email')}>
               <SvgContainer children={<UserSVG />} />
-              <Input type='email' name='email' id='email' placeholder='Introduce tu email' autoComplete="username" required />
+              <Input type='email' name='email' id='email' placeholder='Introduce tu email' autoComplete="username" />
               <Error><ErrorMessage name="email"/></Error>
             </InputContainer>
           </Container>
@@ -67,7 +67,7 @@ const Login: React.FC<LoginFormProps> = () => {
             <Label>Contraseña</Label>
             <Password border={selectBorders(formik, 'password')}>
               <SvgContainer children={<LockSVG />} />
-              <Input type='password' name='password' id='password' placeholder='Introduce tu contraseña' autoComplete="current-password" required />
+              <Input type='password' name='password' id='password' placeholder='Introduce tu contraseña' autoComplete="current-password" />
               <EyeSVG isOpen={true} />
               <Error><ErrorMessage name="password"/></Error>
             </Password>

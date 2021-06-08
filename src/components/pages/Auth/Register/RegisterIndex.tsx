@@ -5,14 +5,12 @@ import { useState } from "react";
 import AuthFrame from "../AuthFrame";
 import { PresenceContainer } from "../Styles";
 import StepOne from "./StepOne";
-import StepThree from "./StepThree";
 import StepTwo from "./StepTwo";
+// import StepThree from "./StepThree";
 
-export interface RegIndexProps {
-  
-}
+export interface RegIndexProps {}
 
-const initialValues = { email: '', password: '', confirmPassword: '', name: '', username: ''}
+const initialValues = { email: '', password: '', confirmPassword: ''}
 
 const onSubmit = (values:  any) => {
   alert('Registro exitoso, revisa la consola para confirmar los datos.')
@@ -59,7 +57,6 @@ const RegIndex: React.FC<RegIndexProps> = () => {
                 <PresenceContainer>
                   {step === 1 && (<StepOne setStep={setStep} key="step1" variants={variants} custom={custom} setCustom={setCustom} />)}
                   {step === 2 && (<StepTwo setStep={setStep} key="step2" formik={formik} variants={variants} custom={custom} setCustom={setCustom} />)}
-                  {step === 3 && (<StepThree setStep={setStep} key="step3" formik={formik} variants={variants} custom={custom} setCustom={setCustom} />)}
                 </PresenceContainer>
               </AnimatePresence>
             </Form>

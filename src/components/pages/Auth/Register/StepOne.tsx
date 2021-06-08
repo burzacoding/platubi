@@ -50,7 +50,6 @@ const StepOne: React.FC<StepOneProps> = ({setStep, variants, setCustom, custom})
 
   const fireAdd = () => {
     setCustom(1);
-    console.log(custom);
     Add()
   }
   return (
