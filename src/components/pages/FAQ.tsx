@@ -12,6 +12,8 @@ const FAQPage: React.FC<FAQPageProps> = () => {
         <MainContent>
           <Article>
             <Title>Preguntas frecuentes</Title>
+            <Subtitle>¿Tengo que depositar dinero?</Subtitle>
+            <P>¡Nunca! Platubi solo es un servicio de cálculo en el cual cada usuario agrega "anotaciones" (llamadas registros) en el que indica un tipo de activo y su monto para que la plataforma pueda informarle al usuario a cuánto equivale su patrimonio neto. A nosotros no nos importa si los valores son reales o falsos ya que la plataforma solo existe para que vos tengas noción del tamaño de tu capital en la divisa / criptomoneda que quieras y lo sepas rapidamente solo viendo el número que te proporciona tu panel principal.</P>
             <Subtitle>¿Cómo funciona Platubi?</Subtitle>
             <P>Supongamos que tu patrimonio se compone de 200 USD y 1000 ARS y querés visualizar tu patrimonio en pesos argentinos, la plataforma de Platubi cotiza todos los activos valuados en dólares que tengas registrados y te muestra a vos el total de todos los activos que tengas sumados. En este caso 1000 ARS + (200 * 90) = 28000 ARS.
             </P>
