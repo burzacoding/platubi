@@ -9,7 +9,7 @@ import BackArrow from '../../../atoms/SVG/BackArrow';
 import Check from '../../../atoms/SVG/Check';
 import EyeSVG from '../../../atoms/SVG/EyeSVG';
 import LockSVG from '../../../atoms/SVG/LockSVG';
-import UserSVG from '../../../atoms/SVG/UserSVG';
+import MailSendSVG from '../../../atoms/SVG/MailSendSVG';
 import AuthAlternateAction from '../../../molecules/AuthAlternateAction';
 import { Title, AuthContainerMotion } from "../Styles";
 
@@ -54,7 +54,7 @@ const StepTwo: React.FC<StepTwoProps> = ({setStep, formik, variants, custom, set
       <ContainerInput>
         <Label>Email</Label>
         <InputContainer border={selectBorders(formik, 'email')}>
-          <SvgContainer children={<UserSVG />} />
+          <SvgContainer children={<MailSendSVG />} />
           <Input type='email' name='email' id='email' placeholder='Introduce tu email' autoComplete="username"/>
           <Error><ErrorMessage name="email"/></Error>
         </InputContainer>
@@ -86,7 +86,7 @@ const StepTwo: React.FC<StepTwoProps> = ({setStep, formik, variants, custom, set
           <Checkbox type="checkbox" name="termsAccepted" id="termsAccepted" />
           {formik.values.termsAccepted === true && <Check />}
         </CheckboxInputContainer>
-        <CheckboxText>Acepto los <TyC to="/faq#tyc">términos y condiciones</TyC>.</CheckboxText>
+        <CheckboxText>Acepto los <TyC to="/faq#tyc" target="_blank" rel="noopener noreferrer">términos y condiciones</TyC>.</CheckboxText>
         <ErrorCheckbox><ErrorMessage name="termsAccepted"/></ErrorCheckbox>
       </CheckboxContainer>
       </label>

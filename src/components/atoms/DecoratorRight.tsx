@@ -14,6 +14,7 @@ const Container = styled.div`
   display: none;
   width: 30%;
   height: 100%;
+  max-height: 100%;
   clip-path: url(#right);
   @media screen and (min-width: 1368px) {
     display: block;
@@ -27,6 +28,7 @@ const Container = styled.div`
 
   clipPath {
     transform: scale(0.0017,0.00111);
+    -moz-transform: scale(0.0017,0.00048);
   }
 
 `
@@ -52,7 +54,7 @@ const DecoratorRight: React.FC<DecoratorRightProps> = ({KeyID}) => {
         <g filter={`url(#filter0_i${KeyID})`}>
         <path fillRule="evenodd" clipRule="evenodd" d="M606 0V900H25.0789C-52.5824 771.068 73.9638 552.575 84.3658 405.755C99.3444 194.341 2.3133 126.142 116.385 0H606Z"/>
         </g>
-        <clipPath id="right" clipPathUnits="objectBoundingBox" >
+        <clipPath id="right" clipPathUnits="objectBoundingBox" preserveAspectRatio="none">
             <path d="M606 0V900H25.0789C-52.5824 771.068 73.9638 552.575 84.3658 405.755C99.3444 194.341 2.3133 126.142 116.385 0H606Z"  />          
         </clipPath>
         <defs>

@@ -24,8 +24,10 @@ const Container = styled.div<ContainerProps>`
 
   svg clipPath {
     transform: ${p => p.bottom ? 'scale(0.0015, 0.00825)' : 'scale(0.0015, 0.00715)'};
+    -moz-transform: ${p => p.bottom ? 'scale(0.0005, 0.004)' : 'scale(0.000485,0.00345)'};
     @media screen and (min-width: 668px) {
       transform: ${p => p.bottom ? 'scale(0.0015, 0.00825)' : 'scale(0.0015, 0.00725)'};
+      -moz-transform: ${p => p.bottom ? 'scale(0.00093, 0.004)' : 'scale(0.0015, 0.00725)'};
     }
   }
 `
