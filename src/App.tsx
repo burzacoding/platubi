@@ -8,6 +8,7 @@ import LandingPage from './components/pages/LandingPage/LandingPage';
 import LoginPage from './components/pages/Auth/LoginPage';
 import RegIndex from './components/pages/Auth/Register/RegisterIndex';
 import RecoverPage from './components/pages/Auth/RecoverPage';
+import ContactoPage from './components/pages/Contacto';
 // import LandingPageThree from "./components/templates/LandingPageThree";
 // import LandingPageTwo from "./components/templates/LandingPageTwo";
 // import Footer from "./components/molecules/Footer";
@@ -34,6 +35,7 @@ function App() {
           <Route path="/recover" component={RecoverPage} />
           <Route path="/registrarse" component={RegIndex} />
           <Route path="/login" component={LoginPage} />
+          <Route path="/contacto" component={ContactoPage} />
           <Route path="/" component={LandingPage} />
         </Switch>
       </ThemeProvider>
