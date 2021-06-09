@@ -1,7 +1,6 @@
 import { ErrorMessage, FormikProps } from 'formik';
 import { Variants } from 'framer-motion';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { ButtonSubmit, Checkbox, CheckboxContainer, CheckboxText, Container as ContainerInput, Error, ErrorCheckbox, Input, InputContainer, Label, Password, SvgContainer, TyC, CheckboxInputContainer } from '../../../../elements/AuthStyles';
 import { ButtonBack, ButtonsContainer } from '../../../../elements/RegStep';
 import useStepUpdater from '../../../../Hooks/useStepNumber';
@@ -92,10 +91,10 @@ const StepTwo: React.FC<StepTwoProps> = ({setStep, formik, variants, custom, set
       </CheckboxContainer>
       </label>
 
-        <ButtonsContainer>
-          <ButtonBack colorObj={color} onClick={fireReduce}><BackArrow colorObj={color}/></ButtonBack>
-          <ButtonSubmit type="submit" disabled={formik.isSubmitting}>Crear cuenta</ButtonSubmit>
-        </ButtonsContainer>
+      <ButtonsContainer>
+        <ButtonBack colorObj={color} onClick={fireReduce}><BackArrow colorObj={color}/></ButtonBack>
+        <ButtonSubmit type="submit" disabled={formik.isSubmitting}>Crear cuenta</ButtonSubmit>
+      </ButtonsContainer>
       <AuthAlternateAction type="register" />
     </AuthContainerMotion>
   )

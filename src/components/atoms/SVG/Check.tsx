@@ -1,11 +1,11 @@
 import styled from 'styled-components'
-import { motion } from 'framer-motion'
 import { ThemeColorPicker } from '../../../Utils/Utils';
 
-const CheckSvg = styled(motion.svg)`
+const CheckSvg = styled.svg`
   position: absolute;
   left: 0px;
-  stop-color: ${p => ThemeColorPicker(p, '#096635', '#1269B4')};;
+  stop-color: ${p => ThemeColorPicker(p, '#096635', '#1269B4')};
+  cursor: pointer;
 `
 
 export interface CheckProps {
