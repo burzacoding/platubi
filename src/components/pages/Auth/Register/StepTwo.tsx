@@ -1,11 +1,13 @@
 import { ErrorMessage, FormikProps } from 'formik';
 import { Variants } from 'framer-motion';
 import { useState } from 'react';
-import { ButtonSubmit, Container as ContainerInput, Error, Input, InputContainer, Label, Password, SvgContainer } from '../../../../elements/AuthStyles';
+import { Link } from 'react-router-dom';
+import { ButtonSubmit, Checkbox, CheckboxContainer, CheckboxText, Container as ContainerInput, Error, ErrorCheckbox, Input, InputContainer, Label, Password, SvgContainer, TyC, CheckboxInputContainer } from '../../../../elements/AuthStyles';
 import { ButtonBack, ButtonsContainer } from '../../../../elements/RegStep';
 import useStepUpdater from '../../../../Hooks/useStepNumber';
 import { selectBorders } from '../../../../Utils/Utils';
 import BackArrow from '../../../atoms/SVG/BackArrow';
+import Check from '../../../atoms/SVG/Check';
 import EyeSVG from '../../../atoms/SVG/EyeSVG';
 import LockSVG from '../../../atoms/SVG/LockSVG';
 import UserSVG from '../../../atoms/SVG/UserSVG';
@@ -18,6 +20,7 @@ export interface StepTwoProps {
     email: string;
     password: string;
     confirmPassword: string,
+    termsAccepted: boolean
 }>,
   variants: Variants,
   custom: number,
@@ -77,6 +80,18 @@ const StepTwo: React.FC<StepTwoProps> = ({setStep, formik, variants, custom, set
           <Error><ErrorMessage name="confirmPassword"/></Error>
         </Password>
       </ContainerInput>
+      
+      <label htmlFor="termsAccepted">
+      <CheckboxContainer>
+        <CheckboxInputContainer>
+          <Checkbox type="checkbox" name="termsAccepted" id="termsAccepted" />
+          {formik.values.termsAccepted === true && <Check />}
+        </CheckboxInputContainer>
+        <CheckboxText>Acepto los <TyC to="/faq#tyc">términos y condiciones</TyC>.</CheckboxText>
+        <ErrorCheckbox><ErrorMessage name="termsAccepted"/></ErrorCheckbox>
+      </CheckboxContainer>
+      </label>
+
         <ButtonsContainer>
           <ButtonBack colorObj={color} onClick={fireReduce}><BackArrow colorObj={color}/></ButtonBack>
           <ButtonSubmit type="submit" disabled={formik.isSubmitting}>Crear cuenta</ButtonSubmit>

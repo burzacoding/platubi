@@ -20,6 +20,7 @@ export const registerValidationSchema = Yup.object({
   email: Yup.string().email(errors.email.email).required(errors.email.required),
   password: Yup.string().min(6, errors.password.min).max(32, errors.password.max).required(errors.password.required),
   confirmPassword: Yup.string().oneOf([Yup.ref('password')], errors.confirmPassword.oneOf).required(errors.confirmPassword.required),
+  termsAccepted: Yup.bool().oneOf([true], 'La casilla debe estar aceptada para registrarse.'),
 })
 
 // name: Yup.string().max(64, errors.name.max).required(errors.name.required),

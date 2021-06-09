@@ -10,7 +10,7 @@ import StepTwo from "./StepTwo";
 
 export interface RegIndexProps {}
 
-const initialValues = { email: '', password: '', confirmPassword: ''}
+const initialValues = { email: '', password: '', confirmPassword: '', termsAccepted: false}
 
 const onSubmit = (values:  any) => {
   alert('Registro exitoso, revisa la consola para confirmar los datos.')

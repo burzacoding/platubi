@@ -91,7 +91,6 @@ const Error = styled.div`
   right: 0;
   color: ${p => ThemeColorPicker(p, '#a56161', '#cc6161')};
 `
-
 interface SubtitleProps {
   farbottom?: string
 }
@@ -137,7 +136,7 @@ const IngresarMT = styled(Ingresar)`
 const ButtonSubmit = styled.button`
   background: ${p => p.theme.colorBackground};
   -webkit-tap-highlight-color: rgba(0,0,0,0);
-
+  user-select: none;
   width: 100%;
   height: 42px;
   border-radius: 0.5em;
@@ -153,6 +152,70 @@ const ButtonSubmit = styled.button`
   }
 `
 
+const CheckboxContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: -10px;
+  margin-bottom: 16px;
+`
+const CheckboxInputContainer = styled.div`
+position: relative;
+width: 28px;
+height: 42px;
+display: flex;
+align-items: center;
+justify-content: flex-end;
+  margin-right: 12px;
+`
+const CheckboxText = styled.span`
+-webkit-tap-highlight-color: rgba(0,0,0,0);
+user-select: none;
+width: auto;
+display:block;
+text-align: right;
+cursor: pointer;
+@media screen and (max-width: 359px) {
+  font-size: 14px;
+  min-width: 242px;
+};
+`
+
+const TyC = styled(Link)`
+-webkit-tap-highlight-color: rgba(0,0,0,0);
+color: ${p => ThemeColorPicker(p, '#096635', '#1269B4')};
+text-decoration: none;
+&:visited {
+  color: ${p => ThemeColorPicker(p, '#096635', '#1269B4')};
+}
+`
+
+const Checkbox = styled(Field)`
+  position: relative;
+  border-radius: 4px;
+  appearance: none;
+  cursor: pointer;
+  height: 28px;
+  width: 28px;
+  min-width: 24px;
+  background-color: ${p => p.theme.divDarkerBackground};
+  transition: background-color .25s;
+`
+const ErrorCheckbox = styled(Error)`
+  bottom: -12px;
+  text-align: right;
+  min-width: 350px;
+  @media screen and (max-width: 380px) {
+    font-size: 14px;
+  };
+  @media screen and (max-width: 360px) {
+    font-size: 12px;
+  };
+`
+
 export { 
   Container,
   Label,
@@ -165,4 +228,10 @@ export {
   Subtitle,
   Ingresar,
   IngresarMT,
-  ButtonSubmit}
+  ButtonSubmit,
+  CheckboxContainer,
+  CheckboxInputContainer,
+  Checkbox,
+  CheckboxText,
+  ErrorCheckbox,
+  TyC}
