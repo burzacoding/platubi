@@ -1,8 +1,10 @@
-import { ErrorMessage, Form, Formik } from "formik"
-import { Error, Input, Label, NameField, Container as ContainerInput, InputContainer, SvgContainer } from "../../elements/AuthStyles";
+import { ErrorMessage, Field, Form, Formik } from "formik"
+import { Link } from "react-router-dom";
+import { Error, Input, Label, NameField, Container as ContainerInput, MessageContainer, ButtonSubmit } from "../../elements/AuthStyles";
+import { ButtonBack, ButtonsContainer } from "../../elements/RegStep";
 import { selectBorders } from "../../Utils/Utils";
 import { contactInitialValues, contactValidationSchema } from "../../Utils/Validation/Contact";
-import MailSendSVG from "../atoms/SVG/MailSendSVG";
+import BackArrow from "../atoms/SVG/BackArrow";
 import AuthFrame from "./Auth/AuthFrame"
 import { AuthContainer as Container, Title} from "./Auth/Styles"
 
@@ -11,6 +13,11 @@ export interface ContactoPageProps {
 }
  
 const ContactoPage: React.FC<ContactoPageProps> = () => {
+  const color = {
+  dark: '#096635',
+  light: '#1C4B73'
+  }
+  
   return (
     <AuthFrame>
       <Container>
@@ -32,12 +39,23 @@ const ContactoPage: React.FC<ContactoPageProps> = () => {
               </ContainerInput>
               <ContainerInput>
                 <Label>Email</Label>
-                <InputContainer border={selectBorders(formik, 'email')}>
-                  <SvgContainer children={<MailSendSVG />} />
+                <NameField border={selectBorders(formik, 'email')}>
                   <Input type='email' name='email' id='email' placeholder='Introduce tu email' autoComplete="username"/>
                   <Error><ErrorMessage name="email"/></Error>
-                </InputContainer>
+                </NameField>
               </ContainerInput>
+              <ContainerInput>
+                <Label>Mensaje</Label>
+                <MessageContainer border={selectBorders(formik, 'message')}>
+                  <Field as='textarea' name='message' placeholder='Escriba su mensaje' />
+                  <Error><ErrorMessage name='message' /></Error>
+                </MessageContainer>
+              </ContainerInput>
+              
+              <ButtonsContainer>
+                <ButtonBack colorObj={color} as={Link} to="/"><BackArrow colorObj={color}/></ButtonBack>
+                <ButtonSubmit type="submit" disabled={formik.isSubmitting}>Enviar mensaje</ButtonSubmit>
+              </ButtonsContainer>
             </Form>
           )}
         </Formik>

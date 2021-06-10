@@ -28,6 +28,49 @@ const InputContainer = styled.div<InputContainerProps>`
   transition: background-color 0.25s;
   box-shadow: ${p => p.theme.theme === 'dark' ? p.border.dark : p.border.light};
 `
+const MessageContainer = styled(InputContainer)`
+  grid-template-columns: 1fr;
+  height: 210px;
+  textarea {
+    resize: none;
+    padding: 8px;
+    min-width: 190px;
+    font-family: 'Montserrat';
+    color: ${p => p.theme.fontContrastFive};
+    font-size: 16px;
+    letter-spacing: 0.035em;
+    grid-column: span 1;
+    background-color: transparent;
+    height: 100%;
+    outline: none;
+    border: none;
+    margin-right: 4px;
+    &:-webkit-autofill {
+      border-radius: 0 1px 1px 0;
+      box-shadow: 0 0 0 50px ${p => p.theme.divDarkerBackground} inset;
+      -webkit-box-shadow:0 0 0 50px ${p => p.theme.divDarkerBackground} inset; /* Change the color to your own background color */
+      -webkit-text-fill-color: ${p => p.theme.fontContrastFive};
+      font-size: 16px;
+      transition: -webkit-box-shadow 0.25s;
+    }
+    &:-webkit-autofill:focus {
+      box-shadow: 0 0 0 50px ${p => p.theme.divDarkerBackground} inset;
+      -webkit-box-shadow:0 0 0 50px ${p => p.theme.divDarkerBackground} inset; /* Change the color to your own background color */
+      -webkit-text-fill-color: ${p => p.theme.fontContrastFive};
+      font-size: 16px;
+    }  
+    &::placeholder {
+      color: ${p => p.theme.fontContrastFive};
+      font-family: 'Montserrat';
+      opacity: 0.7;
+    }
+    @media screen and (max-width: 359px) {
+      font-size: 12px;
+    }
+  }
+`
+
+
 const NameField = styled(InputContainer)` 
   grid-template-columns: 1fr;
   padding-left: 16px;
@@ -234,4 +277,5 @@ export {
   Checkbox,
   CheckboxText,
   ErrorCheckbox,
+  MessageContainer,
   TyC}
