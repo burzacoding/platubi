@@ -1,7 +1,6 @@
 import { ErrorMessage, FormikProps } from 'formik';
 import { Variants } from 'framer-motion';
-import { useEffect, useState } from 'react';
-import { useRegisterContext } from '../../../../contexts/RegisterContext';
+import { useState } from 'react';
 import { ButtonSubmit, Checkbox, CheckboxContainer, CheckboxText, Container as ContainerInput, Error, ErrorCheckbox, Input, InputContainer, Label, Password, SvgContainer, TyC, CheckboxInputContainer } from '../../../../elements/AuthStyles';
 import { ButtonBack, ButtonsContainer } from '../../../../elements/RegStep';
 import useStepUpdater from '../../../../Hooks/useStepNumber';
@@ -48,17 +47,6 @@ const StepTwo: React.FC<StepTwoProps> = ({setStep, formik, variants, custom, set
     setCustom(-1);
     Reduce();
   }
-
-  const { errors } = useRegisterContext()
-
-  useEffect(() => {
-
-    // if (errors && formik.submitCount >= 1) {
-    //   formik.setErrors(errors)
-    // }
-    // console.log(formik);
-    
-  }, [errors, formik])
 
   return (
     <AuthContainerMotion variants={variants} initial="hidden" animate="visible" exit="exit" custom={custom}>

@@ -1,5 +1,5 @@
 import { FormikValues } from "formik";
-import { auth } from "../firebase/Firebase";
+// import { auth } from "../firebase/Firebase";
 
 export const registerEmailAndPasswordHandler = (values: FormikValues) => {
   console.log(values, values.email, values.password);

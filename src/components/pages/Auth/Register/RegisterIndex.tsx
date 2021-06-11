@@ -6,8 +6,8 @@ import AuthFrame from "../AuthFrame";
 import { PresenceContainer } from "../Styles";
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
-import { registerEmailAndPasswordHandler } from "../../../../Utils/FormsHandlers";
-import { RegisterProvider, useRegisterContext } from "../../../../contexts/RegisterContext";
+import { auth } from "../../../../firebase/Firebase";
+import { useHistory } from "react-router-dom";
 // import StepThree from "./StepThree";
 
 export interface RegIndexProps {}
@@ -38,31 +38,38 @@ const RegIndex: React.FC<RegIndexProps> = () => {
 
   const [step, setStep] = useState(1);
   const [custom, setCustom] = useState(1);
-  const { setErrors } = useRegisterContext()
+  const history = useHistory()
 
-  const onSubmit = (values: FormikValues) => {
-    const errors = registerEmailAndPasswordHandler(values);
-    errors && setErrors({email: errors.email});
-    console.log('Error del onSubmit:', errors);
+  async function authenticateUser(values: FormikValues, setFieldError: any) {
+    const { email, password } = values
+    try {
+      const user = await auth.createUserWithEmailAndPassword(email, password);
+      if (user !== null) history.push('/dashboard')
+    } catch (error) {
+      const errorCustom = error.code  === "auth/email-already-in-use" ? 'Este email ya se encuentra en uso.' : null //CAMBIAR ESTO A UNA FUNCION LLAMADA authErrorHandler QUE DEVUELVA UN STRING EN ESPAÑOL DEPENDIENDO EL ERROR Y SI NO QUE DEVUELVA UNDEFINED
+      setFieldError("email", errorCustom || error.message)
+    }
   }
 
   return (
     <AuthFrame>
           <Formik
             initialValues={initialValues}
-            onSubmit={onSubmit}
+            onSubmit={async (values ,{ setSubmitting, setFieldError} ) => {
+              setSubmitting(true)
+              authenticateUser(values, setFieldError)
+              setSubmitting(false)
+            }}
             validationSchema={registerValidationSchema}
             validateOnMount
           >
           {formik => (
             <Form>
               <AnimatePresence initial={false} custom={custom}>
-                <RegisterProvider>
-                  <PresenceContainer>
-                    {step === 1 && (<StepOne setStep={setStep} key="step1" variants={variants} custom={custom} setCustom={setCustom} />)}
-                    {step === 2 && (<StepTwo setStep={setStep} key="step2" formik={formik} variants={variants} custom={custom} setCustom={setCustom} />)}
-                  </PresenceContainer>
-                </RegisterProvider>
+                <PresenceContainer>
+                  {step === 1 && (<StepOne setStep={setStep} key="step1" variants={variants} custom={custom} setCustom={setCustom} />)}
+                  {step === 2 && (<StepTwo setStep={setStep} key="step2" formik={formik} variants={variants} custom={custom} setCustom={setCustom} />)}
+                </PresenceContainer>
               </AnimatePresence>
             </Form>
           )}

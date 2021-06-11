@@ -10,6 +10,7 @@ import RegIndex from './components/pages/Auth/Register/RegisterIndex';
 import RecoverPage from './components/pages/Auth/RecoverPage';
 import ContactoPage from './components/pages/Contacto';
 import FAQPage from './components/pages/FAQ';
+import Dashboard from './components/pages/Protected/Dashboard';
 
 
 
@@ -31,6 +32,7 @@ function App() {
 
         <Switch>
           <Route path="/registrarse" component={RegIndex} />
+          <Route path="/dashboard" component={Dashboard} />
           <Route path="/contacto" component={ContactoPage} />
           <Route path="/recover" component={RecoverPage} />
           <Route path="/login" component={LoginPage} />
