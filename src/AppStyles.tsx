@@ -20,12 +20,12 @@ interface themesInterface {
 const lighTheme: themesCSSInterface = {
   theme: 'light',
   divBackground: '#F8F8F8',
-  divDarkerBackground: '#EAEAEA',
+  divDarkerBackground: '#e6e6e6',
   fontContrastOne: '#5F5F5F',
   fontContrastTwo: '#777777',
   fontContrastThree: '#8A8A8A',
   fontContrastFour: '#595959',
-  fontContrastFive: '#868686',
+  fontContrastFive: '#686868',
   horizontalBarBG: 'linear-gradient(to right, #71BAF8, #03A63C)',
   horizontalBarShadow: 'rgba(0, 0, 0, 0.2) 0 2px 12px 4px',
   colorBackground: 'linear-gradient(90deg, #1C4B73 -3.62%, #4388C4 103.62%)'
@@ -36,7 +36,7 @@ const lighTheme: themesCSSInterface = {
 const darkTheme: themesCSSInterface = {
   theme: 'dark',
   divBackground: '#050D16',
-  divDarkerBackground: '#030910',
+  divDarkerBackground: '#02060c',
   fontContrastOne: '#ACACAC',
   fontContrastTwo: '#B0B0B0',
   fontContrastThree: '#CACACA',

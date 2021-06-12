@@ -28,7 +28,7 @@ const FirstArticleContainer: React.FC<FirstArticleContainerProps> = () => {
             Conozca segundo a segundo el valor de su billetera.
           </Title>
           <BodyText>
-            Platubi es un servicio gratuito que calcula el valor de todo los activos que poseas (efectivo, otras divisas, cryptos) en tiempo real y te muestra todo el valor de tu billetera en la moneda que quieras, inclusive en pesos cotizados a valor de dolar blue.
+            Platubi es un servicio gratuito que calcula el valor de todo los activos que poseas en tiempo real (divisas, acciones, criptomonedas) y te muestra todo el valor de tu billetera en la moneda que quieras, inclusive en pesos cotizados a valor de dolar blue.
           </BodyText>
         </TextContent>
         <ActionContent>

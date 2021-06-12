@@ -12,21 +12,21 @@ const SecondArticleContainer: React.FC<SecondArticleContainerProps> = () => {
     <MainContent>
       <Item>
         <ImgCont>
-          <img src={item1} alt="" />
+          <img src={item1} alt="calculator" />
         </ImgCont>
         <Text>No más cálculos, nosotros te ahorramos el tiempo y te mostramos lo que más te interesa.</Text>
       </Item>
       <Item>
         <ImgCont>
-          <img src={item2} alt="" />
+          <img src={item2} alt="cake" />
         </ImgCont>
         <Text>Conozca que compone su billetera y en que porcentaje de un solo vistazo.</Text>
       </Item>
       <Item>
         <ImgCont>
-          <img src={item3} alt="" />
+          <img src={item3} alt="market" />
         </ImgCont>
-        <Text>Platubi siempre esta conectado a los mercados, así que te muestra el valor de tus criptos en tiempo real.</Text>
+        <Text>Platubi siempre esta conectado a los mercados, así que te muestra el valor de tu patrimonio en tiempo real.</Text>
       </Item>
     </MainContent>
   );

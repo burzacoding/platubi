@@ -42,7 +42,7 @@ const NavBar:React.FC<NavBarProps> = ({ setTheme, theme }) => {
 
   useEffect(()=>{
     const handler = (e:MouseEvent) => {
-      if (!MenuRef.current.contains(e.target as Node) && !ThemeBtnRef.current?.contains(e.target as Node) && !SwitchMenuRef.current?.contains(e.target as Node) && !SwitchMenuMobileRef.current?.contains(e.target as Node) && !ThemeToggleMobileRef.current?.contains(e.target as Node)){
+      if (!MenuRef.current?.contains(e.target as Node) && !ThemeBtnRef.current?.contains(e.target as Node) && !SwitchMenuRef.current?.contains(e.target as Node) && !SwitchMenuMobileRef.current?.contains(e.target as Node) && !ThemeToggleMobileRef.current?.contains(e.target as Node)){
         CloseMenu()
       }
     }
