@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { themes } from './AppStyles'
+import { AuthProvider } from './contexts/AuthContext'
 
 import NavBar from "./components/molecules/NavBar/NavBar";
 import LandingPage from './components/pages/LandingPage/LandingPage';
@@ -11,6 +12,8 @@ import RecoverPage from './components/pages/Auth/RecoverPage';
 import ContactoPage from './components/pages/Contacto';
 import FAQPage from './components/pages/FAQ';
 import Dashboard from './components/pages/Protected/Dashboard';
+import PrivateRoute from './routes/PrivateRoute'
+import PublicOnlyRoute from './routes/PublicOnlyRoute'
 
 
 
@@ -28,17 +31,18 @@ function App() {
   return (
     <Router>
       <ThemeProvider theme={themes[theme]}>
+        <AuthProvider>
         <NavBar setTheme={setTheme} theme={theme} />
-
         <Switch>
-          <Route path="/registrarse" component={RegIndex} />
-          <Route path="/dashboard" component={Dashboard} />
+          <PrivateRoute path="/dashboard" component={Dashboard} />
+          <PublicOnlyRoute path="/registrarse" component={RegIndex} />
+          <PublicOnlyRoute path="/recover" component={RecoverPage} />
+          <PublicOnlyRoute path="/login" component={LoginPage} />
           <Route path="/contacto" component={ContactoPage} />
-          <Route path="/recover" component={RecoverPage} />
-          <Route path="/login" component={LoginPage} />
           <Route path="/faq" component={FAQPage} />
           <Route path="/" component={LandingPage} />
         </Switch>
+        </AuthProvider>
       </ThemeProvider>
     </Router>
   );

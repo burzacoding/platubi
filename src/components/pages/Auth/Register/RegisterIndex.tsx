@@ -6,8 +6,8 @@ import AuthFrame from "../AuthFrame";
 import { PresenceContainer } from "../Styles";
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
-import { auth } from "../../../../firebase/Firebase";
 import { useHistory } from "react-router-dom";
+import { useAuth } from "../../../../contexts/AuthContext";
 // import StepThree from "./StepThree";
 
 export interface RegIndexProps {}
@@ -39,11 +39,12 @@ const RegIndex: React.FC<RegIndexProps> = () => {
   const [step, setStep] = useState(1);
   const [custom, setCustom] = useState(1);
   const history = useHistory()
+  const { signupWithMailAndPassword } = useAuth()
 
   async function authenticateUser(values: FormikValues, setFieldError: any) {
     const { email, password } = values
     try {
-      const user = await auth.createUserWithEmailAndPassword(email, password);
+      const user = await signupWithMailAndPassword(email, password);
       if (user !== null) history.push('/dashboard')
     } catch (error) {
       const errorCustom = error.code  === "auth/email-already-in-use" ? 'Este email ya se encuentra en uso.' : null //CAMBIAR ESTO A UNA FUNCION LLAMADA authErrorHandler QUE DEVUELVA UN STRING EN ESPAÑOL DEPENDIENDO EL ERROR Y SI NO QUE DEVUELVA UNDEFINED
@@ -55,7 +56,7 @@ const RegIndex: React.FC<RegIndexProps> = () => {
     <AuthFrame>
           <Formik
             initialValues={initialValues}
-            onSubmit={async (values ,{ setSubmitting, setFieldError} ) => {
+            onSubmit={async (values , { setSubmitting, setFieldError } ) => {
               setSubmitting(true)
               authenticateUser(values, setFieldError)
               setSubmitting(false)
