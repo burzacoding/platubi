@@ -7,6 +7,7 @@ import ButtonNormal from '../../../molecules/ButtonNormal'
 import { AuthContainerMotion, SocialAuthButtonsContainer, Title } from '../Styles';
 import AuthAlternateAction from '../../../molecules/AuthAlternateAction';
 import { Variants } from 'framer-motion';
+import { useAuth } from '../../../../contexts/AuthContext';
 
 
 export interface StepOneProps {
@@ -46,7 +47,9 @@ text-align: center;
 
 const StepOne: React.FC<StepOneProps> = ({setStep, variants, setCustom, custom}) => {
 
-  const { Add } = useStepUpdater(setStep)
+  const { Add } = useStepUpdater(setStep);
+
+  const { loginGoogle, loginFacebook } = useAuth()
 
   const fireAdd = () => {
     setCustom(1);
@@ -56,8 +59,10 @@ const StepOne: React.FC<StepOneProps> = ({setStep, variants, setCustom, custom})
     <AuthContainerMotion variants={variants} initial="hidden" animate="visible" exit="exit" custom={custom} >
       <Title>Registrarse</Title>
       <SocialAuthButtonsContainer>
-        <SocialAuthButton icon={<GoogleSVG />} label="Entrar con Google" colors={Colors.Google} />
-        <SocialAuthButton icon={<FacebookSVG />} label="Entrar con Facebook" colors={Colors.Facebook} />
+        <SocialAuthButton icon={<GoogleSVG />} label="Entrar con Google" colors={Colors.Google}
+        authSocialMedia={loginGoogle} />
+        <SocialAuthButton icon={<FacebookSVG />} label="Entrar con Facebook" colors={Colors.Facebook}
+        authSocialMedia={loginFacebook} />
       </SocialAuthButtonsContainer>
       <Separador>
         <Side />

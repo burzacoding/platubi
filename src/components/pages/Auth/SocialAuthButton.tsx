@@ -8,6 +8,7 @@ interface ContainerProps {
 }
 
 const Container = styled.div<ContainerProps>`
+cursor: pointer;
   margin-bottom: 12px;
   width: 100%;
   height: 42px;
@@ -40,13 +41,14 @@ export interface SocialAuthProps {
   colors: {
     dark: string,
     light: string
-  }
+  },
+  authSocialMedia: () => void;
  
 }
  
-const SocialAuthButton: React.FC<SocialAuthProps> = ({icon, label, colors}) => {
+const SocialAuthButton: React.FC<SocialAuthProps> = ({icon, label, colors, authSocialMedia}) => {
   return (
-    <Container colors={colors}>
+    <Container colors={colors} onClick={authSocialMedia}>
       <IconContainer>
         {icon}
       </IconContainer>

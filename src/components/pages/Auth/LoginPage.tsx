@@ -6,6 +6,7 @@ import AuthFrame from "./AuthFrame";
 import { Separador, Side, Text } from "./Register/StepOne";
 import SocialAuthButton from "./SocialAuthButton";
 import { ContainerBase, SocialAuthButtonsContainer, Title } from "./Styles";
+import { useAuth } from "../../../contexts/AuthContext";
 
 export interface LoginPageProps {
   
@@ -19,13 +20,18 @@ const Colors = {
 }
  
 const LoginPage: React.FC<LoginPageProps> = () => {
+
+  const { loginGoogle, loginFacebook } = useAuth()
+
   return (
     <AuthFrame>
       <ContainerBase>
         <Title>Iniciar sesión</Title>
         <SocialAuthButtonsContainer>
-          <SocialAuthButton icon={<GoogleSVG />} label="Entrar con Google" colors={Colors.Google} />
-          <SocialAuthButton icon={<FacebookSVG />} label="Entrar con Facebook" colors={Colors.Facebook} />
+          <SocialAuthButton icon={<GoogleSVG />} label="Entrar con Google" colors={Colors.Google}
+          authSocialMedia={loginGoogle} />
+          <SocialAuthButton icon={<FacebookSVG />} label="Entrar con Facebook" colors={Colors.Facebook}
+          authSocialMedia={loginFacebook} />
         </SocialAuthButtonsContainer>
         <Separador>
           <Side />

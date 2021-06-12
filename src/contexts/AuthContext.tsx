@@ -36,6 +36,22 @@ export const AuthProvider: React.FC = ({children}) => {
     return currentUser?.updatePassword(password)
   }
 
+  function loginGoogle () {
+    const provider = new firebase.auth.GoogleAuthProvider()
+    firebase.auth().signInWithPopup(provider)
+    .then(res => {
+      return res? res : undefined
+    })
+  }
+
+  function loginFacebook () {
+    const provider = new firebase.auth.FacebookAuthProvider()
+    firebase.auth().signInWithPopup(provider)
+    .then(res => {
+      return res? res : undefined
+    })
+  }
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       setCurrentUser(user)
@@ -51,7 +67,9 @@ export const AuthProvider: React.FC = ({children}) => {
     logout,
     resetPassword,
     updateEmail,
-    updatePassword
+    updatePassword,
+    loginGoogle,
+    loginFacebook
   }
 
   return <AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>
