@@ -1,4 +1,4 @@
-import { Formik, Form, ErrorMessage, FormikProps } from 'formik'
+import { Formik, Form, ErrorMessage, FormikProps, FormikValues } from 'formik'
 import { 
   Container,
   Label,
@@ -13,7 +13,10 @@ import UserSVG from '../atoms/SVG/UserSVG'
 import LockSVG from '../atoms/SVG/LockSVG'
 import EyeSVG from '../atoms/SVG/EyeSVG'
 import { selectBorders } from '../../Utils/Utils'
-import { loginValidationSchema } from '../../Utils/Validation/Login'
+import { firebaseLoginErrorHandler, loginValidationSchema } from '../../Utils/Validation/Login'
+import { useHistory } from 'react-router-dom'
+import { useAuth } from '../../contexts/AuthContext'
+import { useState } from 'react'
 
 export interface LoginFormProps {
   
@@ -31,26 +34,41 @@ const initialValues: initialValuesProps = {
 }
 
 // FUNCIÓN QUE SE EJECUTA AL ENVIARSE EL FORMULARIO
-const onSubmit = (values: initialValuesProps) => {
-  alert('Formulario enviado con éxito')
-  console.log(JSON.stringify(values));
-}
 
-// ESQUEMA DE VALIDACIÓN DE YUP
 
 
 // FUNCIONES UTILES
-
 const isFar = (formik: FormikProps<initialValuesProps>) => formik.errors.password && formik.touched.password ? 'true' : undefined
 
 //COMPONENTE PRINCIPAL
-const Login: React.FC<LoginFormProps> = () => {
 
+const Login: React.FC<LoginFormProps> = () => {
+  const [open, setIsOpen] = useState(false);
+  const toggleOpen = () => setIsOpen(p => !p)
+  const toggleVisibility = () => open ? 'text' : 'password'
+
+  const { loginWithMailAndPassword } = useAuth()
+
+  const history = useHistory()
+  async function loginUser(values: FormikValues, setFieldError: any) {
+    const { email, password } = values
+    try {
+      const user = await loginWithMailAndPassword(email, password);
+      if (user !== null) history.push('/dashboard')
+    } catch (error) {
+      const [field, errorMessage] = firebaseLoginErrorHandler(error.code)
+      setFieldError(field, errorMessage)
+    }
+  }
 
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={onSubmit}
+      onSubmit={async (values , { setSubmitting, setFieldError } ) => {
+        setSubmitting(true)
+        loginUser(values, setFieldError)
+        setSubmitting(false)
+      }}
       validationSchema={loginValidationSchema}
     >
       {formik => (
@@ -67,8 +85,8 @@ const Login: React.FC<LoginFormProps> = () => {
             <Label>Contraseña</Label>
             <Password border={selectBorders(formik, 'password')}>
               <SvgContainer children={<LockSVG />} />
-              <Input type='password' name='password' id='password' placeholder='Introduce tu contraseña' autoComplete="current-password" />
-              <EyeSVG isOpen={true} />
+              <Input type={toggleVisibility()} name='password' id='password' placeholder='Introduce tu contraseña' autoComplete="current-password"  />
+              <SvgContainer onClick={toggleOpen}><EyeSVG isOpen={open}/></SvgContainer>
               <Error><ErrorMessage name="password"/></Error>
             </Password>
           </Container>

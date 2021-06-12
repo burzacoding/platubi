@@ -23,15 +23,17 @@ export const registerValidationSchema = Yup.object({
   termsAccepted: Yup.bool().oneOf([true], 'La casilla debe estar aceptada para registrarse.'),
 })
 
-// name: Yup.string().max(64, errors.name.max).required(errors.name.required),
-// username: Yup.string().min(4, errors.username.min).max(32, errors.username.max).required(errors.username.required)
+type errorCodesReg = 'auth/email-already-in-use' | 'auth/invalid-email' | 'auth/weak-password'
 
-// name: {
-//   max: 'El nombre no puede exceder los 64 caracteres.',
-//   required: 'El nombre no puede estar vacío.'
-// },
-// username: {
-//   min: 'El nombre de usuario debe tener más de 4 caracteres.',
-//   max: 'El nombre de usuario no puede exceder los 32 caracteres.',
-//   required: 'El nombre de usuario no puede estar vacío.'
-// }
+export const firebaseRegisterErrorHandler = (error: errorCodesReg) => {
+  if (error === 'auth/email-already-in-use') {
+    return ['email', 'Este email ya se encuentra registrado.']
+  }
+  else if (error === 'auth/invalid-email') {
+    return ['email', 'El email proporcionado no es valido.']
+  }
+  else if (error === 'auth/weak-password') {
+    return ['password', 'Esta contraseña es demasiado débil.']
+  }
+  return ['email', 'Error desconocido, contacte a un administrador.']
+}

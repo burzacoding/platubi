@@ -1,4 +1,4 @@
-import { registerValidationSchema } from "../../../../Utils/Validation/Register";
+import { firebaseRegisterErrorHandler, registerValidationSchema } from "../../../../Utils/Validation/Register";
 import { Form, Formik, FormikValues } from "formik";
 import { AnimatePresence, Variants } from "framer-motion";
 import { useState } from "react";
@@ -47,8 +47,8 @@ const RegIndex: React.FC<RegIndexProps> = () => {
       const user = await signupWithMailAndPassword(email, password);
       if (user !== null) history.push('/dashboard')
     } catch (error) {
-      const errorCustom = error.code  === "auth/email-already-in-use" ? 'Este email ya se encuentra en uso.' : null //CAMBIAR ESTO A UNA FUNCION LLAMADA authErrorHandler QUE DEVUELVA UN STRING EN ESPAÑOL DEPENDIENDO EL ERROR Y SI NO QUE DEVUELVA UNDEFINED
-      setFieldError("email", errorCustom || error.message)
+      const [field, errorMessage] = firebaseRegisterErrorHandler(error.code)
+      setFieldError(field, errorMessage || error.message)
     }
   }
 

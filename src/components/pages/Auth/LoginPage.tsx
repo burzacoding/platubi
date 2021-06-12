@@ -8,18 +8,12 @@ import SocialAuthButton from "./SocialAuthButton";
 import { ContainerBase, SocialAuthButtonsContainer, Title } from "./Styles";
 import { useAuth } from "../../../contexts/AuthContext";
 
-export interface LoginPageProps {
-  
-}
-
-
-
 const Colors = {
   Google: {dark: '#121212', light: '#FFFFFF'},
   Facebook: {dark: '#012646', light: '#E9F5FF'}
 }
  
-const LoginPage: React.FC<LoginPageProps> = () => {
+const LoginPage: React.FC = () => {
 
   const { loginGoogle, loginFacebook } = useAuth()
 
