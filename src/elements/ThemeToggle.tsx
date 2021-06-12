@@ -10,6 +10,7 @@ export const ThemeImg = styled.div<ThemeInterface>`
   height: ${props => props.mobile ? '42px' : '32px'};
   min-width: ${props => props.mobile ? '42px' : '32px'};
   margin: ${props => props.mobile ? '0 4px' : '0'};
+  margin-bottom: ${props => props.mobile ? '20px' : '0'};
   cursor: pointer;
   position: relative;
   display: flex;

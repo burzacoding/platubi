@@ -12,6 +12,7 @@ import ThemeToggle from '../../atoms/ThemeToggle/ThemeToggle'
 import SwitchMenu from './SwitchMenu'
 import LogoPlatubi from './LogoPlatubi';
 import SwitchContainer from './SwitchContainer'
+import { useAuth } from '../../../contexts/AuthContext';
 
 export interface NavBarProps {
   setTheme: React.Dispatch<React.SetStateAction<'dark' | 'light'>>,
@@ -40,7 +41,7 @@ const NavBar:React.FC<NavBarProps> = ({ setTheme, theme }) => {
   const isOpen =  open ? 'open' : 'closed'
 
   useEffect(()=>{
-    let handler = (e:MouseEvent) => {
+    const handler = (e:MouseEvent) => {
       if (!MenuRef.current.contains(e.target as Node) && !ThemeBtnRef.current?.contains(e.target as Node) && !SwitchMenuRef.current?.contains(e.target as Node) && !SwitchMenuMobileRef.current?.contains(e.target as Node) && !ThemeToggleMobileRef.current?.contains(e.target as Node)){
         CloseMenu()
       }
@@ -51,12 +52,14 @@ const NavBar:React.FC<NavBarProps> = ({ setTheme, theme }) => {
     }
   }, [])
 
+  const { currentUser, logout } = useAuth()
+
   return (
     <>
       <NavBarDesktopContainer>
         <MenuMobileNav variants={variantsMenu} initial={false} animate={isOpen} desktop ref={MenuRef}>
           <MobileNavItem img={help} text='FAQ' alt='help' toUrl='/faq' func={ToggleMenu} />
-          <MobileNavItem img={bug} text='Reportar un bug' alt="bug" toUrl="/bug" func={ToggleMenu} />
+          <MobileNavItem img={bug} text='Reportar un bug' alt="bug" toUrl="/bug" func={ToggleMenu} /> 
         </MenuMobileNav>
         <NavBarDesktop >
           <NavBarDesktopContent >
@@ -69,8 +72,14 @@ const NavBar:React.FC<NavBarProps> = ({ setTheme, theme }) => {
               <OptionNav to='/faq'>FAQ</OptionNav>
             </OptionsNav>
             <ButtonsDesktopNav>
-              <ButtonDesktopNav to='/registrarse' blue="true" >Registrate</ButtonDesktopNav>
-              <ButtonDesktopNav to='/login' >Inicia sesión</ButtonDesktopNav>
+              {currentUser ? (
+                <ButtonDesktopNav to='/login' onClick={logout}>Cerrar sesión</ButtonDesktopNav>
+              ):(
+                <>
+                  <ButtonDesktopNav to='/registrarse' blue>Registrate</ButtonDesktopNav>
+                  <ButtonDesktopNav to='/login' >Inicia sesión</ButtonDesktopNav>
+                </>
+              )}
             </ButtonsDesktopNav>
             <ThemeToggle setTheme={setTheme} ref={ThemeBtnRef} theme={theme} />  
             <SwitchMenu open={open} setToggle={setOpen} ref={SwitchMenuRef} />
@@ -86,6 +95,9 @@ const NavBar:React.FC<NavBarProps> = ({ setTheme, theme }) => {
           <MobileNavItem img={help} text='FAQ' alt='help' toUrl='/faq' func={ToggleMenu} />
           <MobileNavItem img={bug} text='Reportar un bug' alt="bug" toUrl="/bug" func={ToggleMenu} />
           <ThemeToggle setTheme={setTheme} ref={ThemeToggleMobileRef} theme={theme} mobileID="Mobile" />
+          {currentUser && (
+            <MobileNavItem img={loginMobile} text='Cerrar sesión' alt="bug" toUrl="/login" func={logout} />
+          )}
         </MenuMobileNav>
         <NavBarMobileTop>
           <ContentTop>
@@ -113,35 +125,3 @@ const NavBar:React.FC<NavBarProps> = ({ setTheme, theme }) => {
 }
  
 export default NavBar;
-
-
-        /* 
-        
-        let classBodyColor = "dark-body-color"
-        let classBaseColor = "base-dark"
-        let classBarTheme = "dark-bar"
-        if (theme === 'light') {
-          classBodyColor = "light-body-color"
-          classBaseColor = "base-light"
-          classBarTheme = "light-bar"
-        }
-
-        <div className={`${classBaseColor} navBG`}>
-          <div className="navbar">
-            <div className="logo-container">
-              <img src={logo} alt="logo" className="logo" />
-            </div>
-            <nav className={`nav ${classBodyColor} regular18px`}>
-              <span>Inicio</span><span>Contactenos</span><span>FAQ</span>
-            </nav>
-            {
-            //ESTE BUTTONS-GUESTS PODRIA SER OTRO COMPONENTE QUE CHEQUEE SI EXISTE
-            // O NO UN USUARIO LOGUEADO (FIREBASE)
-            }
-            <div className="buttons-guests">
-              <span className="buttons-guests-register">Registrate</span> <span className="buttons-guests-login">Inicia sesión</span>
-            </div>
-            <ThemeToggle theme={theme} setTheme={setTheme} />
-          </div>
-        </div>
-        <div className={`horizontal-bar ${classBarTheme}`}></div> */

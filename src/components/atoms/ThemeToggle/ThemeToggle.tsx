@@ -68,6 +68,7 @@ const ThemeToggle = forwardRef<HTMLDivElement, ThemeToggleProps>(({ setTheme, th
       }, 800)
     }
   }
+
   return (
     <>
     {mobileID ? (
