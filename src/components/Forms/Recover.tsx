@@ -1,23 +1,29 @@
 import UserSVG from "../atoms/SVG/UserSVG";
 import { selectBorders } from "../../Utils//Utils";
-import { recoverValidationSchema } from "../../Utils/Validation/Recover";
+import { firebaseRecoverErrorHandler, recoverValidationSchema } from "../../Utils/Validation/Recover";
 import { Formik, Form, ErrorMessage } from "formik";
 import { Container, Error, Input, InputContainer, Label, SvgContainer, IngresarMT as Ingresar } from "../../elements/AuthStyles";
+import { useAuth } from "../../contexts/AuthContext";
 
-export interface RecoverFormProps {
-    
-}
- 
-const onSubmit = () => {
-  alert('Recover password formulario enviado con éxito.')
-}
+const Recover: React.FC = () => {
 
+  const { resetPassword } = useAuth()
 
-const Recover: React.FC<RecoverFormProps> = () => {
   return (
     <Formik
       initialValues={{email: ''}}
-      onSubmit={onSubmit}
+      onSubmit={async function (values, { setFieldError, resetForm, setSubmitting }) {
+        setSubmitting(true)
+        resetPassword(values.email)
+        .then((res: any) => {
+          resetForm()
+        })
+        .catch((err: any) => {
+          const [field, error] = firebaseRecoverErrorHandler(err.code)
+          setFieldError(field, error)
+        })
+        setSubmitting(false)
+      }}
       validationSchema={recoverValidationSchema}
     >
       {formik => (

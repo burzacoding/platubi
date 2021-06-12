@@ -8,7 +8,6 @@ import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
 import { useHistory } from "react-router-dom";
 import { useAuth } from "../../../../contexts/AuthContext";
-// import StepThree from "./StepThree";
 
 export interface RegIndexProps {}
 
