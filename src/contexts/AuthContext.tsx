@@ -42,6 +42,9 @@ export const AuthProvider: React.FC = ({children}) => {
     .then(res => {
       return res? res : undefined
     })
+    .catch(error => {
+      return
+    })
   }
 
   function loginFacebook () {
@@ -49,6 +52,9 @@ export const AuthProvider: React.FC = ({children}) => {
     firebase.auth().signInWithPopup(provider)
     .then(res => {
       return res? res : undefined
+    })
+    .catch(error => {
+      return
     })
   }
 
