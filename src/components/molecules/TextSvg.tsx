@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { motion, Variants } from 'framer-motion'
+import { TextSvgComp } from '../../elements/TextSvg';
+import { Variants } from 'framer-motion'
 
 export interface TextSvgProps {
     keyID: string,
@@ -8,15 +8,6 @@ export interface TextSvgProps {
     animate: string,
     custom: number,
 }
-
-const TextSvgComp = styled(motion.svg)`
- opacity: ${p => p.theme.theme === 'dark' ? '0.2' : '0.35'};
- position: absolute;
- top: 0;
- left: 0;
-`
-
-
 
  
 const TextSvg: React.FC<TextSvgProps> = ({keyID, variants, initial, animate, custom}) => {

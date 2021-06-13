@@ -1,21 +1,6 @@
-import styled from 'styled-components'
-
-const Svgcont = styled.div`
-position: relative;
-    width: 100%;
-    height: 140px;
-    clip-path: url('#mypath');
-
-    svg clipPath {
-        transform: scale(0.0015, 0.00685);
-    }
-` 
-
-export interface ClipDivProps {
-    
-}
+import { Svgcont } from '../../elements/ClipPathDiv'
  
-const ClipDiv: React.FC<ClipDivProps> = () => {
+const ClipDiv: React.FC = () => {
     return (
         <Svgcont>
             <svg viewBox="0 0 668 140" width="100%" height="100%" preserveAspectRatio="none" clipPathUnits="objectBoundingBox">

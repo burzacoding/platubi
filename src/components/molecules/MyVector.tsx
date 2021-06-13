@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import TextSvg from './TextSvg'
-import { Variants} from 'framer-motion'
+import { ToLeftVariants, ToRightVariants } from '../../animations/variants';
 
 export interface MyVectorProps {
   keyID: string,
@@ -12,37 +12,6 @@ const SvgVector = styled.svg`
     transition: fill 0.25s;
 `
 
-const ToLeftVariants: Variants = {
-    hidden: (custom) => ({
-        x: 0 + 998 * custom
-    }),
-    visible: (custom) => ({
-        x: -998 + 998 * custom,
-        transition: {
-            duration: 196,
-            type: 'tween',
-            ease: 'linear',
-            repeat: Infinity,
-            repeatType: 'loop'
-        }
-    }),
-}
-
-const ToRightVariants: Variants = {
-  hidden: (custom) => ({
-      x: -998 + 998 * custom
-  }),
-  visible: (custom) => ({
-      x: 0 + 998 * custom,
-      transition: {
-          duration: 196,
-          type: 'tween',
-          ease: 'linear',
-          repeat: Infinity,
-          repeatType: 'loop'
-      }
-  }),
-}
 const MyVector: React.FC<MyVectorProps> = ({keyID, bottom}) => {
     return (
       <>

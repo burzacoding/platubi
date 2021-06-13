@@ -18,9 +18,6 @@ import { useHistory } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 import { useState } from 'react'
 
-export interface LoginFormProps {
-  
-}
 
 interface initialValuesProps {
   email: string,
@@ -33,16 +30,12 @@ const initialValues: initialValuesProps = {
   password: '',
 }
 
-// FUNCIÓN QUE SE EJECUTA AL ENVIARSE EL FORMULARIO
-
-
-
 // FUNCIONES UTILES
 const isFar = (formik: FormikProps<initialValuesProps>) => formik.errors.password && formik.touched.password ? 'true' : undefined
 
 //COMPONENTE PRINCIPAL
 
-const Login: React.FC<LoginFormProps> = () => {
+const Login: React.FC = () => {
   const [open, setIsOpen] = useState(false);
   const toggleOpen = () => setIsOpen(p => !p)
   const toggleVisibility = () => open ? 'text' : 'password'

@@ -27,22 +27,17 @@ export interface StepTwoProps {
 }
 
 const StepTwo: React.FC<StepTwoProps> = ({setStep, formik, variants, custom, setCustom}) => {
-
   const color = {
     dark: '#096635',
     light: '#1C4B73'
   }
-
   const [open, setIsOpen] = useState(false);
   const [openTwo, setIsOpenTwo] = useState(false);
   const {Reduce} = useStepUpdater(setStep)
-
   const toggleOpen = () => setIsOpen(p => !p)
   const toggleVisibility = () => open ? 'text' : 'password'
-
   const toggleOpenTwo = () => setIsOpenTwo(p => !p)
   const toggleVisibilityTwo = () => openTwo ? 'text' : 'password'
-
   const fireReduce = () => {
     setCustom(-1);
     Reduce();

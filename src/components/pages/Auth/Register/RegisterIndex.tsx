@@ -1,6 +1,6 @@
 import { firebaseRegisterErrorHandler, registerValidationSchema } from "../../../../Utils/Validation/Register";
 import { Form, Formik, FormikValues } from "formik";
-import { AnimatePresence, Variants } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import AuthFrame from "../AuthFrame";
 import { PresenceContainer } from "../Styles";
@@ -8,32 +8,11 @@ import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
 import { useHistory } from "react-router-dom";
 import { useAuth } from "../../../../contexts/AuthContext";
-
-export interface RegIndexProps {}
+import { regIndexVariants } from "../../../../animations/variants";
 
 const initialValues = { email: '', password: '', confirmPassword: '', termsAccepted: false}
 
-const variants: Variants = {
-  hidden: (custom) => {
-    return({
-      x: 120 * custom,
-      opacity: 0,
-    })
-  },
-  visible: {
-      x: 0,
-      opacity: 1,
-  },
-  exit: (custom) => {
-    return({
-      x: -120 * custom,
-      opacity: 0,
-    })
-  },
-
-}
-
-const RegIndex: React.FC<RegIndexProps> = () => {
+const RegIndex: React.FC = () => {
 
   const [step, setStep] = useState(1);
   const [custom, setCustom] = useState(1);
@@ -67,8 +46,8 @@ const RegIndex: React.FC<RegIndexProps> = () => {
             <Form>
               <AnimatePresence initial={false} custom={custom}>
                 <PresenceContainer>
-                  {step === 1 && (<StepOne setStep={setStep} key="step1" variants={variants} custom={custom} setCustom={setCustom} />)}
-                  {step === 2 && (<StepTwo setStep={setStep} key="step2" formik={formik} variants={variants} custom={custom} setCustom={setCustom} />)}
+                  {step === 1 && (<StepOne setStep={setStep} key="step1" variants={regIndexVariants} custom={custom} setCustom={setCustom} />)}
+                  {step === 2 && (<StepTwo setStep={setStep} key="step2" formik={formik} variants={regIndexVariants} custom={custom} setCustom={setCustom} />)}
                 </PresenceContainer>
               </AnimatePresence>
             </Form>

@@ -52,3 +52,29 @@ export const SocialAuthButtonsContainer = styled.div`
     gap: 8px;
   }
 `
+
+export const Colors = {
+  Google: {dark: '#121212', light: '#FFFFFF'},
+  Facebook: {dark: '#012646', light: '#E9F5FF'}
+}
+
+export const Separador = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+`
+export const Side = styled.div`
+height: 2px;
+width: 100%;
+background-color: ${p => p.theme.fontContrastFour};
+`
+export const Text = styled.span`
+text-align: center;
+  font-size: 14px;
+  @media screen and (min-width: 668px) {
+  font-size: 16px;
+  }
+`

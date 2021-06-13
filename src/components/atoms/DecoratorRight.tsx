@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { Variants } from 'framer-motion'
 
 import DesktopTextSvg from './DesktopTextSvg'
+import { decoRightUpVariants } from '../../animations/variants'
 
 export interface DecoratorRightProps {
   KeyID: string
@@ -32,20 +33,6 @@ const Container = styled.div`
   }
 
 `
-const UpVariants: Variants = {
-  hidden: (custom) => ({
-      y: 0 + 916 * custom,
-  }),
-  visible: (custom) => ({
-      y: -916 + 916 * custom,
-      transition: {
-          duration: 96,
-          type: 'tween',
-          ease: 'linear',
-          repeat: Infinity,
-          repeatType: 'loop'
-      }
-  }),}
 
 const DecoratorRight: React.FC<DecoratorRightProps> = ({KeyID}) => {
   return (
@@ -70,8 +57,8 @@ const DecoratorRight: React.FC<DecoratorRightProps> = ({KeyID}) => {
         </filter>
         </defs>
       </svg>
-      <DesktopTextSvg KeyID={`${KeyID}first`} variants={UpVariants} initial="hidden" animate="visible" custom={0} />
-      <DesktopTextSvg KeyID={`${KeyID}second`} variants={UpVariants} initial="hidden" animate="visible" custom={1} />
+      <DesktopTextSvg KeyID={`${KeyID}first`} variants={decoRightUpVariants} initial="hidden" animate="visible" custom={0} />
+      <DesktopTextSvg KeyID={`${KeyID}second`} variants={decoRightUpVariants} initial="hidden" animate="visible" custom={1} />
     </Container>
   );
 }

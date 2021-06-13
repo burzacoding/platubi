@@ -1,10 +1,9 @@
-import styled from 'styled-components'
 import useStepUpdater from "../../../../Hooks/useStepNumber";
 import FacebookSVG from '../../../atoms/SVG/FacebookSVG';
 import GoogleSVG from '../../../atoms/SVG/GoogleSVG';
 import SocialAuthButton from '../SocialAuthButton';
 import ButtonNormal from '../../../molecules/ButtonNormal'
-import { AuthContainerMotion, SocialAuthButtonsContainer, Title } from '../Styles';
+import { AuthContainerMotion, SocialAuthButtonsContainer, Title, Colors, Separador, Side, Text } from '../Styles';
 import AuthAlternateAction from '../../../molecules/AuthAlternateAction';
 import { Variants } from 'framer-motion';
 import { useAuth } from '../../../../contexts/AuthContext';
@@ -17,44 +16,14 @@ export interface StepOneProps {
   setCustom: React.Dispatch<React.SetStateAction<number>>
 }
 
-const Colors = {
-  Google: {dark: '#121212', light: '#FFFFFF'},
-  Facebook: {dark: '#012646', light: '#E9F5FF'}
-}
-
-export const Separador = styled.div`
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 4fr 1fr;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-`
-export const Side = styled.div`
-height: 2px;
-width: 100%;
-background-color: ${p => p.theme.fontContrastFour};
-`
-export const Text = styled.span`
-text-align: center;
-  font-size: 14px;
-  @media screen and (min-width: 668px) {
-  font-size: 16px;
-  }
-`
-
-
-
 const StepOne: React.FC<StepOneProps> = ({setStep, variants, setCustom, custom}) => {
-
   const { Add } = useStepUpdater(setStep);
-
   const { loginGoogle, loginFacebook } = useAuth()
-
   const fireAdd = () => {
     setCustom(1);
     Add()
   }
+  
   return (
     <AuthContainerMotion variants={variants} initial="hidden" animate="visible" exit="exit" custom={custom} >
       <Title>Registrarse</Title>
