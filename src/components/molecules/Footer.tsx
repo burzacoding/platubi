@@ -8,14 +8,14 @@ const Footer: React.FC = () => {
       <InnerContainer>
         <ItemsContainer>
           <Item to="/faq">FAQ</Item>
-          <Item to="/faq#tyc">Términos y condiciones</Item>
           <Item to="/contacto">Contactenos</Item>
+          <a href="https://burzacoding.com" target="_blank" rel="noreferrer">Ver portfolio del creador</a>
         </ItemsContainer>
         <SmallLogo />
         <ItemsContainer>
+          <a href="https://github.com/argie2099/platubi" target="_blank" rel="noreferrer">Ver proyecto en github</a>
           <Item to="/registrarse">Registrarse</Item>
           <Item to="/login">Iniciar sesión</Item>
-          <Item to="/bug">Reportar un bug</Item>
         </ItemsContainer>
       </InnerContainer>
     </Container>

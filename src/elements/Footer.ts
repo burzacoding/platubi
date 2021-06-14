@@ -38,6 +38,24 @@ const ItemsContainer = styled('div')`
   @media screen and (min-width: 768px) {
     flex-direction: row;
   }
+  a {
+  text-decoration: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  text-align: center;
+  color: ${p => p.theme.fontContrastFive};
+  opacity: ${p => ThemeColorPicker(p, '0.5', '0.75')};
+  margin: 12px 0;
+  @media screen and (min-width: 768px) {
+    margin-right: 16px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  &:hover {
+  opacity: 1;
+  }
+  }
 `
 
 const Item = styled(Link)`

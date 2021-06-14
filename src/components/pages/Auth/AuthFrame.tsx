@@ -25,7 +25,7 @@ const AuthContainer = styled.div`
 const AuthFrame: React.FC<AuthFrameProps> = ({children}) => {
   return (
     <AuthContainer>
-      <NavSpacer  />
+      <NavSpacer desktop />
       {children}
       <NavSpacer desktop bottom/>
     </AuthContainer>

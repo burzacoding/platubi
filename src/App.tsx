@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { themes } from './AppStyles'
 import { AuthProvider } from './contexts/AuthContext'
+import { DashboardProvider } from './contexts/DashboardContext'
 
 import NavBar from "./components/molecules/NavBar/NavBar";
 import LandingPage from './components/pages/LandingPage/LandingPage';
@@ -31,7 +32,8 @@ function App() {
   return (
     <Router>
       <ThemeProvider theme={themes[theme]}>
-        <AuthProvider>
+      <AuthProvider>
+      <DashboardProvider>
         <NavBar setTheme={setTheme} theme={theme} />
         <Switch>
           <PrivateRoute path="/dashboard" component={Dashboard} />
@@ -42,7 +44,8 @@ function App() {
           <Route path="/faq" component={FAQPage} />
           <Route path="/" component={LandingPage} />
         </Switch>
-        </AuthProvider>
+      </DashboardProvider>
+      </AuthProvider>
       </ThemeProvider>
     </Router>
   );

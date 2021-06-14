@@ -26,6 +26,7 @@ export const NavSpacer = styled.div<NavSpacerProps>`
     display: ${p => p.bottom ? 'none' : 'block'};
   };
   @media screen and (min-width: 1366px) {
+    height: 56px;
     display: ${p => p.desktop ? 'none' : 'block'};
   };
 `

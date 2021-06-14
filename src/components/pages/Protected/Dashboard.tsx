@@ -1,21 +1,30 @@
+import { useEffect } from "react";
 import { useAuth } from "../../../contexts/AuthContext";
-import AuthFrame from "../Auth/AuthFrame";
+import { useDashboard } from "../../../contexts/DashboardContext";
+import { Frame } from "../../../elements/Dashboard";
 import { AuthContainer } from "../Auth/Styles";
 
 
-export interface DashboardProps {
-  
-}
  
-const Dashboard: React.FC<DashboardProps> = () => {
+const Dashboard: React.FC = () => {
   const { currentUser } = useAuth()
+  const { page, setPage } = useDashboard()
+
+  useEffect(() => {
+
+  }, [])
+
   return (
-    <AuthFrame>
-    <AuthContainer>
-      <h1>Bienvenido al dashboard de Platubi</h1>
-      <h2>{currentUser.email}</h2>
-    </AuthContainer>
-    </AuthFrame>
+      <Frame>
+      <AuthContainer>
+        <h1>Bienvenido al dashboard de Platubi</h1>
+        <h2>{currentUser.email}</h2>
+        <p>{page}</p>
+        <button onClick={() => {
+          setPage((prev: any) => prev + 1)
+        }}>Aumentar page</button>
+      </AuthContainer>
+      </Frame>
   );
 }
  

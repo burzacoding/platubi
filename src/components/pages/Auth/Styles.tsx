@@ -8,6 +8,7 @@ color: ${p => p.theme.fontContrastFour};
 width: 100%;
 max-width: 484px;
 margin: 0 auto;
+margin-top: 36px;
 `
 
 export const PresenceContainer = styled(ContainerBase)`position: relative;`
