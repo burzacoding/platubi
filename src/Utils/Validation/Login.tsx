@@ -6,20 +6,21 @@ const errors = {
     required: 'El email no puede estar en blanco.'
   },
   password: {
+    min: 'La contraseña es muy corta.',
     required: 'La contraseña no puede estar en blanco.'
   }
 }
 
 export const loginValidationSchema = Yup.object({
   email: Yup.string().email(errors.email.email).required(errors.email.required),
-  password: Yup.string().required(errors.password.required)
+  password: Yup.string().min(6, errors.password.min).required(errors.password.required)
 })
 
 type errorCodesLogin = 'auth/invalid-email' | 'auth/user-disabled' | 'auth/user-not-found' | 'auth/wrong-password'
 
 export const firebaseLoginErrorHandler = (error: errorCodesLogin) => {
   if (error === 'auth/user-not-found') {
-    return ['email', 'No existe ningún usuario registrado con este email.']
+    return ['email', 'No hay ningún usuario registrado con este email.']
   }
   else if (error === 'auth/invalid-email') {
     return ['email', 'El email proporcionado no es valido.']

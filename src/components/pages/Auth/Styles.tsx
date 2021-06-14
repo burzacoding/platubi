@@ -76,5 +76,15 @@ text-align: center;
   font-size: 14px;
   @media screen and (min-width: 668px) {
   font-size: 16px;
-  }
+  };
+`
+interface RelativeContainerProps {
+  one?: boolean
+}
+
+export const RelativeContainer = styled.div<RelativeContainerProps>`
+  position: relative;
+  width: 100%;
+  max-width: 484px;
+  height: ${p => p.one? '340px' : '511px'};
 `

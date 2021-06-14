@@ -5,7 +5,11 @@ import { ThemeColorPicker } from '../Utils/Utils'
 const Container = styled.div`
   width: 100%;
   padding: 16px;
+  padding-top: 128px;
   margin-top: auto;
+  @media screen and (min-width: 768px) {
+    padding-top: 16px;
+  }
 `
 
 const InnerContainer = styled.div`

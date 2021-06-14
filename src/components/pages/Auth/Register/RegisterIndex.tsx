@@ -3,7 +3,7 @@ import { Form, Formik, FormikValues } from "formik";
 import { AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import AuthFrame from "../AuthFrame";
-import { PresenceContainer } from "../Styles";
+import { PresenceContainer, RelativeContainer } from "../Styles";
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
 import { useHistory } from "react-router-dom";
@@ -47,8 +47,18 @@ const RegIndex: React.FC = () => {
             <Form>
               <AnimatePresence initial={false} custom={custom}>
                 <PresenceContainer>
-                  {step === 1 && (<StepOne setStep={setStep} key="step1" variants={regIndexVariants} custom={custom} setCustom={setCustom} />)}
-                  {step === 2 && (<StepTwo setStep={setStep} key="step2" formik={formik} variants={regIndexVariants} custom={custom} setCustom={setCustom} />)}
+                  {step === 1 && (
+                    <>
+                      <RelativeContainer one />
+                      <StepOne setStep={setStep} key="step1" variants={regIndexVariants} custom={custom} setCustom={setCustom} />
+                    </>
+                  )}
+                  {step === 2 && (
+                    <>
+                      <RelativeContainer />
+                      <StepTwo setStep={setStep} key="step2" formik={formik} variants={regIndexVariants} custom={custom} setCustom={setCustom} />
+                    </>
+                  )}
                 </PresenceContainer>
               </AnimatePresence>
             </Form>

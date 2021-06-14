@@ -1,7 +1,6 @@
 import registerMobile from '../../../res/Landing/register-mobile.svg'
 import loginMobile from '../../../res/Landing/login-mobile.svg'
 import help from '../../../res/Landing/help-circle.svg'
-import bug from '../../../res/Landing/bug.svg'
 
 import { HorizontalBar, NavBarDesktop, NavBarDesktopContent, NavBarDesktopContainer, NavBarMobileBottom, NavBarMobileContainer, NavBarMobileTop, ContentTop, ContentBottom, OptionNavMobile, MenuMobileNav, LogoNav, OptionsNav, OptionNav, ButtonsDesktopNav, ButtonDesktopNav } from './Styles';
 import { useRef, useEffect, useState } from 'react';
@@ -59,7 +58,6 @@ const NavBar:React.FC<NavBarProps> = ({ setTheme, theme }) => {
       <NavBarDesktopContainer>
         <MenuMobileNav variants={variantsMenu} initial={false} animate={isOpen} desktop ref={MenuRef}>
           <MobileNavItem img={help} text='FAQ' alt='help' toUrl='/faq' func={ToggleMenu} />
-          <MobileNavItem img={bug} text='Reportar un bug' alt="bug" toUrl="/bug" func={ToggleMenu} /> 
         </MenuMobileNav>
         <NavBarDesktop >
           <NavBarDesktopContent >
@@ -93,7 +91,6 @@ const NavBar:React.FC<NavBarProps> = ({ setTheme, theme }) => {
       <NavBarMobileContainer>
         <MenuMobileNav variants={variantsMenu} initial={false} animate={isOpen} >
           <MobileNavItem img={help} text='FAQ' alt='help' toUrl='/faq' func={ToggleMenu} />
-          <MobileNavItem img={bug} text='Reportar un bug' alt="bug" toUrl="/bug" func={ToggleMenu} />
           <ThemeToggle setTheme={setTheme} ref={ThemeToggleMobileRef} theme={theme} mobileID="Mobile" />
           {currentUser && (
             <MobileNavItem img={loginMobile} text='Cerrar sesión' alt="bug" toUrl="/login" func={logout} />

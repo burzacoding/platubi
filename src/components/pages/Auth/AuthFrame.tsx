@@ -9,6 +9,7 @@ const AuthContainer = styled.div`
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  overflow-x: hidden;
   background-color: ${p => p.theme.divBackground};
   transition: background-color 0.25s;
   padding: 16px;
@@ -26,7 +27,7 @@ const AuthFrame: React.FC<AuthFrameProps> = ({children}) => {
     <AuthContainer>
       <NavSpacer  />
       {children}
-      <NavSpacer desktop />
+      <NavSpacer desktop bottom/>
     </AuthContainer>
   );
 }
