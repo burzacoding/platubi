@@ -9,6 +9,7 @@ import StepTwo from "./StepTwo";
 import { useHistory } from "react-router-dom";
 import { useAuth } from "../../../../contexts/AuthContext";
 import { regIndexVariants } from "../../../../animations/variants";
+import Footer from "../../../molecules/Footer";
 
 const initialValues = { email: '', password: '', confirmPassword: '', termsAccepted: false}
 
@@ -53,6 +54,7 @@ const RegIndex: React.FC = () => {
             </Form>
           )}
           </Formik>
+    <Footer />
     </AuthFrame>
   );
 }

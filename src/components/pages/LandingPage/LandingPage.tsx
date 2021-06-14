@@ -3,6 +3,7 @@ import DecoratorSvg from "../../molecules/DecoratorSvg";
 import Separador from "../../molecules/Separador";
 import FirstArticleContainer from "./FirstArticleContainer/FirstArticleContainer";
 import SecondArticleContainer from "./SecondArticleContainer/SecondArticleContainer";
+import Footer from "../../molecules/Footer";
 import { NavSpacer, LandingPageContainer, ArticleContainer } from "../../../elements/LandingPage";
 
 export interface LandingPageProps {
@@ -23,7 +24,8 @@ const LandingPage: React.FC<LandingPageProps> = () => {
       <ArticleContainer>
         <SecondArticleContainer />
       </ArticleContainer>
-      <NavSpacer bottom />
+      <Footer />
+      <NavSpacer bottom desktop/>
     </LandingPageContainer>
   );
 }

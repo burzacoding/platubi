@@ -1,16 +1,58 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
+import { ThemeColorPicker } from '../Utils/Utils'
 
 const Container = styled.div`
+  width: 100%;
   padding: 16px;
+  margin-top: auto;
 `
 
 const InnerContainer = styled.div`
+  margin: 0 auto;
+  max-width: 65%;
+  border-top: solid 1px ${p => `${p.theme.fontContrastFive}60`};
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-  @media screen and (min-width: 1366px) {
-    
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    padding: 16px 0;
   }
 `
 
-export { Container, InnerContainer}
+const ItemsContainer = styled('div')`
+  max-width: 768px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 12px 0;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+  }
+`
+
+const Item = styled(Link)`
+  text-decoration: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  text-align: center;
+  color: ${p => p.theme.fontContrastFive};
+  opacity: ${p => ThemeColorPicker(p, '0.5', '0.75')};
+  margin: 12px 0;
+  @media screen and (min-width: 768px) {
+    margin-right: 16px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  &:hover {
+  opacity: 1;
+  }
+`
+
+export { Container, InnerContainer, Item, ItemsContainer}

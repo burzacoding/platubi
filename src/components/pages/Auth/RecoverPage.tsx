@@ -3,11 +3,8 @@ import styled from 'styled-components'
 import AuthAlternateAction from "../../molecules/AuthAlternateAction";
 import RecoverForm from '../../Forms/Recover';
 import AuthFrame from "./AuthFrame";
+import Footer from "../../molecules/Footer";
 import { AuthContainer, Title } from "./Styles";
-
-export interface RecoverPageProps {
-  
-}
 
 const Subtitle = styled.h3`
   font-weight: 400;
@@ -15,8 +12,7 @@ const Subtitle = styled.h3`
   margin-bottom: 12px;
 `
 
-
-const RecoverPage: React.FC<RecoverPageProps> = () => {
+const RecoverPage: React.FC = () => {
 
 
   return (
@@ -27,6 +23,7 @@ const RecoverPage: React.FC<RecoverPageProps> = () => {
         <RecoverForm />
         <AuthAlternateAction type="login" />
       </AuthContainer>
+      <Footer />
     </AuthFrame>
   );
 }

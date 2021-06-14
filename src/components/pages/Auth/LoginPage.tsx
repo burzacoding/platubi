@@ -4,6 +4,7 @@ import AuthAlternateAction from "../../molecules/AuthAlternateAction";
 import LoginForm from "../../Forms/Login";
 import AuthFrame from "./AuthFrame";
 import SocialAuthButton from "./SocialAuthButton";
+import Footer from "../../molecules/Footer";
 import { ContainerBase, SocialAuthButtonsContainer, Title, Separador, Side, Text  } from "./Styles";
 import { useAuth } from "../../../contexts/AuthContext";
 
@@ -34,6 +35,7 @@ const LoginPage: React.FC = () => {
         <LoginForm />
         <AuthAlternateAction type="login" />
       </ContainerBase>
+      <Footer />
     </AuthFrame>
   );
 }

@@ -1,10 +1,22 @@
-import { Container, InnerContainer } from "../../elements/Footer";
+
+import { Container, InnerContainer, ItemsContainer, Item } from "../../elements/Footer";
+import SmallLogo from "../atoms/SVG/SmallLogo";
  
 const Footer: React.FC = () => {
   return (
     <Container>
       <InnerContainer>
-        
+        <ItemsContainer>
+          <Item to="/faq">FAQ</Item>
+          <Item to="/faq#tyc">Términos y condiciones</Item>
+          <Item to="/contacto">Contactenos</Item>
+        </ItemsContainer>
+        <SmallLogo />
+        <ItemsContainer>
+          <Item to="/registrarse">Registrarse</Item>
+          <Item to="/login">Iniciar sesión</Item>
+          <Item to="/bug">Reportar un bug</Item>
+        </ItemsContainer>
       </InnerContainer>
     </Container>
   );

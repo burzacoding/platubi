@@ -6,13 +6,10 @@ import { selectBorders } from "../../Utils/Utils";
 import { contactInitialValues, contactValidationSchema } from "../../Utils/Validation/Contact";
 import BackArrow from "../atoms/SVG/BackArrow";
 import AuthFrame from "./Auth/AuthFrame"
+import Footer from "../molecules/Footer";
 import { AuthContainer as Container, Title} from "./Auth/Styles"
 
-export interface ContactoPageProps {
-  
-}
- 
-const ContactoPage: React.FC<ContactoPageProps> = () => {
+const ContactoPage: React.FC = () => {
   const color = {
   dark: '#096635',
   light: '#1C4B73'
@@ -60,6 +57,7 @@ const ContactoPage: React.FC<ContactoPageProps> = () => {
           )}
         </Formik>
       </Container>
+      <Footer />
     </AuthFrame>
   );
 }

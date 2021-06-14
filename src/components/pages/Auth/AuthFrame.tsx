@@ -7,17 +7,17 @@ export interface AuthFrameProps {
 const AuthContainer = styled.div`
   width: 100%;
   display: flex;
+  min-height: 100vh;
   flex-direction: column;
   background-color: ${p => p.theme.divBackground};
   transition: background-color 0.25s;
   padding: 16px;
-  padding-bottom: 68px;
   @media screen and (orientation: landscape) {
-    min-height: 460px;
+    /* min-height: 460px;  */
     padding-top: 10vh;
   }
   @media screen and (min-width: 1366px) {
-    padding-top: 128px;
+    padding-top: 96px;
   }
 `
  
@@ -26,6 +26,7 @@ const AuthFrame: React.FC<AuthFrameProps> = ({children}) => {
     <AuthContainer>
       <NavSpacer  />
       {children}
+      <NavSpacer desktop />
     </AuthContainer>
   );
 }

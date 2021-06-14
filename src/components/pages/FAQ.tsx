@@ -1,11 +1,8 @@
 import { Article, MainContent, P, Subtitle, Title } from "../../elements/FAQ";
 import { ArticleContainer, LandingPageContainer } from "../../elements/LandingPage";
-
-export interface FAQPageProps {
-  
-}
+import Footer from "../molecules/Footer";
  
-const FAQPage: React.FC<FAQPageProps> = () => {
+const FAQPage: React.FC = () => {
   return (
     <LandingPageContainer>
       <ArticleContainer>
@@ -43,6 +40,7 @@ const FAQPage: React.FC<FAQPageProps> = () => {
           </Article>
         </MainContent>
       </ArticleContainer>
+      <Footer />
     </LandingPageContainer>
   );
 }
