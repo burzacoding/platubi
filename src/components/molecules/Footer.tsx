@@ -1,10 +1,12 @@
-export interface FooterProps {
-  
-}
+import { Container, InnerContainer } from "../../elements/Footer";
  
-const Footer: React.SFC<FooterProps> = () => {
+const Footer: React.FC = () => {
   return (
-    <h1>Footer</h1>
+    <Container>
+      <InnerContainer>
+        
+      </InnerContainer>
+    </Container>
   );
 }
  

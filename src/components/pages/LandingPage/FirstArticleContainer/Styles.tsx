@@ -18,7 +18,7 @@ export const MainContent = styled.div`
   @media screen and (min-width: 1025px) {
     padding: 108px 96px;
   }
-  @media screen and (min-width: 1368px) {
+  @media screen and (min-width: 1366px) {
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin: 0 auto;
@@ -36,7 +36,7 @@ export const InnerContainer = styled(motion.div)`
   @media screen and (min-width: 1025px) {
     
   }
-  @media screen and (min-width: 1368px) {
+  @media screen and (min-width: 1366px) {
     width: 658px;
     flex-direction: column;
   }
@@ -76,7 +76,7 @@ animation: titleGradientAnimation 10s linear infinite normal;
 @media screen and (min-width: 960px) {
   font-size: 26px;
 }
-@media screen and (min-width: 1368px) {
+@media screen and (min-width: 1366px) {
   font-size: 38px;
   text-align: left;
   margin-bottom: 32px;
@@ -93,7 +93,7 @@ export const BodyText = styled(motion.p)`
   @media screen and (min-width: 768px) {
     font-size: 16px;
   }
-  @media screen and (min-width: 1368px) {
+  @media screen and (min-width: 1366px) {
     font-size: 22px;
     text-align: left;
     margin-bottom: 56px;
@@ -123,7 +123,7 @@ export const ActionContent = styled.div`
 
 export const ButtonsContainer = styled.div`
   margin: auto;
-  @media screen and (min-width: 1368px) {
+  @media screen and (min-width: 1366px) {
     display: flex;
   }
 `

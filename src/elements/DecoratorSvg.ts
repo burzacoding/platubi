@@ -13,7 +13,7 @@ export const Container = styled.div<ContainerProps>`
   @media screen and (min-width: 668px) {
   height: ${p => p.bottom ? '120px' : '140px'};
   }
-  @media screen and (min-width: 1368px) {
+  @media screen and (min-width: 1366px) {
     display: none;
   }
 

@@ -3,9 +3,8 @@ import GoogleSVG from "../../atoms/SVG/GoogleSVG";
 import AuthAlternateAction from "../../molecules/AuthAlternateAction";
 import LoginForm from "../../Forms/Login";
 import AuthFrame from "./AuthFrame";
-import { Separador, Side, Text } from "./Register/StepOne";
 import SocialAuthButton from "./SocialAuthButton";
-import { ContainerBase, SocialAuthButtonsContainer, Title } from "./Styles";
+import { ContainerBase, SocialAuthButtonsContainer, Title, Separador, Side, Text  } from "./Styles";
 import { useAuth } from "../../../contexts/AuthContext";
 
 const Colors = {

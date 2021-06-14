@@ -19,7 +19,7 @@ export const SvgContainer = styled.div<SVGContainerProps>`
   @media screen and (min-width: 668px) { 
     display: ${p => p.mobile ? 'none' : 'block'} 
   };
-  @media screen and (min-width: 1368px) {
+  @media screen and (min-width: 1366px) {
     display: none;
   }
 `

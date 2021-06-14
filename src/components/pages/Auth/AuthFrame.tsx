@@ -16,7 +16,7 @@ const AuthContainer = styled.div`
     min-height: 460px;
     padding-top: 10vh;
   }
-  @media screen and (min-width: 1368px) {
+  @media screen and (min-width: 1366px) {
     padding-top: 128px;
   }
 `

@@ -13,7 +13,7 @@ export const MainContent = styled.div`
   @media screen and (min-width: 668px) {
     padding: 48px 24px;
   };
-  @media screen and (min-width: 1368px) {
+  @media screen and (min-width: 1366px) {
     padding: 96px 128px;
   };
 
@@ -72,7 +72,7 @@ export const Text = styled.span`
   font-size: 16px;
   margin-top: 24px;
   }
-  @media screen and (min-width: 1368px) {
+  @media screen and (min-width: 1366px) {
   font-size: 20px;
   width: 320px;
   margin-top: 32px;

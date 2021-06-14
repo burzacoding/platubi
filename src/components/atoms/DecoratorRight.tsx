@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { Variants } from 'framer-motion'
 
 import DesktopTextSvg from './DesktopTextSvg'
 import { decoRightUpVariants } from '../../animations/variants'
@@ -17,7 +16,7 @@ const Container = styled.div`
   height: 100%;
   max-height: 100%;
   clip-path: url(#right);
-  @media screen and (min-width: 1368px) {
+  @media screen and (min-width: 1366px) {
     display: block;
     right: 0;
   }

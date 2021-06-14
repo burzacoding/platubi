@@ -34,7 +34,7 @@ const ButtonContainer = styled(Link)<ButtonContainerProps>`
   }
   &:nth-child(1) {
     margin-bottom: 16px;
-    @media screen and (min-width: 1368px) {
+    @media screen and (min-width: 1366px) {
       margin-bottom: 0;
       margin-right: 34px;
     }
@@ -44,7 +44,7 @@ const ButtonContainer = styled(Link)<ButtonContainerProps>`
     width: 280px;
     height: 54px;
   }
-  @media screen and (min-width: 1368px) {
+  @media screen and (min-width: 1366px) {
     width: 312px;
     height: 62px;
   }
@@ -64,7 +64,7 @@ const GhostContainer = styled.div`
     width: 276px;
     height: 50px;
   }
-  @media screen and (min-width: 1368px) {
+  @media screen and (min-width: 1366px) {
     width: 308px;
     height: 58px;
   }

@@ -17,7 +17,7 @@ const MainContent = styled.main`
   @media screen and (min-width: 1025px) {
     padding: 96px;
   }
-  @media screen and (min-width: 1368px) {
+  @media screen and (min-width: 1366px) {
     margin: 0 auto;
     padding: 96px 128px;
     padding-bottom: 48px;
