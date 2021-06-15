@@ -32,7 +32,7 @@ export const NavBarDesktopContent = styled.div`
   max-width: 1440px;
   padding-left: 128px;
   padding-right: 48px;
-  height: 90px;
+  height: 72px;
   margin: 0 auto;
   z-index: 0;
 
@@ -41,6 +41,7 @@ export const NavBarDesktopContent = styled.div`
   justify-content: start;
   @media screen and (min-width: 1024px) {
     justify-content: space-between;
+    height: 90px;
   }
 `
 
@@ -48,9 +49,12 @@ export const LogoNav = styled.div`
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   justify-self: flex-start;
   user-select: none;
-  img {
+  img { 
+    height: 46px;
+  @media screen and (min-width: 1024px) {
     width: 178px;
     height: 52px;
+  }
   }
 `
 export const OptionsNav = styled.div`

@@ -17,14 +17,17 @@ export const LandingPageContainer = styled('div')`
 export const NavSpacer = styled.div<NavSpacerProps>`
   height: ${p => p.bottom ? '58px' : '52px'};
   min-height: 52px;
-  max-height: 90px;
   width: 100vw;
   max-width: 100%;
   
-  @media screen and (min-width: 769px) {
-    height: 92px;
+  @media screen and (min-width: 768px) {
+    height: 72px;
     display: ${p => p.bottom ? 'none' : 'block'};
   };
+  @media screen and (min-width: 1024px) {
+    justify-content: space-between;
+    height: 90px;
+  }
   @media screen and (min-width: 1366px) {
     height: 56px;
     display: ${p => p.desktop ? 'none' : 'block'};

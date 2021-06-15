@@ -14,7 +14,7 @@ const Container = styled.div`
 
 const InnerContainer = styled.div`
   margin: 0 auto;
-  max-width: 65%;
+  max-width: 80%;
   border-top: solid 1px ${p => `${p.theme.fontContrastFive}60`};
   display: flex;
   flex-direction: column;
@@ -28,7 +28,7 @@ const InnerContainer = styled.div`
 `
 
 const ItemsContainer = styled('div')`
-  max-width: 768px;
+  max-width: 996px;
   display: flex;
   flex-direction: column;
   justify-content: center;
