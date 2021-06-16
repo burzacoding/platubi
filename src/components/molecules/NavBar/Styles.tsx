@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 
 interface isLogged {
-  logged?: boolean
+  logged?: string
 }
 
 export const NavBarDesktopContainer = styled.div`
@@ -101,7 +101,7 @@ export const ButtonsDesktopNav = styled.div<isLogged>`
 `
 
 interface buttonColor {
-  blue?: string | boolean
+  blue?: string
 }
 export const ButtonDesktopNav = styled(Link)<buttonColor>`
   text-decoration: none;
@@ -204,9 +204,13 @@ export const HorizontalBar = styled.div`
   }
   @media screen and (min-width: 1025px) {
     height: ${props => props.theme.theme === "dark" ? '4px' : '6px'};
-  }
+  };
 `
-export const OptionNavMobile = styled(Link)`
+interface NavMobileProps {
+  current?: boolean
+}
+
+export const OptionNavMobile = styled(Link)<NavMobileProps>`
   text-decoration: none;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 
@@ -218,19 +222,30 @@ export const OptionNavMobile = styled(Link)`
   flex-direction: column;
   align-items: center;
   color: ${props => props.theme.fontContrastOne};
+  background-color: ${p => p.current ? p.theme.divDarkerBackground : 'transparent'};
   font-size: 10px;
+  height: 100%;
+  width: 128px;
 
   img {
     width: 28px;
+    margin: auto;
+    margin-bottom: 4px;
   }
   span {
     width: 100%;
     height: 14px;
-    margin-top: 4px;
+    margin-bottom: 4px;
     text-align: center;
     font-weight: 500;
   }
 `
+export const OptionsContainer = styled.div`
+  display: flex;
+
+`
+
+
 interface mobileNav {
   desktop?: boolean,
   logged?: boolean

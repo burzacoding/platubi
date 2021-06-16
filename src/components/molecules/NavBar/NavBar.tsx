@@ -13,6 +13,7 @@ import SwitchMenu from './SwitchMenu'
 import LogoPlatubi from './LogoPlatubi';
 import SwitchContainer from './SwitchContainer'
 import { useAuth } from '../../../contexts/AuthContext';
+import { useDashboard } from '../../../contexts/DashboardContext';
 
 export interface NavBarProps {
   setTheme: React.Dispatch<React.SetStateAction<'dark' | 'light'>>,
@@ -52,7 +53,8 @@ const NavBar:React.FC<NavBarProps> = ({ setTheme, theme }) => {
     }
   }, [])
 
-  const { currentUser, logout } = useAuth()
+  const { currentUser, logout } = useAuth();
+  const { page, setPage } = useDashboard();
 
   return (
     <>
@@ -74,11 +76,11 @@ const NavBar:React.FC<NavBarProps> = ({ setTheme, theme }) => {
         <NavBarDesktop >
           {/*THIS IS THE CONTAINER WITH MAX WIDTH 1440PX */}
           {currentUser ? (
-          <NavBarDesktopContent logged>
-          <LogoNav logged as={Link} to='/'>
+          <NavBarDesktopContent logged="true">
+          <LogoNav logged="true" as={Link} to='/'>
             <LogoPlatubi />
           </LogoNav>
-          <ButtonsDesktopNav logged>
+          <ButtonsDesktopNav logged="true">
             <ButtonDesktopNav to='/login' onClick={logout}>Cerrar sesión</ButtonDesktopNav>
           </ButtonsDesktopNav>
           <ThemeToggle setTheme={setTheme} ref={ThemeBtnRef} theme={theme} />  
@@ -95,11 +97,10 @@ const NavBar:React.FC<NavBarProps> = ({ setTheme, theme }) => {
               <OptionNav to='/faq'>FAQ</OptionNav>
             </OptionsNav>
             <ButtonsDesktopNav>
-                  <ButtonDesktopNav to='/registrarse' blue>Registrate</ButtonDesktopNav>
+                  <ButtonDesktopNav to='/registrarse' blue='true'>Registrate</ButtonDesktopNav>
                   <ButtonDesktopNav to='/login' >Inicia sesión</ButtonDesktopNav>
             </ButtonsDesktopNav>
             <ThemeToggle setTheme={setTheme} ref={ThemeBtnRef} theme={theme} />  
-            <SwitchMenu open={open} setToggle={setOpen} ref={SwitchMenuRef} />
           </NavBarDesktopContent>
           )}
         </NavBarDesktop>
@@ -126,7 +127,21 @@ const NavBar:React.FC<NavBarProps> = ({ setTheme, theme }) => {
           </ContentTop>
           <HorizontalBar />
         </NavBarMobileTop>
-        { !currentUser && (
+        { currentUser ? (
+        <NavBarMobileBottom>
+          <HorizontalBar />
+          <ContentBottom>
+              <OptionNavMobile current={page === 0 ? true : false} as="div" onClick={() => {setPage(0)}}>
+                <img src={registerMobile} alt="register" />
+                <span>Panel principal</span>
+              </OptionNavMobile>
+              <OptionNavMobile current={page === 1 ? true : false} as="div" onClick={() => {setPage(1)}}>
+              <img src={loginMobile} alt="login" />
+              <span>Ajustes</span>
+              </OptionNavMobile>
+          </ContentBottom>
+        </NavBarMobileBottom>
+        ) : (
         <NavBarMobileBottom>
           <HorizontalBar />
           <ContentBottom>
