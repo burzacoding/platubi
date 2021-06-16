@@ -12,8 +12,6 @@ import RegIndex from './components/pages/Auth/Register/RegisterIndex';
 import RecoverPage from './components/pages/Auth/RecoverPage';
 import ContactoPage from './components/pages/Contacto';
 import FAQPage from './components/pages/FAQ';
-import Dashboard from './components/pages/Protected/Dashboard';
-import PrivateRoute from './routes/PrivateRoute'
 import PublicOnlyRoute from './routes/PublicOnlyRoute'
 
 
@@ -36,7 +34,6 @@ function App() {
       <DashboardProvider>
         <NavBar setTheme={setTheme} theme={theme} />
         <Switch>
-          <PrivateRoute path="/dashboard" component={Dashboard} />
           <PublicOnlyRoute path="/registrarse" component={RegIndex} />
           <PublicOnlyRoute path="/recover" component={RecoverPage} />
           <PublicOnlyRoute path="/login" component={LoginPage} />

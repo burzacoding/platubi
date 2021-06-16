@@ -6,7 +6,6 @@ import AuthFrame from "../AuthFrame";
 import { PresenceContainer, RelativeContainer } from "../Styles";
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
-import { useHistory } from "react-router-dom";
 import { useAuth } from "../../../../contexts/AuthContext";
 import { regIndexVariants } from "../../../../animations/variants";
 import Footer from "../../../molecules/Footer";
@@ -17,14 +16,12 @@ const RegIndex: React.FC = () => {
 
   const [step, setStep] = useState(1);
   const [custom, setCustom] = useState(1);
-  const history = useHistory()
   const { signupWithMailAndPassword } = useAuth()
 
   async function authenticateUser(values: FormikValues, setFieldError: any) {
     const { email, password } = values
     try {
-      const user = await signupWithMailAndPassword(email, password);
-      if (user !== null) history.push('/dashboard')
+      await signupWithMailAndPassword(email, password);
     } catch (error) {
       const [field, errorMessage] = firebaseRegisterErrorHandler(error.code)
       setFieldError(field, errorMessage || error.message)

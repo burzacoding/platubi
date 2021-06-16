@@ -5,28 +5,34 @@ import FirstArticleContainer from "./FirstArticleContainer/FirstArticleContainer
 import SecondArticleContainer from "./SecondArticleContainer/SecondArticleContainer";
 import Footer from "../../molecules/Footer";
 import { NavSpacer, LandingPageContainer, ArticleContainer } from "../../../elements/LandingPage";
+import { useAuth } from "../../../contexts/AuthContext";
+import Dashboard from "../Protected/Dashboard";
 
-export interface LandingPageProps {
-  
-}
- 
-const LandingPage: React.FC<LandingPageProps> = () => {
+
+const LandingPage: React.FC = () => {
+  const { currentUser } = useAuth()
   return (
-    <LandingPageContainer>
-      <NavSpacer desktop/>
-      <ArticleContainer>
-        <DecoratorSvg keyID="top" position="top"  />
-        <FirstArticleContainer />
-        <DecoratorSvg keyID="bottom" position="bottom" />
-        <Separador position="bottom" keyID="first" />
-        <DecoratorRight KeyID="first" />
-      </ArticleContainer>
-      <ArticleContainer>
-        <SecondArticleContainer />
-      </ArticleContainer>
-      <Footer />
-      <NavSpacer bottom desktop/>
-    </LandingPageContainer>
+    <>
+    { currentUser ? (
+      <Dashboard />
+    ) : (
+      <LandingPageContainer>
+        <NavSpacer desktop/>
+        <ArticleContainer>
+          <DecoratorSvg keyID="top" position="top"  />
+          <FirstArticleContainer />
+          <DecoratorSvg keyID="bottom" position="bottom" />
+          <Separador position="bottom" keyID="first" />
+          <DecoratorRight KeyID="first" />
+        </ArticleContainer>
+        <ArticleContainer>
+          <SecondArticleContainer />
+        </ArticleContainer>
+        <Footer />
+        <NavSpacer bottom desktop/>
+      </LandingPageContainer>
+    )}
+    </>
   );
 }
  

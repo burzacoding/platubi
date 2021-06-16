@@ -1,8 +1,9 @@
 import registerMobile from '../../../res/Landing/register-mobile.svg'
 import loginMobile from '../../../res/Landing/login-mobile.svg'
 import help from '../../../res/Landing/help-circle.svg'
+import mail from '../../../res/ri_mail-send-line.svg'
 
-import { HorizontalBar, NavBarDesktop, NavBarDesktopContent, NavBarDesktopContainer, NavBarMobileBottom, NavBarMobileContainer, NavBarMobileTop, ContentTop, ContentBottom, OptionNavMobile, MenuMobileNav, LogoNav, OptionsNav, OptionNav, ButtonsDesktopNav, ButtonDesktopNav } from './Styles';
+import { HorizontalBar, NavBarDesktop, NavBarDesktopContent, NavBarDesktopContainer, NavBarMobileBottom, NavBarMobileContainer, NavBarMobileTop, ContentTop, ContentBottom, OptionNavMobile, MenuMobileNav, LogoNav, OptionsNav, OptionNav, ButtonsDesktopNav, ButtonDesktopNav  } from './Styles';
 import { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 
@@ -56,11 +57,35 @@ const NavBar:React.FC<NavBarProps> = ({ setTheme, theme }) => {
   return (
     <>
       <NavBarDesktopContainer>
-        <MenuMobileNav variants={variantsMenu} initial={false} animate={isOpen} desktop ref={MenuRef}>
-          <MobileNavItem img={help} text='FAQ' alt='help' toUrl='/faq' func={ToggleMenu} />
-        </MenuMobileNav>
+        {/*SLIDER APPEARING ON THE RIGHT*/}
+          { currentUser ? (
+          <MenuMobileNav logged variants={variantsMenu} initial={false} animate={isOpen} desktop ref={MenuRef}>
+            <MobileNavItem logged text='FAQ' toUrl='/faq' func={ToggleMenu} />
+            <MobileNavItem logged text='Contacto' alt='help' toUrl='/contacto' func={ToggleMenu} />
+          </MenuMobileNav>
+          ):(
+          <MenuMobileNav>
+            <MobileNavItem text='FAQ' toUrl='/faq' func={ToggleMenu} />
+            <MobileNavItem text='Contacto' alt='help' toUrl='/contacto' func={ToggleMenu} />
+          </MenuMobileNav>
+          )}
+        {/*SLIDER APPEARING ON THE RIGHT*/}
+        {/*THIS IS THE BOX INSIDE THE CONTAINER THAT HAS A BACKGROUND COLOR*/}
         <NavBarDesktop >
-          <NavBarDesktopContent >
+          {/*THIS IS THE CONTAINER WITH MAX WIDTH 1440PX */}
+          {currentUser ? (
+          <NavBarDesktopContent logged>
+          <LogoNav logged as={Link} to='/'>
+            <LogoPlatubi />
+          </LogoNav>
+          <ButtonsDesktopNav logged>
+            <ButtonDesktopNav to='/login' onClick={logout}>Cerrar sesión</ButtonDesktopNav>
+          </ButtonsDesktopNav>
+          <ThemeToggle setTheme={setTheme} ref={ThemeBtnRef} theme={theme} />  
+          <SwitchMenu logged open={open} setToggle={setOpen} ref={SwitchMenuRef} />
+          </NavBarDesktopContent>
+          ) : (
+          <NavBarDesktopContent>
             <LogoNav as={Link} to='/'>
               <LogoPlatubi />
             </LogoNav>
@@ -70,18 +95,13 @@ const NavBar:React.FC<NavBarProps> = ({ setTheme, theme }) => {
               <OptionNav to='/faq'>FAQ</OptionNav>
             </OptionsNav>
             <ButtonsDesktopNav>
-              {currentUser ? (
-                <ButtonDesktopNav to='/login' onClick={logout}>Cerrar sesión</ButtonDesktopNav>
-              ):(
-                <>
                   <ButtonDesktopNav to='/registrarse' blue>Registrate</ButtonDesktopNav>
                   <ButtonDesktopNav to='/login' >Inicia sesión</ButtonDesktopNav>
-                </>
-              )}
             </ButtonsDesktopNav>
             <ThemeToggle setTheme={setTheme} ref={ThemeBtnRef} theme={theme} />  
             <SwitchMenu open={open} setToggle={setOpen} ref={SwitchMenuRef} />
           </NavBarDesktopContent>
+          )}
         </NavBarDesktop>
         <HorizontalBar />
       </NavBarDesktopContainer>
@@ -90,10 +110,13 @@ const NavBar:React.FC<NavBarProps> = ({ setTheme, theme }) => {
 
       <NavBarMobileContainer>
         <MenuMobileNav variants={variantsMenu} initial={false} animate={isOpen} >
-          <MobileNavItem img={help} text='FAQ' alt='help' toUrl='/faq' func={ToggleMenu} />
           <ThemeToggle setTheme={setTheme} ref={ThemeToggleMobileRef} theme={theme} mobileID="Mobile" />
           {currentUser && (
-            <MobileNavItem img={loginMobile} text='Cerrar sesión' alt="bug" toUrl="/login" func={logout} />
+            <>
+            <MobileNavItem img={help} text='Ayuda' alt="help" toUrl="/faq" func={ToggleMenu} />
+            <MobileNavItem img={mail} text='Contactanos' alt="contact-mobile" toUrl="/contacto" func={ToggleMenu} />
+            <MobileNavItem img={loginMobile} text='Cerrar sesión' alt="logout" toUrl="/login" func={logout} />
+            </>
           )}
         </MenuMobileNav>
         <NavBarMobileTop>
@@ -103,6 +126,7 @@ const NavBar:React.FC<NavBarProps> = ({ setTheme, theme }) => {
           </ContentTop>
           <HorizontalBar />
         </NavBarMobileTop>
+        { !currentUser && (
         <NavBarMobileBottom>
           <HorizontalBar />
           <ContentBottom>
@@ -116,6 +140,7 @@ const NavBar:React.FC<NavBarProps> = ({ setTheme, theme }) => {
             </OptionNavMobile>
           </ContentBottom>
         </NavBarMobileBottom>
+        )}
       </NavBarMobileContainer>
     </>
   );

@@ -1,13 +1,15 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import React from 'react'
 
 export interface MobileNavItemProps {
-  img: string,
+  img?: string,
   text: string,
-  alt: string,
+  alt?: string,
   toUrl: string,
   func: () => void,
-  mobile?: boolean
+  logged?: boolean,
+  svg?: React.ReactNode
 }
 
 const Item = styled(Link)`
@@ -17,6 +19,8 @@ const Item = styled(Link)`
   &:focus, &:hover, &:visited, &:link, &:active {
     text-decoration: none;
   }
+
+  user-select: none;
   
   display: flex;
   align-items: center;
@@ -33,15 +37,36 @@ const Item = styled(Link)`
     height: 20px;
     text-align: center;
     color: ${props => props.theme.fontContrastOne};
+
   }
 `
+
+const ItemLogged = styled(Item)`
+  justify-content: center;
+  transition: transform 0.25s;
+  &:hover {
+    transform: scale(1.35)
+  }
+  span {
+    text-align: center;
+  }
+
+`
  
-const MobileNavItem: React.FC<MobileNavItemProps> = ({img, text, alt, toUrl, func}) => {
+const MobileNavItem: React.FC<MobileNavItemProps> = ({img, text, alt, toUrl, func, svg, logged}) => {
   return (
+    <>{logged ? (
+      <ItemLogged to={toUrl} onClick={func}>
+        <span>{text}</span>
+      </ItemLogged>
+
+    ) : (
       <Item to={toUrl} onClick={func}>
-        <img src={img} alt={`img-${alt}`} />
+        {img && alt && <img src={img} alt={`img-${alt}`} />}
         <span>{text}</span>
       </Item>
+    )}
+    </>
   );
 }
  

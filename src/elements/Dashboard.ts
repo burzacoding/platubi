@@ -8,6 +8,9 @@ const Frame = styled.div`
   grid-template-columns: 1fr;
 
   @media screen and (min-width: 768px) {
+    padding-top: 78px;
+  }
+  @media screen and (min-width: 1024px) {
     padding-top: 94px;
   }
 `

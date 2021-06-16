@@ -14,7 +14,6 @@ import LockSVG from '../atoms/SVG/LockSVG'
 import EyeSVG from '../atoms/SVG/EyeSVG'
 import { selectBorders } from '../../Utils/Utils'
 import { firebaseLoginErrorHandler, loginValidationSchema } from '../../Utils/Validation/Login'
-import { useHistory } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 import { useState } from 'react'
 
@@ -42,12 +41,10 @@ const Login: React.FC = () => {
 
   const { loginWithMailAndPassword } = useAuth()
 
-  const history = useHistory()
   async function loginUser(values: FormikValues, setFieldError: any) {
     const { email, password } = values
     try {
-      const user = await loginWithMailAndPassword(email, password);
-      if (user !== null) history.push('/dashboard')
+      await loginWithMailAndPassword(email, password);
     } catch (error) {
       const [field, errorMessage] = firebaseLoginErrorHandler(error.code)
       setFieldError(field, errorMessage)

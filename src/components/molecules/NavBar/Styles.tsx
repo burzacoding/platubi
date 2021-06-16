@@ -2,6 +2,10 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 
+interface isLogged {
+  logged?: boolean
+}
+
 export const NavBarDesktopContainer = styled.div`
   width: 100vw;
   max-width: 100%;
@@ -21,15 +25,14 @@ export const NavBarDesktopContainer = styled.div`
 
 export const NavBarDesktop = styled.div`
   z-index: 10;
-
   background-color: ${p => p.theme.divBackground};
   display: flex;
   transition: background-color 0.25s;
 `
 
-export const NavBarDesktopContent = styled.div`
+export const NavBarDesktopContent = styled.div<isLogged>`
   width: 100%;
-  max-width: 1440px;
+  max-width: ${p => p.logged ? '100%' : '1440px'};
   padding-left: 128px;
   padding-right: 48px;
   height: 72px;
@@ -45,10 +48,17 @@ export const NavBarDesktopContent = styled.div`
   }
 `
 
-export const LogoNav = styled.div`
+export const NavBarContentLogged = styled(NavBarDesktopContent)`
+  max-width: 100%;
+  justify-content: flex-end;
+
+`
+
+export const LogoNav = styled.div<isLogged>`
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   justify-self: flex-start;
   user-select: none;
+  margin-right: ${p => p.logged ? 'auto' : '0'};
   img { 
     height: 46px;
   @media screen and (min-width: 1024px) {
@@ -57,6 +67,8 @@ export const LogoNav = styled.div`
   }
   }
 `
+
+
 export const OptionsNav = styled.div`
   user-select: none;
   @media screen and (min-width: 768px) and (max-width: 1024px) {
@@ -79,8 +91,9 @@ export const OptionNav = styled(Link)`
     margin-right: 0;
   }
 `
-export const ButtonsDesktopNav = styled.div`
+export const ButtonsDesktopNav = styled.div<isLogged>`
   user-select: none;
+  margin-right: ${p => p.logged ? '36px' : '0'};
   @media screen and (min-width: 768px) and (max-width: 1024px) {
     margin-left: auto;
     margin-right: 36px;
@@ -219,7 +232,8 @@ export const OptionNavMobile = styled(Link)`
   }
 `
 interface mobileNav {
-  desktop?: boolean
+  desktop?: boolean,
+  logged?: boolean
 }
 export const MenuMobileNav = styled(motion.div)<mobileNav>`
   pointer-events: auto;
@@ -254,7 +268,7 @@ export const MenuMobileNav = styled(motion.div)<mobileNav>`
     }
   }
   @media screen and (min-width: 1025px) {
-    display: none;
+    display: ${p => p.logged ? 'flex' : 'none'};
   }
 `
 export const SwitchContainerStyled = styled.div`
