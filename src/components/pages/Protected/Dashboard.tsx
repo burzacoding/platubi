@@ -1,40 +1,16 @@
-// import { useState } from "react";
-import { useEffect } from "react";
-import { useAuth } from "../../../contexts/AuthContext";
 import { useDashboard } from "../../../contexts/DashboardContext";
-import { db } from "../../../firebase/Firebase";
 import { Frame } from "../../../elements/Dashboard";
 
 
  
 const Dashboard: React.FC = () => {
-  const { currentUser, userDocumentRef } = useAuth()
-  
-  const { userData, setUserData } = useDashboard()
-  const { registers } = userData
   // const { page, setPage, userData, setUserData } = useDashboard()
-
-  function addRegister (schema: object) {
-    registers.push(schema)
-    userDocumentRef.
-  }
-  
-  useEffect(() => {
-  if (!userData) {
-    db.collection(`users`).doc(currentUser.uid).get()
-    .then(res => {
-      const retrievedData = res.data()
-      setUserData(retrievedData)
-    })
-    .catch(err => {
-      console.log(err);
-    })
-  }
-  }, [currentUser.uid, setUserData, userData])
+  const { userData } = useDashboard()
 
   return (
       <Frame>
         <h1>Bienvenido al dashboard de Platubi</h1>
+        {userData && <pre>{JSON.stringify(userData, null, 2)}</pre>}
       </Frame>
   );
 }
