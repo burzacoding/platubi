@@ -9,7 +9,7 @@ import { FormikValues } from "formik";
 // import Axios from 'axios'
 
 type DocumentData = firebase.firestore.DocumentData
-interface registerSchemaTypes {
+export interface registerSchemaTypes {
   operation: string;
   symbol: string;
   value: number;

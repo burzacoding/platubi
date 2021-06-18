@@ -6,6 +6,7 @@ const Frame = styled.div`
   padding-top: 52px;
   display: grid;
   grid-template-columns: 1fr;
+  color: ${p => p.theme.fontContrastFive};
 
   @media screen and (min-width: 768px) {
     padding-top: 78px;
