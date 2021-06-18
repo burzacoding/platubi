@@ -13,6 +13,16 @@ var firebaseConfig = {
 
 const app = firebase.initializeApp(firebaseConfig);
 
-export const auth = app.auth()
+const auth = app.auth()
 
-export const db = app.firestore()
+const db = app.firestore()
+
+const userDocumentRef = (currentUserUid: string) => {
+  return db.collection('users').doc(currentUserUid)
+}
+
+const registersCollectionRef = (currentUserUid: string) => {
+  return db.collection('users').doc(currentUserUid).collection('registers')
+}
+
+export { auth, db, userDocumentRef, registersCollectionRef}

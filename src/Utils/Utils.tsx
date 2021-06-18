@@ -1,3 +1,5 @@
+import { QuerySnapshotDocumentData, registerSchemaTypes, registerSchemaTypesWithId } from "../contexts/DashboardContext"
+
 export const ThemeColorPicker = (props: any, colorDark: string, colorLight: string) => props.theme.theme === 'dark' ? colorDark : 
 colorLight
 
@@ -19,3 +21,8 @@ export const selectBorders = (formik: any, value: string) => {
     light: '0 0 1px 2px #00378f92',
   }
 }
+
+export const mapRegistersWithId = (element: QuerySnapshotDocumentData): registerSchemaTypesWithId => ({
+  ...element.data() as registerSchemaTypes,
+  key: element.id
+})

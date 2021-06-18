@@ -2,14 +2,15 @@ import { useContext } from "react";
 import { createContext } from "react";
 import { useState } from "react";
 import firebase from 'firebase/app'
-import { db } from "../firebase/Firebase";
+import { db, registersCollectionRef, userDocumentRef } from "../firebase/Firebase";
 import { useEffect } from "react";
 import { useAuth } from "./AuthContext";
 import { FormikValues } from "formik";
+import { mapRegistersWithId } from "../Utils/Utils";
 // import Axios from 'axios'
 
-type DocumentData = firebase.firestore.DocumentData
-type QuerySnapshotDocumentData = firebase.firestore.QueryDocumentSnapshot<firebase.firestore.DocumentData>
+export type DocumentData = firebase.firestore.DocumentData
+export type QuerySnapshotDocumentData = firebase.firestore.QueryDocumentSnapshot<firebase.firestore.DocumentData>
 export interface registerSchemaTypes {
   operation: string;
   symbol: string;
@@ -109,9 +110,9 @@ export const DashboardProvider: React.FC = ({children}) => {
   async function retrieveDataFromUser () {
     try {
       if (!userData && currentUser) {
-        const userDocument = await db.collection(`users`).doc(currentUser.uid).get()
+        const userDocument = await userDocumentRef(currentUser.uid).get()
         setUserData(userDocument.data() as userDocumentTypes)
-        const registersCollection = await db.collection('users').doc(currentUser.uid).collection('registers').orderBy('createdAt', 'desc').get()
+        const registersCollection = await registersCollectionRef(currentUser.uid).get()
         const formattedRegisters = registersCollection.docs.map(element => mapRegistersWithId(element))
         setUserData((prev) => ({
           ...prev,
@@ -124,12 +125,7 @@ export const DashboardProvider: React.FC = ({children}) => {
     }
   }
 
-  function mapRegistersWithId (element: QuerySnapshotDocumentData): registerSchemaTypesWithId {
-    return {
-      ...element.data() as registerSchemaTypes,
-      key: element.id
-    }
-  }
+ 
   
   useEffect(() => {
     retrieveDataFromUser()
