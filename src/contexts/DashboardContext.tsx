@@ -9,6 +9,7 @@ import { FormikValues } from "formik";
 // import Axios from 'axios'
 
 type DocumentData = firebase.firestore.DocumentData
+type QuerySnapshotDocumentData = firebase.firestore.QueryDocumentSnapshot<firebase.firestore.DocumentData>
 export interface registerSchemaTypes {
   operation: string;
   symbol: string;
@@ -16,6 +17,15 @@ export interface registerSchemaTypes {
   createdAt: firebase.firestore.FieldValue;
   favorite: boolean;
   visible: boolean;
+};
+export interface registerSchemaTypesWithId {
+  operation: string;
+  symbol: string;
+  value: number;
+  createdAt: firebase.firestore.FieldValue;
+  favorite: boolean;
+  visible: boolean;
+  key: string
 };
 interface dashboardContextInterface {
   page: number;
@@ -28,7 +38,7 @@ interface dashboardContextInterface {
 interface userDocumentTypes {
   wealthViewSymbols?: string[];
   wealthTrackedSymbols?: string[];
-  registers?: registerSchemaTypes[];
+  registers?: registerSchemaTypesWithId[];
   trackedStocks?: string[];
 } 
 
@@ -63,16 +73,6 @@ export const DashboardProvider: React.FC = ({children}) => {
       visible: true,
     }
   }
-  function addRegisterToLocalUserData (schema: registerSchemaTypes) {
-    const currentArr = userData?.registers
-    currentArr?.unshift(schema)
-    setUserData(prev => {
-      return {
-        ...prev,
-        registers: currentArr
-      }
-    })
-  }
   async function addRegisterToFirestore (schema: registerSchemaTypes) {
     try {
       setNewRegisters(schema)
@@ -81,13 +81,29 @@ export const DashboardProvider: React.FC = ({children}) => {
       return newDocRef.id
     }
     catch (e) {
-      return new Error(`Error subiendo el nuevo registro a Firebase: ${e}`)
+      throw new Error(`Error subiendo el nuevo registro a Firebase: ${e}`)
     }
+  }
+  function addRegisterToLocalUserData (schema: registerSchemaTypes, newId: string) {
+    const schemaWithDocId = {...schema, key: newId}
+    const currentArr = userData?.registers
+    currentArr?.unshift(schemaWithDocId)
+    setUserData(prev => {
+      return {
+        ...prev,
+        registers: currentArr
+      }
+    })
   }
   function addRegister (values: FormikValues) {
     const newRegisterSchema = buildRegisterSchema(values as newRegisterValuesInterface)
-    addRegisterToLocalUserData(newRegisterSchema)
     addRegisterToFirestore(newRegisterSchema)
+    .then(newId => {
+      addRegisterToLocalUserData(newRegisterSchema, newId)
+    })
+    .catch(err => {
+      return //THIS ERROR SHOULD BE HANDLED
+    })
   }
 
   async function retrieveDataFromUser () {
@@ -96,7 +112,7 @@ export const DashboardProvider: React.FC = ({children}) => {
         const userDocument = await db.collection(`users`).doc(currentUser.uid).get()
         setUserData(userDocument.data() as userDocumentTypes)
         const registersCollection = await db.collection('users').doc(currentUser.uid).collection('registers').orderBy('createdAt', 'desc').get()
-        const formattedRegisters = registersCollection.docs.map(el => el.data() as registerSchemaTypes)
+        const formattedRegisters = registersCollection.docs.map(element => mapRegistersWithId(element))
         setUserData((prev) => ({
           ...prev,
           registers: formattedRegisters
@@ -105,6 +121,13 @@ export const DashboardProvider: React.FC = ({children}) => {
     }
     catch (error) {
       console.error(error)
+    }
+  }
+
+  function mapRegistersWithId (element: QuerySnapshotDocumentData): registerSchemaTypesWithId {
+    return {
+      ...element.data() as registerSchemaTypes,
+      key: element.id
     }
   }
   

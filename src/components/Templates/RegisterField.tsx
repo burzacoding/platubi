@@ -1,14 +1,14 @@
-import { registerSchemaTypes } from "../../contexts/DashboardContext";
+import { registerSchemaTypesWithId } from "../../contexts/DashboardContext";
 
 export interface RegisterFieldProps {
-  obj: registerSchemaTypes
+  obj: registerSchemaTypesWithId
 }
  
 const RegisterField: React.FC<RegisterFieldProps> = ({obj}) => {
-  const { operation, symbol, value} = obj
+  const { operation, symbol, value, key} = obj
   return (
     <div className="">
-      <span>{`${operation} ${symbol} ${value}`}</span>
+      <span>{`${operation} ${symbol} ${value} ${key}`}</span>
     </div>
   );
 }

@@ -5,7 +5,7 @@ const Registers: React.FC = () => {
 
   const { userData } = useDashboard()
 
-  const mapUserData = () =>  userData?.registers?.map(obj => <RegisterField obj={obj} />)
+  const mapUserData = () =>  userData?.registers?.map((obj) => <RegisterField obj={obj} key={obj.key} />)
 
   return (
     <div className="">
