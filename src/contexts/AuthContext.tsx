@@ -3,21 +3,20 @@ import { auth, db } from '../firebase/Firebase'
 import firebase from 'firebase/app'
 
 
-// interface AuthContextInterface {
-//   currentUser: firebase.User | null;
-//   signupWithMailAndPassword: (email: string, password: string) => Promise<firebase.auth.UserCredential>;
-//   loginWithMailAndPassword: (email: string, password: string) => Promise<firebase.auth.UserCredential>;
-//   logout: () => Promise<void>;
-//   resetPassword: (email: string) => Promise<void>;
-//   updateEmail: (email: string) => Promise<void> | undefined;
-//   updatePassword: (password: string) => Promise<void> | undefined;
-//   loginGoogle: () => void;
-//   loginFacebook: () => void;
-//   userDocumentRef: firebase.firestore.DocumentReference<firebase.firestore.DocumentData> | undefined
-// }
+interface AuthContextInterface {
+  currentUser: firebase.User | null;
+  signupWithMailAndPassword: (email: string, password: string) => Promise<firebase.auth.UserCredential>;
+  loginWithMailAndPassword: (email: string, password: string) => Promise<firebase.auth.UserCredential>;
+  logout: () => Promise<void>;
+  resetPassword: (email: string) => Promise<void>;
+  updateEmail: (email: string) => Promise<void> | undefined;
+  updatePassword: (password: string) => Promise<void> | undefined;
+  loginGoogle: () => void;
+  loginFacebook: () => void;
+  userDocumentRef: firebase.firestore.DocumentReference<firebase.firestore.DocumentData> | undefined
+}
 
-export const AuthContext = createContext<any>(undefined)
-// export const AuthContext = createContext<AuthContextInterface | undefined>(undefined)
+export const AuthContext = createContext<AuthContextInterface>({} as AuthContextInterface)
 
 export function useAuth() {
   return useContext(AuthContext)
@@ -59,7 +58,8 @@ export const AuthProvider: React.FC = ({children}) => {
       return res? res : undefined
     })
     .catch(error => {
-      return
+      console.log(error);
+      
     })
   }
 
