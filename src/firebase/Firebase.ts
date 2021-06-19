@@ -25,4 +25,6 @@ const registersCollectionRef = (currentUserUid: string) => {
   return db.collection('users').doc(currentUserUid).collection('registers')
 }
 
-export { auth, db, userDocumentRef, registersCollectionRef}
+const FirebaseTimeStamp = firebase.firestore.FieldValue.serverTimestamp()
+
+export { auth, db, userDocumentRef, registersCollectionRef, FirebaseTimeStamp}

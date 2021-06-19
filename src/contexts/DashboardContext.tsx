@@ -6,7 +6,7 @@ import { db, registersCollectionRef, userDocumentRef } from "../firebase/Firebas
 import { useEffect } from "react";
 import { useAuth } from "./AuthContext";
 import { FormikValues } from "formik";
-import { mapRegistersWithId } from "../Utils/Utils";
+import { buildRegisterSchema, mapRegistersWithId } from "../Utils/Utils";
 // import Axios from 'axios'
 
 export type DocumentData = firebase.firestore.DocumentData
@@ -64,17 +64,6 @@ export const DashboardProvider: React.FC = ({children}) => {
   const [userData, setUserData] = useState<userDocumentTypes | undefined>()
   const { currentUser } = useAuth();
   
-  //THIS IS A UTILITY SO IT SHOULD BE IN UTILS AND NOT IN THE DASHBOARDCONTEXT
-  function buildRegisterSchema({operation, symbol, value}: newRegisterValuesInterface): registerSchemaTypes {
-    return {
-      operation,
-      symbol,
-      value,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      favorite: false,
-      visible: true,
-    }
-  }
   async function addRegisterToFirestore (schema: registerSchemaTypes) {
     try {
       setNewRegisters(schema)
@@ -104,7 +93,7 @@ export const DashboardProvider: React.FC = ({children}) => {
       addRegisterToLocalUserData(newRegisterSchema, newId)
     })
     .catch(err => {
-      return //THIS ERROR SHOULD BE HANDLED
+      throw new Error(`Error añadiendo registro: ${err}`)
     })
   }
 
