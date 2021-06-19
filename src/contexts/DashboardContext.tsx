@@ -5,7 +5,6 @@ import firebase from 'firebase/app'
 import { db, registersCollectionRef, userDocumentRef } from "../firebase/Firebase";
 import { useEffect } from "react";
 import { useAuth } from "./AuthContext";
-import { FormikValues } from "formik";
 import { buildRegisterSchema, mapRegistersWithId } from "../Utils/Utils";
 // import Axios from 'axios'
 
@@ -33,7 +32,7 @@ interface dashboardContextInterface {
   setPage: React.Dispatch<React.SetStateAction<number>>;
   userData: userDocumentTypes | undefined;
   setUserData: React.Dispatch<React.SetStateAction<userDocumentTypes | undefined>>;
-  addRegister(values: FormikValues): void;
+  addRegister(values: newRegisterValuesInterface): void;
   deleteRegister(key: string): void;
 }
 
@@ -86,8 +85,8 @@ export const DashboardProvider: React.FC = ({children}) => {
       }
     })
   }
-  function addRegister (values: FormikValues) {
-    const newRegisterSchema = buildRegisterSchema(values as newRegisterValuesInterface)
+  function addRegister (values: newRegisterValuesInterface) {
+    const newRegisterSchema = buildRegisterSchema(values)
     addRegisterToFirestore(newRegisterSchema)
     .then(newId => {
       addRegisterToLocalUserData(newRegisterSchema, newId)
@@ -124,8 +123,9 @@ export const DashboardProvider: React.FC = ({children}) => {
 
   useEffect(() => {
     retrieveDataFromUser()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    console.log('useEffect');
+    
+  }, [currentUser])
 
   const value = { page, setPage, userData, setUserData, addRegister, deleteRegister}
   
