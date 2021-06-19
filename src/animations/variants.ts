@@ -68,7 +68,7 @@ export const ToLeftVariants: Variants = {
     visible: (custom) => ({
         x: -998 + 998 * custom,
         transition: {
-            duration: 196,
+            duration: 128,
             type: 'tween',
             ease: 'linear',
             repeat: Infinity,
@@ -84,7 +84,7 @@ export const ToRightVariants: Variants = {
   visible: (custom) => ({
       x: 0 + 998 * custom,
       transition: {
-          duration: 196,
+          duration: 128,
           type: 'tween',
           ease: 'linear',
           repeat: Infinity,

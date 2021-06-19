@@ -21,6 +21,7 @@ interface WealthViewerProps {
  const PesosContainer = styled.div `
  text-align: center;
  background-color: ${p => p.theme.divDarkerBackground};
+ transition: background-color 0.25s;
 
  border-radius: 3%;
  
@@ -48,6 +49,7 @@ text-align: center;
 width:100%;
 margin:6px;
 background-color: ${p => p.theme.divDarkerBackground};
+ transition: background-color 0.25s;
 border-radius: 5%;
 `
 
@@ -55,34 +57,27 @@ border-radius: 5%;
 
   const WealthViewer: React.FC<WealthViewerProps> = ({symbols}) => {
     return (
-      //tu codigo
-      <>
       <MainContainer>
           <MainTitle>Tu saldo</MainTitle>
-          <PesosContainer><MoneyTitle>
+          <PesosContainer>
+            <MoneyTitle>
               Pesos*
-              </MoneyTitle>
-              <Budget>$000000</Budget>
-              
-              </PesosContainer>
+            </MoneyTitle>
+            <Budget>$000000</Budget>
+          </PesosContainer>
 
           <DollarBitCont>
-                    <DollarBit><MoneyTitle>Dolares</MoneyTitle>
-                    <Budget>$000000</Budget>
-                    </DollarBit>
-                    <DollarBit>
-                    <MoneyTitle>BTC</MoneyTitle>
-                    <Budget>0.000000</Budget>
-                    </DollarBit>
+            <DollarBit>
+              <MoneyTitle>Dolares</MoneyTitle>
+              <Budget>$000000</Budget>
+            </DollarBit>
+            <DollarBit>
+              <MoneyTitle>BTC</MoneyTitle>
+              <Budget>0.000000</Budget>
+            </DollarBit>
           </DollarBitCont>
      </MainContainer>
-      
-      
-      </>
     )
   }
- 
-
-
 
 export default WealthViewer;

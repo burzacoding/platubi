@@ -37,3 +37,4 @@ export const buildRegisterSchema = ({operation, symbol, value}: newRegisterValue
   favorite: false,
   visible: true,
 })
+

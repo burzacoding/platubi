@@ -29,8 +29,6 @@ const lighTheme: themesCSSInterface = {
   horizontalBarBG: 'linear-gradient(to right, #71BAF8, #03A63C)',
   horizontalBarShadow: 'rgba(0, 0, 0, 0.2) 0 2px 12px 4px',
   colorBackground: 'linear-gradient(90deg, #1C4B73 -3.62%, #4388C4 103.62%)'
-
-
 }
 
 const darkTheme: themesCSSInterface = {
