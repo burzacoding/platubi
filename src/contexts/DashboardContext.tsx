@@ -33,7 +33,8 @@ interface dashboardContextInterface {
   setPage: React.Dispatch<React.SetStateAction<number>>;
   userData: userDocumentTypes | undefined;
   setUserData: React.Dispatch<React.SetStateAction<userDocumentTypes | undefined>>;
-  addRegister(values: FormikValues): void
+  addRegister(values: FormikValues): void;
+  deleteRegister(key: string): void;
 }
 
 interface userDocumentTypes {
@@ -63,7 +64,7 @@ export const DashboardProvider: React.FC = ({children}) => {
   const [userData, setUserData] = useState<userDocumentTypes | undefined>()
   const { currentUser } = useAuth();
   
-  
+  //THIS IS A UTILITY SO IT SHOULD BE IN UTILS AND NOT IN THE DASHBOARDCONTEXT
   function buildRegisterSchema({operation, symbol, value}: newRegisterValuesInterface): registerSchemaTypes {
     return {
       operation,
@@ -81,8 +82,8 @@ export const DashboardProvider: React.FC = ({children}) => {
       setNewRegisters(undefined)
       return newDocRef.id
     }
-    catch (e) {
-      throw new Error(`Error subiendo el nuevo registro a Firebase: ${e}`)
+    catch (err) {
+      throw new Error(`Error subiendo el nuevo registro a Firebase: ${err}`)
     }
   }
   function addRegisterToLocalUserData (schema: registerSchemaTypes, newId: string) {
@@ -107,6 +108,16 @@ export const DashboardProvider: React.FC = ({children}) => {
     })
   }
 
+  function deleteRegister (key: string) {
+    if (currentUser) {
+      registersCollectionRef(currentUser.uid).doc(key).delete()
+      .then(() => true)
+      .catch(err => {
+        throw new Error(`Error borrando el documento (id: ${key}) de la colección de registros: ${err}`)
+      })
+    }
+  }
+
   async function retrieveDataFromUser () {
     try {
       if (!userData && currentUser) {
@@ -114,10 +125,7 @@ export const DashboardProvider: React.FC = ({children}) => {
         setUserData(userDocument.data() as userDocumentTypes)
         const registersCollection = await registersCollectionRef(currentUser.uid).get()
         const formattedRegisters = registersCollection.docs.map(element => mapRegistersWithId(element))
-        setUserData((prev) => ({
-          ...prev,
-          registers: formattedRegisters
-        }))
+        setUserData(prev => ({...prev,registers: formattedRegisters}))
       }
     }
     catch (error) {
@@ -125,14 +133,12 @@ export const DashboardProvider: React.FC = ({children}) => {
     }
   }
 
- 
-  
   useEffect(() => {
     retrieveDataFromUser()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const value = { page, setPage, userData, setUserData, addRegister}
+  const value = { page, setPage, userData, setUserData, addRegister, deleteRegister}
   
   return (
     <DashboardContext.Provider value={value}>
