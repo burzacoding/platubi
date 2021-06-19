@@ -1,7 +1,7 @@
 // import { useDashboard } from "../../../contexts/DashboardContext";
 import { Frame } from "../../../elements/Dashboard";
 import Registers from "../../Templates/Registers";
-
+import WealthViewer from "../../molecules/WealthViewer";
 
  
 const Dashboard: React.FC = () => {
@@ -9,7 +9,8 @@ const Dashboard: React.FC = () => {
 
   return (
       <Frame>
-        <h1>Bienvenido al dashboard de Platubi</h1>
+        <WealthViewer />
+        
         <Registers />
       </Frame>
   );
