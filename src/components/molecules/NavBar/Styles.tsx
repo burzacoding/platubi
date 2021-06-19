@@ -271,19 +271,20 @@ export const MenuMobileNav = styled(motion.div)<mobileNav>`
   @media screen and (min-width: 361px) {
     padding-top: 128px;
   }
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: 768px) {
     display: ${props => props.desktop ? 'flex' : 'none'};
     width: 420px;
     max-width: 100%;
     left: auto;
     right: 0;
     top: 0;
-    @media screen and (min-height: 400px) {
-
-    }
   }
-  @media screen and (min-width: 1025px) {
-    display: ${p => p.logged ? 'flex' : 'none'};
+  @media screen and (min-width: 1024px) {
+    display: ${props => {
+      if (props.desktop && props.logged) return 'flex'
+      if (props.desktop) return 'none'
+      return 'none'
+    }};
   }
 `
 export const SwitchContainerStyled = styled.div`

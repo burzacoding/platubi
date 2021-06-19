@@ -30,6 +30,8 @@ const MenuSvg = styled.svg<MenuProps>`
 
 const SwitchMenu = forwardRef<SVGSVGElement, SwitchMenuProps>(({open, setToggle, logged}, ref) => {
   const toggleMenuFunc = () => {
+    console.log('toggle');
+    
     setToggle(t => !t)
   }
   return (

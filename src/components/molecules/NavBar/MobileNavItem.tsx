@@ -8,13 +8,12 @@ export interface MobileNavItemProps {
   alt?: string,
   toUrl: string,
   func: () => void,
-  logged?: boolean,
-  svg?: React.ReactNode
 }
 
 const Item = styled(Link)`
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   text-decoration: none;
+  margin: 0 auto;
 
   &:focus, &:hover, &:visited, &:link, &:active {
     text-decoration: none;
@@ -24,6 +23,7 @@ const Item = styled(Link)`
   
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 214px;
   height: 42px;
   margin-bottom: 24px;
@@ -39,34 +39,20 @@ const Item = styled(Link)`
     color: ${props => props.theme.fontContrastOne};
 
   }
-`
-
-const ItemLogged = styled(Item)`
-  justify-content: center;
-  transition: transform 0.25s;
-  &:hover {
-    transform: scale(1.35)
+  @media screen and (min-width: 768px) {
+    transition: transform 0.25s;
+    &:hover {
+      transform: scale(1.35)
+    }
   }
-  span {
-    text-align: center;
-  }
-
 `
  
-const MobileNavItem: React.FC<MobileNavItemProps> = ({img, text, alt, toUrl, func, svg, logged}) => {
+const MobileNavItem: React.FC<MobileNavItemProps> = ({img, text, alt, toUrl, func}) => {
   return (
-    <>{logged ? (
-      <ItemLogged to={toUrl} onClick={func}>
-        <span>{text}</span>
-      </ItemLogged>
-
-    ) : (
       <Item to={toUrl} onClick={func}>
         {img && alt && <img src={img} alt={`img-${alt}`} />}
         <span>{text}</span>
       </Item>
-    )}
-    </>
   );
 }
  

@@ -123,8 +123,8 @@ export const DashboardProvider: React.FC = ({children}) => {
 
   useEffect(() => {
     retrieveDataFromUser()
-    console.log('useEffect');
     
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser])
 
   const value = { page, setPage, userData, setUserData, addRegister, deleteRegister}

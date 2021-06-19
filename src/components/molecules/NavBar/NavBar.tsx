@@ -41,36 +41,30 @@ const NavBar:React.FC<NavBarProps> = ({ setTheme, theme }) => {
   }
   const isOpen =  open ? 'open' : 'closed'
 
-  useEffect(()=>{
-    const handler = (e:MouseEvent) => {
-      if (!MenuRef.current?.contains(e.target as Node) && !ThemeBtnRef.current?.contains(e.target as Node) && !SwitchMenuRef.current?.contains(e.target as Node) && !SwitchMenuMobileRef.current?.contains(e.target as Node) && !ThemeToggleMobileRef.current?.contains(e.target as Node)){
-        CloseMenu()
-      }
+  const handler = (e:MouseEvent) => {
+    if (!MenuRef.current?.contains(e.target as Node) && !ThemeBtnRef.current?.contains(e.target as Node) && !SwitchMenuRef.current?.contains(e.target as Node) && !SwitchMenuMobileRef.current?.contains(e.target as Node) && !ThemeToggleMobileRef.current?.contains(e.target as Node)){
+      CloseMenu()
     }
+  }
+  const { currentUser, logout } = useAuth();
+  useEffect(()=>{
     document.addEventListener('click', handler)
     return () => {
       document.removeEventListener('click', handler)
     }
-  }, [])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentUser])
 
-  const { currentUser, logout } = useAuth();
   const { page, setPage } = useDashboard();
 
   return (
     <>
       <NavBarDesktopContainer>
         {/*SLIDER APPEARING ON THE RIGHT*/}
-          { currentUser ? (
-          <MenuMobileNav logged variants={variantsMenu} initial={false} animate={isOpen} desktop ref={MenuRef}>
-            <MobileNavItem logged text='FAQ' toUrl='/faq' func={ToggleMenu} />
-            <MobileNavItem logged text='Contacto' alt='help' toUrl='/contacto' func={ToggleMenu} />
-          </MenuMobileNav>
-          ):(
-          <MenuMobileNav>
+          <MenuMobileNav logged={currentUser ? true : false} desktop variants={variantsMenu} initial={false} animate={isOpen} ref={MenuRef}>
             <MobileNavItem text='FAQ' toUrl='/faq' func={ToggleMenu} />
             <MobileNavItem text='Contacto' alt='help' toUrl='/contacto' func={ToggleMenu} />
           </MenuMobileNav>
-          )}
         {/*SLIDER APPEARING ON THE RIGHT*/}
         {/*THIS IS THE BOX INSIDE THE CONTAINER THAT HAS A BACKGROUND COLOR*/}
         <NavBarDesktop >
@@ -100,7 +94,8 @@ const NavBar:React.FC<NavBarProps> = ({ setTheme, theme }) => {
                   <ButtonDesktopNav to='/registrarse' blue='true'>Registrate</ButtonDesktopNav>
                   <ButtonDesktopNav to='/login' >Inicia sesión</ButtonDesktopNav>
             </ButtonsDesktopNav>
-            <ThemeToggle setTheme={setTheme} ref={ThemeBtnRef} theme={theme} />  
+            <ThemeToggle setTheme={setTheme} ref={ThemeBtnRef} theme={theme} />
+            <SwitchMenu open={open} setToggle={setOpen} ref={SwitchMenuRef} />
           </NavBarDesktopContent>
           )}
         </NavBarDesktop>
@@ -112,13 +107,9 @@ const NavBar:React.FC<NavBarProps> = ({ setTheme, theme }) => {
       <NavBarMobileContainer>
         <MenuMobileNav variants={variantsMenu} initial={false} animate={isOpen} >
           <ThemeToggle setTheme={setTheme} ref={ThemeToggleMobileRef} theme={theme} mobileID="Mobile" />
-          {currentUser && (
-            <>
-            <MobileNavItem img={help} text='Ayuda' alt="help" toUrl="/faq" func={ToggleMenu} />
-            <MobileNavItem img={mail} text='Contactanos' alt="contact-mobile" toUrl="/contacto" func={ToggleMenu} />
-            <MobileNavItem img={loginMobile} text='Cerrar sesión' alt="logout" toUrl="/login" func={logout} />
-            </>
-          )}
+          <MobileNavItem img={help} text='Ayuda' alt="help" toUrl="/faq" func={ToggleMenu} />
+          <MobileNavItem img={mail} text='Contactanos' alt="contact-mobile" toUrl="/contacto" func={ToggleMenu} />
+          {currentUser && <MobileNavItem img={loginMobile} text='Cerrar sesión' alt="logout" toUrl="/login" func={logout} />}
         </MenuMobileNav>
         <NavBarMobileTop>
           <ContentTop>
