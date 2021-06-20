@@ -1,5 +1,5 @@
 import { useDashboard } from "../../contexts/DashboardContext";
-import RegisterField from "./RegisterField";
+import RegisterField from "../molecules/RegisterField";
 
 const Registers: React.FC = () => {
 
