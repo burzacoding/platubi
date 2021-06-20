@@ -15,6 +15,7 @@ const Frame = styled.div`
   }
   @media screen and (min-width: 1024px) {
     padding-top: 126px;
+    grid-template-columns: 1fr;
   }
 `
 

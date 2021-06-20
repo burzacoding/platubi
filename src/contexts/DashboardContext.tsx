@@ -10,11 +10,16 @@ import { buildRegisterSchema, mapRegistersWithId } from "../Utils/Utils";
 
 export type DocumentData = firebase.firestore.DocumentData
 export type QuerySnapshotDocumentData = firebase.firestore.QueryDocumentSnapshot<firebase.firestore.DocumentData>
+
+export interface buildSchemaInterface {
+  local:  localRegisterSchemaTypes,
+  remote: remoteRegisterSchemaTypes,
+}
 export interface registerSchemaTypes {
   operation: string;
   symbol: string;
   value: number;
-  createdAt: firebase.firestore.FieldValue;
+  createdAt: firebase.firestore.Timestamp;
   favorite: boolean;
   visible: boolean;
 };
@@ -22,10 +27,34 @@ export interface registerSchemaTypesWithId {
   operation: string;
   symbol: string;
   value: number;
-  createdAt: firebase.firestore.FieldValue;
+  createdAt: string;
   favorite: boolean;
   visible: boolean;
   key: string
+};
+export interface localRegisterSchemaTypes {
+  operation: string;
+  symbol: string;
+  value: number;
+  createdAt: string;
+  favorite: boolean;
+  visible: boolean;
+};
+export interface remoteRegisterSchemaTypes {
+  operation: string;
+  symbol: string;
+  value: number;
+  createdAt: firebase.firestore.FieldValue;
+  favorite: boolean;
+  visible: boolean;
+};
+export interface receivedRemoteRegisterSchemaTypes {
+  operation: string;
+  symbol: string;
+  value: number;
+  createdAt: firebase.firestore.Timestamp;
+  favorite: boolean;
+  visible: boolean;
 };
 interface dashboardContextInterface {
   page: number;
@@ -59,11 +88,11 @@ export function useDashboard () {
 export const DashboardProvider: React.FC = ({children}) => {
   
   const [page, setPage] = useState(0)
-  const [newRegisters, setNewRegisters] = useState<registerSchemaTypes>()
+  const [newRegisters, setNewRegisters] = useState<remoteRegisterSchemaTypes>()
   const [userData, setUserData] = useState<userDocumentTypes | undefined>()
   const { currentUser } = useAuth();
   
-  async function addRegisterToFirestore (schema: registerSchemaTypes) {
+  async function addRegisterToFirestore (schema: remoteRegisterSchemaTypes) {
     try {
       setNewRegisters(schema)
       const newDocRef = await db.collection('user').doc(currentUser?.uid).collection('registers').add(newRegisters as DocumentData)
@@ -74,7 +103,7 @@ export const DashboardProvider: React.FC = ({children}) => {
       throw new Error(`Error subiendo el nuevo registro a Firebase: ${err}`)
     }
   }
-  function addRegisterToLocalUserData (schema: registerSchemaTypes, newId: string) {
+  function addRegisterToLocalUserData (schema: localRegisterSchemaTypes, newId: string) {
     const schemaWithDocId = {...schema, key: newId}
     const currentArr = userData?.registers
     currentArr?.unshift(schemaWithDocId)
@@ -86,10 +115,10 @@ export const DashboardProvider: React.FC = ({children}) => {
     })
   }
   function addRegister (values: newRegisterValuesInterface) {
-    const newRegisterSchema = buildRegisterSchema(values)
-    addRegisterToFirestore(newRegisterSchema)
+    const {local, remote} = buildRegisterSchema(values)
+    addRegisterToFirestore(remote)
     .then(newId => {
-      addRegisterToLocalUserData(newRegisterSchema, newId)
+      addRegisterToLocalUserData(local, newId)
     })
     .catch(err => {
       throw new Error(`Error añadiendo registro: ${err}`)
@@ -111,7 +140,7 @@ export const DashboardProvider: React.FC = ({children}) => {
       if (!userData && currentUser) {
         const userDocument = await userDocumentRef(currentUser.uid).get()
         setUserData(userDocument.data() as userDocumentTypes)
-        const registersCollection = await registersCollectionRef(currentUser.uid).get()
+        const registersCollection = await registersCollectionRef(currentUser.uid).orderBy('createdAt', 'desc').get()
         const formattedRegisters = registersCollection.docs.map(element => mapRegistersWithId(element))
         setUserData(prev => ({...prev,registers: formattedRegisters}))
       }
