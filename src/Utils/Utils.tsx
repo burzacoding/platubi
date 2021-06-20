@@ -1,4 +1,4 @@
-import { newRegisterValuesInterface, QuerySnapshotDocumentData, registerSchemaTypes, registerSchemaTypesWithId } from "../contexts/DashboardContext"
+import { buildSchemaInterface, newRegisterValuesInterface, QuerySnapshotDocumentData, receivedRemoteRegisterSchemaTypes, registerSchemaTypes, registerSchemaTypesWithId } from "../contexts/DashboardContext"
 import { FirebaseTimeStamp } from "../firebase/Firebase"
 
 export const ThemeColorPicker = (props: any, colorDark: string, colorLight: string) => props.theme.theme === 'dark' ? colorDark : 
@@ -23,18 +23,42 @@ export const selectBorders = (formik: any, value: string) => {
   }
 }
 
-export const mapRegistersWithId = (element: QuerySnapshotDocumentData): registerSchemaTypesWithId => ({
-  ...element.data() as registerSchemaTypes,
-  key: element.id
-})
+export const mapRegistersWithId = (element: QuerySnapshotDocumentData): registerSchemaTypesWithId => {
+  const { createdAt } = element.data() as receivedRemoteRegisterSchemaTypes
+  const newDate = getFormattedDateFromMill(createdAt.toMillis())
+  return {
+    ...element.data() as registerSchemaTypes,
+    createdAt: newDate,
+    key: element.id
+  }
+}
 
-//THIS IS A UTILITY SO IT SHOULD BE IN UTILS AND NOT IN THE DASHBOARDCONTEXT
-export const buildRegisterSchema = ({operation, symbol, value}: newRegisterValuesInterface): registerSchemaTypes => ({
-  operation,
-  symbol,
-  value,
-  createdAt: FirebaseTimeStamp,
-  favorite: false,
-  visible: true,
+function getFormattedDateFromMill (miliseconds: number) {
+  const date = new Date(miliseconds)
+  const day = date.getDate()
+  const month = date.getMonth() + 1
+  const year = date.getFullYear().toString().slice(2)
+  const hour = date.getHours()
+  const minutes = date.getMinutes()
+  return `${day}-${month}-${year} ${hour}:${minutes}`
+}
+
+export const buildRegisterSchema = ({operation, symbol, value}: newRegisterValuesInterface): buildSchemaInterface => ({
+  local : {
+    operation,
+    symbol,
+    value,
+    createdAt: getFormattedDateFromMill(new Date().getMilliseconds()),
+    favorite: false,
+    visible: true,
+  },
+  remote : {
+    operation,
+    symbol,
+    value,
+    createdAt: FirebaseTimeStamp,
+    favorite: false,
+    visible: true,
+  },
 })
 
