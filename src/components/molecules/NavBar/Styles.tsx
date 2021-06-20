@@ -223,6 +223,7 @@ export const OptionNavMobile = styled(Link)<NavMobileProps>`
   align-items: center;
   color: ${props => props.theme.fontContrastOne};
   background-color: ${p => p.current ? p.theme.divDarkerBackground : 'transparent'};
+  transition: background-color 0.25s;
   font-size: 10px;
   height: 100%;
   width: 128px;

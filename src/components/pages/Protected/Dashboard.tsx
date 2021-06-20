@@ -10,7 +10,6 @@ const Dashboard: React.FC = () => {
   return (
       <Frame>
         <WealthViewer />
-        
         <Registers />
       </Frame>
   );

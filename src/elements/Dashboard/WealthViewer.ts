@@ -41,7 +41,8 @@ const Title = styled.h3`
   font-size: 22px;
   font-weight: 500;
 `
-const Budget = styled.p `
+const Budget = styled.p`
+  font-family: 'Mandali', sans-serif;
   font-size: 20px;
 `
 export {

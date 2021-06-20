@@ -16,8 +16,44 @@ const FieldContainer = styled.div`
 const InnerContainer = styled.div`
   width: 100%;
   height: 100%;
-  background-image: ${p => p.theme.registerBackground};
+  padding-left: 6px;
+  background-color: ${p => p.theme.divBackground};
+  transition: background-color 0.25s;
   border-radius: 6px;
+  display: flex;
+  align-items: center;
+  font-family: 'Mandali', sans-serif;
+`
+const ButtonsContainer = styled.div`
+  display: flex;
+  margin-left: auto;
+  margin-right: 6px;
+`
+interface SVGContainerProps {
+  customPadding?:number
+}
+
+const SVGContainer = styled.div<SVGContainerProps>`
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  margin-right: 6px;
+  -webkit-tap-highlight-color: transparent;
+  padding: ${p => p.customPadding === undefined ? '0' : `${p.customPadding.toString()}px`};
+  svg {
+    fill: ${p => p.theme.fontContrastFive}
+  }
+  &:last-child {
+    margin-right: 0;
+  }
+  @media screen and (min-width: 360px){
+    width: 32px;
+    height: 32px;
+  };
+  @media screen and (min-width: 768px){
+    width: 36px;
+    height: 36px;
+  };
 `
 
-export {FieldContainer, InnerContainer}
+export {FieldContainer, InnerContainer, SVGContainer, ButtonsContainer}

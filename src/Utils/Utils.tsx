@@ -44,7 +44,7 @@ function getFormattedDateFromMill (miliseconds: number) {
 }
 
 export const buildRegisterSchema = ({operation, symbol, value}: newRegisterValuesInterface): buildSchemaInterface => ({
-  local : {
+  local: {
     operation,
     symbol,
     value,
@@ -52,7 +52,7 @@ export const buildRegisterSchema = ({operation, symbol, value}: newRegisterValue
     favorite: false,
     visible: true,
   },
-  remote : {
+  remote: {
     operation,
     symbol,
     value,
