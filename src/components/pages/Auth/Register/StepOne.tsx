@@ -7,6 +7,7 @@ import { AuthContainerMotion, SocialAuthButtonsContainer, Title, Colors, Separad
 import AuthAlternateAction from '../../../molecules/AuthAlternateAction';
 import { Variants } from 'framer-motion';
 import { useAuth } from '../../../../contexts/AuthContext';
+import { TyC } from "../../../../elements/AuthStyles";
 
 
 export interface StepOneProps {
@@ -27,6 +28,7 @@ const StepOne: React.FC<StepOneProps> = ({setStep, variants, setCustom, custom})
   return (
     <AuthContainerMotion variants={variants} initial="hidden" animate="visible" exit="exit" custom={custom} >
       <Title>Registrarse</Title>
+      <p style={{textAlign: 'center', marginBottom: '16px'}}>Al registrarte con Google o Facebook aceptas nuestros <TyC to="/faq#tyc" target="_blank" rel="noopener noreferrer">términos y condiciones</TyC>*.</p>
       <SocialAuthButtonsContainer>
         <SocialAuthButton icon={<GoogleSVG />} label="Entrar con Google" colors={Colors.Google}
         authSocialMedia={loginGoogle} />

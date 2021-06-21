@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const FieldContainer = styled.div`
   width: 100%;
-  height: 40px;
+  height: 38px;
   background-image: ${p => p.theme.horizontalBarBG};
   border-radius: 8px;
   margin-bottom: 8px;
@@ -10,7 +10,7 @@ const FieldContainer = styled.div`
   padding: 2px;
 
   @media screen and (min-width: 360px) {
-    height: 48px;
+    height: 44px;
   }
 `
 const InnerContainer = styled.div`
@@ -28,6 +28,7 @@ const ButtonsContainer = styled.div`
   display: flex;
   margin-left: auto;
   margin-right: 6px;
+  opacity: 0.7;
 `
 interface SVGContainerProps {
   customPadding?:number
@@ -40,9 +41,6 @@ const SVGContainer = styled.div<SVGContainerProps>`
   margin-right: 6px;
   -webkit-tap-highlight-color: transparent;
   padding: ${p => p.customPadding === undefined ? '0' : `${p.customPadding.toString()}px`};
-  svg {
-    fill: ${p => p.theme.fontContrastFive}
-  }
   &:last-child {
     margin-right: 0;
   }
@@ -56,4 +54,21 @@ const SVGContainer = styled.div<SVGContainerProps>`
   };
 `
 
-export {FieldContainer, InnerContainer, SVGContainer, ButtonsContainer}
+const TextContainer = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  align-items: center;
+  padding-right: 24px;
+  font-size: 12px;
+`
+const Text = styled.span`
+  width: 100%;
+  text-align: center;
+  &:last-child {
+    min-width: 78px;
+  }
+`
+
+
+export {FieldContainer, InnerContainer, SVGContainer, ButtonsContainer, TextContainer, Text}

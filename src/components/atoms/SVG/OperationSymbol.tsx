@@ -5,13 +5,16 @@ export interface OperationSymbolProps {
 }
 
 const OperationContainer = styled('div')<OperationSymbolProps>`
-height: 100%;
-width: 100%;
-padding-top: 4px;
--webkit-tap-highlight-color: rgba(0,0,0,0);
-svg {
-  fill: ${p => p.operation === 'true' ? '#20a05c' : '#3480C1'};
-}
+  height: 100%;
+  width: 100%;
+  padding-top: 2px;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  svg {
+    fill: ${p => p.operation === 'true' ? '#20a05c' : '#3480C1'};
+  }
+  @media screen and (min-width: 360px) {
+  padding-top: 4px;
+  };
 `
 const OperationSymbol: React.FC<OperationSymbolProps> = ({operation}) => {
   const checkOperation = () => {

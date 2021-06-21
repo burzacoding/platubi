@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { registerSchemaTypesWithId } from "../../contexts/DashboardContext";
-import { FieldContainer, InnerContainer, SVGContainer, ButtonsContainer } from "../../elements/Dashboard/RegisterField";
+import { FieldContainer, InnerContainer, SVGContainer, ButtonsContainer, TextContainer, Text } from "../../elements/Dashboard/RegisterField";
 import EditPencil from "../atoms/SVG/EditPencilSVG";
 import EyeSVG from "../atoms/SVG/EyeSVG";
 import OperationSymbol from "../atoms/SVG/OperationSymbol";
@@ -26,7 +26,11 @@ const RegisterField: React.FC<RegisterFieldProps> = ({obj}) => {
         <SVGContainer>
           <OperationSymbol operation={operation} />
         </SVGContainer>
-        <span>{`${symbol} ${value} ${createdAt}`} </span>
+        <TextContainer>
+          <Text>{symbol}</Text>
+          <Text>{value}</Text>
+          <Text>{createdAt}</Text>
+        </TextContainer>
         <ButtonsContainer>
           <SVGContainer customPadding={isFavorite ? 0 : 1} onMouseDown={toggleFavorite}>
             <StarSVG isFavorite={isFavorite}  />

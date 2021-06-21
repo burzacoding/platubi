@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
+import { ThemeColorPicker } from '../../../Utils/Utils'
 
 export interface StarSVGProps {
   isFavorite: boolean
@@ -15,7 +16,7 @@ width: 100%;
 svg {
   display: flex;
   margin: auto;
-  fill: ${p => p.isFavorite === 'true' ? '#FFD43E' : 'none'};
+  fill: ${p => p.isFavorite === 'true' ? ThemeColorPicker(p, '#FFD43E', '#d1aa1e') : 'none'};
   stroke: ${p => p.isFavorite !== 'true' ? p.theme.fontContrastFive : ''};
 }
 `
