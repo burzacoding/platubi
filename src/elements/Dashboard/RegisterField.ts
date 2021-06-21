@@ -12,6 +12,9 @@ const FieldContainer = styled.div`
   @media screen and (min-width: 360px) {
     height: 44px;
   }
+  &:last-child {
+    margin-bottom: 0;
+  }
 `
 const InnerContainer = styled.div`
   width: 100%;

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const Container = styled.div`
   width: 100%;
-  height: 100%;
+  max-height: 304px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -19,8 +19,10 @@ interface BottomProps {
 
 const Bottom = styled.div<BottomProps>`
   width: 100%;
-  height: ${p => p.registerExists === 'true' ? '100%' : '156px'};
+  height: 100%;
   overflow-y: ${p => p.registerExists === 'true' ? 'scroll' : 'hidden'};
+  padding-right: ${p => p.registerExists === 'true' ? '4px' : '0'};
+
 
    /* width */
   &::-webkit-scrollbar {
@@ -31,7 +33,7 @@ const Bottom = styled.div<BottomProps>`
   /* Track */
   &::-webkit-scrollbar-track {
     background: ${p => p.theme.divDarkerBackground};
-    border-radius: 0 8px 8px 0;
+    border-radius: 8px;
   }
 
   /* Handle */
@@ -53,6 +55,8 @@ const SVGContainer = styled.div`
   height: 100%;
   width: 28px;
   position: relative;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 `
 
 export { Container, Top, Bottom, Text, SVGContainer }

@@ -8,6 +8,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${p => p.theme.divDarkerBackground};
+  transition: background-color 0.25s;
   border-radius: 8px;
   padding: 8px;
   text-align: center;
