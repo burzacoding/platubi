@@ -13,6 +13,7 @@ svg {
   display: flex;
   margin: auto;
   fill: ${p => p.current ? '#0F954E' : '#0E4777'};
+  transition: fill 0.25s;
 }
 `
  

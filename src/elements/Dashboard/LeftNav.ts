@@ -15,27 +15,27 @@ const Container = styled.div`
     display: flex;
   }
 `
+interface SelectedSheetButtonProps {
+  pageNumber: number,
+  currentPage: number
+ }
 
-const SelectSheetButton = styled.div`
+const SelectSheetButton = styled.div<SelectedSheetButtonProps>`
   width: 92px;
   height: 76px;
   border-radius: 8px 0 0 8px;
   padding: 20px;
   margin-left: auto;
   cursor: pointer;
+  user-select: none;
+  background-color: ${p => p.pageNumber === p.currentPage ? p.theme.divBackground : 'transparent'};
+  transition: background-color 0.25s;
 `
-const SelectSheet = styled(SelectSheetButton)`
-  background-color: ${p => p.theme.divBackground};
-`
-
 
 const SVGContainer = styled(motion.div)`
-  position: absolute;
-  top: 52px;
-  left: 34px;
   width: 38px;
   height: 38px;
 `
 
 
-export { Container, SelectSheet, SelectSheetButton, SVGContainer }
+export { Container, SelectSheetButton, SVGContainer }
