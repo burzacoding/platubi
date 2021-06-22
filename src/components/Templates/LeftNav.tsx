@@ -20,7 +20,7 @@ const LeftNav: React.FC<LeftNavProps> = () => {
         currentPage={page}
         pageNumber={0}
         onClick={setWallet}>
-        <SVGContainer>
+        <SVGContainer whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.85 }}>
           <Wallet current={isCurrent(0)}/>
         </SVGContainer>
       </SelectSheetButton>
@@ -28,7 +28,7 @@ const LeftNav: React.FC<LeftNavProps> = () => {
         currentPage={page}
         pageNumber={1}
         onClick={setSettings}>
-        <SVGContainer>
+        <SVGContainer whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.85 }}>
           <GearNav current={isCurrent(1)}/>
         </SVGContainer>
       </SelectSheetButton>
