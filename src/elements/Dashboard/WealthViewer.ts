@@ -11,11 +11,19 @@ const MainContainer = styled.div`
 
   @media screen and (min-width: 768px) {
     margin: 0;
+    max-width: 100%;
     margin-right: auto;
+  };
+  @media screen and (min-width: 1366px) {
+    height: 100%;
   };
  `
 const SmallContainer = styled.div`
-  display: flex;
+  display: grid;
+  height: 100%;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 8px;
 `
 const MainTitle = styled.p `
   font-size: 24px;
@@ -33,11 +41,7 @@ const Card = styled.div`
   width: 100%;
 `
 const BigCard = styled(Card)`
-  margin-bottom: 8px;
-`
-const Filler = styled.div`
-  width: 8px;
-  min-width: 8px;
+  grid-column-start: span 2;
 `
 const Title = styled.h3`
   background-image: linear-gradient(to right, #1269B4, #3BBC76);
@@ -57,7 +61,6 @@ export {
   MainTitle,
   Card,
   BigCard,
-  Filler,
   SmallContainer,
   Title,
   Budget,

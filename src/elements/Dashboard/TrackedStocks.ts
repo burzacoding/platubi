@@ -10,17 +10,15 @@ const Container = styled.div`
     grid-template-columns: 1fr 1fr 1fr;
     justify-items: center;
   }
-  @media screen and (min-width: 1042px) {
+  @media screen and (min-width: 1024px) {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
-    gap: 8px;
   }
   @media screen and (min-width: 1280px) {
     display: flex;
     flex-wrap: nowrap;
   }
-  @media screen and (min-width: 1626px) {
+  @media screen and (min-width: 1366px) {
     display: flex;
     flex-direction: column;
   }
@@ -44,6 +42,12 @@ const Card = styled.div`
   color: #2CA95E; //Bearish stock: #B64B4B
   @media screen and (min-width: 768px) {
     max-width: 316px;
+  }
+  @media screen and (min-width: 1024px) {
+    max-width: 286px;
+  }
+  @media screen and (min-width: 1626px) {
+    max-width: 100%;
   }
 `
 const Title = styled.h2`

@@ -56,6 +56,7 @@ const SVGContainer = styled.div`
   width: 28px;
   position: relative;
   cursor: pointer;
+  user-select: none;
   -webkit-tap-highlight-color: transparent;
 `
 export interface AddRegisterButtonProps {

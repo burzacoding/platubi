@@ -2,9 +2,10 @@ import { Container } from "../../elements/Dashboard/Donut";
 import { Doughnut, Chart } from 'react-chartjs-2'
 import { useEffect } from "react";
 import { useDashboard } from "../../contexts/DashboardContext";
+import { useState } from "react";
+import Tooltips from "./Tooltips";
 
 Chart.defaults.plugins.legend.display = false
-Chart.defaults.layout.padding = 4
 
 export interface DonutProps {
   
@@ -16,32 +17,50 @@ const data = {
       label: '%',
       data: [75, 10, 10, 5],
       backgroundColor: ['#3480C1', '#0E4777', '#03A63C', '#006523'],
-      borderColor: ['#3480C1', '#0E4777', '#03A63C', '#006523'],
+      hoverOffset: 16,
+      offset: 8,
+      borderRadius: 2,
       borderWidth: 0,
-      hoverBorderWidth: 4,
-      borderAlign: 'center'
+      borderAlign: 'center',
     },
   ],
 };
 
-const options = {
-  cutoutPercentage: 5,
+const startingOptions = {
+  cutout: '65%',
   responsive: true,
-  rotation: 60
+  rotation: 90,
+  layout: {
+    padding: 12,
+  },
+  plugins: {
+    tooltip: {
+
+    }
+  }
 }
 
 
 const Donut: React.FC<DonutProps> = () => {
 
   const { userData } = useDashboard()
+  const [options, setOptions] = useState(startingOptions)
 
   useEffect(() => {
-  
+    setOptions(prev => {
+      return({
+        ...prev,
+        animation: {
+          animateRotate: false
+        }
+      })
+    })
   }, [userData])
 
   return (
     <Container>
-      <Doughnut type data={data} width={236} height={236} options={options} />
+      <Doughnut type data={data} width={236} height={236} options={options}/>
+      <Tooltips />
     </Container>
   );
 }

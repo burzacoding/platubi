@@ -8,9 +8,6 @@ const Container = styled.div`
   margin-left: auto;
   height: 100%;
   position: relative;
-  @media screen and (min-width: 768px) {
-    max-width: 406px;
-  };
 `
 
 interface CardInterface {
