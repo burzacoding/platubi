@@ -1,11 +1,18 @@
 import styled from 'styled-components'
 
 const MainContainer = styled.div`
+  grid-area: wv;
   width: 100%;
   max-width: 452px;
+  margin: auto;
   display: flex;
   flex-direction: column;
   text-align: center;
+
+  @media screen and (min-width: 768px) {
+    margin: 0;
+    margin-right: auto;
+  };
  `
 const SmallContainer = styled.div`
   display: flex;

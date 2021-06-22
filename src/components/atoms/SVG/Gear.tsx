@@ -8,7 +8,7 @@ const GearContainer = styled('div')`
   cursor: pointer;
   height: 24px;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
-  
+  user-select: none;
   svg {
     stroke: #686868;
     opacity: 0.6;

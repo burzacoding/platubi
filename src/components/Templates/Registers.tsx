@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDashboard } from "../../contexts/DashboardContext";
-import { Container, Top, Bottom, Text, SVGContainer } from '../../elements/Dashboard/Registers'
+import { Container, Top, Bottom, Text, SVGContainer, AddRegisterButton, TopText } from '../../elements/Dashboard/Registers'
 import StarSVG from "../atoms/SVG/StarSVG";
 import NoRegisters from "../molecules/NoRegisters";
 import RegisterField from "../molecules/RegisterField";
@@ -18,11 +18,15 @@ const Registers: React.FC = () => {
   return (
     <Container>
       <Top>
-        <Text>Tus registros</Text>
-        <SVGContainer onClick={toggleFavorites}>
-          <StarSVG isFavorite={isFavorite} />
-        </SVGContainer>
+        <TopText>
+          <Text>Tus registros</Text>
+          <SVGContainer onClick={toggleFavorites}>
+            <StarSVG isFavorite={isFavorite} />
+          </SVGContainer>
+        </TopText>
+        {userData && <AddRegisterButton whileTap={{ scale: 0.95 }} inRegisters="false">Añadir registro</AddRegisterButton>}
       </Top>
+      {userData && <AddRegisterButton whileTap={{ scale: 0.95 }} inRegisters="true" >Añadir registro</AddRegisterButton>}
       <Bottom registerExists={registersExists ? 'true' : 'false'}>
         {!userData && <RegistersLoader />}
         {registersExists ? mapUserData() : <NoRegisters />}

@@ -1,6 +1,8 @@
 import styled from 'styled-components'
+import { motion } from 'framer-motion'
 
 const Container = styled.div`
+  grid-area: registers;
   width: 100%;
   max-height: 304px;
   display: flex;
@@ -8,7 +10,6 @@ const Container = styled.div`
   position: relative;
 `
 const Top = styled.div`
-  height: 28px;
   display: flex;
   align-items: center;
   margin-bottom: 8px;
@@ -19,14 +20,13 @@ interface BottomProps {
 
 const Bottom = styled.div<BottomProps>`
   width: 100%;
-  height: 100%;
+  margin-right: -8px;
   overflow-y: ${p => p.registerExists === 'true' ? 'scroll' : 'hidden'};
-  padding-right: ${p => p.registerExists === 'true' ? '4px' : '0'};
 
 
    /* width */
   &::-webkit-scrollbar {
-    width: 12px;
+    width: 0;
     border-radius: 4px;
   }
 
@@ -58,5 +58,32 @@ const SVGContainer = styled.div`
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 `
+export interface AddRegisterButtonProps {
+  inRegisters: string
+}
+ 
+const AddRegisterButton = styled(motion.div)<AddRegisterButtonProps>`
+  height: 38px;
+  width: 100%;
+  border-radius: 8px;
+  user-select: none;
+  background-color: #3480C1;
+  margin-bottom: ${p => p.inRegisters === 'true' ? '8px' : '0'};
+  display: ${p => p.inRegisters === 'true' ? 'flex' : 'none'};
+  justify-content: center;
+  align-items: center;
+  color: #EAEAEA;
 
-export { Container, Top, Bottom, Text, SVGContainer }
+  @media screen and (min-width: 768px) {
+    display: ${p => p.inRegisters === 'true' ? 'none' : 'flex'};
+    max-width: 338px;
+    margin-left: auto;
+  }
+`
+
+const TopText = styled.div`
+  display: flex;
+  align-items: center;
+`
+
+export { Container, Top, Bottom, Text, SVGContainer, AddRegisterButton, TopText }

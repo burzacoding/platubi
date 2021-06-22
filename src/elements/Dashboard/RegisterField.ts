@@ -44,6 +44,7 @@ const SVGContainer = styled.div<SVGContainerProps>`
   margin-right: 6px;
   -webkit-tap-highlight-color: transparent;
   padding: ${p => p.customPadding === undefined ? '0' : `${p.customPadding.toString()}px`};
+  user-select: none;
   &:last-child {
     margin-right: 0;
   }
@@ -55,6 +56,12 @@ const SVGContainer = styled.div<SVGContainerProps>`
     width: 36px;
     height: 36px;
   };
+`
+
+const PencilContainer = styled(SVGContainer)`
+  svg {
+    fill: ${p => p.theme.fontContrastFive};
+  }
 `
 
 const TextContainer = styled.div`
@@ -74,4 +81,4 @@ const Text = styled.span`
 `
 
 
-export {FieldContainer, InnerContainer, SVGContainer, ButtonsContainer, TextContainer, Text}
+export {FieldContainer, InnerContainer, SVGContainer, PencilContainer, ButtonsContainer, TextContainer, Text}

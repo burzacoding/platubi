@@ -5,9 +5,6 @@ const PencilContainer = styled('div')`
   height: 100%;
   width: 100%;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
-  svg {
-    fill: ${p => p.theme.fontContrastFive};
-  }
 `
  
 const EditPencil: React.FC = () => {

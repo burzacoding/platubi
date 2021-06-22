@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 const Container = styled.div`
+  grid-area: ts;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
@@ -9,10 +10,15 @@ const Container = styled.div`
     grid-template-columns: 1fr 1fr 1fr;
     justify-items: center;
   }
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 1042px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
   }
   @media screen and (min-width: 1280px) {
     display: flex;
+    flex-wrap: nowrap;
   }
   @media screen and (min-width: 1626px) {
     display: flex;
