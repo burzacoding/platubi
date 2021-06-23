@@ -24,6 +24,13 @@ const SmallContainer = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 8px;
+  font-size: 20px;
+  @media screen and (min-width: 768px) {
+    font-size: 24px;
+  }
+  @media screen and (min-width: 1366px) {
+    font-size: 32px;
+  }
 `
 const MainTitle = styled.p `
   font-size: 24px;
@@ -39,6 +46,8 @@ const Card = styled.div`
   transition: background-color 0.25s;
   border-radius: 8px;
   width: 100%;
+  @media screen and (min-width: 768px) {
+  }
 `
 const BigCard = styled(Card)`
   grid-column-start: span 2;
@@ -49,12 +58,24 @@ const Title = styled.h3`
   background-clip: text;
   -webkit-background-clip: text;
   margin-bottom: 8px;
-  font-size: 22px;
+  font-size: 1.1em;
   font-weight: 500;
+  @media screen and (min-width: 1366px) {
+    font-size: 1em;
+    height: 36px;
+  }
 `
 const Budget = styled.p`
+  position: relative;
   font-family: 'Mandali', sans-serif;
-  font-size: 20px;
+  @media screen and (min-width: 768px) {
+    height: 32px;
+    top: -4px;
+  }
+  @media screen and (min-width: 1366px) {
+    height: 36px;
+    top: -12px;
+  }
 `
 export {
   MainContainer,

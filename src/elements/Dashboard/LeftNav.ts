@@ -6,6 +6,7 @@ const Container = styled.div`
   height: 100%;
   grid-area: ln;
   background-color: ${p => p.theme.divDarkerBackground};
+  transition: background-color 0.25s;
   display: none;
   flex-direction: column;
   justify-content: space-between;

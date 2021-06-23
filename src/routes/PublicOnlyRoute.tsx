@@ -1,5 +1,5 @@
 import { RouteProps, Route, Redirect } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../Contexts/AuthContext";
 
 
 

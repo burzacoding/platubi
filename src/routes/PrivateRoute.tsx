@@ -1,5 +1,5 @@
 import { Route, Redirect, RouteProps } from 'react-router-dom'
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../Contexts/AuthContext';
 
  
 const PrivateRoute: React.FC<RouteProps> = ({...routeProps}) => {

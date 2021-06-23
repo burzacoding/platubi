@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import TextSvg from './TextSvg'
-import { ToLeftVariants, ToRightVariants } from '../../animations/variants';
+import { ToLeftVariants, ToRightVariants } from '../../Animations/variants';
 
 export interface MyVectorProps {
   keyID: string,

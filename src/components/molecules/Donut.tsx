@@ -1,7 +1,7 @@
 import { Container } from "../../elements/Dashboard/Donut";
 import { Doughnut, Chart } from 'react-chartjs-2'
 import { useEffect } from "react";
-import { useDashboard } from "../../contexts/DashboardContext";
+import { useDashboard } from "../../Contexts/DashboardContext";
 import { useState } from "react";
 import Tooltips from "./Tooltips";
 
@@ -60,7 +60,6 @@ const Donut: React.FC<DonutProps> = () => {
   return (
     <Container>
       <Doughnut type data={data} width={236} height={236} options={options}/>
-      <Tooltips />
     </Container>
   );
 }

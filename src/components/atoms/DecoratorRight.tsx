@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import DesktopTextSvg from './DesktopTextSvg'
-import { decoRightUpVariants } from '../../animations/variants'
+import { decoRightUpVariants } from '../../Animations/variants'
 
 export interface DecoratorRightProps {
   KeyID: string

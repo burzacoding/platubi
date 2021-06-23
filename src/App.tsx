@@ -2,8 +2,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { themes } from './AppStyles'
-import { AuthProvider } from './contexts/AuthContext'
-import { DashboardProvider } from './contexts/DashboardContext'
+import { AuthProvider } from './Contexts/AuthContext'
+import { DashboardProvider } from './Contexts/DashboardContext'
 
 import NavBar from "./components/molecules/NavBar/NavBar";
 import LandingPage from './components/pages/LandingPage/LandingPage';

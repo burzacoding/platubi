@@ -14,7 +14,7 @@ import LockSVG from '../atoms/SVG/LockSVG'
 import EyeSVG from '../atoms/SVG/EyeSVG'
 import { selectBorders } from '../../Utils/Utils'
 import { firebaseLoginErrorHandler, loginValidationSchema } from '../../Utils/Validation/Login'
-import { useAuth } from '../../contexts/AuthContext'
+import { useAuth } from '../../Contexts/AuthContext'
 import { useState } from 'react'
 
 

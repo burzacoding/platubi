@@ -3,7 +3,7 @@ import Sun from './Sun'
 import { forwardRef, useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { ThemeImg, SVGContainer } from '../../../elements/ThemeToggle'
-import { themeToggleVariants } from '../../../animations/variants'
+import { themeToggleVariants } from '../../../Animations/variants'
 
 export interface ThemeToggleProps {
   setTheme: React.Dispatch<React.SetStateAction<'dark' | 'light'>>,

@@ -5,7 +5,7 @@ import FirstArticleContainer from "./FirstArticleContainer/FirstArticleContainer
 import SecondArticleContainer from "./SecondArticleContainer/SecondArticleContainer";
 import Footer from "../../molecules/Footer";
 import { NavSpacer, LandingPageContainer, ArticleContainer } from "../../../elements/LandingPage";
-import { useAuth } from "../../../contexts/AuthContext";
+import { useAuth } from "../../../Contexts/AuthContext";
 import Dashboard from "../Protected/Dashboard";
 
 

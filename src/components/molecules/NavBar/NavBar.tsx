@@ -12,8 +12,8 @@ import ThemeToggle from '../../atoms/ThemeToggle/ThemeToggle'
 import SwitchMenu from './SwitchMenu'
 import LogoPlatubi from './LogoPlatubi';
 import SwitchContainer from './SwitchContainer'
-import { useAuth } from '../../../contexts/AuthContext';
-import { useDashboard } from '../../../contexts/DashboardContext';
+import { useAuth } from '../../../Contexts/AuthContext';
+import { useDashboard } from '../../../Contexts/DashboardContext';
 
 export interface NavBarProps {
   setTheme: React.Dispatch<React.SetStateAction<'dark' | 'light'>>,

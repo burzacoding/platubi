@@ -8,8 +8,11 @@ const Container = styled.div`
   margin-left: auto;
   height: 100%;
   position: relative;
+  @media screen and (min-width: 1366px) {
+    height: min-content;
+    margin: auto 0 auto auto;
+  };
 `
-
 interface CardInterface {
   cardColor: string
 }
@@ -24,6 +27,13 @@ const Card = styled.div<CardInterface>`
   font-size: 16px;
   color: #EAEAEA;
   border-radius: 8px;
+  margin-bottom: 12px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  @media screen and (min-width: 1366px) {
+    font-size: 20px;
+  };
 `
 const Symbol = styled.span`
   font-family: 'Montserrat', sans-serif;
@@ -39,6 +49,7 @@ const Numbers = styled.span`
 `
 const SVGContainer = styled.div`
   width: 28px;
+  user-select: none;
   svg {
     fill: #EAEAEA
   }

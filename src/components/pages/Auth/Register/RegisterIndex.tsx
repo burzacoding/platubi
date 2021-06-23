@@ -6,8 +6,8 @@ import AuthFrame from "../AuthFrame";
 import { PresenceContainer, RelativeContainer } from "../Styles";
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
-import { useAuth } from "../../../../contexts/AuthContext";
-import { regIndexVariants } from "../../../../animations/variants";
+import { useAuth } from "../../../../Contexts/AuthContext";
+import { regIndexVariants } from "../../../../Animations/variants";
 import Footer from "../../../molecules/Footer";
 
 const initialValues = { email: '', password: '', confirmPassword: '', termsAccepted: false}

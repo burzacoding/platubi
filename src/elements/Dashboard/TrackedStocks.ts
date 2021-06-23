@@ -45,6 +45,10 @@ const Card = styled.div`
   }
   @media screen and (min-width: 1024px) {
     max-width: 286px;
+    font-size: 14px;
+  }
+  @media screen and (min-width: 1366px) {
+    font-size: 16px;
   }
   @media screen and (min-width: 1626px) {
     max-width: 100%;

@@ -3,7 +3,7 @@ import { selectBorders } from "../../Utils//Utils";
 import { firebaseRecoverErrorHandler, recoverValidationSchema } from "../../Utils/Validation/Recover";
 import { Formik, Form, ErrorMessage } from "formik";
 import { Container, Error, Input, InputContainer, Label, SvgContainer, IngresarMT as Ingresar } from "../../elements/AuthStyles";
-import { useAuth } from "../../contexts/AuthContext";
+import { useAuth } from "../../Contexts/AuthContext";
 
 const Recover: React.FC = () => {
 

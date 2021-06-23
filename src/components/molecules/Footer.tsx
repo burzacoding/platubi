@@ -1,5 +1,5 @@
 
-import { useAuth } from "../../contexts/AuthContext";
+import { useAuth } from "../../Contexts/AuthContext";
 import { Container, InnerContainer, ItemsContainer, Item } from "../../elements/Footer";
 import SmallLogo from "../atoms/SVG/SmallLogo";
  

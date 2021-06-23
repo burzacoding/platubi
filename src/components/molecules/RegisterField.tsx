@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { registerSchemaTypesWithId } from "../../contexts/DashboardContext";
-import { FieldContainer, InnerContainer, SVGContainer, PencilContainer, ButtonsContainer, TextContainer, Text } from "../../elements/Dashboard/RegisterField";
+import { registerSchemaTypesWithId } from "../../Contexts/DashboardContext";
+import { FieldContainer, InnerContainer, SVGContainer, PencilContainer, ButtonsContainer, TextContainer, Text, CrossContainer } from "../../elements/Dashboard/RegisterField";
+import CrossSVG from "../atoms/SVG/Cross";
 import EditPencil from "../atoms/SVG/EditPencilSVG";
 import EyeSVG from "../atoms/SVG/EyeSVG";
 import OperationSymbol from "../atoms/SVG/OperationSymbol";
@@ -41,6 +42,9 @@ const RegisterField: React.FC<RegisterFieldProps> = ({obj}) => {
           <PencilContainer>
             <EditPencil />
           </PencilContainer>
+          <CrossContainer customPadding={6}>
+            <CrossSVG />
+          </CrossContainer>
         </ButtonsContainer>
       </InnerContainer>
     </FieldContainer>

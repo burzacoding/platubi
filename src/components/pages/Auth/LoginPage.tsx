@@ -6,7 +6,7 @@ import AuthFrame from "./AuthFrame";
 import SocialAuthButton from "./SocialAuthButton";
 import Footer from "../../molecules/Footer";
 import { ContainerBase, SocialAuthButtonsContainer, Title, Separador, Side, Text  } from "./Styles";
-import { useAuth } from "../../../contexts/AuthContext";
+import { useAuth } from "../../../Contexts/AuthContext";
 
 const Colors = {
   Google: {dark: '#121212', light: '#FFFFFF'},

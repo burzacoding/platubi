@@ -1,4 +1,4 @@
-import { buildSchemaInterface, newRegisterValuesInterface, QuerySnapshotDocumentData, receivedRemoteRegisterSchemaTypes, registerSchemaTypes, registerSchemaTypesWithId } from "../contexts/DashboardContext"
+import { buildSchemaInterface, newRegisterValuesInterface, QuerySnapshotDocumentData, receivedRemoteRegisterSchemaTypes, registerSchemaTypes, registerSchemaTypesWithId } from "../Contexts/DashboardContext"
 import { FirebaseTimeStamp } from "../firebase/Firebase"
 
 export const ThemeColorPicker = (props: any, colorDark: string, colorLight: string) => props.theme.theme === 'dark' ? colorDark : 

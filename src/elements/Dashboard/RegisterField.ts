@@ -32,6 +32,7 @@ const ButtonsContainer = styled.div`
   margin-left: auto;
   margin-right: 6px;
   opacity: 0.7;
+  user-select: none;
 `
 interface SVGContainerProps {
   customPadding?:number
@@ -63,22 +64,56 @@ const PencilContainer = styled(SVGContainer)`
     fill: ${p => p.theme.fontContrastFive};
   }
 `
+const CrossContainer = styled(PencilContainer)`
+  display: none;
+  @media screen and (min-width: 768px) {
+    display: block;
+  };
+`
 
 const TextContainer = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 2fr;
   align-items: center;
-  padding-right: 24px;
+  padding-right: 12px;
   font-size: 12px;
+  @media screen and (min-width: 420px) {
+    font-size: 14px;
+  };
+  @media screen and (min-width: 768px) {
+    display: flex;
+    padding-right: 24px;
+    font-size: 16px;
+  };
 `
 const Text = styled.span`
-  width: 100%;
   text-align: center;
+  &:first-child {
+    font-weight: 600;
+  }
   &:last-child {
     min-width: 78px;
   }
+  @media screen and (min-width: 420px) {
+    &:first-child {
+      margin-right: 36px;
+    }
+    &:last-child {
+      margin-left: auto;
+      margin-right: 24px;
+    };
+  }
+  @media screen and (min-width: 940px) {
+    &:first-child {
+      margin-right: 48px;
+    };
+    &:last-child {
+      margin-left: auto;
+      margin-right: 48px;
+    };
+  };
 `
 
 
-export {FieldContainer, InnerContainer, SVGContainer, PencilContainer, ButtonsContainer, TextContainer, Text}
+export {FieldContainer, InnerContainer, SVGContainer, CrossContainer, PencilContainer, ButtonsContainer, TextContainer, Text}

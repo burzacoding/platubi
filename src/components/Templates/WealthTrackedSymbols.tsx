@@ -1,24 +1,26 @@
 import styled from 'styled-components'
 import CompositionCards from '../molecules/CompositionCards';
 import Donut from '../molecules/Donut';
+import Tooltips from '../molecules/Tooltips';
 export interface WealthTrackedSymbolsProps {
   
 }
 
 const Container = styled.div`
+  position: relative;
   grid-area: wts;
   width: 100%;
   min-width: 296px;
   height: 100%;
   display: flex;
   border-radius: 8px;
-  user-select: none;
 `
 
 
 const WealthTrackedSymbols: React.FC<WealthTrackedSymbolsProps> = () => {
   return (
     <Container>
+      <Tooltips />
       <Donut />
       <CompositionCards />
     </Container>

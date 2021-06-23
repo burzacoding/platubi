@@ -1,4 +1,4 @@
-import { useDashboard } from "../../contexts/DashboardContext";
+import { useDashboard } from "../../Contexts/DashboardContext";
 import { Container, SelectSheetButton, SVGContainer } from "../../elements/Dashboard/LeftNav";
 import GearNav from "../atoms/SVG/GearNav";
 import Wallet from "../atoms/SVG/Wallet";

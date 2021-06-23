@@ -6,7 +6,7 @@ import ButtonNormal from '../../../molecules/ButtonNormal'
 import { AuthContainerMotion, SocialAuthButtonsContainer, Title, Colors, Separador, Side, Text } from '../Styles';
 import AuthAlternateAction from '../../../molecules/AuthAlternateAction';
 import { Variants } from 'framer-motion';
-import { useAuth } from '../../../../contexts/AuthContext';
+import { useAuth } from '../../../../Contexts/AuthContext';
 import { TyC } from "../../../../elements/AuthStyles";
 
 
