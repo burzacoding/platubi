@@ -17,7 +17,7 @@ interface MenuProps {
 }
 
 const MenuSvg = styled.svg<MenuProps>`
-  @media screen and (min-width: 769px) and (max-width:1024px) {
+  @media screen and (min-width: 768px) and (max-width:1024px) {
   transform: scale(1.1625);
   margin-left: 36px;
   }

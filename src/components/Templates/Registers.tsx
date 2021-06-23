@@ -2,9 +2,11 @@ import { useState } from "react";
 import { useDashboard } from "../../Contexts/DashboardContext";
 import { Container, Top, Bottom, Text, SVGContainer, AddRegisterButton, TopText } from '../../elements/Dashboard/Registers'
 import { useWindowSize } from "../../Hooks/useWindowSize";
+import { arrayPopulateWidthElements } from "../../Utils/Utils";
 import StarSVG from "../atoms/SVG/StarSVG";
 import NoRegisters from "../molecules/NoRegisters";
 import RegisterField from "../molecules/RegisterField";
+import RegisterFieldEmpty from "../molecules/RegisterFieldEmpty";
 import RegistersLoader from "../molecules/RegistersLoader";
 
 const Registers: React.FC = () => {
@@ -15,39 +17,30 @@ const Registers: React.FC = () => {
   const {width, height} = useWindowSize()
 
   const mapUserData = () =>  {
-    const pureRegisters = userData?.registers?.map((obj) => <RegisterField obj={obj} key={obj.key} />)
+    const pureRegisters = userData?.registers?.map((obj) => <RegisterField obj={obj} key={obj.key} />) || []
     if (userData) {
-      // const registers = userData.registers
       const registersLength = userData.registers?.length || 0
-      if (width < 768) {
-        if (registersLength >= 5) {
-          return pureRegisters
-        }
-        const EmptysArr: JSX.Element[] = []
-        const JSXArr = pureRegisters
-        const remainingSpaces = 5 - registersLength
-        for (let i = 0; i < remainingSpaces; i++) {
-          EmptysArr.push(<h1>Vacio</h1>)
-        }
-        return JSXArr?.concat(EmptysArr)
+      if (width < 768 && registersLength < 5) {
+        const remainingSPaces = 5 - registersLength
+        return arrayPopulateWidthElements(pureRegisters, <RegisterFieldEmpty />, remainingSPaces)
       }
-      if (width >= 768) {
-        //SEGUIR ACA
-        //SEGUIR ACA
-        //SEGUIR ACA
-        //SEGUIR ACA
-        //SEGUIR ACA
-        const numberOfEmptys = Math.floor((height - 236 - 236 - 24 - 24 - 38 - 75) / 44)
-        //SEGUIR ACA
-        //SEGUIR ACA
-        //SEGUIR ACA
-        //SEGUIR ACA
-        //SEGUIR ACA
-        //SEGUIR ACA
+      if (width >= 768 && width < 1024) {
+        const numberOfEmptys = Math.floor((height - 236 - 236 - 24 - 24 - 126 - 32 - 46) / 52) - registersLength
+        return arrayPopulateWidthElements(pureRegisters, <RegisterFieldEmpty />, numberOfEmptys)
       }
+      if (width >= 1024 && width < 1366) {
+        console.log('block 2');
+        
+        const numberOfEmptys = Math.floor((height - 236 - 112 - 24 - 24 - 126 - 32 - 46) / 52) - registersLength
+        return arrayPopulateWidthElements(pureRegisters, <RegisterFieldEmpty />, numberOfEmptys)
+      }
+      const numberOfEmptys = Math.floor((height - 274 - 24 - 126 - 36 - 46) / 52) - registersLength
+      return arrayPopulateWidthElements(pureRegisters, <RegisterFieldEmpty />, numberOfEmptys)
     }
     return pureRegisters
   }
+
+  console.log(width, height)
   const toggleFavorites = () => setIsFavorite(!isFavorite)
   
 

@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 const MainContainer = styled.div`
+position: relative;
   grid-area: wv;
   width: 100%;
   max-width: 452px;
@@ -8,6 +9,7 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
+  color: ${p => p.theme.fontContrastSix};
 
   @media screen and (min-width: 768px) {
     margin: 0;

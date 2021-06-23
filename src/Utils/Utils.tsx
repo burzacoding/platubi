@@ -62,3 +62,11 @@ export const buildRegisterSchema = ({operation, symbol, value}: newRegisterValue
   },
 })
 
+export const arrayPopulateWidthElements = (array: JSX.Element[], elementToAdd: JSX.Element, quantity: number) => {
+  if (quantity <= 0) return array
+  const EmptysArr: JSX.Element[] = []
+  for (let i = 0; i < quantity; i++) {
+    EmptysArr.push(elementToAdd)
+  }
+  return array?.concat(EmptysArr)
+}

@@ -50,6 +50,7 @@ const Numbers = styled.span`
 const SVGContainer = styled.div`
   width: 28px;
   user-select: none;
+  cursor: pointer;
   svg {
     fill: #EAEAEA
   }

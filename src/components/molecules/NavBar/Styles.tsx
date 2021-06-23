@@ -14,12 +14,12 @@ export const NavBarDesktopContainer = styled.div`
   top: 0;
   left: 0;
 
-  display: flex;
+  display: none;
   flex-direction: column;
   z-index: 20;
 
-  @media screen and (max-width: 768px) {
-    display: none
+  @media screen and (min-width: 768px) {
+    display: flex;
   };
 `
 
@@ -156,7 +156,7 @@ export const NavBarMobileContainer = styled.div`
   z-index: 20;
   overflow: hidden;
 
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: 768px) {
     display: none
   }
 `

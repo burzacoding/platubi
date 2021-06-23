@@ -9,10 +9,10 @@ interface WealthViewerProps {
     const symbols = [['Pesos*', 10000, '$'], ['Dólares', 2500, '$'], ['Bitcoin', 0.045]]
     return (
       <MainContainer>
+          <GearSVG />
         <MainTitle>Tu saldo estimado:</MainTitle>
         <SmallContainer>
         <BigCard>
-          <GearSVG />
           <Title>{symbols[0][0]}</Title>
           <Budget>{symbols[0][2]}{symbols[0][1]}</Budget>
         </BigCard>

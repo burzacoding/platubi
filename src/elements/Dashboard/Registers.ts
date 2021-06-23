@@ -4,10 +4,19 @@ import { motion } from 'framer-motion'
 const Container = styled.div`
   grid-area: registers;
   width: 100%;
-  max-height: 304px;
   display: flex;
   flex-direction: column;
   position: relative;
+  max-height: 334px;
+  @media screen and (min-width: 768px) {
+    max-height: 386px;
+  };
+  @media screen and (min-width: 1024px) {
+    max-height: 386px;
+  };
+  @media screen and (min-width: 1366px) {
+    max-height: 475px;
+  };
 `
 const Top = styled.div`
   display: flex;
@@ -68,6 +77,7 @@ const AddRegisterButton = styled(motion.div)<AddRegisterButtonProps>`
   width: 100%;
   border-radius: 8px;
   user-select: none;
+  cursor: pointer;
   background-color: #3480C1;
   margin-bottom: ${p => p.inRegisters === 'true' ? '8px' : '0'};
   display: ${p => p.inRegisters === 'true' ? 'flex' : 'none'};
