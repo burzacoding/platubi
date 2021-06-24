@@ -2,7 +2,10 @@ import styled from "styled-components";
 import { Title, Body } from "../../elements/Dashboard/TrackedStocks";
 
 export interface TooltipsProps {
-  
+  label: string,
+  percentage: number,
+  symbol?: string,
+  value: number
 }
  
 const Container = styled.div`
@@ -11,6 +14,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  pointer-events: none;
   width: 236px;
   height: 236px;
   top: 0;
@@ -24,12 +28,12 @@ const Container = styled.div`
   };
 `
 
-const Tooltips: React.FC<TooltipsProps> = () => {
+const Tooltips: React.FC<TooltipsProps> = ({label, percentage, symbol = '', value}) => {
   return (
     <Container>
-      <Title>ARS</Title>
-      <Body>$25000</Body>
-      <Body>75%</Body>
+      <Title>{label}</Title>
+      <Body>{`${symbol}${value}`}</Body>
+      <Body>{percentage}%</Body>
     </Container>
   );
 }

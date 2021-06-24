@@ -1,3 +1,4 @@
+import RegisterFieldEmpty from "../components/molecules/RegisterFieldEmpty"
 import { buildSchemaInterface, newRegisterValuesInterface, QuerySnapshotDocumentData, receivedRemoteRegisterSchemaTypes, registerSchemaTypes, registerSchemaTypesWithId } from "../Contexts/DashboardContext"
 import { FirebaseTimeStamp } from "../firebase/Firebase"
 
@@ -62,11 +63,11 @@ export const buildRegisterSchema = ({operation, symbol, value}: newRegisterValue
   },
 })
 
-export const arrayPopulateWidthElements = (array: JSX.Element[], elementToAdd: JSX.Element, quantity: number) => {
+export const arrayPopulateWithEmpties = (array: JSX.Element[], quantity: number) => {
   if (quantity <= 0) return array
   const EmptysArr: JSX.Element[] = []
   for (let i = 0; i < quantity; i++) {
-    EmptysArr.push(elementToAdd)
+    EmptysArr.push(<RegisterFieldEmpty key={`key${i}`} />)
   }
   return array?.concat(EmptysArr)
 }

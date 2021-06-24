@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import CompositionCards from '../molecules/CompositionCards';
 import Donut from '../molecules/Donut';
-import Tooltips from '../molecules/Tooltips';
 export interface WealthTrackedSymbolsProps {
   
 }
@@ -20,7 +19,6 @@ const Container = styled.div`
 const WealthTrackedSymbols: React.FC<WealthTrackedSymbolsProps> = () => {
   return (
     <Container>
-      <Tooltips />
       <Donut />
       <CompositionCards />
     </Container>

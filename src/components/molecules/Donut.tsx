@@ -1,7 +1,6 @@
 import { Container } from "../../elements/Dashboard/Donut";
 import { Doughnut, Chart } from 'react-chartjs-2'
-import { useEffect } from "react";
-import { useDashboard } from "../../Contexts/DashboardContext";
+// import { useDashboard } from "../../Contexts/DashboardContext";
 import { useState } from "react";
 import Tooltips from "./Tooltips";
 
@@ -10,6 +9,14 @@ Chart.defaults.plugins.legend.display = false
 export interface DonutProps {
   
 }
+interface TooltipsPropsWithIndex {
+  dataIndex: number,
+  label: string,
+  percentage: number,
+  symbol?: string,
+  value: number
+}
+
 const data = {
   labels: ['ARS', 'ARS', 'ARS', 'ARS'],
   datasets: [
@@ -26,40 +33,51 @@ const data = {
   ],
 };
 
-const startingOptions = {
-  cutout: '65%',
-  responsive: true,
-  rotation: 90,
-  layout: {
-    padding: 12,
-  },
-  plugins: {
-    tooltip: {
-
-    }
-  }
-}
-
-
 const Donut: React.FC<DonutProps> = () => {
 
-  const { userData } = useDashboard()
-  const [options, setOptions] = useState(startingOptions)
-
-  useEffect(() => {
-    setOptions(prev => {
-      return({
-        ...prev,
-        animation: {
-          animateRotate: false
-        }
-      })
-    })
-  }, [userData])
-
+  // const { userData } = useDashboard()
+  
+  const [tooltipData, setTooltipData] = useState<TooltipsPropsWithIndex>()
+  const startingOptions = {
+    cutout: '65%',
+    responsive: true,
+    rotation: 90,
+    layout: {
+      padding: 12,
+    },
+    plugins : {
+      tooltip: {
+        backgroundColor: 'rgba(0,0,0,0)',
+        callbacks: {
+          label: function (tooltip: any) {
+            if (tooltipData?.dataIndex !== tooltip.dataIndex) {
+              setTooltipData({
+                dataIndex: tooltip.dataIndex,
+                label: tooltip.label,
+                percentage: tooltip.raw,
+                value: 5000,
+                symbol: '$'
+              });
+              return
+            }
+          }
+        },
+      }
+    },
+    animation: {
+      animateRotate: false
+    }
+  }
+  
   return (
     <Container>
-      <Doughnut type data={data} width={236} height={236} options={options}/>
+      <Doughnut type data={data} width={236} height={236} options={startingOptions}/>
+      {tooltipData && <Tooltips 
+                        label={tooltipData.label} 
+                        percentage={tooltipData.percentage} 
+                        value={tooltipData.value}
+                        symbol={tooltipData.symbol}
+                        />}
     </Container>
   );
 }

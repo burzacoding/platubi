@@ -1,13 +1,8 @@
 import { motion } from "framer-motion";
-import styled from "styled-components";
 
 export interface CrossSVGProps {
   
 }
-const CrossContainer = styled('div')`
-height: 100%;
-width: 100%;
-`
  
 const CrossSVG: React.FC<CrossSVGProps> = () => {
   return (
