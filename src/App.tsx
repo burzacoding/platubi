@@ -13,6 +13,7 @@ import RecoverPage from './components/pages/Auth/RecoverPage';
 import ContactoPage from './components/pages/Contacto';
 import FAQPage from './components/pages/FAQ';
 import PublicOnlyRoute from './routes/PublicOnlyRoute'
+import { ModalProvider } from './Contexts/ModalContext'
 
 
 
@@ -32,6 +33,7 @@ function App() {
       <ThemeProvider theme={themes[theme]}>
       <AuthProvider>
       <DashboardProvider>
+      <ModalProvider>
         <NavBar setTheme={setTheme} theme={theme} />
         <Switch>
           <PublicOnlyRoute path="/registrarse" component={RegIndex} />
@@ -41,6 +43,7 @@ function App() {
           <Route path="/faq" component={FAQPage} />
           <Route path="/" component={LandingPage} />
         </Switch>
+      </ModalProvider>
       </DashboardProvider>
       </AuthProvider>
       </ThemeProvider>

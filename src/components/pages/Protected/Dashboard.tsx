@@ -28,7 +28,7 @@ const Dashboard: React.FC = () => {
         <AuthFrame>
           <ContainerBase>
             <Title>Ajustes</Title>
-            <h1>Sitio en construcción.</h1>
+            <h1 style={{textAlign: 'center'}}>Sitio en construcción.</h1>
           </ContainerBase>
         </AuthFrame>
       )}

@@ -112,3 +112,12 @@ export const regIndexVariants: Variants = {
   },
 
 }
+
+export const modalContainerVariants: Variants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+  }
+}

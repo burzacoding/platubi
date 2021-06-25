@@ -163,7 +163,7 @@ export const NavBarMobileContainer = styled.div`
 export const NavBarMobileTop = styled.div`
 `
 export const ContentTop = styled.div`
-pointer-events: auto;
+  pointer-events: auto;
   height: 52px;
   width: 100vw;
   max-width: 100%;
@@ -187,6 +187,8 @@ export const ContentBottom = styled(ContentTop)`
   padding: 0 26px;
 `
 export const NavBarMobileBottom = styled.div`
+  position: fixed;
+  bottom: 0;
 `
 export const HorizontalBar = styled.div`
   width: 100%;

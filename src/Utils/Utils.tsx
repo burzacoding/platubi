@@ -71,3 +71,6 @@ export const arrayPopulateWithEmpties = (array: JSX.Element[], quantity: number)
   }
   return array?.concat(EmptysArr)
 }
+
+
+export type stateSetter<T> = React.Dispatch<React.SetStateAction<T>>
