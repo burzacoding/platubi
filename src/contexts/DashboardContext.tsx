@@ -6,6 +6,7 @@ import { db, registersCollectionRef, userDocumentRef } from "../firebase/Firebas
 import { useEffect } from "react";
 import { useAuth } from "./AuthContext";
 import { buildRegisterSchema, mapRegistersWithId } from "../Utils/Utils";
+import { TooltipsPropsWithIndex } from "../components/molecules/Donut";
 // import Axios from 'axios'
 
 export type DocumentData = firebase.firestore.DocumentData
@@ -84,25 +85,38 @@ export function useDashboard () {
   return useContext(DashboardContext)
 }
 
+//TOOLTIP CONTEXT
+
+interface TooltipContextInterface {
+  tooltipData: TooltipsPropsWithIndex;
+  setTooltipData: React.Dispatch<React.SetStateAction<TooltipsPropsWithIndex>>;
+}
+
+const TooltipContext = createContext({} as TooltipContextInterface)
+
+export function useTooltip () {
+  return useContext(TooltipContext)
+}
+
  
 export const DashboardProvider: React.FC = ({children}) => {
   
   const [page, setPage] = useState(0)
-  const [newRegisters, setNewRegisters] = useState<remoteRegisterSchemaTypes>()
   const [userData, setUserData] = useState<userDocumentTypes | undefined>()
   const { currentUser } = useAuth();
   
   async function addRegisterToFirestore (schema: remoteRegisterSchemaTypes) {
     try {
-      setNewRegisters(schema)
-      const newDocRef = await db.collection('user').doc(currentUser?.uid).collection('registers').add(newRegisters as DocumentData)
-      setNewRegisters(undefined)
-      return newDocRef.id
+      return db.collection('users').doc(currentUser?.uid).collection('registers').add(schema as DocumentData)
+      .then((newDocRef) => {
+        return newDocRef.id
+      })
     }
     catch (err) {
-      throw new Error(`Error subiendo el nuevo registro a Firebase: ${err}`)
+      throw new Error(`subiendo el nuevo registro a Firebase: ${err}.`)
     }
   }
+
   function addRegisterToLocalUserData (schema: localRegisterSchemaTypes, newId: string) {
     const schemaWithDocId = {...schema, key: newId}
     const currentArr = userData?.registers
@@ -157,10 +171,16 @@ export const DashboardProvider: React.FC = ({children}) => {
   }, [currentUser])
 
   const value = { page, setPage, userData, setUserData, addRegister, deleteRegister}
+
+  const [tooltipData, setTooltipData] = useState<TooltipsPropsWithIndex>({} as TooltipsPropsWithIndex)
+
+  const valueTooltip = {tooltipData, setTooltipData}
   
   return (
     <DashboardContext.Provider value={value}>
-      {children}
+      <TooltipContext.Provider value={valueTooltip}>
+        {children}
+      </TooltipContext.Provider>
     </DashboardContext.Provider>
   );
 }

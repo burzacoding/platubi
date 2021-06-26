@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDashboard } from "../../Contexts/DashboardContext";
+import { useModal } from "../../Contexts/ModalContext";
 import { Container, Top, Bottom, Text, SVGContainer, AddRegisterButton, TopText } from '../../elements/Dashboard/Registers'
 import { useWindowSize } from "../../Hooks/useWindowSize";
 import { arrayPopulateWithEmpties } from "../../Utils/Utils";
@@ -11,6 +12,7 @@ import RegistersLoader from "../molecules/RegistersLoader";
 const Registers: React.FC = () => {
 
   const { userData } = useDashboard()
+  const { openModal } = useModal()
   const [isFavorite, setIsFavorite] = useState(false)
   const registersExists = userData?.registers?.length !== 0
   const {width, height} = useWindowSize()
@@ -37,7 +39,7 @@ const Registers: React.FC = () => {
     }
     return pureRegisters
   }
-  const toggleFavorites = () => setIsFavorite(!isFavorite)
+  const toggleFavorites = () => setIsFavorite(!isFavorite);
 
   return (
     <Container>
@@ -48,9 +50,11 @@ const Registers: React.FC = () => {
             <StarSVG isFavorite={isFavorite} />
           </SVGContainer>
         </TopText>
-        {userData && <AddRegisterButton whileTap={{ scale: 0.95 }} inRegisters="false">Añadir registro</AddRegisterButton>}
+        {userData && <AddRegisterButton whileTap={{ scale: 0.95 }} inRegisters="false" onClick={() => {openModal('add')}}>Añadir registro</AddRegisterButton>}
       </Top>
-      {userData && <AddRegisterButton whileTap={{ scale: 0.95 }} inRegisters="true" >Añadir registro</AddRegisterButton>}
+      {userData && <AddRegisterButton whileTap={{ scale: 0.95 }} inRegisters="true"
+        onClick={() => {openModal('add')}}
+      >Añadir registro</AddRegisterButton>}
       <Bottom registerExists={registersExists ? 'true' : 'false'}>
         {!userData && <RegistersLoader />}
         {registersExists ? mapUserData() : <NoRegisters />}

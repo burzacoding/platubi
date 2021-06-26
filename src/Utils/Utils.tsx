@@ -49,7 +49,7 @@ export const buildRegisterSchema = ({operation, symbol, value}: newRegisterValue
     operation,
     symbol,
     value,
-    createdAt: getFormattedDateFromMill(new Date().getMilliseconds()),
+    createdAt: getFormattedDateFromMill(new Date().getTime()),
     favorite: false,
     visible: true,
   },

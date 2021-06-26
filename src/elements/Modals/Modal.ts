@@ -52,4 +52,39 @@ const Title = styled.h2`
   text-align: center;
 `
 
-export { ContainerBackground, ModalContainer, HorizontalBar, Content, Title }
+const OperationsContainer = styled.div`
+  width: 100%;
+  height: 42px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+`
+interface SymbolSvgContainerProps {
+  isCurrent: string
+}
+
+const SymbolSvgContainer = styled(motion.div)<SymbolSvgContainerProps>`
+  height: 100%;
+  width: 48px;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  svg {
+    fill: ${p => p.isCurrent === 'true' ? '#0F954E' : '#3480C1'};
+    transition: fill 0.25s;
+  }
+`
+
+
+const Cross = styled.div`
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 22px;
+  height: 22px;
+  svg {
+    fill: #0F954E;
+  }
+`
+
+export { ContainerBackground, ModalContainer, HorizontalBar, Content, Title, Cross, OperationsContainer, SymbolSvgContainer }

@@ -14,6 +14,7 @@ import ContactoPage from './components/pages/Contacto';
 import FAQPage from './components/pages/FAQ';
 import PublicOnlyRoute from './routes/PublicOnlyRoute'
 import { ModalProvider } from './Contexts/ModalContext'
+import { ApiProvider } from './Contexts/ApiContext'
 
 
 
@@ -33,6 +34,7 @@ function App() {
       <ThemeProvider theme={themes[theme]}>
       <AuthProvider>
       <DashboardProvider>
+      <ApiProvider>
       <ModalProvider>
         <NavBar setTheme={setTheme} theme={theme} />
         <Switch>
@@ -44,6 +46,7 @@ function App() {
           <Route path="/" component={LandingPage} />
         </Switch>
       </ModalProvider>
+      </ApiProvider>
       </DashboardProvider>
       </AuthProvider>
       </ThemeProvider>
