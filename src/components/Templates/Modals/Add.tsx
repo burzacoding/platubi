@@ -1,57 +1,174 @@
-import { Form, Formik, Field, useFormik, FormikValues } from "formik";
+import { Formik, Form } from "formik";
+// import { Formik, Form, Field, ErrorMessage } from "formik";
 import { forwardRef } from "react";
 import { useState } from "react";
 import { useDashboard } from "../../../Contexts/DashboardContext";
 import { useModal } from "../../../Contexts/ModalContext";
-import { ModalContainer, HorizontalBar, Content, Title, Cross, OperationsContainer, SymbolSvgContainer } from "../../../elements/Modals/Modal";
+import { ModalContainer, HorizontalBar, Content, Title, Cross, OperationsContainer, SymbolSvgContainer, ValueContainer, TextPlaceholder, ValueInputField, ButtonAdd } from "../../../elements/Modals/Modal";
 import CrossSVG from "../../atoms/SVG/Cross";
 import { AddRegisterValidationSchema } from "../../../Utils/Validation/Modals";
 import OpAdd from "../../atoms/SVG/Modals/OpAdd";
 import OpRemove from "../../atoms/SVG/Modals/OpRemove";
 import OpExchange from "../../atoms/SVG/Modals/OpExchange";
-import AddRegisterSelect from "../../molecules/Selects/addRegisterSelect";
+import Select, { GroupTypeBase, Styles } from 'react-select'
+import { useTheme } from "styled-components";
+import { ThemeColorPicker } from "../../../Utils/Utils";
 
-// export interface AddRegisterModalProps {}
+interface FormikFinalValues {
+  operation: string,
+  symbol: string,
+  value: number
+}
+type selectStylesProp = Partial<Styles<{
+    label: string;
+    options: {
+        value: string;
+        label: string;
+    }[];
+  }, false, GroupTypeBase<{
+    label: string;
+    options: {
+        value: string;
+        label: string;
+    }[];
+  }>>> | undefined
 
 const initialValues = {
   operation: 'add',
-  symbol: 'ARS',
-  value: 20,
+  symbol: '',
+  value: 0,
 }
 
-const submitForm = (values: FormikValues) => {
-  console.log(values);
-}
- 
+const options = [
+  {
+      label: 'Divisas',
+      options: [
+          {value: 'usd', label: 'Dolar estadounidense - USD'},
+          {value: 'ars', label: 'Peso argentino - ARS'},
+          {value: 'mxn', label: 'Peso mexicano - MXN'},
+      ]
+  },
+  {
+      label: 'Criptomonedas',
+      options: [
+          {value: 'btc', label: 'Bitcoin - BTC'},
+          {value: 'doge', label: 'Dogecoin - DOGE'},
+          {value: 'bat', label: 'Basic Attention Token - BAT'},
+      ]
+  }
+]
+
+
 const AddRegisterModal = forwardRef<HTMLDivElement>((props, ref) => {
 
-  const [operation, setOperation] = useState(0) //0 = Add | 1 = Remove | 2 = Exchange
+  //STATE
 
+  const [operation, setOperation] = useState(0) //0 = Add | 1 = Remove | 2 = Exchange
   const isCurrent = (index: number) => operation === index ? 'true' : 'false'
-  const setCurrent = (index: number) => setOperation(index)
+
+  // FUNCTIONS 
 
   const { addRegister } = useDashboard()
   const { closeModal } = useModal()
 
-  const closeCurrentModal = () => {
-    formik.resetForm()
-    closeModal()
+  const theme = useTheme()
+
+  const selectStyles: selectStylesProp = {
+    groupHeading: (provided, stats) => ({
+      ...provided,
+      color: theme.fontContrastTwo,
+      backgroundColor: theme.divBackground,
+      fontWeight: 600,
+      fontSize: '0.9em'
+    }),
+    placeholder: (provided, stats) => ({
+      ...provided,
+      color: theme.fontContrastSix,
+      backgroundColor: theme.divBackground,
+    }),
+    option: (provided, stats) => ({
+      ...provided,
+      color: theme.fontContrastTwo,
+      backgroundColor: stats.isFocused ? theme.divDarkerBackground : theme.divBackground,
+      opacity: 0.7
+    }),
+    container : (provided, stats) => ({
+      ...provided,
+      color: theme.fontContrastTwo,
+      width: '100%',
+      marginLeft: '36px',
+    }),
+    menu: (provided, stats) => ({
+      ...provided,
+      color: theme.fontContrastTwo,
+      backgroundColor: theme.divBackground,
+    }),
+    control: (provided, stats) => ({
+        ...provided,
+        color: theme.fontContrastTwo,
+        backgroundColor: theme.divBackground,
+        boxShadow: "none",
+        ":hover" : {
+          border: ThemeColorPicker(theme, `solid 1px #0E4777`, `solid 1px #03A63C`),
+        },
+        ":focused" : {
+          border: ThemeColorPicker(theme, `solid 1px #0E4777`, `solid 1px #03A63C`),
+          boxShadow: "none",
+        },
+      }),
+    singleValue: (provided, stats) => ({
+      ...provided,
+      color: theme.fontContrastTwo,
+      backgroundColor: theme.divBackground,
+      opacity: 0.8
+    }),
   }
 
-
-  const formik = useFormik({
-    initialValues: initialValues,
-    onSubmit: (values, { setSubmitting }) => {
-      setSubmitting(true)
-      addRegister(values)
-      setSubmitting(false)
-      closeCurrentModal()
-    },
-    validationSchema: AddRegisterValidationSchema
-  })
-
   return (
-    <ModalContainer ref={ref}>
+  <Formik
+    initialValues={initialValues}
+    onSubmit={async (values, { setSubmitting, setFieldError }) => {
+      try {
+        setSubmitting(true)
+        const bool = await addRegister(values as unknown as FormikFinalValues)
+        bool && closeModal()
+      }
+      catch (err) {
+        //ADD REGISTER ERRORS HANDLER
+        // const { field, errorMessage } = addRegisterErrorsHandler(err)
+        setFieldError('symbol', '') // setFieldError(field, errorMessage)
+        setSubmitting(false)
+      }
+    }}
+    validationSchema={AddRegisterValidationSchema}
+  >
+    {formik => {
+      const closeCurrentModal = () => {
+        formik.resetForm()
+        closeModal()
+      }
+
+      const setCurrent = (index: number) => {
+        setOperation(index);
+        switch (index) {
+          case 0:
+            formik.setFieldValue('operation', 'add')
+          break;
+          case 1:
+            formik.setFieldValue('operation', 'remove')
+          break;
+          case 2:
+            formik.setFieldValue('operation', 'exchange')
+          break;
+        }
+      }
+
+
+      const setValueValue = (value: any) => {
+        formik.setFieldValue('symbol', value?.value)
+      }
+
+      return(<ModalContainer ref={ref}>
       <Cross onClick={closeCurrentModal}>
         <CrossSVG />
       </Cross>
@@ -63,16 +180,20 @@ const AddRegisterModal = forwardRef<HTMLDivElement>((props, ref) => {
           <SymbolSvgContainer isCurrent={isCurrent(1)} onClick={() => setCurrent(1)} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.85 }}><OpRemove /></SymbolSvgContainer>
           <SymbolSvgContainer isCurrent={isCurrent(2)} onClick={() => setCurrent(2)} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.85 }}><OpExchange /></SymbolSvgContainer>
         </OperationsContainer>
-        <form onSubmit={formik.handleSubmit}>
-          <select name='symbol' value={formik.values.symbol} onChange={formik.handleChange}>
-            <option>USD</option>
-            <option>ARS</option>
-          </select>
-          <AddRegisterSelect />
-          <button type='submit'>Submit</button>
-        </form>
+        <Form>
+          <ValueContainer>
+            <TextPlaceholder>Símbolo:</TextPlaceholder>
+            <Select options={options} onChange={setValueValue} styles={selectStyles} placeholder="Divisa / Criptomoneda"/>
+          </ValueContainer>
+          <ValueContainer>
+            <TextPlaceholder>Cantidad:</TextPlaceholder>
+            <ValueInputField name='value' id='value' />
+          </ValueContainer>
+          <ButtonAdd type='submit'>Agregar</ButtonAdd>
+        </Form>
       </Content>
-    </ModalContainer>
+    </ModalContainer>)}}
+  </Formik>
   );
 })
  

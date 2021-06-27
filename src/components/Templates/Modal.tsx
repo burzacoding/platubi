@@ -10,20 +10,19 @@ export interface ModalProps {
  
 const Modal: React.FC<ModalProps> = () => {
 
-  const { setModalVisibility, modalName, closeModal } = useModal()
+  const { modalName, closeModal } = useModal()
 
   const openedModalRef = useRef<HTMLDivElement>(null)
-
+  const modalRef = useRef<HTMLDivElement>(null)
   
   const handler = (e: MouseEvent) => {
-    if (!openedModalRef.current?.contains(e.target as Node)) {
+    if (modalRef.current?.contains(e.target as Node) && !openedModalRef.current?.contains(e.target as Node)) {
       closeModal()
     }
   }
 
   useEffect(() => {
     window.addEventListener('click', handler)
-
     return () => {
       window.removeEventListener('click', handler)
     }
@@ -50,6 +49,7 @@ const Modal: React.FC<ModalProps> = () => {
       variants={modalContainerVariants} 
       initial='hidden' 
       animate='visible'
+      ref={modalRef}
     >
       {renderModal()}
     </ContainerBackground>

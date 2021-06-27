@@ -11,6 +11,8 @@ interface ModalContextInterface {
   setModalName: stateSetter<modalNames | undefined>,
   openModal: (modalNameParam: modalNames) => void,
   closeModal: () => void,
+  safeToAllowClose: boolean,
+  setSafeToAllowClose: stateSetter<boolean>
 
 
 }
@@ -24,7 +26,8 @@ export function useModal() {
 export const ModalProvider: React.FC = ({children}) => {
 
   const [modalVisibility, setModalVisibility] = useState(false);
-  const [modalName, setModalName] = useState<modalNames | undefined>('add') //DEFAULT THIS TO UNDEF
+  const [modalName, setModalName] = useState<modalNames | undefined>(undefined) //DEFAULT THIS TO UNDEF
+  const [safeToAllowClose, setSafeToAllowClose] = useState(false)
 
   const openModal = (modalNameParam: modalNames) => {
     setModalName(modalNameParam)
@@ -36,8 +39,9 @@ export const ModalProvider: React.FC = ({children}) => {
     setModalVisibility(false)
   }
 
-
-  const value = {modalVisibility, setModalVisibility, modalName, setModalName, openModal, closeModal}
+  console.log(modalVisibility);
+  
+  const value = {modalVisibility, setModalVisibility, modalName, setModalName, openModal, closeModal, safeToAllowClose, setSafeToAllowClose}
 
   return (
     <ModalContext.Provider value={value}>

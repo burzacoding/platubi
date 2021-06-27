@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { Field } from "formik";
 
 const ContainerBackground = styled(motion.div)`
   width: 100%;
@@ -58,7 +59,7 @@ const OperationsContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  margin-bottom: 24px;
 `
 interface SymbolSvgContainerProps {
   isCurrent: string
@@ -87,4 +88,48 @@ const Cross = styled.div`
   }
 `
 
-export { ContainerBackground, ModalContainer, HorizontalBar, Content, Title, Cross, OperationsContainer, SymbolSvgContainer }
+const ValueContainer = styled.div`
+  width: 100%;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+`
+
+const TextPlaceholder = styled.span`
+  display: block;
+  width: 72px;
+  min-width: 72px;
+`
+const ValueInputField = styled(Field)`
+  width: 100%;
+  height: 38px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  margin-left: 36px;
+  background-color: transparent;
+  border-radius: 4px;
+  color: ${p => p.theme.fontContrastTwo};
+  border: solid 1px white;
+  outline: none !important;
+  padding: 0 8px;
+  &::placeholder {
+    opacity: 0.8
+  }
+`
+
+const ButtonAdd = styled.button`
+  width: 100%;
+  height: 42px;
+  border-radius: 8px;
+  background-color: #3480C1;
+  color: #EAEAEA;
+  border: none;
+  outline: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  -webkit-tap-highlight-color: transparent;
+`
+
+
+export { ContainerBackground, ModalContainer, HorizontalBar, Content, Title, Cross, OperationsContainer, SymbolSvgContainer, ValueContainer, TextPlaceholder, ValueInputField, ButtonAdd }

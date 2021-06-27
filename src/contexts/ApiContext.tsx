@@ -20,10 +20,12 @@ export const ApiProvider: React.FC<ApiProviderProps> = ({children}) => {
   const { userData } = useDashboard()
 
   const SymbolsNeeded = userData
+  
 
   useEffect(() => {
-
-  }, [])
+    console.log(SymbolsNeeded);
+    
+  }, [SymbolsNeeded])
 
 
   return (

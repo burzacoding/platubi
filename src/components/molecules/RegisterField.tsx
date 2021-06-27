@@ -13,6 +13,7 @@ export interface RegisterFieldProps {
  
 const RegisterField: React.FC<RegisterFieldProps> = ({obj}) => {
   const { operation, symbol, value, createdAt} = obj
+  const allCapsSymbol = symbol.toUpperCase()
   const [isOpen, setIsOpen] = useState(true)
   const [isFavorite, setIsFavorite] = useState(false)
   const toggleOpen = () => {
@@ -28,7 +29,7 @@ const RegisterField: React.FC<RegisterFieldProps> = ({obj}) => {
           <OperationSymbol operation={operation} />
         </SVGContainer>
         <TextContainer>
-          <Text>{symbol}</Text>
+          <Text>{allCapsSymbol}</Text>
           <Text>{value}</Text>
           <Text>{createdAt}</Text>
         </TextContainer>

@@ -1,6 +1,6 @@
-import { FunctionParser } from 'firebase-backend'
+// import { FunctionParser } from 'firebase-backend'
 
-exports = new FunctionParser(__dirname, exports).exports;
+// exports = new FunctionParser(__dirname, exports).exports;
 
 // import * as functions from "firebase-functions";
 // import * as admin from 'firebase-admin'

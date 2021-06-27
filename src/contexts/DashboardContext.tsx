@@ -62,7 +62,7 @@ interface dashboardContextInterface {
   setPage: React.Dispatch<React.SetStateAction<number>>;
   userData: userDocumentTypes | undefined;
   setUserData: React.Dispatch<React.SetStateAction<userDocumentTypes | undefined>>;
-  addRegister(values: newRegisterValuesInterface): void;
+  addRegister: (values: newRegisterValuesInterface) => Promise<boolean>;
   deleteRegister(key: string): void;
 }
 
@@ -130,9 +130,10 @@ export const DashboardProvider: React.FC = ({children}) => {
   }
   function addRegister (values: newRegisterValuesInterface) {
     const {local, remote} = buildRegisterSchema(values)
-    addRegisterToFirestore(remote)
+    return addRegisterToFirestore(remote)
     .then(newId => {
       addRegisterToLocalUserData(local, newId)
+      return true
     })
     .catch(err => {
       throw new Error(`Error añadiendo registro: ${err}`)
@@ -141,7 +142,7 @@ export const DashboardProvider: React.FC = ({children}) => {
 
   function deleteRegister (key: string) {
     if (currentUser) {
-      registersCollectionRef(currentUser.uid).doc(key).delete()
+      return registersCollectionRef(currentUser.uid).doc(key).delete()
       .then(() => true)
       .catch(err => {
         throw new Error(`Error borrando el documento (id: ${key}) de la colección de registros: ${err}`)
