@@ -45,7 +45,7 @@ const RegisterField: React.FC<RegisterFieldProps> = ({obj}) => {
           <PencilContainer onClick={() => openModal('modify', obj)}>
             <EditPencil />
           </PencilContainer>
-          <CrossContainer customPadding={6}>
+          <CrossContainer customPadding={6} onClick={() => openModal('delete', obj.key)}>
             <CrossSVG />
           </CrossContainer>
         </ButtonsContainer>

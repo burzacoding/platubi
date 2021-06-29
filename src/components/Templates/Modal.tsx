@@ -4,6 +4,7 @@ import { registerSchemaTypesWithId } from "../../Contexts/DashboardContext";
 import { useModal } from "../../Contexts/ModalContext";
 import { ContainerBackground } from "../../elements/Modals/Modal";
 import AddRegisterModal from "./Modals/Add";
+import DeleteRegisterModal from "./Modals/Delete";
 import ModifyRegisterModal from "./Modals/Modify";
 
 export interface ModalProps {
@@ -36,7 +37,7 @@ const Modal: React.FC<ModalProps> = () => {
       case 'add':
         return <AddRegisterModal ref={openedModalRef} />
       case 'delete':
-        return 
+        return <DeleteRegisterModal ref={openedModalRef} schemaKey={modalConfig as string} />
       case 'modify':
         return <ModifyRegisterModal ref={openedModalRef} regSchema={modalConfig as registerSchemaTypesWithId} />
       case 'trackedStocks':

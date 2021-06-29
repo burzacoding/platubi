@@ -10,10 +10,10 @@ interface ModalContextInterface {
   setModalVisibility: stateSetter<boolean>,
   modalName: modalNames | undefined,
   setModalName: stateSetter<modalNames | undefined>,
-  openModal: (modalNameParam: modalNames, config?: registerSchemaTypesWithId) => void,
+  openModal: (modalNameParam: modalNames, config?: registerSchemaTypesWithId | string) => void,
   closeModal: () => void,
-  modalConfig: registerSchemaTypesWithId | undefined,
-  setModalConfig: stateSetter<registerSchemaTypesWithId | undefined>
+  modalConfig: registerSchemaTypesWithId | string | undefined,
+  setModalConfig: stateSetter<registerSchemaTypesWithId | string | undefined>
 }
 
 const ModalContext = createContext<ModalContextInterface>({} as ModalContextInterface)
@@ -24,11 +24,11 @@ export function useModal() {
  
 export const ModalProvider: React.FC = ({children}) => {
 
-  const [modalConfig, setModalConfig] = useState<registerSchemaTypesWithId>()
+  const [modalConfig, setModalConfig] = useState<registerSchemaTypesWithId | string>()
 
   const [modalVisibility, setModalVisibility] = useState(false);
   const [modalName, setModalName] = useState<modalNames | undefined>(undefined) //DEFAULT THIS TO UNDEF
-  const openModal = (modalNameParam: modalNames, config?: registerSchemaTypesWithId) => {
+  const openModal = (modalNameParam: modalNames, config?: registerSchemaTypesWithId | string | undefined) => {
     setModalName(modalNameParam)
     setModalConfig(config)
     setModalVisibility(true)

@@ -150,6 +150,15 @@ const ValueInputField = styled(Field)`
   };
 `
 
+const ButtonsContainer = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: center;
+  justify-content: space-around;
+`
+
 const ButtonAdd = styled(motion.button)`
   width: 100%;
   height: 42px;
@@ -165,5 +174,9 @@ const ButtonAdd = styled(motion.button)`
   cursor: ${p => p.disabled ? 'wait' : 'pointer'};
 `
 
+const ButtonBack = styled(ButtonAdd)`
+  background-color: #000000;
+`
 
-export { ContainerBackground, ModalContainer, HorizontalBar, Content, Title, Cross, OperationsContainer, SymbolSvgContainer, ValueContainer, TextPlaceholder, ValueInputField, ButtonAdd, Error }
+
+export { ContainerBackground, ModalContainer, HorizontalBar, Content, Title, Cross, OperationsContainer, SymbolSvgContainer, ValueContainer, TextPlaceholder, ValueInputField, ButtonsContainer, ButtonAdd, ButtonBack, Error }

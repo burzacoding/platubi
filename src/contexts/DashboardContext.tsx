@@ -64,7 +64,7 @@ interface dashboardContextInterface {
   setUserData: React.Dispatch<React.SetStateAction<userDocumentTypes | undefined>>;
   addRegister: (values: newRegisterValuesInterface) => Promise<boolean>;
   updateRegister: (key: string, newValues: object) => Promise<boolean>;
-  deleteRegister(key: string): Promise<boolean> | undefined;
+  deleteRegister(key: string): Promise<boolean>;
 }
 
 interface userDocumentTypes {
@@ -142,41 +142,28 @@ export const DashboardProvider: React.FC = ({children}) => {
   }
 
   function deleteRegister (key: string) {
-    if (currentUser) {
-      return registersCollectionRef(currentUser.uid).doc(key).delete()
-      .then(() => true)
+      return registersCollectionRef(currentUser!.uid).doc(key).delete()
+      .then(() => {
+        const stagedRegisters = [...userData!.registers!].filter(el => el.key !== key)
+        console.log(`
+        Registro a ser removido: ${key}.
+        Registros anteriores: ${userData!.registers!.map(el => el.key)}
+        Registros nuevos: ${stagedRegisters.map(el => el.key)}
+      `);
+        setUserData(prev => ({
+          ...prev,
+          registers: stagedRegisters
+        }))
+        return true
+      })
       .catch(err => {
         throw new Error(`Error borrando el documento (id: ${key}) de la colección de registros: ${err}`)
       })
-    }
   }
 
   async function updateRegister (key: string, newValues: object) {
-    if (currentUser) {
-      return registersCollectionRef(currentUser.uid).doc(key).update(newValues)
+      return registersCollectionRef(currentUser!.uid).doc(key).update(newValues)
       .then(() => true)
-    }
-    //SEGUIR
-    //SEGUIR
-    //SEGUIR
-    //SEGUIR
-    //SEGUIR
-    //SEGUIR
-    //SEGUIR
-    //SEGUIR
-    //SEGUIR
-    //SEGUIR
-    //SEGUIR
-    //SEGUIR
-    //SEGUIR
-    //SEGUIR
-    //SEGUIR
-    //SEGUIR
-    //SEGUIR
-    //SEGUIR
-    //SEGUIR
-    //SEGUIR
-    return false
   }
 
   async function retrieveDataFromUser () {
