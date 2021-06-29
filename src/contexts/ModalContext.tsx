@@ -3,18 +3,17 @@ import { createContext, useContext } from "react";
 import Modal from "../components/Templates/Modal";
 import { modalNames } from "../Utils/ModalsHandler";
 import { stateSetter } from "../Utils/Utils";
+import { registerSchemaTypesWithId } from "./DashboardContext";
 
 interface ModalContextInterface {
   modalVisibility: boolean,
   setModalVisibility: stateSetter<boolean>,
   modalName: modalNames | undefined,
   setModalName: stateSetter<modalNames | undefined>,
-  openModal: (modalNameParam: modalNames) => void,
+  openModal: (modalNameParam: modalNames, config?: registerSchemaTypesWithId) => void,
   closeModal: () => void,
-  safeToAllowClose: boolean,
-  setSafeToAllowClose: stateSetter<boolean>
-
-
+  modalConfig: registerSchemaTypesWithId | undefined,
+  setModalConfig: stateSetter<registerSchemaTypesWithId | undefined>
 }
 
 const ModalContext = createContext<ModalContextInterface>({} as ModalContextInterface)
@@ -25,12 +24,13 @@ export function useModal() {
  
 export const ModalProvider: React.FC = ({children}) => {
 
+  const [modalConfig, setModalConfig] = useState<registerSchemaTypesWithId>()
+
   const [modalVisibility, setModalVisibility] = useState(false);
   const [modalName, setModalName] = useState<modalNames | undefined>(undefined) //DEFAULT THIS TO UNDEF
-  const [safeToAllowClose, setSafeToAllowClose] = useState(false)
-
-  const openModal = (modalNameParam: modalNames) => {
+  const openModal = (modalNameParam: modalNames, config?: registerSchemaTypesWithId) => {
     setModalName(modalNameParam)
+    setModalConfig(config)
     setModalVisibility(true)
   }
 
@@ -38,10 +38,8 @@ export const ModalProvider: React.FC = ({children}) => {
     setModalName(undefined)
     setModalVisibility(false)
   }
-
-  console.log(modalVisibility);
   
-  const value = {modalVisibility, setModalVisibility, modalName, setModalName, openModal, closeModal, safeToAllowClose, setSafeToAllowClose}
+  const value = {modalVisibility, setModalVisibility, modalName, setModalName, openModal, closeModal, modalConfig, setModalConfig}
 
   return (
     <ModalContext.Provider value={value}>

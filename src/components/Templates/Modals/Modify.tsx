@@ -2,7 +2,7 @@ import { Formik, Form, ErrorMessage } from "formik";
 // import { Formik, Form, Field, ErrorMessage } from "formik";
 import { forwardRef } from "react";
 import { useState } from "react";
-import { useDashboard } from "../../../Contexts/DashboardContext";
+import { registerSchemaTypesWithId, useDashboard } from "../../../Contexts/DashboardContext";
 import { useModal } from "../../../Contexts/ModalContext";
 import { ModalContainer, HorizontalBar, Content, Title, Cross, OperationsContainer, SymbolSvgContainer, ValueContainer, TextPlaceholder, ValueInputField, ButtonAdd, Error } from "../../../elements/Modals/Modal";
 import CrossSVG from "../../atoms/SVG/Cross";
@@ -10,7 +10,7 @@ import { AddRegisterValidationSchema } from "../../../Utils/Validation/Modals";
 import OpAdd from "../../atoms/SVG/Modals/OpAdd";
 import OpRemove from "../../atoms/SVG/Modals/OpRemove";
 import OpExchange from "../../atoms/SVG/Modals/OpExchange";
-import Select, { GroupTypeBase, Styles } from 'react-select'
+import Select, { GroupTypeBase, OptionTypeBase, Styles } from 'react-select'
 import { useTheme } from "styled-components";
 import { ThemeColorPicker } from "../../../Utils/Utils";
 
@@ -33,11 +33,6 @@ type selectStylesProp = Partial<Styles<{
     }[];
   }>>> | undefined
 
-const initialValues = {
-  operation: 'add',
-  symbol: '',
-  value: '',
-}
 
 const options = [
   {
@@ -58,9 +53,18 @@ const options = [
   }
 ]
 
+interface ModifyRegisterModalProps {
+  regSchema: registerSchemaTypesWithId
+}
 
-const AddRegisterModal = forwardRef<HTMLDivElement>((props, ref) => {
+const ModifyRegisterModal = forwardRef<HTMLDivElement, ModifyRegisterModalProps>(({regSchema}, ref) => {
 
+  const initialValues = {
+    operation: regSchema.operation,
+    symbol: regSchema.symbol,
+    value: regSchema.value,
+  }
+  
   //STATE
 
   const [operation, setOperation] = useState(0) //0 = Add | 1 = Remove | 2 = Exchange
@@ -68,7 +72,7 @@ const AddRegisterModal = forwardRef<HTMLDivElement>((props, ref) => {
 
   // FUNCTIONS 
 
-  const { addRegister } = useDashboard()
+  const { deleteRegister, userData, setUserData } = useDashboard()
   const { closeModal } = useModal()
 
   const theme = useTheme()
@@ -163,14 +167,65 @@ const AddRegisterModal = forwardRef<HTMLDivElement>((props, ref) => {
     }),
   }
 
+  const getOptionByID = () => {
+    const result = options[0].options.filter(el => el.value === regSchema.symbol)[0]
+    console.log('restulado:', result);
+    if (!result) {
+      console.log('cheking cryptos');
+      const newRes = options[1].options.filter(el => el.value === regSchema.symbol)[0]
+      if (!newRes) {
+        const newRes1 = options[2].options.filter(el => el.value === regSchema.symbol)[0]
+        if (newRes1) {
+          return  {
+            value: newRes1.value,
+            label: newRes1.label
+          }
+        }
+      }
+      else {
+        console.log(newRes);
+        
+        return {
+          value: newRes.value,
+          label: newRes.label
+        }
+      }
+    }
+    else {
+      return {
+        value: result.value,
+        label: result.label
+      }
+    }
+    return {
+      value: 'no encontrado',
+      label: 'no encontrado'
+    }
+  }
+
   return (
   <Formik
     initialValues={initialValues}
     onSubmit={async (values, { setSubmitting, setFieldError }) => {
       try {
         setSubmitting(true)
-        const bool = await addRegister(values as unknown as FormikFinalValues)
-        bool && closeModal()
+        const bool = await deleteRegister(regSchema.key)
+        if (bool && userData) {
+          const stagedRegisters = userData.registers
+          const newRegisters = stagedRegisters?.filter(el => el.key === regSchema.key)
+          setUserData(prev => {
+            return({
+              ...prev,
+              registers: newRegisters
+            })
+          })
+          console.log(`
+            Registro a ser removido: ${regSchema.key}.
+            Registros anteriores: ${stagedRegisters?.map(el => el.key)}
+            Registros nuevos: ${userData.registers?.map(el => el.key)}
+          `);
+          closeModal()
+        }
       }
       catch (err) {
         //ADD REGISTER ERRORS HANDLER
@@ -222,7 +277,7 @@ const AddRegisterModal = forwardRef<HTMLDivElement>((props, ref) => {
         <Cross onClick={closeCurrentModal}>
           <CrossSVG />
         </Cross>
-        <Title>Añadir registro:</Title>
+        <Title>Modificar registro:</Title>
         <HorizontalBar />
         <Content>
           <OperationsContainer>
@@ -233,7 +288,9 @@ const AddRegisterModal = forwardRef<HTMLDivElement>((props, ref) => {
           <Form>
             <ValueContainer isGettingErrors={isGettingError('symbol')}>
               <TextPlaceholder>Símbolo:</TextPlaceholder>
-              <Select options={options} onChange={setValueValue} styles={selectStyles} placeholder="Divisa / Criptomoneda"/>
+              <Select options={options} onChange={setValueValue} styles={selectStyles} placeholder="Divisa / Criptomoneda"
+                defaultValue={getOptionByID() as OptionTypeBase}
+              />
             </ValueContainer>
               <Error><ErrorMessage name="symbol"/></Error>
             <ValueContainer isGettingErrors={isGettingError('value')}>
@@ -241,7 +298,7 @@ const AddRegisterModal = forwardRef<HTMLDivElement>((props, ref) => {
               <ValueInputField name='value' id='value' />
             </ValueContainer>
               <Error><ErrorMessage name="value"/></Error>
-            <ButtonAdd type='submit' disabled={formik.isSubmitting} whileTap={{scale: 0.95}}>Agregar</ButtonAdd>
+            <ButtonAdd type='submit' disabled={formik.isSubmitting} whileTap={{scale: 0.95}}>Modificar</ButtonAdd>
           </Form>
         </Content>
       </ModalContainer>)}}
@@ -249,4 +306,4 @@ const AddRegisterModal = forwardRef<HTMLDivElement>((props, ref) => {
   );
 })
  
-export default AddRegisterModal;
+export default ModifyRegisterModal;

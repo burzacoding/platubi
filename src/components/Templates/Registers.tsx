@@ -50,9 +50,9 @@ const Registers: React.FC = () => {
             <StarSVG isFavorite={isFavorite} />
           </SVGContainer>
         </TopText>
-        {userData && <AddRegisterButton inRegisters="false" onClick={() => {openModal('add')}}>Añadir registro</AddRegisterButton>}
+        {userData && <AddRegisterButton inRegisters="false" onClick={() => {openModal('add')}} whileTap={{scale: 0.95}}>Añadir registro</AddRegisterButton>}
       </Top>
-      {userData && <AddRegisterButton inRegisters="true" onClick={() => {openModal('add')}}>Añadir registro</AddRegisterButton>}
+      {userData && <AddRegisterButton inRegisters="true" onClick={() => {openModal('add')}} whileTap={{scale: 0.95}}>Añadir registro</AddRegisterButton>}
       <Bottom registerExists={registersExists ? 'true' : 'false'}>
         {!userData && <RegistersLoader />}
         {registersExists ? mapUserData() : <NoRegisters />}

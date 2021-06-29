@@ -30,12 +30,13 @@ interface BottomProps {
 const Bottom = styled.div<BottomProps>`
   width: 100%;
   margin-right: -8px;
+  padding-right: 4px;
   overflow-y: ${p => p.registerExists === 'true' ? 'scroll' : 'hidden'};
 
 
    /* width */
   &::-webkit-scrollbar {
-    width: 0;
+    width: 8px;
     border-radius: 4px;
   }
 
@@ -74,6 +75,7 @@ export interface AddRegisterButtonProps {
  
 const AddRegisterButton = styled(motion.div)<AddRegisterButtonProps>`
   height: 38px;
+  min-height: 38px;
   width: 100%;
   border-radius: 8px;
   user-select: none;

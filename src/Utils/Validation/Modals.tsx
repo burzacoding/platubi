@@ -3,7 +3,7 @@ import * as Yup from 'yup'
 
 const errors = {
   symbol: {
-    required: 'El símbolo no puede estaer vacío.'
+    required: 'El símbolo no puede estar vacío.'
   },
   value: {
     notZero: 'El monto no puede ser cero.',
@@ -13,5 +13,6 @@ const errors = {
 
 export const AddRegisterValidationSchema = Yup.object({
   symbol: Yup.string().required(errors.symbol.required),
-  value: Yup.number().notOneOf([0], errors.value.notZero).required(errors.value.required)
+  value: Yup.string().notOneOf(['0'], errors.value.notZero).matches(/^[+-]?([0-9]+\.?[0-9]*|\.[0-9]+)$/
+  , 'El valor debe ser un número.').required(errors.value.required)
 })

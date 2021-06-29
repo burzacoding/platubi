@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Field } from "formik";
+import { ThemeColorPicker } from "../../Utils/Utils";
 
 const ContainerBackground = styled(motion.div)`
   width: 100%;
@@ -45,6 +46,9 @@ const HorizontalBar = styled.div`
 
 const Content = styled.div`
   padding: 0 12px;
+  @media screen and (min-width: 560px) {
+   padding: 0 36px;
+  };
 `
 const Title = styled.h2`
   font-weight: 400;
@@ -60,6 +64,15 @@ const OperationsContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
+  @media screen and (min-width: 768px) {
+   height: 48px;
+  };
+  @media screen and (min-width: 1024px) {
+   height: 54px;
+  };
+  @media screen and (min-width: 1366px) {
+   height: 64px;
+  };
 `
 interface SymbolSvgContainerProps {
   isCurrent: string
@@ -67,7 +80,8 @@ interface SymbolSvgContainerProps {
 
 const SymbolSvgContainer = styled(motion.div)<SymbolSvgContainerProps>`
   height: 100%;
-  width: 48px;
+  width: auto;
+  aspect-ratio: 1/1;
   -webkit-tap-highlight-color: transparent;
   user-select: none;
   svg {
@@ -88,48 +102,68 @@ const Cross = styled.div`
   }
 `
 
-const ValueContainer = styled.div`
+interface ValueContainerProps {
+  isGettingErrors: string
+}
+
+const ValueContainer = styled.div<ValueContainerProps>`
   width: 100%;
   height: 42px;
+  margin-bottom: ${p => p.isGettingErrors === 'true' ? 0 : '16px'};
   display: flex;
   align-items: center;
-  margin-bottom: 16px;
+  position: relative;
+`
+
+const Error = styled.div`
+user-select: none;
+font-size: 15px;
+text-align: right;
+margin-bottom: 4px;
+color: ${p => ThemeColorPicker(p, '#a56161', '#cc6161')};
 `
 
 const TextPlaceholder = styled.span`
   display: block;
   width: 72px;
   min-width: 72px;
+  font-size: 14px;
+  @media screen and (min-width: 768px) {
+   font-size: 16px;
+  };
 `
 const ValueInputField = styled(Field)`
   width: 100%;
   height: 38px;
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
-  margin-left: 36px;
+  margin-left: 12px;
   background-color: transparent;
   border-radius: 4px;
-  color: ${p => p.theme.fontContrastTwo};
+  color: ${p => p.theme.fontContrastSix};
   border: solid 1px white;
+  transition: border-color 0.25s;
   outline: none !important;
   padding: 0 8px;
-  &::placeholder {
-    opacity: 0.8
-  }
+  &:hover {
+    border-color: #03A63C
+  };
 `
 
-const ButtonAdd = styled.button`
+const ButtonAdd = styled(motion.button)`
   width: 100%;
   height: 42px;
   border-radius: 8px;
-  background-color: #3480C1;
+  transition: background-color 0.25s;
+  background-color: ${p => p.disabled ? '#3480C1AA' : '#3480C1'};
   color: #EAEAEA;
   border: none;
   outline: none;
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   -webkit-tap-highlight-color: transparent;
+  cursor: ${p => p.disabled ? 'wait' : 'pointer'};
 `
 
 
-export { ContainerBackground, ModalContainer, HorizontalBar, Content, Title, Cross, OperationsContainer, SymbolSvgContainer, ValueContainer, TextPlaceholder, ValueInputField, ButtonAdd }
+export { ContainerBackground, ModalContainer, HorizontalBar, Content, Title, Cross, OperationsContainer, SymbolSvgContainer, ValueContainer, TextPlaceholder, ValueInputField, ButtonAdd, Error }

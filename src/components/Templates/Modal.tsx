@@ -1,8 +1,10 @@
 import { useEffect, useRef } from "react";
 import { modalContainerVariants } from "../../Animations/variants";
+import { registerSchemaTypesWithId } from "../../Contexts/DashboardContext";
 import { useModal } from "../../Contexts/ModalContext";
 import { ContainerBackground } from "../../elements/Modals/Modal";
 import AddRegisterModal from "./Modals/Add";
+import ModifyRegisterModal from "./Modals/Modify";
 
 export interface ModalProps {
   
@@ -10,7 +12,7 @@ export interface ModalProps {
  
 const Modal: React.FC<ModalProps> = () => {
 
-  const { modalName, closeModal } = useModal()
+  const { modalName, closeModal, modalConfig } = useModal()
 
   const openedModalRef = useRef<HTMLDivElement>(null)
   const modalRef = useRef<HTMLDivElement>(null)
@@ -36,7 +38,7 @@ const Modal: React.FC<ModalProps> = () => {
       case 'delete':
         return 
       case 'modify':
-        return 
+        return <ModifyRegisterModal ref={openedModalRef} regSchema={modalConfig as registerSchemaTypesWithId} />
       case 'trackedStocks':
         return 
       case 'wealthViewer':

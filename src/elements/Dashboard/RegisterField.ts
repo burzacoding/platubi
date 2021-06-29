@@ -90,18 +90,23 @@ const TextContainer = styled.div`
 const Text = styled.span`
   text-align: center;
   &:first-child {
+    text-align: left;
+    min-width: 36px;
     font-weight: 600;
   }
   &:last-child {
+    text-align: right;
     min-width: 78px;
   }
   @media screen and (min-width: 420px) {
+    width: 48px;
     &:first-child {
       margin-right: 36px;
     }
     &:last-child {
       margin-left: auto;
       margin-right: 24px;
+      width: auto;
     };
   }
   @media screen and (min-width: 940px) {

@@ -63,7 +63,8 @@ interface dashboardContextInterface {
   userData: userDocumentTypes | undefined;
   setUserData: React.Dispatch<React.SetStateAction<userDocumentTypes | undefined>>;
   addRegister: (values: newRegisterValuesInterface) => Promise<boolean>;
-  deleteRegister(key: string): void;
+  updateRegister: (key: string, newValues: object) => Promise<boolean>;
+  deleteRegister(key: string): Promise<boolean> | undefined;
 }
 
 interface userDocumentTypes {
@@ -150,6 +151,34 @@ export const DashboardProvider: React.FC = ({children}) => {
     }
   }
 
+  async function updateRegister (key: string, newValues: object) {
+    if (currentUser) {
+      return registersCollectionRef(currentUser.uid).doc(key).update(newValues)
+      .then(() => true)
+    }
+    //SEGUIR
+    //SEGUIR
+    //SEGUIR
+    //SEGUIR
+    //SEGUIR
+    //SEGUIR
+    //SEGUIR
+    //SEGUIR
+    //SEGUIR
+    //SEGUIR
+    //SEGUIR
+    //SEGUIR
+    //SEGUIR
+    //SEGUIR
+    //SEGUIR
+    //SEGUIR
+    //SEGUIR
+    //SEGUIR
+    //SEGUIR
+    //SEGUIR
+    return false
+  }
+
   async function retrieveDataFromUser () {
     try {
       if (!userData && currentUser) {
@@ -171,7 +200,7 @@ export const DashboardProvider: React.FC = ({children}) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser])
 
-  const value = { page, setPage, userData, setUserData, addRegister, deleteRegister}
+  const value = { page, setPage, userData, setUserData, addRegister, deleteRegister, updateRegister}
 
   const [tooltipData, setTooltipData] = useState<TooltipsPropsWithIndex>({} as TooltipsPropsWithIndex)
 

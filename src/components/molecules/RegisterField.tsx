@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { registerSchemaTypesWithId } from "../../Contexts/DashboardContext";
+import { useModal } from "../../Contexts/ModalContext";
 import { FieldContainer, InnerContainer, SVGContainer, PencilContainer, ButtonsContainer, TextContainer, Text, CrossContainer } from "../../elements/Dashboard/RegisterField";
 import CrossSVG from "../atoms/SVG/Cross";
 import EditPencil from "../atoms/SVG/EditPencilSVG";
@@ -16,6 +17,7 @@ const RegisterField: React.FC<RegisterFieldProps> = ({obj}) => {
   const allCapsSymbol = symbol.toUpperCase()
   const [isOpen, setIsOpen] = useState(true)
   const [isFavorite, setIsFavorite] = useState(false)
+  const { openModal } = useModal()
   const toggleOpen = () => {
     setIsOpen(!isOpen)
   }
@@ -40,7 +42,7 @@ const RegisterField: React.FC<RegisterFieldProps> = ({obj}) => {
           <SVGContainer customPadding={1} onMouseDown={toggleOpen}>
             <EyeSVG isOpen={isOpen} />
           </SVGContainer>
-          <PencilContainer>
+          <PencilContainer onClick={() => openModal('modify', obj)}>
             <EditPencil />
           </PencilContainer>
           <CrossContainer customPadding={6}>
