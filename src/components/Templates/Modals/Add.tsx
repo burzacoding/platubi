@@ -232,14 +232,13 @@ const AddRegisterModal = forwardRef<HTMLDivElement>((props, ref) => {
             <ValueContainer isGettingErrors={isGettingError('symbol')}>
               <TextPlaceholder>Símbolo:</TextPlaceholder>
               <Select options={options} onChange={setValueValue} styles={selectStyles} placeholder="Divisa / Criptomoneda"
-              
               maxMenuHeight={220}
               />
             </ValueContainer>
               <Error><ErrorMessage name="symbol"/></Error>
             <ValueContainer isGettingErrors={isGettingError('value')}>
               <TextPlaceholder>Cantidad:</TextPlaceholder>
-              <ValueInputField name='value' id='value' />
+              <ValueInputField name='value' autocomplete='off' />
             </ValueContainer>
               <Error><ErrorMessage name="value"/></Error>
             <ButtonAdd type='submit' disabled={formik.isSubmitting} whileTap={{scale: 0.95}}>Agregar</ButtonAdd>

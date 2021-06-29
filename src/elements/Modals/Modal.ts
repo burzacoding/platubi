@@ -163,6 +163,7 @@ const ButtonAdd = styled(motion.button)`
   width: 100%;
   height: 42px;
   border-radius: 8px;
+  user-select: none;
   transition: background-color 0.25s;
   background-color: ${p => p.disabled ? '#3480C1AA' : '#3480C1'};
   color: #EAEAEA;

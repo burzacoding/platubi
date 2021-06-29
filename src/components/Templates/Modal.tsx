@@ -44,6 +44,8 @@ const Modal: React.FC<ModalProps> = () => {
         return 
       case 'wealthViewer':
         return
+      case 'wealthTrackedStocks':
+        return
     }
   }
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { registerSchemaTypesWithId } from "../../Contexts/DashboardContext";
 import { useModal } from "../../Contexts/ModalContext";
-import { FieldContainer, InnerContainer, SVGContainer, PencilContainer, ButtonsContainer, TextContainer, Text, CrossContainer } from "../../elements/Dashboard/RegisterField";
+import { FieldContainer, InnerContainer, SVGContainer, PencilContainer, ButtonsContainer, TextContainer, Text, DateText, CrossContainer } from "../../elements/Dashboard/RegisterField";
 import CrossSVG from "../atoms/SVG/Cross";
 import EditPencil from "../atoms/SVG/EditPencilSVG";
 import EyeSVG from "../atoms/SVG/EyeSVG";
@@ -33,7 +33,7 @@ const RegisterField: React.FC<RegisterFieldProps> = ({obj}) => {
         <TextContainer>
           <Text>{allCapsSymbol}</Text>
           <Text>{value}</Text>
-          <Text>{createdAt}</Text>
+          <DateText>{createdAt}</DateText>
         </TextContainer>
         <ButtonsContainer>
           <SVGContainer customPadding={1} onMouseDown={toggleFavorite}>
@@ -45,7 +45,7 @@ const RegisterField: React.FC<RegisterFieldProps> = ({obj}) => {
           <PencilContainer onClick={() => openModal('modify', obj)}>
             <EditPencil />
           </PencilContainer>
-          <CrossContainer customPadding={6} onClick={() => openModal('delete', obj.key)}>
+          <CrossContainer customPadding={4} onClick={() => openModal('delete', obj.key)}>
             <CrossSVG />
           </CrossContainer>
         </ButtonsContainer>

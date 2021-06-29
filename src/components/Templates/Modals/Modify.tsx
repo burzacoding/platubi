@@ -298,7 +298,7 @@ const ModifyRegisterModal = forwardRef<HTMLDivElement, ModifyRegisterModalProps>
               <Error><ErrorMessage name="symbol"/></Error>
             <ValueContainer isGettingErrors={isGettingError('value')}>
               <TextPlaceholder>Cantidad:</TextPlaceholder>
-              <ValueInputField name='value' id='value' />
+              <ValueInputField name='value' autocomplete='off' />
             </ValueContainer>
               <Error><ErrorMessage name="value"/></Error>
             <ButtonAdd type='submit' disabled={formik.isSubmitting} whileTap={{scale: 0.95}}>Modificar</ButtonAdd>

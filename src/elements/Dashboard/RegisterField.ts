@@ -65,21 +65,36 @@ const PencilContainer = styled(SVGContainer)`
   }
 `
 const CrossContainer = styled(PencilContainer)`
-  display: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+  svg {
+    display: flex;
+  }
+  @media screen and (min-width: 360px) {
+    padding: 5px;
+  };
   @media screen and (min-width: 768px) {
-    display: block;
+    padding: 6px;
+  };
+  @media screen and (min-width: 1366px) {
+    padding: 8px;
   };
 `
 
 const TextContainer = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr 2fr;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   padding-right: 12px;
   font-size: 12px;
   @media screen and (min-width: 420px) {
     font-size: 14px;
+  };
+  @media screen and (min-width: 510px) {
+    grid-template-columns: 2fr 2fr 4fr;
   };
   @media screen and (min-width: 768px) {
     display: flex;
@@ -88,37 +103,19 @@ const TextContainer = styled.div`
   };
 `
 const Text = styled.span`
+  width: 100%;
   text-align: center;
-  &:first-child {
-    text-align: left;
-    min-width: 36px;
-    font-weight: 600;
-  }
-  &:last-child {
-    text-align: right;
-    min-width: 78px;
-  }
-  @media screen and (min-width: 420px) {
-    width: 48px;
-    &:first-child {
-      margin-right: 36px;
-    }
-    &:last-child {
-      margin-left: auto;
-      margin-right: 24px;
-      width: auto;
-    };
-  }
-  @media screen and (min-width: 940px) {
-    &:first-child {
-      margin-right: 48px;
-    };
-    &:last-child {
-      margin-left: auto;
-      margin-right: 48px;
-    };
+  display: block;
+`
+
+const DateText = styled.span`
+  display: none;
+  @media screen and (min-width: 510px) {
+  width: 100%;
+  text-align: center;
+   display: block;
   };
 `
 
 
-export {FieldContainer, InnerContainer, SVGContainer, CrossContainer, PencilContainer, ButtonsContainer, TextContainer, Text}
+export {FieldContainer, InnerContainer, SVGContainer, CrossContainer, PencilContainer, ButtonsContainer, TextContainer, Text, DateText}
