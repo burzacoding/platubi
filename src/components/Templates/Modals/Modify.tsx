@@ -1,5 +1,4 @@
 import { Formik, Form, ErrorMessage } from "formik";
-// import { Formik, Form, Field, ErrorMessage } from "formik";
 import { forwardRef } from "react";
 import { useState } from "react";
 import { registerSchemaTypesWithId, useDashboard } from "../../../Contexts/DashboardContext";
@@ -14,11 +13,7 @@ import Select, { GroupTypeBase, OptionTypeBase, Styles } from 'react-select'
 import { useTheme } from "styled-components";
 import { ThemeColorPicker } from "../../../Utils/Utils";
 
-interface FormikFinalValues {
-  operation: string,
-  symbol: string,
-  value: number
-}
+
 type selectStylesProp = Partial<Styles<{
     label: string;
     options: {
@@ -67,12 +62,25 @@ const ModifyRegisterModal = forwardRef<HTMLDivElement, ModifyRegisterModalProps>
   
   //STATE
 
-  const [operation, setOperation] = useState(0) //0 = Add | 1 = Remove | 2 = Exchange
+  const indexOfOperation = () => {
+    switch (regSchema.operation) {
+      case 'add':
+        return 0;
+      case 'remove':
+        return 1;
+      case 'exchange':
+        return 2;
+      default:
+        return 0;
+    }
+  }
+
+  const [operation, setOperation] = useState(indexOfOperation()) //0 = Add | 1 = Remove | 2 = Exchange
   const isCurrent = (index: number) => operation === index ? 'true' : 'false'
 
   // FUNCTIONS 
 
-  const { deleteRegister, userData, setUserData } = useDashboard()
+  const { updateRegister, userData, setUserData } = useDashboard()
   const { closeModal } = useModal()
 
   const theme = useTheme()
@@ -123,8 +131,6 @@ const ModifyRegisterModal = forwardRef<HTMLDivElement, ModifyRegisterModalProps>
       ...provided,
       color: theme.fontContrastTwo,
       backgroundColor: theme.divBackground,
-      maxHeight: '200px',
-      overflowY: 'scroll',
     }),
     control: (provided, stats) => ({
         ...provided,
@@ -168,23 +174,19 @@ const ModifyRegisterModal = forwardRef<HTMLDivElement, ModifyRegisterModalProps>
   }
 
   const getOptionByID = () => {
-    const result = options[0].options.filter(el => el.value === regSchema.symbol)[0]
-    console.log('restulado:', result);
+    const symbol = regSchema.symbol.toLowerCase()
+    const result = options[0].options.filter(el => el.value === symbol)[0]
     if (!result) {
-      console.log('cheking cryptos');
-      const newRes = options[1].options.filter(el => el.value === regSchema.symbol)[0]
+      const newRes = options[1].options.filter(el => el.value === symbol)[0]
       if (!newRes) {
-        const newRes1 = options[2].options.filter(el => el.value === regSchema.symbol)[0]
+        const newRes1 = options[2].options.filter(el => el.value === symbol)[0]
         if (newRes1) {
           return  {
             value: newRes1.value,
             label: newRes1.label
           }
         }
-      }
-      else {
-        console.log(newRes);
-        
+      } else {
         return {
           value: newRes.value,
           label: newRes.label
@@ -209,25 +211,29 @@ const ModifyRegisterModal = forwardRef<HTMLDivElement, ModifyRegisterModalProps>
     onSubmit={async (values, { setSubmitting, setFieldError }) => {
       try {
         setSubmitting(true)
-        const bool = await deleteRegister(regSchema.key)
-        if (bool && userData) {
-          const stagedRegisters = userData.registers
-          const newRegisters = stagedRegisters?.filter(el => el.key === regSchema.key)
+        const bool = await updateRegister(regSchema.key, values)
+        if (bool && userData?.registers) {
+          const stagedRegisters = [...userData.registers]
+          const prevRegisterIndex = stagedRegisters.indexOf(regSchema)
+          stagedRegisters[prevRegisterIndex] = {
+            ...stagedRegisters[prevRegisterIndex],
+            ...values
+          }
+          console.log(`
+          Documento: ${JSON.stringify(userData.registers[prevRegisterIndex], null, 2)}
+          Modificado a: ${JSON.stringify(stagedRegisters[prevRegisterIndex], null, 2)}
+          `);
           setUserData(prev => {
             return({
               ...prev,
-              registers: newRegisters
+              registers: stagedRegisters
             })
           })
-          console.log(`
-            Registro a ser removido: ${regSchema.key}.
-            Registros anteriores: ${stagedRegisters?.map(el => el.key)}
-            Registros nuevos: ${userData.registers?.map(el => el.key)}
-          `);
           closeModal()
         }
       }
       catch (err) {
+        console.log(err);
         //ADD REGISTER ERRORS HANDLER
         // const { field, errorMessage } = addRegisterErrorsHandler(err)
         setFieldError('symbol', '') // setFieldError(field, errorMessage)
@@ -241,7 +247,6 @@ const ModifyRegisterModal = forwardRef<HTMLDivElement, ModifyRegisterModalProps>
         formik.resetForm()
         closeModal()
       }
-
       const setCurrent = (index: number) => {
         setOperation(index);
         switch (index) {
@@ -256,7 +261,6 @@ const ModifyRegisterModal = forwardRef<HTMLDivElement, ModifyRegisterModalProps>
           break;
         }
       }
-
       const isGettingError = (fieldName: 'symbol' | 'value') => {
         if (fieldName === 'symbol') {
           return formik.errors.symbol && formik.touched.symbol ? 'true' : 'false'
@@ -266,8 +270,6 @@ const ModifyRegisterModal = forwardRef<HTMLDivElement, ModifyRegisterModalProps>
         }
         return 'false'
       }
-
-
       const setValueValue = (value: any) => {
         formik.setFieldValue('symbol', value?.value)
       }
@@ -290,6 +292,7 @@ const ModifyRegisterModal = forwardRef<HTMLDivElement, ModifyRegisterModalProps>
               <TextPlaceholder>Símbolo:</TextPlaceholder>
               <Select options={options} onChange={setValueValue} styles={selectStyles} placeholder="Divisa / Criptomoneda"
                 defaultValue={getOptionByID() as OptionTypeBase}
+                maxMenuHeight={220}
               />
             </ValueContainer>
               <Error><ErrorMessage name="symbol"/></Error>

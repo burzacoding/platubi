@@ -119,8 +119,6 @@ const AddRegisterModal = forwardRef<HTMLDivElement>((props, ref) => {
       ...provided,
       color: theme.fontContrastTwo,
       backgroundColor: theme.divBackground,
-      maxHeight: '200px',
-      overflowY: 'scroll',
     }),
     control: (provided, stats) => ({
         ...provided,
@@ -233,7 +231,10 @@ const AddRegisterModal = forwardRef<HTMLDivElement>((props, ref) => {
           <Form>
             <ValueContainer isGettingErrors={isGettingError('symbol')}>
               <TextPlaceholder>Símbolo:</TextPlaceholder>
-              <Select options={options} onChange={setValueValue} styles={selectStyles} placeholder="Divisa / Criptomoneda"/>
+              <Select options={options} onChange={setValueValue} styles={selectStyles} placeholder="Divisa / Criptomoneda"
+              
+              maxMenuHeight={220}
+              />
             </ValueContainer>
               <Error><ErrorMessage name="symbol"/></Error>
             <ValueContainer isGettingErrors={isGettingError('value')}>
