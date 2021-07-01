@@ -21,6 +21,16 @@ const RegisterField: React.FC<RegisterFieldProps> = ({obj}) => {
   const { userData, setUserData } = useDashboard()
   const toggleOpen = () => {
     setIsOpen(!isOpen)
+    const index = userData!.registers!.indexOf(obj)
+    const stagedRegisters = [...userData!.registers!]
+    stagedRegisters[index] = {
+      ...stagedRegisters[index],
+      visible: !isOpen
+    }
+    setUserData(prev => ({
+      ...prev,
+      registers: stagedRegisters
+    }))
   }
   const toggleFavorite = () => {
     setIsFavorite(prev => !prev)

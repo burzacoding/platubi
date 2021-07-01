@@ -29,3 +29,4 @@ firestore.rules
 .firebase
 hosting.*.cache
 .firebase/*
+*-debug.log

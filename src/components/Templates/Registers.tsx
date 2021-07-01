@@ -18,9 +18,11 @@ const Registers: React.FC = () => {
   const {width, height} = useWindowSize()
 
   const mapUserData = () =>  {
-    const pureRegisters = userData?.registers?.map((obj) => <RegisterField obj={obj} key={obj.key} />) || []
+    const pureRegisters = isFavorite ? (
+      userData?.registers?.filter(el => el.favorite === true).map((obj) => <RegisterField obj={obj} key={obj.key} />) || []
+    ) : (userData?.registers?.map((obj) => <RegisterField obj={obj} key={obj.key} />) || [])
     if (userData) {
-      const registersLength = userData.registers?.length || 0
+      const registersLength = pureRegisters.length || 0
       if (width < 768 && registersLength < 5) {
         const remainingSPaces = 5 - registersLength
         return arrayPopulateWithEmpties(pureRegisters, remainingSPaces)
