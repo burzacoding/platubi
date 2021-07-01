@@ -1,5 +1,4 @@
 import { Formik, Form, ErrorMessage } from "formik";
-// import { Formik, Form, Field, ErrorMessage } from "formik";
 import { forwardRef } from "react";
 import { useState } from "react";
 import { useDashboard } from "../../../Contexts/DashboardContext";
@@ -10,28 +9,13 @@ import { AddRegisterValidationSchema } from "../../../Utils/Validation/Modals";
 import OpAdd from "../../atoms/SVG/Modals/OpAdd";
 import OpRemove from "../../atoms/SVG/Modals/OpRemove";
 import OpExchange from "../../atoms/SVG/Modals/OpExchange";
-import Select, { GroupTypeBase, Styles } from 'react-select'
-import { useTheme } from "styled-components";
-import { ThemeColorPicker } from "../../../Utils/Utils";
+import SelectComponent from "../../molecules/Selects/SelectComponent";
 
 interface FormikFinalValues {
   operation: string,
   symbol: string,
   value: number
 }
-type selectStylesProp = Partial<Styles<{
-    label: string;
-    options: {
-        value: string;
-        label: string;
-    }[];
-  }, false, GroupTypeBase<{
-    label: string;
-    options: {
-        value: string;
-        label: string;
-    }[];
-  }>>> | undefined
 
 const initialValues = {
   operation: 'add',
@@ -39,24 +23,6 @@ const initialValues = {
   value: '',
 }
 
-const options = [
-  {
-      label: 'Divisas',
-      options: [
-          {value: 'usd', label: 'Dolar estadounidense - USD'},
-          {value: 'ars', label: 'Peso argentino - ARS'},
-          {value: 'mxn', label: 'Peso mexicano - MXN'},
-      ]
-  },
-  {
-      label: 'Criptomonedas',
-      options: [
-          {value: 'btc', label: 'Bitcoin - BTC'},
-          {value: 'doge', label: 'Dogecoin - DOGE'},
-          {value: 'bat', label: 'Basic Attention Token - BAT'},
-      ]
-  }
-]
 
 
 const AddRegisterModal = forwardRef<HTMLDivElement>((props, ref) => {
@@ -70,96 +36,6 @@ const AddRegisterModal = forwardRef<HTMLDivElement>((props, ref) => {
 
   const { addRegister } = useDashboard()
   const { closeModal } = useModal()
-
-  const theme = useTheme()
-
-  const selectStyles: selectStylesProp = {
-    groupHeading: (provided, stats) => ({
-      ...provided,
-      color: theme.fontContrastTwo,
-      backgroundColor: theme.divBackground,
-      fontWeight: 600,
-      fontSize: '0.9em'
-    }),
-    placeholder: (provided, stats) => ({
-      ...provided,
-      color: theme.fontContrastSix,
-      backgroundColor: theme.divBackground,
-      fontSize: '12px',
-      '@media (min-width: 360px)': {
-        fontSize: '14px',
-      },
-      '@media (min-width: 768px)': {
-        fontSize: '16px',
-      },
-    }),
-    option: (provided, stats) => ({
-      ...provided,
-      color: theme.fontContrastTwo,
-      backgroundColor: stats.isFocused ? theme.divDarkerBackground : theme.divBackground,
-      opacity: 0.7,
-      fontSize: '12px',
-      '@media (min-width: 360px)': {
-        fontSize: '14px',
-      },
-      '@media (min-width: 768px)': {
-        fontSize: '16px',
-      },
-    }),
-    container : (provided, stats) => ({
-      ...provided,
-      color: theme.fontContrastTwo,
-      width: '100%',
-      marginLeft: '12px',
-      '@media (min-width: 768px)': {
-        fontSize: '16px',
-      },
-    }),
-    menu: (provided, stats) => ({
-      ...provided,
-      color: theme.fontContrastTwo,
-      backgroundColor: theme.divBackground,
-    }),
-    control: (provided, stats) => ({
-        ...provided,
-        color: theme.fontContrastTwo,
-        backgroundColor: theme.divBackground,
-        boxShadow: "none",
-        borderColor: stats.menuIsOpen ? '#03A63C' : 'none',
-        ":hover" : {
-          border: ThemeColorPicker(theme, `solid 1px #0E4777`, `solid 1px #03A63C`),
-        },
-        ":focused" : {
-          border: ThemeColorPicker(theme, `solid 1px #0E4777`, `solid 1px #03A63C`),
-          boxShadow: "none",
-        },
-      }),
-    singleValue: (provided, stats) => ({
-      ...provided,
-      color: theme.fontContrastTwo,
-      backgroundColor: theme.divBackground,
-      opacity: 0.8,
-      fontSize: '12px',
-      '@media (min-width: 360px)': {
-        fontSize: '14px',
-      },
-      '@media (min-width: 768px)': {
-        fontSize: '16px',
-      },
-    }),
-    input: (provided, stats) => ({
-      ...provided,
-      color: theme.fontContrastTwo,
-      opacity: 0.8,
-      fontSize: '12px',
-      '@media (min-width: 360px)': {
-        fontSize: '14px',
-      },
-      '@media (min-width: 768px)': {
-        fontSize: '16px',
-      },
-    }),
-  }
 
   return (
   <Formik
@@ -231,9 +107,7 @@ const AddRegisterModal = forwardRef<HTMLDivElement>((props, ref) => {
           <Form>
             <ValueContainer isGettingErrors={isGettingError('symbol')}>
               <TextPlaceholder>Símbolo:</TextPlaceholder>
-              <Select options={options} onChange={setValueValue} styles={selectStyles} placeholder="Divisa / Criptomoneda"
-              maxMenuHeight={220}
-              />
+              <SelectComponent onChange={setValueValue} placeholder="Divisa / Criptomoneda" />
             </ValueContainer>
               <Error><ErrorMessage name="symbol"/></Error>
             <ValueContainer isGettingErrors={isGettingError('value')}>

@@ -1,11 +1,19 @@
-import Select, { NamedProps } from "react-select";
+import Select, { GroupTypeBase, Styles, NamedProps } from 'react-select'
 import { useTheme } from "styled-components";
 import { ThemeColorPicker } from "../../../Utils/Utils";
-import { selectStylesProp } from "../../Templates/Modals/Modify";
 
 export interface SelectComponentProps {
   props: NamedProps
 }
+
+export type selectStylesProp = Partial<Styles<{
+  label: string;
+  value: string;
+}, false, GroupTypeBase<{
+  label: string;
+  value: string;
+}>>> | undefined
+
 
 const options = [
   {
@@ -28,7 +36,7 @@ const options = [
 
 
 
-const SelectComponent: React.FC<SelectComponentProps> = ({props}) => {
+const SelectComponent: React.FC<NamedProps> = ({...props}) => {
 
   //const { apiOptions } = useApi()
 
@@ -125,8 +133,9 @@ const SelectComponent: React.FC<SelectComponentProps> = ({props}) => {
   return (
     <Select
       options={options}
-      style={selectStyles}
+      styles={selectStyles}
       maxMenuHeight={240}
+      placeholder="Divisa / Criptomoneda"
       {...props}
       />
   );

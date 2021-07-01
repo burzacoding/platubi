@@ -9,44 +9,9 @@ import { AddRegisterValidationSchema } from "../../../Utils/Validation/Modals";
 import OpAdd from "../../atoms/SVG/Modals/OpAdd";
 import OpRemove from "../../atoms/SVG/Modals/OpRemove";
 import OpExchange from "../../atoms/SVG/Modals/OpExchange";
-import Select, { GroupTypeBase, OptionTypeBase, Styles } from 'react-select'
-import { useTheme } from "styled-components";
-import { ThemeColorPicker } from "../../../Utils/Utils";
+import SelectComponent from "../../molecules/Selects/SelectComponent";
 
 
-export type selectStylesProp = Partial<Styles<{
-    label: string;
-    options: {
-        value: string;
-        label: string;
-    }[];
-  }, false, GroupTypeBase<{
-    label: string;
-    options: {
-        value: string;
-        label: string;
-    }[];
-  }>>> | undefined
-
-
-const options = [
-  {
-      label: 'Divisas',
-      options: [
-          {value: 'usd', label: 'Dolar estadounidense - USD'},
-          {value: 'ars', label: 'Peso argentino - ARS'},
-          {value: 'mxn', label: 'Peso mexicano - MXN'},
-      ]
-  },
-  {
-      label: 'Criptomonedas',
-      options: [
-          {value: 'btc', label: 'Bitcoin - BTC'},
-          {value: 'doge', label: 'Dogecoin - DOGE'},
-          {value: 'bat', label: 'Basic Attention Token - BAT'},
-      ]
-  }
-]
 
 interface ModifyRegisterModalProps {
   regSchema: registerSchemaTypesWithId
@@ -83,95 +48,26 @@ const ModifyRegisterModal = forwardRef<HTMLDivElement, ModifyRegisterModalProps>
   const { updateRegister, userData, setUserData } = useDashboard()
   const { closeModal } = useModal()
 
-  const theme = useTheme()
 
-  const selectStyles: selectStylesProp = {
-    groupHeading: (provided, stats) => ({
-      ...provided,
-      color: theme.fontContrastTwo,
-      backgroundColor: theme.divBackground,
-      fontWeight: 600,
-      fontSize: '0.9em'
-    }),
-    placeholder: (provided, stats) => ({
-      ...provided,
-      color: theme.fontContrastSix,
-      backgroundColor: theme.divBackground,
-      fontSize: '12px',
-      '@media (min-width: 360px)': {
-        fontSize: '14px',
-      },
-      '@media (min-width: 768px)': {
-        fontSize: '16px',
-      },
-    }),
-    option: (provided, stats) => ({
-      ...provided,
-      color: theme.fontContrastTwo,
-      backgroundColor: stats.isFocused ? theme.divDarkerBackground : theme.divBackground,
-      opacity: 0.7,
-      fontSize: '12px',
-      '@media (min-width: 360px)': {
-        fontSize: '14px',
-      },
-      '@media (min-width: 768px)': {
-        fontSize: '16px',
-      },
-    }),
-    container : (provided, stats) => ({
-      ...provided,
-      color: theme.fontContrastTwo,
-      width: '100%',
-      marginLeft: '12px',
-      '@media (min-width: 768px)': {
-        fontSize: '16px',
-      },
-    }),
-    menu: (provided, stats) => ({
-      ...provided,
-      color: theme.fontContrastTwo,
-      backgroundColor: theme.divBackground,
-    }),
-    control: (provided, stats) => ({
-        ...provided,
-        color: theme.fontContrastTwo,
-        backgroundColor: theme.divBackground,
-        boxShadow: "none",
-        borderColor: stats.menuIsOpen ? '#03A63C' : 'none',
-        ":hover" : {
-          border: ThemeColorPicker(theme, `solid 1px #0E4777`, `solid 1px #03A63C`),
-        },
-        ":focused" : {
-          border: ThemeColorPicker(theme, `solid 1px #0E4777`, `solid 1px #03A63C`),
-          boxShadow: "none",
-        },
-      }),
-    singleValue: (provided, stats) => ({
-      ...provided,
-      color: theme.fontContrastTwo,
-      backgroundColor: theme.divBackground,
-      opacity: 0.8,
-      fontSize: '12px',
-      '@media (min-width: 360px)': {
-        fontSize: '14px',
-      },
-      '@media (min-width: 768px)': {
-        fontSize: '16px',
-      },
-    }),
-    input: (provided, stats) => ({
-      ...provided,
-      color: theme.fontContrastTwo,
-      opacity: 0.8,
-      fontSize: '12px',
-      '@media (min-width: 360px)': {
-        fontSize: '14px',
-      },
-      '@media (min-width: 768px)': {
-        fontSize: '16px',
-      },
-    }),
-  }
+  //ESTE OBJECTO OPTIONS TIENE QUE SER ACCEDIDO MEDIANTE EL CONTEXTO DEL MODAL
+  const options = [
+    {
+        label: 'Divisas',
+        options: [
+            {value: 'usd', label: 'Dolar estadounidense - USD'},
+            {value: 'ars', label: 'Peso argentino - ARS'},
+            {value: 'mxn', label: 'Peso mexicano - MXN'},
+        ]
+    },
+    {
+        label: 'Criptomonedas',
+        options: [
+            {value: 'btc', label: 'Bitcoin - BTC'},
+            {value: 'doge', label: 'Dogecoin - DOGE'},
+            {value: 'bat', label: 'Basic Attention Token - BAT'},
+        ]
+    }
+  ]
 
   const getOptionByID = () => {
     const symbol = regSchema.symbol.toLowerCase()
@@ -290,15 +186,12 @@ const ModifyRegisterModal = forwardRef<HTMLDivElement, ModifyRegisterModalProps>
           <Form>
             <ValueContainer isGettingErrors={isGettingError('symbol')}>
               <TextPlaceholder>Símbolo:</TextPlaceholder>
-              <Select options={options} onChange={setValueValue} styles={selectStyles} placeholder="Divisa / Criptomoneda"
-                defaultValue={getOptionByID() as OptionTypeBase}
-                maxMenuHeight={220}
-              />
+              <SelectComponent onChange={setValueValue} defaultValue={getOptionByID()}/>
             </ValueContainer>
               <Error><ErrorMessage name="symbol"/></Error>
             <ValueContainer isGettingErrors={isGettingError('value')}>
               <TextPlaceholder>Cantidad:</TextPlaceholder>
-              <ValueInputField name='value' autocomplete='off' />
+              <ValueInputField name='value' autoComplete='off' />
             </ValueContainer>
               <Error><ErrorMessage name="value"/></Error>
             <ButtonAdd type='submit' disabled={formik.isSubmitting} whileTap={{scale: 0.95}}>Modificar</ButtonAdd>

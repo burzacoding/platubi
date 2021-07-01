@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { registerSchemaTypesWithId } from "../../Contexts/DashboardContext";
+import { registerSchemaTypesWithId, useDashboard } from "../../Contexts/DashboardContext";
 import { useModal } from "../../Contexts/ModalContext";
 import { FieldContainer, InnerContainer, SVGContainer, PencilContainer, ButtonsContainer, TextContainer, Text, DateText, CrossContainer } from "../../elements/Dashboard/RegisterField";
 import CrossSVG from "../atoms/SVG/Cross";
@@ -18,11 +18,22 @@ const RegisterField: React.FC<RegisterFieldProps> = ({obj}) => {
   const [isOpen, setIsOpen] = useState(true)
   const [isFavorite, setIsFavorite] = useState(false)
   const { openModal } = useModal()
+  const { userData, setUserData } = useDashboard()
   const toggleOpen = () => {
     setIsOpen(!isOpen)
   }
   const toggleFavorite = () => {
-    setIsFavorite(!isFavorite)
+    setIsFavorite(prev => !prev)
+    const index = userData!.registers!.indexOf(obj)
+    const stagedRegisters = [...userData!.registers!]
+    stagedRegisters[index] = {
+      ...stagedRegisters[index],
+      favorite: !isFavorite
+    }
+    setUserData(prev => ({
+      ...prev,
+      registers: stagedRegisters
+    }))
   }
   return (
     <FieldContainer>

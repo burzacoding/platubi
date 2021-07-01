@@ -23,7 +23,7 @@ export const ApiProvider: React.FC<ApiProviderProps> = ({children}) => {
   
 
   useEffect(() => {
-    console.log(SymbolsNeeded);
+    // console.log(SymbolsNeeded);
     
   }, [SymbolsNeeded])
 

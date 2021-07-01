@@ -180,6 +180,7 @@ export const DashboardProvider: React.FC = ({children}) => {
       console.error(error)
     }
   }
+  
 
   useEffect(() => {
     retrieveDataFromUser()
