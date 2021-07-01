@@ -9,6 +9,8 @@ interface ModifyRegisterModalProps {
   schemaKey: string
 }
 
+
+
 const DeleteRegisterModal = forwardRef<HTMLDivElement, ModifyRegisterModalProps>(({schemaKey}, ref) => {
 
   const { deleteRegister } = useDashboard()

@@ -14,7 +14,7 @@ import { useTheme } from "styled-components";
 import { ThemeColorPicker } from "../../../Utils/Utils";
 
 
-type selectStylesProp = Partial<Styles<{
+export type selectStylesProp = Partial<Styles<{
     label: string;
     options: {
         value: string;

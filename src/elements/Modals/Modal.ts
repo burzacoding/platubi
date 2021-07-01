@@ -55,6 +55,10 @@ const Title = styled.h2`
   font-size: 16px;
   height: 20px;
   text-align: center;
+  margin-top: 32px;
+  @media screen and (min-width: 480px) {
+   margin: 0;
+  };
 `
 
 const OperationsContainer = styled.div`

@@ -42,7 +42,8 @@ const Bottom = styled.div<BottomProps>`
 
   /* Track */
   &::-webkit-scrollbar-track {
-    background: ${p => p.theme.divDarkerBackground};
+    background-color: ${p => p.theme.divDarkerBackground};
+    transition: background-color 0.25s;
     border-radius: 8px;
   }
 
