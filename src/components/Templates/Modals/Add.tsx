@@ -112,7 +112,7 @@ const AddRegisterModal = forwardRef<HTMLDivElement>((props, ref) => {
               <Error><ErrorMessage name="symbol"/></Error>
             <ValueContainer isGettingErrors={isGettingError('value')}>
               <TextPlaceholder>Cantidad:</TextPlaceholder>
-              <ValueInputField name='value' autocomplete='off' />
+              <ValueInputField name='value' autoComplete='off' />
             </ValueContainer>
               <Error><ErrorMessage name="value"/></Error>
             <ButtonAdd type='submit' disabled={formik.isSubmitting} whileTap={{scale: 0.95}}>Agregar</ButtonAdd>

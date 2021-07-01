@@ -11,10 +11,11 @@ export interface TrackedStocksCardProps {
  
 const TrackedStocksCard: React.FC<TrackedStocksCardProps> = ({trackedStock}) => {
   const { symbol, symbolAndValue, change } = trackedStock
+  const isNegative = change < 0 ? 'true' : 'false'
   const formattedChange = change >= 0 ? `%${change}` : `-%${Math.abs(change)}`
 
   return (
-    <Card>
+    <Card isNegative={isNegative}>
       <Title>{symbol}</Title>
       <Body>{symbolAndValue}</Body>
       <Body>{formattedChange}</Body>

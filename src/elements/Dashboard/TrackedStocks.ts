@@ -24,7 +24,11 @@ const Container = styled.div`
   }
 `
 
-const Card = styled.div`
+interface CardProps {
+  isNegative: string
+}
+
+const Card = styled.div<CardProps>`
   width: 100%;
   height: 112px;
   border-radius: 8px;
@@ -39,7 +43,7 @@ const Card = styled.div`
   align-items: center;
   text-align: center;
   font-family: 'Montserrat', sans-serif;
-  color: #2CA95E; //Bearish stock: #B64B4B
+  color:${p => p.isNegative === 'true' ? '#B64B4B' : '#2CA95E'};
   @media screen and (min-width: 768px) {
     max-width: 316px;
   }

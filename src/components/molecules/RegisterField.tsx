@@ -15,7 +15,7 @@ export interface RegisterFieldProps {
 const RegisterField: React.FC<RegisterFieldProps> = ({obj}) => {
   const { operation, symbol, value, createdAt} = obj
   const allCapsSymbol = symbol.toUpperCase()
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(obj.visible)
   const [isFavorite, setIsFavorite] = useState(false)
   const { openModal } = useModal()
   const { userData, setUserData } = useDashboard()
