@@ -186,7 +186,7 @@ const ModifyRegisterModal = forwardRef<HTMLDivElement, ModifyRegisterModalProps>
           <Form>
             <ValueContainer isGettingErrors={isGettingError('symbol')}>
               <TextPlaceholder>Símbolo:</TextPlaceholder>
-              <SelectComponent onChange={setValueValue} defaultValue={getOptionByID()}/>
+              <SelectComponent onChange={setValueValue} defaultValue={getOptionByID()} />
             </ValueContainer>
               <Error><ErrorMessage name="symbol"/></Error>
             <ValueContainer isGettingErrors={isGettingError('value')}>

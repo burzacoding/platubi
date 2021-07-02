@@ -3,6 +3,7 @@ import { createContext, useContext } from "react";
 import Modal from "../components/Templates/Modal";
 import { modalNames } from "../Utils/ModalsHandler";
 import { stateSetter } from "../Utils/Utils";
+// import { useApi } from "./ApiContext";
 import { registerSchemaTypesWithId } from "./DashboardContext";
 
 interface ModalContextInterface {
@@ -25,6 +26,8 @@ export function useModal() {
 export const ModalProvider: React.FC = ({children}) => {
 
   const [modalConfig, setModalConfig] = useState<registerSchemaTypesWithId | string>()
+
+  // const {  } = useApi()
 
   const [modalVisibility, setModalVisibility] = useState(false);
   const [modalName, setModalName] = useState<modalNames | undefined>(undefined) //DEFAULT THIS TO UNDEF

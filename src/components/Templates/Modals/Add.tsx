@@ -107,7 +107,7 @@ const AddRegisterModal = forwardRef<HTMLDivElement>((props, ref) => {
           <Form>
             <ValueContainer isGettingErrors={isGettingError('symbol')}>
               <TextPlaceholder>Símbolo:</TextPlaceholder>
-              <SelectComponent onChange={setValueValue} placeholder="Divisa / Criptomoneda" />
+              <SelectComponent onChange={setValueValue} />
             </ValueContainer>
               <Error><ErrorMessage name="symbol"/></Error>
             <ValueContainer isGettingErrors={isGettingError('value')}>

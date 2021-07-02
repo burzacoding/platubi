@@ -184,7 +184,6 @@ export const DashboardProvider: React.FC = ({children}) => {
 
   useEffect(() => {
     retrieveDataFromUser()
-    
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser])
 
