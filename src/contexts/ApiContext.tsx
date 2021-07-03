@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useContext } from "react";
 import { createContext } from "react";
-import { useDashboard } from "./DashboardContext";
 
 export interface ApiProviderProps {
   
@@ -31,12 +30,9 @@ export function useApi() {
  
 export const ApiProvider: React.FC<ApiProviderProps> = ({children}) => {
 
-  const { userData } = useDashboard()
+  // const { userData } = useDashboard()
 
-  const SymbolsNeeded = {...userData}
-  if (SymbolsNeeded) {
-    console.log('');
-  }
+  // const SymbolsNeeded = {...userData}
   
   
   // const retrieveCryptos = async () => {
@@ -49,7 +45,6 @@ export const ApiProvider: React.FC<ApiProviderProps> = ({children}) => {
   // }
 
   useEffect(() => {
-    // console.log(SymbolsNeeded);
     
   }, [])
 
