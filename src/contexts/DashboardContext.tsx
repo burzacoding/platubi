@@ -7,6 +7,8 @@ import { useEffect } from "react";
 import { useAuth } from "./AuthContext";
 import { buildRegisterSchema, mapRegistersWithId } from "../Utils/Utils";
 import { TooltipsPropsWithIndex } from "../components/molecules/Donut";
+
+
 // import Axios from 'axios'
 
 export type DocumentData = firebase.firestore.DocumentData

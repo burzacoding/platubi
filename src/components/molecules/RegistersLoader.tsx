@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 
 export interface RegistersLoaderProps {
   
@@ -25,6 +27,7 @@ const RegistersLoader: React.FC<RegistersLoaderProps> = () => {
   return (
     <Container>
       <h1>CARGANDO...</h1>
+      <Loader type="TailSpin"  />
     </Container>
   );
 }

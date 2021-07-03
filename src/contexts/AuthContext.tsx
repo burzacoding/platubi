@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { auth, db } from '../firebase/Firebase'
 import firebase from 'firebase/app'
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 
 
 interface AuthContextInterface {
@@ -97,6 +99,13 @@ export const AuthProvider: React.FC = ({children}) => {
     userDocumentRef,
   }
 
-  return <AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>
+  return (
+    <AuthContext.Provider value={value}>
+      {!loading ? children :
+      (<div style={{width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+        <Loader type="Oval" />
+      </div>)}
+    </AuthContext.Provider>
+  )
 }
  
