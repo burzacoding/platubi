@@ -43,7 +43,12 @@ const AddRegisterModal = forwardRef<HTMLDivElement>((props, ref) => {
     onSubmit={async (values, { setSubmitting, setFieldError }) => {
       try {
         setSubmitting(true)
-        const bool = await addRegister(values as unknown as FormikFinalValues)
+        const schema = {
+          operation: values.operation,
+          symbol: values.symbol,
+          value: parseInt(values.value)
+        }
+        const bool = await addRegister(schema as FormikFinalValues)
         bool && closeModal()
       }
       catch (err) {
