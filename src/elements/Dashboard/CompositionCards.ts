@@ -47,13 +47,12 @@ const Numbers = styled.span`
   text-align: right;
   margin-right: 24px;
 `
-const SVGContainer = styled.div`
-  width: 28px;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  cursor: pointer;
-  svg {
-    fill: #EAEAEA
-  }
+const SymbolsName = styled(Symbol)`
+  display: none;
+  font-weight: 500;
+  @media screen and (min-width: 1366px) {
+   display: block;
+  };
 `
-export { Container, Card, Symbol, Numbers, SVGContainer }
+
+export { Container, Card, Symbol, Numbers, SymbolsName }
