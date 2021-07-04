@@ -1,6 +1,7 @@
 import React from 'react';
 import Select, { GroupTypeBase, Styles, NamedProps } from 'react-select'
 import  { useTheme } from "styled-components";
+import { useApi } from '../../../Contexts/ApiContext';
 import { CryptoOptions, CurrenciesOptions } from '../../../Utils/LabelsAndOptions';
 import { ThemeColorPicker } from "../../../Utils/Utils";
 
@@ -17,16 +18,7 @@ export type selectStylesProp = Partial<Styles<{
 }>>> | undefined
 
 
-const options = [
-  {
-      label: 'Divisas',
-      options: CurrenciesOptions
-  },
-  {
-      label: 'Criptomonedas',
-      options: CryptoOptions
-  }
-]
+
 
 
 const SelectComponent: React.FC<NamedProps> = ({...props}) => {
@@ -34,6 +26,24 @@ const SelectComponent: React.FC<NamedProps> = ({...props}) => {
   //const { apiOptions } = useApi()
 
   const theme = useTheme()
+  const {cryptoList, currenciesList } = useApi()
+
+  const options = [
+    {
+        label: 'Divisas',
+        options: currenciesList.data.map(el => ({
+          value: el.symbol,
+          label: `${el.symbol} - ${el.name}`
+        }))
+    },
+    {
+        label: 'Criptomonedas',
+        options: cryptoList.data.map(el => ({
+          value: el.value,
+          label: `${el.symbol} - ${el.name}`
+        }))
+    }
+  ]
 
   const selectStyles: selectStylesProp = {
     groupHeading: (provided, stats) => ({

@@ -10,6 +10,7 @@ import OpAdd from "../../atoms/SVG/Modals/OpAdd";
 import OpRemove from "../../atoms/SVG/Modals/OpRemove";
 import OpExchange from "../../atoms/SVG/Modals/OpExchange";
 import SelectComponent from "../../molecules/Selects/SelectComponent";
+import { useApi } from "../../../Contexts/ApiContext";
 
 
 
@@ -50,54 +51,23 @@ const ModifyRegisterModal = forwardRef<HTMLDivElement, ModifyRegisterModalProps>
 
 
   //ESTE OBJECTO OPTIONS TIENE QUE SER ACCEDIDO MEDIANTE EL CONTEXTO DEL MODAL
-  const options = [
-    {
-        label: 'Divisas',
-        options: [
-            {value: 'usd', label: 'Dolar estadounidense - USD'},
-            {value: 'ars', label: 'Peso argentino - ARS'},
-            {value: 'mxn', label: 'Peso mexicano - MXN'},
-        ]
-    },
-    {
-        label: 'Criptomonedas',
-        options: [
-            {value: 'btc', label: 'Bitcoin - BTC'},
-            {value: 'doge', label: 'Dogecoin - DOGE'},
-            {value: 'bat', label: 'Basic Attention Token - BAT'},
-        ]
-    }
-  ]
+  const { currenciesList, cryptoList } = useApi()
+
 
   const getOptionByID = () => {
-    const symbol = regSchema.symbol.toLowerCase()
-    const result = options[0].options.filter(el => el.value === symbol)[0]
+    const result = currenciesList.data.filter(el => el.symbol === regSchema.symbol)[0]
     if (!result) {
-      const newRes = options[1].options.filter(el => el.value === symbol)[0]
-      if (!newRes) {
-        const newRes1 = options[2].options.filter(el => el.value === symbol)[0]
-        if (newRes1) {
-          return  {
-            value: newRes1.value,
-            label: newRes1.label
-          }
-        }
-      } else {
+      const newRes = cryptoList.data.filter(el => el.value === regSchema.symbol)[0]
         return {
-          value: newRes.value,
-          label: newRes.label
+          value: newRes.symbol,
+          label: `${newRes.symbol} - ${newRes.name}`
         }
-      }
     }
     else {
       return {
-        value: result.value,
-        label: result.label
+        value: result.symbol,
+        label: `${result.symbol} - ${result.name}`
       }
-    }
-    return {
-      value: 'no encontrado',
-      label: 'no encontrado'
     }
   }
 
@@ -115,10 +85,10 @@ const ModifyRegisterModal = forwardRef<HTMLDivElement, ModifyRegisterModalProps>
             ...stagedRegisters[prevRegisterIndex],
             ...values
           }
-          console.log(`
-          Documento: ${JSON.stringify(userData.registers[prevRegisterIndex], null, 2)}
-          Modificado a: ${JSON.stringify(stagedRegisters[prevRegisterIndex], null, 2)}
-          `);
+          // console.log(`
+          // Documento: ${JSON.stringify(userData.registers[prevRegisterIndex], null, 2)}
+          // Modificado a: ${JSON.stringify(stagedRegisters[prevRegisterIndex], null, 2)}
+          // `);
           setUserData(prev => {
             return({
               ...prev,

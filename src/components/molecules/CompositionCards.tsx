@@ -14,33 +14,21 @@ const CompositionCharts: React.FC<CompositionChartsProps> = () => {
         <Symbol>ARS</Symbol>
         <Numbers>$2500</Numbers>
         <Numbers>75%</Numbers>
-        <SVGContainer>
-          <EditPencil />
-        </SVGContainer>
       </Card>
       <Card cardColor={Colors[1]}>
         <Symbol>ARS</Symbol>
         <Numbers>$2500</Numbers>
         <Numbers>75%</Numbers>
-        <SVGContainer>
-          <EditPencil />
-        </SVGContainer>
       </Card>
       <Card cardColor={Colors[2]}>
         <Symbol>ARS</Symbol>
         <Numbers>$2500</Numbers>
         <Numbers>75%</Numbers>
-        <SVGContainer>
-          <EditPencil />
-        </SVGContainer>
       </Card>
       <Card cardColor={Colors[3]}>
         <Symbol>ARS</Symbol>
         <Numbers>$2500</Numbers>
         <Numbers>75%</Numbers>
-        <SVGContainer>
-          <EditPencil />
-        </SVGContainer>
       </Card>
     </Container>
   );

@@ -78,9 +78,6 @@ const CrossContainer = styled(PencilContainer)`
   @media screen and (min-width: 768px) {
     padding: 6px;
   };
-  @media screen and (min-width: 1366px) {
-    padding: 8px;
-  };
 `
 
 const TextContainer = styled.div`
@@ -101,11 +98,21 @@ const TextContainer = styled.div`
     padding-right: 24px;
     font-size: 16px;
   };
+  @media screen and (min-width: 1366px) {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr 2fr;
+  };
 `
 const Text = styled.span`
   width: 100%;
   text-align: center;
   display: block;
+`
+const NameText = styled(Text)`
+  display: none;
+  @media screen and (min-width: 1366px) {
+   display: block;
+  };
 `
 
 const DateText = styled.span`
@@ -118,4 +125,4 @@ const DateText = styled.span`
 `
 
 
-export {FieldContainer, InnerContainer, SVGContainer, CrossContainer, PencilContainer, ButtonsContainer, TextContainer, Text, DateText}
+export {FieldContainer, InnerContainer, SVGContainer, CrossContainer, PencilContainer, ButtonsContainer, TextContainer, Text, NameText, DateText}
