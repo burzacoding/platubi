@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { useModal } from '../../Contexts/ModalContext'
 
 const Container = styled.div`
   width: 100%;
@@ -18,6 +19,8 @@ const Container = styled.div`
   }
 `
 const Button = styled.div`
+  cursor: pointer;
+  user-select: none;
   height: 38px;
   width: 100%;
   max-width: 360px;
@@ -36,10 +39,13 @@ export interface NoRegistersProps {
 }
  
 const NoRegisters: React.FC<NoRegistersProps> = () => {
+
+  const { openModal } = useModal()
+
   return (
     <Container>
       <span>No tenés ningún registro</span>
-      <Button>Añadir registro</Button>
+      <Button onClick={() => openModal('add')}>Añadir registro</Button>
     </Container>
   );
 }
