@@ -5,7 +5,7 @@ import firebase from 'firebase/app'
 import { db, registersCollectionRef, userDocumentRef } from "../firebase/Firebase";
 import { useEffect } from "react";
 import { useAuth } from "./AuthContext";
-import { buildRegisterSchema, mapRegistersWithId } from "../Utils/Utils";
+import { buildRegisterSchema, mapRegistersWithId, stateSetter } from "../Utils/Utils";
 import { TooltipsPropsWithIndex } from "../components/molecules/Donut";
 
 
@@ -63,7 +63,7 @@ interface dashboardContextInterface {
   page: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;
   userData: userDocumentTypes | undefined;
-  setUserData: React.Dispatch<React.SetStateAction<userDocumentTypes | undefined>>;
+  setUserData: stateSetter<userDocumentTypes | undefined>;
   addRegister: (values: newRegisterValuesInterface) => Promise<boolean>;
   updateRegister: (key: string, newValues: object) => Promise<boolean>;
   deleteRegister(key: string): Promise<boolean>;
@@ -105,7 +105,7 @@ export function useTooltip () {
 export const DashboardProvider: React.FC = ({children}) => {
   
   const [page, setPage] = useState(0)
-  const [userData, setUserData] = useState<userDocumentTypes | undefined>()
+  const [userData, setUserData] = useState<userDocumentTypes>()
   const { currentUser } = useAuth();
   
   async function addRegisterToFirestore (schema: remoteRegisterSchemaTypes) {
@@ -175,7 +175,7 @@ export const DashboardProvider: React.FC = ({children}) => {
         setUserData(userDocument.data() as userDocumentTypes)
         const registersCollection = await registersCollectionRef(currentUser.uid).orderBy('createdAt', 'desc').get()
         const formattedRegisters = registersCollection.docs.map(element => mapRegistersWithId(element))
-        setUserData(prev => ({...prev,registers: formattedRegisters}))
+        setUserData(prev => ({...prev, registers: formattedRegisters}))
       }
     }
     catch (error) {
