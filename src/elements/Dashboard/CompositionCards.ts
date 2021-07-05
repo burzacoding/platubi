@@ -21,7 +21,8 @@ const Card = styled.div<CardInterface>`
   width: 100%;
   height: 46px;
   background-color: ${p => p.cardColor};
-  display: flex;
+  display: grid;
+  grid-template-columns: 5fr 1fr 1fr;
   align-items: center;
   padding: 0 14px;
   font-size: 16px;
@@ -33,25 +34,31 @@ const Card = styled.div<CardInterface>`
   }
   @media screen and (min-width: 1366px) {
     font-size: 20px;
+    grid-template-columns: 1fr 4fr 1fr 1fr;
   };
 `
 const Symbol = styled.span`
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
-  line-height: 20px;
-  margin-right: auto;
+  width: 100%;
+  display: block;
+
 `
 const Numbers = styled.span`
   font-family: 'Mandali', sans-serif;
+  font-size: 20px;
   line-height: 24px;
   text-align: right;
-  margin-right: 24px;
 `
 const SymbolsName = styled(Symbol)`
+  padding-left: 12px;
   display: none;
-  font-weight: 500;
+  font-weight: 400;
+  font-size: 16px;
+  text-align: left;
   @media screen and (min-width: 1366px) {
    display: block;
+   width: 100%;
   };
 `
 

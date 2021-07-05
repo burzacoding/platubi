@@ -46,7 +46,7 @@ const AddRegisterModal = forwardRef<HTMLDivElement>((props, ref) => {
         const schema = {
           operation: values.operation,
           symbol: values.symbol,
-          value: parseInt(values.value)
+          value: parseFloat(values.value)
         }
         const bool = await addRegister(schema as FormikFinalValues)
         bool && closeModal()

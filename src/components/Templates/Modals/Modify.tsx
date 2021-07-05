@@ -77,7 +77,12 @@ const ModifyRegisterModal = forwardRef<HTMLDivElement, ModifyRegisterModalProps>
     onSubmit={async (values, { setSubmitting, setFieldError }) => {
       try {
         setSubmitting(true)
-        const bool = await updateRegister(regSchema.key, values)
+        const schema = {
+          operation: values.operation,
+          symbol: values.symbol,
+          value: parseFloat(values.value as unknown as string)
+        }
+        const bool = await updateRegister(regSchema.key, schema)
         if (bool && userData?.registers) {
           const stagedRegisters = [...userData.registers]
           const prevRegisterIndex = stagedRegisters.indexOf(regSchema)

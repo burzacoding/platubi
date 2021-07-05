@@ -6,7 +6,6 @@ import { db } from "../firebase/Firebase";
 import firebase from 'firebase/app'
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
-import { CurrenciesOptionsFull } from "../Utils/LabelsAndOptions";
 
 export interface ApiContextInterface {
   cryptoPrices: CryptoPricesInterface;
