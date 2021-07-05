@@ -22,7 +22,7 @@ const Card = styled.div<CardInterface>`
   height: 46px;
   background-color: ${p => p.cardColor};
   display: grid;
-  grid-template-columns: 5fr 1fr 1fr;
+  grid-template-columns: 10fr 1fr 3fr;
   align-items: center;
   padding: 0 14px;
   font-size: 16px;
@@ -46,6 +46,8 @@ const Symbol = styled.span`
 `
 const Numbers = styled.span`
   font-family: 'Mandali', sans-serif;
+  display: block;
+  width: 100%;
   font-size: 20px;
   line-height: 24px;
   text-align: right;

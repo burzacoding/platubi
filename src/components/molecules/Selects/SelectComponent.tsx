@@ -2,7 +2,6 @@ import React from 'react';
 import Select, { GroupTypeBase, Styles, NamedProps } from 'react-select'
 import  { useTheme } from "styled-components";
 import { useApi } from '../../../Contexts/ApiContext';
-import { CryptoOptions, CurrenciesOptions } from '../../../Utils/LabelsAndOptions';
 import { ThemeColorPicker } from "../../../Utils/Utils";
 
 export interface SelectComponentProps {
