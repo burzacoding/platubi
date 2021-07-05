@@ -14,6 +14,9 @@ import { TooltipsPropsWithIndex } from "../components/molecules/Donut";
 export type DocumentData = firebase.firestore.DocumentData
 export type QuerySnapshotDocumentData = firebase.firestore.QueryDocumentSnapshot<firebase.firestore.DocumentData>
 
+export type wealthViewerItem = string | undefined
+export type WealthViewSymbolsType = [wealthViewerItem, wealthViewerItem, wealthViewerItem]
+
 export interface buildSchemaInterface {
   local:  localRegisterSchemaTypes,
   remote: remoteRegisterSchemaTypes,
@@ -67,10 +70,11 @@ interface dashboardContextInterface {
   addRegister: (values: newRegisterValuesInterface) => Promise<boolean>;
   updateRegister: (key: string, newValues: object) => Promise<boolean>;
   deleteRegister(key: string): Promise<boolean>;
+  updateWealthViewer(document: [wealthViewerItem, wealthViewerItem, wealthViewerItem]): Promise<boolean>;
 }
 
 interface userDocumentTypes {
-  wealthViewSymbols?: string[];
+  wealthViewSymbols?: [wealthViewerItem, wealthViewerItem, wealthViewerItem];
   wealthTrackedSymbols?: string[];
   registers?: registerSchemaTypesWithId[];
   trackedStocks?: string[];
@@ -184,12 +188,27 @@ export const DashboardProvider: React.FC = ({children}) => {
   }
   
 
+  async function updateWealthViewer (document: WealthViewSymbolsType ) {
+    try {
+      await userDocumentRef(currentUser!.uid).update({
+        wealthViewSymbols: document
+      })
+      setUserData(prev => ({
+        ...prev,
+        wealthViewSymbols: document
+      }))
+      return true
+    } catch (error) {
+      throw new Error(`Error actualizando las cotizaciones mostradas: ${error}.`)
+    }
+  }
+
   useEffect(() => {
     retrieveDataFromUser()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser])
 
-  const value = { page, setPage, userData, setUserData, addRegister, deleteRegister, updateRegister}
+  const value = { page, setPage, userData, setUserData, addRegister, deleteRegister, updateRegister, updateWealthViewer}
 
   const [tooltipData, setTooltipData] = useState<TooltipsPropsWithIndex>({} as TooltipsPropsWithIndex)
 

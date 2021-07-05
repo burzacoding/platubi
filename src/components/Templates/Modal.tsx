@@ -6,6 +6,7 @@ import { ContainerBackground } from "../../elements/Modals/Modal";
 import AddRegisterModal from "./Modals/Add";
 import DeleteRegisterModal from "./Modals/Delete";
 import ModifyRegisterModal from "./Modals/Modify";
+import WealthViewerModal from "./Modals/WealthViewer";
 
 export interface ModalProps {
   
@@ -43,7 +44,7 @@ const Modal: React.FC<ModalProps> = () => {
       case 'trackedStocks':
         return 
       case 'wealthViewer':
-        return
+        return  <WealthViewerModal ref={openedModalRef} />
       case 'wealthTrackedStocks':
         return
     }
