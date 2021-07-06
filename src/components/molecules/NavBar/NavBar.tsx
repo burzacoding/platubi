@@ -71,7 +71,7 @@ const NavBar:React.FC<NavBarProps> = ({ setTheme, theme }) => {
           {/*THIS IS THE CONTAINER WITH MAX WIDTH 1440PX */}
           {currentUser ? (
           <NavBarDesktopContent logged="true">
-          <LogoNav logged="true" as={Link} to='/'>
+          <LogoNav logged="true" as={Link} to='/' onClick={() => currentUser && setPage(0)}>
             <LogoPlatubi />
           </LogoNav>
           <ButtonsDesktopNav logged="true">

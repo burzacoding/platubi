@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
       <InnerContainer>
         <ItemsContainer>
           <Item to="/faq">FAQ</Item>
-          <Item to="/contacto">Contactenos</Item>
+          <Item to="/contacto">Contáctenos</Item>
           <a href="https://burzacoding.com" target="_blank" rel="noreferrer">Ver portfolio del creador</a>
         </ItemsContainer>
         <SmallLogo />
