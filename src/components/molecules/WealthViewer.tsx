@@ -1,3 +1,4 @@
+import { useModal } from "../../Contexts/ModalContext";
 import {  MainContainer, SmallContainer, MainTitle, Card, Title, Budget, BigCard, BigTitle } from "../../elements/Dashboard/WealthViewer";
 import { useWealthViewSymbols } from "../../Hooks/dashboardLogic/useWealthViewSymbols";
 import GearSVG from "../atoms/SVG/Gear";
@@ -5,10 +6,11 @@ import GearSVG from "../atoms/SVG/Gear";
 
 const WealthViewer: React.FC = () => {
   const data = useWealthViewSymbols()
+  const { openModal } = useModal()
   // const symbols = [['Pesos*', 10000, '$'], ['Dólares', 2500, '$'], ['Bitcoin', 0.045]]
   return (
     <MainContainer>
-      <GearSVG onclick={() => console.log('Clickado el engranaje')} />
+      <GearSVG onclick={() => openModal('wealthViewer')} />
       <MainTitle>Tu saldo estimado:</MainTitle>
       <SmallContainer>
       <BigCard>

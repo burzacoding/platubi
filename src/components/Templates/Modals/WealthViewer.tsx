@@ -1,9 +1,12 @@
 import { Formik } from "formik";
 import { forwardRef } from "react";
+import { useApi } from "../../../Contexts/ApiContext";
 import { useDashboard, WealthViewSymbolsType } from "../../../Contexts/DashboardContext";
 import { useModal } from "../../../Contexts/ModalContext";
 import { Content, Cross, HorizontalBar, ModalContainer, Title } from "../../../elements/Modals/Modal";
+import { checkIsCrypto } from "../../../Utils/Utils";
 import CrossSVG from "../../atoms/SVG/Cross";
+import SelectComponent from "../../molecules/Selects/SelectComponent";
 
 export interface WealthViewerProps {
   
@@ -12,31 +15,50 @@ export interface WealthViewerProps {
 const WealthViewerModal = forwardRef<HTMLDivElement, WealthViewerProps>((props, ref) => {
 
   const { closeModal } = useModal()
-  const { updateWealthViewer } = useDashboard()
+  const { updateWealthViewer, userData } = useDashboard()
+  const { cryptoList, currenciesList } = useApi()
+  
+  const wealthViewSymbols = userData && userData.wealthViewSymbols ? [...userData.wealthViewSymbols, '', ''] : ['', '', '']
+
+  const defaultValues = wealthViewSymbols.map(el => {
+      if (el !== '') {
+        if (checkIsCrypto(el)) {
+          const obj = cryptoList.data.filter(eli => eli.value === el)[0]
+          return obj.symbol
+        } else {
+          const obj = currenciesList.data.filter(eli => eli.symbol === el)[0]
+          return obj.symbol
+        }
+      }
+      return ''
+    })
 
   const initialValues = {
-    slot1: '',
-    slot2: '',
-    slot3: '',
+    slot1: wealthViewSymbols[0],
+    slot2: wealthViewSymbols[1],
+    slot3: wealthViewSymbols[2],
   }
-
- 
 
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={async (values, { setFieldError, setSubmitting }) => {
+      onSubmit={async (values, { setSubmitting }) => {
         setSubmitting(true)
         const schema: WealthViewSymbolsType = [values.slot1, values.slot2, values.slot3]
         const success = await updateWealthViewer(schema)
         if (success) {
           setSubmitting(false)
-          closeModal()
         }
         //MANAGE ERROR HANDLING
       }}
     >
       {formik => {
+
+        const onchange = (value: {label: string;value: string;} | null, slotNumber: number) => {
+          formik.setFieldValue(`slot${slotNumber}`, value?.value)
+          formik.submitForm()
+        }
+
         return (
           <ModalContainer ref={ref}>
           <Cross onClick={() => closeModal()}>
@@ -45,7 +67,22 @@ const WealthViewerModal = forwardRef<HTMLDivElement, WealthViewerProps>((props, 
           <Title>¿En qué divisa queres visualizar tu capital?</Title>
           <HorizontalBar />
           <Content>
-            Hola
+            <SelectComponent placeholder="Slot #1" onChange={value => onchange(value, 1)}
+              defaultInputValue={defaultValues[0]}
+
+              />
+            <br />
+            <SelectComponent placeholder="Slot #2" onChange={value => onchange(value, 2)}
+              defaultInputValue={defaultValues[1]}
+
+              />
+            <br />
+            <SelectComponent placeholder="Slot #3" onChange={value => onchange(value, 3)}
+              defaultInputValue={defaultValues[2]}
+
+              />
+            <br />
+
           </Content>
           </ModalContainer>
         )

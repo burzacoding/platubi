@@ -195,6 +195,8 @@ export const DashboardProvider: React.FC = ({children}) => {
 
   async function updateWealthViewer (document: WealthViewSymbolsType ) {
     try {
+      console.log(document);
+      
       await userDocumentRef(currentUser!.uid).update({
         wealthViewSymbols: document
       })

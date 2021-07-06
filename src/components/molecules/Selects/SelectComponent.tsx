@@ -41,6 +41,7 @@ const SelectComponent: React.FC<NamedProps> = ({...props}) => {
       ...provided,
       color: theme.fontContrastSix,
       backgroundColor: theme.divBackground,
+      opacity: 0.75,
       fontSize: '12px',
       '@media (min-width: 360px)': {
         fontSize: '14px',
@@ -114,6 +115,9 @@ const SelectComponent: React.FC<NamedProps> = ({...props}) => {
       '@media (min-width: 768px)': {
         fontSize: '16px',
       },
+      'input' : {
+        fontFamily: 'Montserrat',
+      }
     }),
   }
 
@@ -125,6 +129,7 @@ const SelectComponent: React.FC<NamedProps> = ({...props}) => {
       maxMenuHeight={240}
       noOptionsMessage={() => 'No se encontró el activo.'}
       placeholder="Buscar activo financiero..."
+      blurInputOnSelect={false}
       {...props}
       />
   );
