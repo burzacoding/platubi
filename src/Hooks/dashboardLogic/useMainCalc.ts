@@ -8,21 +8,23 @@ export const useMainCalc = () => {
   const { cryptoPrices, currenciesPrices, currenciesList } = useApi()
 
   const getObjectFromCryptoID = (id: number) => cryptoPrices.data.filter(el => el.id === id)[0]
-  const getObjectFromCryptoSymbol = (symbol: string) => cryptoPrices.data.filter(el => el.symbol === symbol)[0]
   const getSymbolFromCryptoId = (id: number) => getObjectFromCryptoID(id).symbol
+  const getObjectFromCryptoSymbol = (symbol: string) => cryptoPrices.data.filter(el => el.symbol === symbol)[0]
+
+  
+  const worthsArray: number[] = []
 
   if (userData && userData.registers) {
-    const registers = userData.registers.map(el => el)
+    const registers = userData.registers.filter(el => el.visible === true)
     const symbolsArray: string[] = []
     const namesArray: string[] = []
     const valuesArray: number[] = []
     const pricesArray: number[] = []
-    const worthsArray: number[] = []
     
     if (registers?.length !== 0) {
       for (let register of registers!) {
         // console.log(register.symbol);
-        if (/^\d+$/.test(register.symbol)) {
+        if (register.isCrypto) {
           if (symbolsArray.indexOf(getSymbolFromCryptoId(parseInt(register.symbol))) === -1) {
             symbolsArray.push(getSymbolFromCryptoId(parseInt(register.symbol)))
           }
@@ -37,7 +39,7 @@ export const useMainCalc = () => {
       
       for (let symbolIndx = 0; symbolIndx < symbolsArray.length; symbolIndx++) {
         for (let register of registers) {
-          if (!/^\d+$/.test(register.symbol)) {
+          if (!register.isCrypto) {
             if (symbolsArray[symbolIndx] === register.symbol) {
               valuesArray[symbolIndx] = valuesArray[symbolIndx] ? valuesArray[symbolIndx] +  register.value : 0 + register.value
             }
@@ -92,9 +94,13 @@ export const useMainCalc = () => {
           price: pricesArray[index]
         }
       })
-      console.log('DetailedArray:' ,detailedArray);
+      // console.log('DetailedArray:' ,detailedArray);
       
-      return detailedArray
+      return {detailedArray, totalWorth}
     }
   }
+
+  const totalWorth = 0
+
+  return { totalWorth }
 }

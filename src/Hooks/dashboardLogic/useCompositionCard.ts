@@ -12,7 +12,7 @@ const empty = {
 export const useCompositionCards = () => {
   let arr = [empty, empty, empty, empty]
   
-  const detailedArray = useMainCalc()
+  const { detailedArray } = useMainCalc()
 
     if (detailedArray) {
       const sortedDetailedArray = [...detailedArray].sort((a, b) => b.percentage - a.percentage)

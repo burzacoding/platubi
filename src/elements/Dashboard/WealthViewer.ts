@@ -48,7 +48,15 @@ const Card = styled.div`
   transition: background-color 0.25s;
   border-radius: 8px;
   width: 100%;
+  font-size: 16px;
+  @media screen and (min-width: 360px) {
+    font-size: 18px;
+  }
   @media screen and (min-width: 768px) {
+    font-size: 20px;
+  }
+  @media screen and (min-width: 1366px) {
+    font-size: 22px;
   }
 `
 const BigCard = styled(Card)`
@@ -60,13 +68,14 @@ const Title = styled.h3`
   background-clip: text;
   -webkit-background-clip: text;
   margin-bottom: 8px;
-  font-size: 1.1em;
+  font-size: 0.75em;
   font-weight: 500;
-  @media screen and (min-width: 1366px) {
-    font-size: 1em;
-    height: 36px;
-  }
+  font-size: 1em;
 `
+const BigTitle = styled(Title)`
+  font-size: 1.1em;
+`
+
 const Budget = styled.p`
   position: relative;
   font-family: 'Mandali', sans-serif;
@@ -86,5 +95,6 @@ export {
   BigCard,
   SmallContainer,
   Title,
+  BigTitle,
   Budget,
 }

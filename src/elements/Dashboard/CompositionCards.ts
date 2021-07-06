@@ -51,16 +51,23 @@ const Numbers = styled.span`
   font-size: 20px;
   line-height: 24px;
   text-align: right;
+  padding-right: 8px;
+  &:last-child {
+    padding-right: 0;
+  }
 `
 const SymbolsName = styled(Symbol)`
   padding-left: 12px;
   display: none;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
   text-align: left;
   @media screen and (min-width: 1366px) {
    display: block;
    width: 100%;
+  };
+  @media screen and (min-width: 1480px) {
+    font-size: 16px;
   };
 `
 

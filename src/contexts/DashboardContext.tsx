@@ -14,7 +14,7 @@ import { TooltipsPropsWithIndex } from "../components/molecules/Donut";
 export type DocumentData = firebase.firestore.DocumentData
 export type QuerySnapshotDocumentData = firebase.firestore.QueryDocumentSnapshot<firebase.firestore.DocumentData>
 
-export type wealthViewerItem = string | undefined
+export type wealthViewerItem = string
 export type WealthViewSymbolsType = [wealthViewerItem, wealthViewerItem, wealthViewerItem]
 
 export interface buildSchemaInterface {
@@ -28,6 +28,7 @@ export interface registerSchemaTypes {
   createdAt: firebase.firestore.Timestamp;
   favorite: boolean;
   visible: boolean;
+  isCrypto: boolean;
 };
 export interface registerSchemaTypesWithId {
   operation: string;
@@ -37,6 +38,7 @@ export interface registerSchemaTypesWithId {
   favorite: boolean;
   visible: boolean;
   key: string
+  isCrypto: boolean;
 };
 export interface localRegisterSchemaTypes {
   operation: string;
@@ -45,6 +47,7 @@ export interface localRegisterSchemaTypes {
   createdAt: string;
   favorite: boolean;
   visible: boolean;
+  isCrypto: boolean;
 };
 export interface remoteRegisterSchemaTypes {
   operation: string;
@@ -53,6 +56,7 @@ export interface remoteRegisterSchemaTypes {
   createdAt: firebase.firestore.FieldValue;
   favorite: boolean;
   visible: boolean;
+  isCrypto: boolean;
 };
 export interface receivedRemoteRegisterSchemaTypes {
   operation: string;
@@ -61,6 +65,7 @@ export interface receivedRemoteRegisterSchemaTypes {
   createdAt: firebase.firestore.Timestamp;
   favorite: boolean;
   visible: boolean;
+  isCrypto: boolean;
 };
 interface dashboardContextInterface {
   page: number;

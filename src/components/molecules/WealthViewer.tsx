@@ -1,32 +1,31 @@
-import {  MainContainer, SmallContainer, MainTitle, Card, Title, Budget, BigCard } from "../../elements/Dashboard/WealthViewer";
+import {  MainContainer, SmallContainer, MainTitle, Card, Title, Budget, BigCard, BigTitle } from "../../elements/Dashboard/WealthViewer";
+import { useWealthViewSymbols } from "../../Hooks/dashboardLogic/useWealthViewSymbols";
 import GearSVG from "../atoms/SVG/Gear";
 
-interface WealthViewerProps {
-    symbols?: string[]
-  }
 
-  const WealthViewer: React.FC<WealthViewerProps> = () => {
-    const symbols = [['Pesos*', 10000, '$'], ['Dólares', 2500, '$'], ['Bitcoin', 0.045]]
-    return (
-      <MainContainer>
-          <GearSVG />
-        <MainTitle>Tu saldo estimado:</MainTitle>
-        <SmallContainer>
-        <BigCard>
-          <Title>{symbols[0][0]}</Title>
-          <Budget>{symbols[0][2]}{symbols[0][1]}</Budget>
-        </BigCard>
-          <Card>
-            <Title>{symbols[1][0]}</Title>
-            <Budget>{symbols[1][2]}{symbols[1][1]}</Budget>
-          </Card>
-          <Card>
-            <Title>{symbols[2][0]}</Title>
-            <Budget>{symbols[2][2]}{symbols[2][1]}</Budget>
-          </Card>
-        </SmallContainer>
-     </MainContainer>
-    )
-  }
+const WealthViewer: React.FC = () => {
+  const data = useWealthViewSymbols()
+  // const symbols = [['Pesos*', 10000, '$'], ['Dólares', 2500, '$'], ['Bitcoin', 0.045]]
+  return (
+    <MainContainer>
+      <GearSVG onclick={() => console.log('Clickado el engranaje')} />
+      <MainTitle>Tu saldo estimado:</MainTitle>
+      <SmallContainer>
+      <BigCard>
+        <BigTitle>{data[0][0]}</BigTitle>
+        <Budget>{data[0][2]}{data[0][1]}</Budget>
+      </BigCard>
+        <Card>
+        <Title>{data[1][0]}</Title>
+        <Budget>{data[1][2]}{data[1][1]}</Budget>
+        </Card>
+        <Card>
+        <Title>{data[2][0]}</Title>
+        <Budget>{data[2][2]}{data[2][1]}</Budget>
+        </Card>
+      </SmallContainer>
+    </MainContainer>
+  )
+}
 
 export default WealthViewer;

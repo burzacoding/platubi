@@ -34,6 +34,8 @@ export const mapRegistersWithId = (element: QuerySnapshotDocumentData): register
   }
 }
 
+export const checkIsCrypto = (probablyNumericValue: string) => /^\d+$/.test(probablyNumericValue)
+
 function getFormattedDateFromMill (miliseconds: number) {
   const date = new Date(miliseconds)
   const day = date.getDate()
@@ -52,6 +54,7 @@ export const buildRegisterSchema = ({operation, symbol, value}: newRegisterValue
     createdAt: getFormattedDateFromMill(new Date().getTime()),
     favorite: false,
     visible: true,
+    isCrypto: checkIsCrypto(symbol)
   },
   remote: {
     operation,
@@ -60,6 +63,7 @@ export const buildRegisterSchema = ({operation, symbol, value}: newRegisterValue
     createdAt: FirebaseTimeStamp,
     favorite: false,
     visible: true,
+    isCrypto: checkIsCrypto(symbol)
   },
 })
 
@@ -74,3 +78,4 @@ export const arrayPopulateWithEmpties = (array: JSX.Element[], quantity: number)
 
 
 export type stateSetter<T> = React.Dispatch<React.SetStateAction<T>>
+

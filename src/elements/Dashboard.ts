@@ -44,7 +44,7 @@ const Frame = styled.div<FrameProps>`
   @media screen and (min-width: 1366px) {
     padding: 36px;
     padding-top: 126px;
-    grid-template-rows: ${p => isTrue(p.withAds) ? '274px 72px auto' : '274px auto'} ;
+    grid-template-rows: ${p => isTrue(p.withAds) ? '256px 72px auto' : '256px auto'} ;
     grid-template-columns: 7fr 9fr 3fr;
     grid-template-areas: 'wv wts ts' 'registers registers ts';
   }
