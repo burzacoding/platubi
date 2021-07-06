@@ -2,6 +2,7 @@ import React from 'react';
 import Select, { GroupTypeBase, Styles, NamedProps } from 'react-select'
 import  { useTheme } from "styled-components";
 import { useApi } from '../../../Contexts/ApiContext';
+import { CurrenciesOptions } from '../../../Utils/LabelsAndOptions';
 import { ThemeColorPicker } from "../../../Utils/Utils";
 
 export interface SelectComponentProps {
@@ -25,24 +26,8 @@ const SelectComponent: React.FC<NamedProps> = ({...props}) => {
   //const { apiOptions } = useApi()
 
   const theme = useTheme()
-  const {cryptoList, currenciesList } = useApi()
+  const { options } = useApi()
 
-  const options = [
-    {
-        label: 'Divisas',
-        options: currenciesList.data.map(el => ({
-          value: el.symbol,
-          label: `${el.symbol} - ${el.name}`
-        }))
-    },
-    {
-        label: 'Criptomonedas',
-        options: cryptoList.data.map(el => ({
-          value: el.value,
-          label: `${el.symbol} - ${el.name}`
-        }))
-    }
-  ]
 
   const selectStyles: selectStylesProp = {
     groupHeading: (provided, stats) => ({
@@ -132,9 +117,10 @@ const SelectComponent: React.FC<NamedProps> = ({...props}) => {
     }),
   }
 
+
   return (
     <Select
-      options={options}
+      options={options ? options : CurrenciesOptions}
       styles={selectStyles}
       maxMenuHeight={240}
       noOptionsMessage={() => 'No se encontró el activo.'}

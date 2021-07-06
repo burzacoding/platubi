@@ -12,6 +12,13 @@ export interface ApiContextInterface {
   cryptoList: cryptoOptionsInterface;
   currenciesPrices: CurrenciesPricesInterface;
   currenciesList: currenciesOptionsInterface;
+  options: false | {
+    label: string;
+    options: {
+        value: string;
+        label: string;
+    }[];
+}[];
 }
 
 export interface currenciesOptionsInterface {
@@ -87,6 +94,23 @@ export const ApiProvider: React.FC = ({children}) => {
   const allTrue = () => {
     return cryptoPrices.data !== undefined && cryptoList.data !== undefined && currenciesPrices.data !== undefined && currenciesList.data !== undefined
   }
+
+  const options = allTrue() && [
+    {
+        label: 'Divisas',
+        options: currenciesList.data.map(el => ({
+          value: el.symbol,
+          label: `${el.symbol} - ${el.name}`
+        }))
+    },
+    {
+        label: 'Criptomonedas',
+        options: cryptoList.data.map(el => ({
+          value: el.value,
+          label: `${el.symbol} - ${el.name}`
+        }))
+    }
+  ]
   
   useEffect(() => {
     const unsuscribeCryptoPrices = db.collection('api').doc('crypto').onSnapshot((doc) => {
@@ -115,7 +139,7 @@ export const ApiProvider: React.FC = ({children}) => {
   }, [])
 
 
-  const values = {cryptoPrices, cryptoList, currenciesPrices, currenciesList}
+  const values = {cryptoPrices, cryptoList, currenciesPrices, currenciesList, options}
 
   return (
     <ApiContext.Provider value={values}>

@@ -12,7 +12,7 @@ const Container = styled.div`
     max-height: 386px;
   };
   @media screen and (min-width: 1024px) {
-    max-height: 960px;
+    max-height: 580px;
   };
   @media screen and (min-width: 1366px) {
     max-height: 475px;
