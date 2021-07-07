@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useApi } from "../../Contexts/ApiContext";
 import { registerSchemaTypesWithId, useDashboard } from "../../Contexts/DashboardContext";
 import { useModal } from "../../Contexts/ModalContext";
-import { FieldContainer, InnerContainer, SVGContainer, PencilContainer, ButtonsContainer, TextContainer, Text, DateText, NameText, CrossContainer } from "../../elements/Dashboard/RegisterField";
+import { FieldContainer, InnerContainer, SVGContainer, OpContainer, PencilContainer, ButtonsContainer, TextContainer, Text, DateText, NameText, CrossContainer } from "../../elements/Dashboard/RegisterField";
 import CrossSVG from "../atoms/SVG/Cross";
 import EditPencil from "../atoms/SVG/EditPencilSVG";
 import EyeSVG from "../atoms/SVG/EyeSVG";
@@ -19,6 +19,7 @@ const RegisterField: React.FC<RegisterFieldProps> = ({obj}) => {
   const [isFavorite, setIsFavorite] = useState(false)
   const { openModal } = useModal()
   const { userData, setUserData } = useDashboard()
+  const staged = userData && userData.registers ? userData.registers : false
 
   const { cryptoList, currenciesList } = useApi()
 
@@ -34,36 +35,40 @@ const RegisterField: React.FC<RegisterFieldProps> = ({obj}) => {
 
   const toggleOpen = () => {
     setIsOpen(!isOpen)
-    const index = userData!.registers!.indexOf(obj)
-    const stagedRegisters = [...userData!.registers!]
-    stagedRegisters[index] = {
-      ...stagedRegisters[index],
-      visible: !isOpen
+    if (staged) {
+      const index = staged.indexOf(obj)
+      const stagedRegisters = [...staged]
+      stagedRegisters[index] = {
+        ...stagedRegisters[index],
+        visible: !isOpen
+      }
+      setUserData(prev => ({
+        ...prev,
+        registers: stagedRegisters
+      }))
     }
-    setUserData(prev => ({
-      ...prev,
-      registers: stagedRegisters
-    }))
   }
   const toggleFavorite = () => {
     setIsFavorite(prev => !prev)
-    const index = userData!.registers!.indexOf(obj)
-    const stagedRegisters = [...userData!.registers!]
-    stagedRegisters[index] = {
-      ...stagedRegisters[index],
-      favorite: !isFavorite
+    if (staged) {
+      const index = staged.indexOf(obj)
+      const stagedRegisters = [...staged]
+      stagedRegisters[index] = {
+        ...stagedRegisters[index],
+        favorite: !isFavorite
+      }
+      setUserData(prev => ({
+        ...prev,
+        registers: stagedRegisters
+      }))
     }
-    setUserData(prev => ({
-      ...prev,
-      registers: stagedRegisters
-    }))
   }
   return (
     <FieldContainer>
       <InnerContainer>
-        <SVGContainer>
+        <OpContainer>
           <OperationSymbol operation={operation} />
-        </SVGContainer>
+        </OpContainer>
         <TextContainer>
           <Text>{letterSymbol().symbol}</Text>
           <NameText>{letterSymbol().name}</NameText>

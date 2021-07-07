@@ -59,6 +59,10 @@ const SVGContainer = styled.div<SVGContainerProps>`
   };
 `
 
+const OpContainer = styled(SVGContainer)`
+  cursor: auto;
+`
+
 const PencilContainer = styled(SVGContainer)`
   svg {
     fill: ${p => p.theme.fontContrastFive};
@@ -125,4 +129,4 @@ const DateText = styled.span`
 `
 
 
-export {FieldContainer, InnerContainer, SVGContainer, CrossContainer, PencilContainer, ButtonsContainer, TextContainer, Text, NameText, DateText}
+export {FieldContainer, InnerContainer, SVGContainer, OpContainer, CrossContainer, PencilContainer, ButtonsContainer, TextContainer, Text, NameText, DateText}

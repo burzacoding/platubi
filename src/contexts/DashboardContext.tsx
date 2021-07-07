@@ -197,7 +197,8 @@ export const DashboardProvider: React.FC = ({children}) => {
     try {
       console.log(document);
       
-      await userDocumentRef(currentUser!.uid).update({
+      await userDocumentRef(currentUser!.uid).set({
+        ...userData,
         wealthViewSymbols: document
       })
       setUserData(prev => ({
@@ -212,6 +213,9 @@ export const DashboardProvider: React.FC = ({children}) => {
 
   useEffect(() => {
     retrieveDataFromUser()
+    if (!currentUser) {
+      setUserData(undefined)
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser])
 
