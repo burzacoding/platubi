@@ -1,8 +1,10 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import * as dotenv from "dotenv"
+import * as nodemailer from "nodemailer"
 import axios from "axios"
 import { firestore } from "firebase-admin";
+
 
 dotenv.config({
   path: "./production.env"
@@ -28,6 +30,11 @@ interface cryptoApiInterface {
   }
 }
 
+interface mailData {
+  author: string,
+  email: string,
+  message: string
+}
 
 admin.initializeApp();
 
@@ -126,4 +133,36 @@ export const updateCurrencies = functions.pubsub.schedule("0 0 * * *").onRun(asy
   } catch (err) {
   console.log("Error:", err);
   }
+})
+
+export const sendMail = functions.firestore.document("/mail/{document}").onCreate(async (snapshot) => {
+  const data = snapshot.data() as mailData
+  const transporter = nodemailer.createTransport({
+    host: "smtpout.secureserver.net",
+    port: 465,
+    secure: true, // true for 465, false for other ports
+    auth: {
+      user: `${functions.config().mail.user}`,
+      pass: `${functions.config().mail.password}`,
+    },
+  });
+
+  // send mail with defined transport object
+  transporter.sendMail({
+    from: `${data.author} <${data.email}>`, // sender address
+    to: `${functions.config().mail.user}`, // list of receivers
+    subject: "Contacto - Platubi", // Subject line
+    text: data.message, // plain text body
+    html: `<p>${data.message}</p>`, // html body
+  })
+  .then(res => console.log("Sender:",res.envelope.from))
+  .catch(reason => {
+    transporter.sendMail({
+      from: `${functions.config().mail.user}`, // sender address
+      to: `${functions.config().mail.user}`, // list of receivers
+      subject: "Error contacto - Platubi", // Subject line
+      text: `${reason} \n Original message: ${data.author} <${data.email}> ${data.message}`, // plain text body
+      html: `<p>${reason} \n Original message: ${data.author} <${data.email}> ${data.message}</p>`, // html body
+    })
+  })
 })

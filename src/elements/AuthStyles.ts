@@ -184,6 +184,7 @@ const ButtonSubmit = styled.button`
   height: 42px;
   border-radius: 0.5em;
   border: none;
+  cursor: pointer;
 
   text-decoration: none;
   text-align: center;

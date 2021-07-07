@@ -8,6 +8,7 @@ import BackArrow from "../atoms/SVG/BackArrow";
 import AuthFrame from "./Auth/AuthFrame"
 import Footer from "../molecules/Footer";
 import { AuthContainer as Container, Title} from "./Auth/Styles"
+import { db } from "../../firebase/Firebase";
 
 const ContactoPage: React.FC = () => {
   const color = {
@@ -21,7 +22,15 @@ const ContactoPage: React.FC = () => {
         <Title>Contactanos!</Title>
         <Formik
           initialValues={contactInitialValues}
-          onSubmit={(values) => console.log(values)}
+          onSubmit={(values, { setSubmitting, resetForm }) => {
+            setSubmitting(true)
+            db.collection('mail').add(values)
+            .then(() => {
+              setSubmitting(false)
+              resetForm()
+            })
+            .catch(err => console.log(err))
+          }}
           validationSchema={contactValidationSchema}
           validateOnMount
         >
@@ -29,9 +38,9 @@ const ContactoPage: React.FC = () => {
             <Form>
               <ContainerInput>
                 <Label>Nombre completo</Label>
-                <NameField border={selectBorders(formik, 'name')}>
-                  <Input type='text' name='name' id='name' placeholder='Introduce tu nombre completo.' />
-                  <Error><ErrorMessage name='name'/></Error>
+                <NameField border={selectBorders(formik, 'author')}>
+                  <Input type='text' name='author' id='author' placeholder='Introduce tu nombre completo.' />
+                  <Error><ErrorMessage name='author'/></Error>
                 </NameField>
               </ContainerInput>
               <ContainerInput>
