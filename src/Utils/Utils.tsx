@@ -79,3 +79,17 @@ export const arrayPopulateWithEmpties = (array: JSX.Element[], quantity: number)
 
 export type stateSetter<T> = React.Dispatch<React.SetStateAction<T>>
 
+export const fixDecimals = (number: number) => {
+  const asWord = number.toString()
+  if (asWord.indexOf('.') !== -1) {
+    const decimals = asWord.split('.')
+    if (decimals[1].length > 8) {
+      const fixedDecimals = decimals[1].slice(0, 8)
+      decimals[1] = fixedDecimals
+      return parseFloat(decimals.join('.'))
+    } else {
+      return number
+    }
+  }
+  return number
+}

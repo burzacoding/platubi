@@ -77,8 +77,6 @@ const ModifyRegisterModal = forwardRef<HTMLDivElement, ModifyRegisterModalProps>
     onSubmit={async (values, { setSubmitting, setFieldError }) => {
       try {
         setSubmitting(true)
-        console.log('Values:' ,typeof values.value);
-        
         const schema = {
           operation: values.operation,
           symbol: values.symbol,
