@@ -77,6 +77,8 @@ const ModifyRegisterModal = forwardRef<HTMLDivElement, ModifyRegisterModalProps>
     onSubmit={async (values, { setSubmitting, setFieldError }) => {
       try {
         setSubmitting(true)
+        console.log('Values:' ,typeof values.value);
+        
         const schema = {
           operation: values.operation,
           symbol: values.symbol,
@@ -88,7 +90,7 @@ const ModifyRegisterModal = forwardRef<HTMLDivElement, ModifyRegisterModalProps>
           const prevRegisterIndex = stagedRegisters.indexOf(regSchema)
           stagedRegisters[prevRegisterIndex] = {
             ...stagedRegisters[prevRegisterIndex],
-            ...values
+            ...schema
           }
           // console.log(`
           // Documento: ${JSON.stringify(userData.registers[prevRegisterIndex], null, 2)}
