@@ -158,11 +158,11 @@ export const sendMail = functions.firestore.document("/mail/{document}").onCreat
   .then(res => console.log("Sender:",res.envelope.from))
   .catch(reason => {
     transporter.sendMail({
-      from: `${functions.config().mail.user}`, // sender address
+      from: `PlatuBOT Platubi <${functions.config().mail.user}>`, // sender address
       to: `${functions.config().mail.user}`, // list of receivers
-      subject: "Error contacto - Platubi", // Subject line
-      text: `${reason} \n Original message: ${data.author} <${data.email}> ${data.message}`, // plain text body
-      html: `<p>${reason} \n Original message: ${data.author} <${data.email}> ${data.message}</p>`, // html body
+      subject: "ERROR DE CONTACTO - Platubi", // Subject line
+      text: `${data.author} <${data.email}> ${reason} \n Original message:  ${data.message}`, // plain text body
+      html: `<p><b style="color: red">Razón del error:</b>${reason}</p> <b>Original message:</b> <i>${data.author}</i> <br /> <${data.email}> <br/> ${data.message}.`, // html body
     })
   })
 })
