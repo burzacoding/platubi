@@ -39,6 +39,7 @@ export const useMainCalc = () => {
       
       for (let symbolIndx = 0; symbolIndx < symbolsArray.length; symbolIndx++) {
         for (let register of registers) {
+          // console.log(typeof register.value, register.value);
           if (!register.isCrypto) {
             if (symbolsArray[symbolIndx] === register.symbol) {
               valuesArray[symbolIndx] = valuesArray[symbolIndx] ? valuesArray[symbolIndx] +  register.value : 0 + register.value

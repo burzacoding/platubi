@@ -260,6 +260,23 @@ const ErrorCheckbox = styled(Error)`
   };
 `
 
+const SentStatusResolved = styled.div`
+  width: 100%;
+  height: 42px;
+  border-radius: 8px;
+  border: 1px solid #096635;
+  color: #096635;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const SentStatusRejected = styled(SentStatusResolved)`
+  border: 1px solid #1C4B73;
+  color: #1C4B73;
+`
+
 export { 
   Container,
   Label,
@@ -279,4 +296,6 @@ export {
   CheckboxText,
   ErrorCheckbox,
   MessageContainer,
+  SentStatusResolved,
+  SentStatusRejected,
   TyC}

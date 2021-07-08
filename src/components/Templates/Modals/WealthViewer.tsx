@@ -19,7 +19,8 @@ const WealthViewerModal = forwardRef<HTMLDivElement, WealthViewerProps>((props, 
   const { cryptoList, currenciesList } = useApi()
   
   const wealthViewSymbols = userData && userData.wealthViewSymbols ? [...userData.wealthViewSymbols, '', ''] : ['', '', '']
-
+  console.log();
+  
   const defaultValues = wealthViewSymbols.map(el => {
       if (el !== '') {
         if (checkIsCrypto(el)) {
