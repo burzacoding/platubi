@@ -22,7 +22,7 @@ export interface buildSchemaInterface {
   remote: remoteRegisterSchemaTypes,
 }
 export interface registerSchemaTypes {
-  operation: string;
+  operation: 'add' | 'remove' | 'exchange';
   symbol: string;
   value: number;
   createdAt: firebase.firestore.Timestamp;
@@ -31,7 +31,7 @@ export interface registerSchemaTypes {
   isCrypto: boolean;
 };
 export interface registerSchemaTypesWithId {
-  operation: string;
+  operation: 'add' | 'remove' | 'exchange';
   symbol: string;
   value: number;
   createdAt: string;
@@ -41,7 +41,7 @@ export interface registerSchemaTypesWithId {
   isCrypto: boolean;
 };
 export interface localRegisterSchemaTypes {
-  operation: string;
+  operation: 'add' | 'remove' | 'exchange';
   symbol: string;
   value: number;
   createdAt: string;
@@ -50,7 +50,7 @@ export interface localRegisterSchemaTypes {
   isCrypto: boolean;
 };
 export interface remoteRegisterSchemaTypes {
-  operation: string;
+  operation: 'add' | 'remove' | 'exchange';
   symbol: string;
   value: number;
   createdAt: firebase.firestore.FieldValue;
@@ -59,7 +59,7 @@ export interface remoteRegisterSchemaTypes {
   isCrypto: boolean;
 };
 export interface receivedRemoteRegisterSchemaTypes {
-  operation: string;
+  operation: 'add' | 'remove' | 'exchange';
   symbol: string;
   value: number;
   createdAt: firebase.firestore.Timestamp;
@@ -87,7 +87,7 @@ interface userDocumentTypes {
 } 
 
 export interface newRegisterValuesInterface {
-  operation: string,
+  operation: 'add' | 'remove' | 'exchange',
   symbol: string,
   value: number
 }

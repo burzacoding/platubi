@@ -12,7 +12,7 @@ import OpExchange from "../../atoms/SVG/Modals/OpExchange";
 import SelectComponent from "../../molecules/Selects/SelectComponent";
 
 interface FormikFinalValues {
-  operation: string,
+  operation: 'add' | 'remove' | 'exchange',
   symbol: string,
   value: number
 }

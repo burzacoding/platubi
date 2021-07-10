@@ -38,8 +38,7 @@ export const useMainCalc = () => {
     
     
     if (userData && userData.registers) {
-      const registers = userData.registers.filter(el => el.visible === true)
-      
+      const registers = userData.registers.filter(el => el.visible === true && (el.operation === 'add' || el.operation === 'exchange'))
       
       if (userData.registers.length !== 0) {
         for (let register of registers!) {
