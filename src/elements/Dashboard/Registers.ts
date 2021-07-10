@@ -13,6 +13,9 @@ const Container = styled.div`
   };
   @media screen and (min-width: 1024px) {
     max-height: calc(100vh - 470px);
+    min-height: 220px;
+  };
+  @media screen and (min-width: 1366px) {
     min-height: 424px;
   };
 `
