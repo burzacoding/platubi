@@ -27,6 +27,7 @@ export const ButtonBack = styled.div<ButtonProps>`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 `
 
 export const Message = styled.div`

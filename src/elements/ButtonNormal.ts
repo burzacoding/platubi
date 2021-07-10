@@ -14,6 +14,7 @@ const ButtonContainer = styled.div<ButtonContainerProps>`
   align-items: center;
   background: ${p => p.theme.colorBackground};
   -webkit-tap-highlight-color: rgba(0,0,0,0);
+  cursor: pointer;
 
   width: 100%;
   height: 42px;
