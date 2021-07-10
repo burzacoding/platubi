@@ -1,4 +1,5 @@
 import { Container } from '../../elements/Dashboard/TrackedStocks'
+import { useTrackedStocks } from '../../Hooks/dashboardLogic/useTrackedStocks';
 import TrackedStocksCard from '../molecules/TrackedStocksCard';
 
 
@@ -10,17 +11,17 @@ export interface TrackedStocksProps {
  
 const TrackedStocks: React.FC<TrackedStocksProps> = ({trackedStocks}) => {
 
-  // const data = useTrackedStocks()
+  const data = useTrackedStocks()
 
   return (
     <Container>
       {/* <TrackedStocksCard /> */}
-      <TrackedStocksCard trackedStock={{symbol: 'Dólar BLUE', change: 20, symbolAndValue: 'ARS 165' }} />
-      <TrackedStocksCard trackedStock={{symbol: 'Dogecoin', change: -5, symbolAndValue: 'USD 0.3323' }} />
-      <TrackedStocksCard trackedStock={{symbol: 'Bitcoin', change: 2.25, symbolAndValue: 'USD 38544' }} />
-      <TrackedStocksCard trackedStock={{symbol: 'Dólar BLUE', change: 20, symbolAndValue: 'ARS 165' }} />
-      <TrackedStocksCard trackedStock={{symbol: 'Dogecoin', change: -5, symbolAndValue: 'USD 0.3323' }} />
-      <TrackedStocksCard trackedStock={{symbol: 'Bitcoin', change: 2.25, symbolAndValue: 'USD 38544' }} />
+      <TrackedStocksCard trackedStock={data[0]} />
+      <TrackedStocksCard trackedStock={data[1]} />
+      <TrackedStocksCard trackedStock={data[2]} />
+      <TrackedStocksCard trackedStock={data[3]} />
+      <TrackedStocksCard trackedStock={data[4]} />
+      <TrackedStocksCard trackedStock={data[5]} />
     </Container>
   );
 }

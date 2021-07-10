@@ -181,7 +181,14 @@ export const DashboardProvider: React.FC = ({children}) => {
   async function retrieveDataFromUser () {
     try {
       if (!userData && currentUser) {
-        const userDocument = await userDocumentRef(currentUser.uid).get()
+        let userDocument = await userDocumentRef(currentUser.uid).get()
+        if (!userDocument.data()) {
+          await userDocumentRef(currentUser.uid).set({
+            wealthViewSymbols: ['', '', ''],
+            trackedStocks: ['74', '1', 'ARSBL', '', '' ,'']
+          })
+          userDocument = await userDocumentRef(currentUser.uid).get()
+        }
         const registersCollection = await registersCollectionRef(currentUser.uid).orderBy('createdAt', 'desc').get()
         
         const formattedRegisters = registersCollection.docs.map(element => mapRegistersWithId(element))

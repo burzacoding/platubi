@@ -97,25 +97,23 @@ export const useMainCalc = () => {
           }
         })
         // console.log('User actives:', userActives);
-        // console.log('WorthsArray: ', worthsArray, '\n Total worth: ', totalWorth);
-        setTotalWorth(worthsArray.reduce((a, b) => a + b, 0))
+        setTotalWorth(prev => {
+          setDetailedArray(symbolsArray.map((el, index) => {
+            return {
+              symbol: symbolsArray[index],
+              value: valuesArray[index],
+              valueUSD: worthsArray[index],
+              name: namesArray[index],
+              percentage: Math.round((worthsArray[index] / worthsArray.reduce((a, b) => a + b, 0)) * 100),
+              price: pricesArray[index]
+            }
+          }))
+          return worthsArray.reduce((a, b) => a + b, 0)})
         // console.log(+totalWorth.toFixed(2));
-        setDetailedArray(symbolsArray.map((el, index) => {
-          return {
-            symbol: symbolsArray[index],
-            value: valuesArray[index],
-            valueUSD: worthsArray[index],
-            name: namesArray[index],
-            percentage: Math.round((worthsArray[index] / totalWorth) * 100),
-            price: pricesArray[index]
-          }
-        }))
       }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userData, cryptoPrices.data, currenciesPrices.data])
-
-  // console.log('WorthsArray: ', worthsArray, '\n Total worth: ', totalWorth);
 
   return { detailedArray, totalWorth }
 }

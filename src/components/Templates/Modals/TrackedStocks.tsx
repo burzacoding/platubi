@@ -60,7 +60,6 @@ const TrackedStocksModal = forwardRef<HTMLDivElement, WealthViewerProps>((props,
         setSubmitting(true)
         const schema = [values.slot1, values.slot2, values.slot3, values.slot4, values.slot5, values.slot6]
         const success = await updateTrackedStocks(schema)
-        console.log('submitting. Values:', schema);
         // const success = true
         if (success) {
           setSubmitting(false)

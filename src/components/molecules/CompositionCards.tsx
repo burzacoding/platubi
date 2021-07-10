@@ -10,6 +10,7 @@ const Colors = ['#3480C1', '#0E4777', '#03A63C', '#006523']
 const CompositionCharts: React.FC<CompositionChartsProps> = () => {
 
   const [first, second, third, fourth] = useCompositionCards()
+  
 
   return (
     <Container>

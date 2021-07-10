@@ -118,17 +118,17 @@ export const ApiProvider: React.FC = ({children}) => {
       cryptoPricesSet(data)
       // console.log(`PRECIOS ACTUALIZADOS. \n Nueva fecha: ${data.status.lastUpdated.toDate()}`);
     })
-    db.collection('api').doc('cryptoAux').get()
-    .then(res => {
-      cryptoListSet(res.data() as cryptoOptionsInterface)
-    })
     const unsuscribeCurrenciesPrices = db.collection('api').doc('currencies').onSnapshot((doc) => {
       const data = doc.data() as CurrenciesPricesInterface
       currenciesPricesSet(data)
     })
-    db.collection('api').doc('currenciesAux').get()
+    db.collection('api').doc('cryptoAux').get()
     .then(res => {
-      currenciesListSet(res.data() as currenciesOptionsInterface)
+      db.collection('api').doc('currenciesAux').get()
+      .then(resun => {
+        currenciesListSet(resun.data() as currenciesOptionsInterface)
+      })
+      cryptoListSet(res.data() as cryptoOptionsInterface)
     })
 
     return () => {
