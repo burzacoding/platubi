@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { createContext } from "react";
 import { useState } from "react";
 import firebase from 'firebase/app'
-import { db, registersCollectionRef, userDocumentRef } from "../firebase/Firebase";
+import { db, FirebaseTimeStamp, registersCollectionRef, userDocumentRef } from "../firebase/Firebase";
 import { useEffect } from "react";
 import { useAuth } from "./AuthContext";
 import { buildRegisterSchema, mapRegistersWithId, stateSetter } from "../Utils/Utils";
@@ -182,15 +182,34 @@ export const DashboardProvider: React.FC = ({children}) => {
     try {
       if (!userData && currentUser) {
         let userDocument = await userDocumentRef(currentUser.uid).get()
+        let registersCollection = await registersCollectionRef(currentUser.uid).orderBy('createdAt', 'desc').get()
         if (!userDocument.data()) {
           await userDocumentRef(currentUser.uid).set({
-            wealthViewSymbols: ['', '', ''],
+            wealthViewSymbols: ['ARSBL', 'USD', '74 '],
             trackedStocks: ['74', '1', 'ARSBL', '', '' ,'']
           })
+          await Promise.all([
+            registersCollectionRef(currentUser.uid).add({
+                operation: 'add',
+                symbol: 'ARSBL',
+                value: 1000,
+                createdAt: FirebaseTimeStamp,
+                favorite: false,
+                visible: true,
+                isCrypto: false,
+            }),
+            registersCollectionRef(currentUser.uid).add({
+              operation: 'add',
+              symbol: 'USD',
+              value: 20,
+              createdAt: FirebaseTimeStamp,
+              favorite: true,
+              visible: true,
+              isCrypto: false,
+            })])
           userDocument = await userDocumentRef(currentUser.uid).get()
+          registersCollection = await registersCollectionRef(currentUser.uid).orderBy('createdAt', 'desc').get()
         }
-        const registersCollection = await registersCollectionRef(currentUser.uid).orderBy('createdAt', 'desc').get()
-        
         const formattedRegisters = registersCollection.docs.map(element => mapRegistersWithId(element))
         setUserData({...userDocument.data(), registers: formattedRegisters})
       }
