@@ -154,6 +154,7 @@ text-decoration: none;
 `
 
 const Ingresar = styled.button`
+  cursor: pointer;
   background: ${p => p.theme.colorBackground};
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   border: none;

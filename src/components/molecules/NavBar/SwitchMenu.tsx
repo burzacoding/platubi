@@ -17,6 +17,7 @@ interface MenuProps {
 }
 
 const MenuSvg = styled.svg<MenuProps>`
+  cursor: pointer;
   @media screen and (min-width: 768px) and (max-width:1024px) {
   transform: scale(1.1625);
   margin-left: 36px;
@@ -33,7 +34,6 @@ const SwitchMenu = forwardRef<SVGSVGElement, SwitchMenuProps>(({open, setToggle,
     setToggle(t => !t)
   }
   return (
-    <div className="">
         <MenuSvg logged={logged} width="32" height="24" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg" onClick={toggleMenuFunc} id="mysvg" ref={ref}>
         <g id="hamb">
           <path id="hambBottom" fillRule="evenodd" clipRule="evenodd" d="M0 22.1538C0 23.1734 0.752162 24 1.68 24H26.32C27.2478 24 28 23.1734 28 22.1538C28 21.1342 27.2478 20.3077 26.32 20.3077H1.68C0.752162 20.3077 0 21.1342 0 22.1538ZM0 12C0 13.0196 0.752162 13.8462 1.68 13.8462H26.32C27.2478 13.8462 28 13.0196 28 12C28 10.9804 27.2478 10.1538 26.32 10.1538H1.68C0.752162 10.1538 0 10.9804 0 12Z" fill="url(#paint0_linear)"/>
@@ -50,7 +50,6 @@ const SwitchMenu = forwardRef<SVGSVGElement, SwitchMenuProps>(({open, setToggle,
           </linearGradient>
         </defs>
       </MenuSvg>
-    </div>
   );
 })
  

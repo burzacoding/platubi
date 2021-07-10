@@ -3,7 +3,7 @@ import loginMobile from '../../../res/Landing/login-mobile.svg'
 import help from '../../../res/Landing/help-circle.svg'
 import mail from '../../../res/ri_mail-send-line.svg'
 
-import { HorizontalBar, NavBarDesktop, NavBarDesktopContent, NavBarDesktopContainer, NavBarMobileBottom, NavBarMobileContainer, NavBarMobileTop, ContentTop, ContentBottom, OptionNavMobile, MenuMobileNav, LogoNav, OptionsNav, OptionNav, ButtonsDesktopNav, ButtonDesktopNav } from './Styles';
+import { HorizontalBar, NavBarDesktop, NavBarDesktopContent, NavBarDesktopContainer, NavBarMobileBottom, NavBarMobileContainer, NavBarMobileTop, ContentTop, ContentBottom, OptionNavMobile, MenuMobileNav, LogoNav, OptionsNav, OptionNav, ButtonsDesktopNav, ButtonDesktopNav, OptionNavContainer } from './Styles';
 import { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 
@@ -15,6 +15,8 @@ import LogoPlatubi from './LogoPlatubi';
 import SwitchContainer from './SwitchContainer'
 import { useAuth } from '../../../Contexts/AuthContext';
 import { useDashboard } from '../../../Contexts/DashboardContext';
+import Wallet from '../../atoms/SVG/Wallet';
+import GearNav from '../../atoms/SVG/GearNav';
 
 export interface NavBarProps {
   setTheme: React.Dispatch<React.SetStateAction<'dark' | 'light'>>,
@@ -125,11 +127,15 @@ const NavBar:React.FC<NavBarProps> = ({ setTheme, theme }) => {
           <HorizontalBar />
           <ContentBottom>
               <OptionNavMobile current={page === 0 ? true : false} as="div" onClick={() => {setPage(0)}}>
-                <img src={registerMobile} alt="register" />
+                <OptionNavContainer>
+                  <Wallet current={page === 0 ? true : false} />
+                </OptionNavContainer>
                 <span>Panel principal</span>
               </OptionNavMobile>
               <OptionNavMobile current={page === 1 ? true : false} as="div" onClick={() => {setPage(1)}}>
-              <img src={loginMobile} alt="login" />
+                <OptionNavContainer>
+                  <GearNav current={page === 1 ? true : false} />
+                </OptionNavContainer>
               <span>Ajustes</span>
               </OptionNavMobile>
           </ContentBottom>

@@ -2,9 +2,6 @@ import { Container } from '../../elements/Dashboard/TrackedStocks'
 import { useTrackedStocks } from '../../Hooks/dashboardLogic/useTrackedStocks';
 import TrackedStocksCard from '../molecules/TrackedStocksCard';
 
-
-//REMOVE THE 'OPTIONAL' ATTRIBUTE FROM THE BELOW PROP
-
 const TrackedStocks: React.FC = () => {
   const data = useTrackedStocks()
   return (

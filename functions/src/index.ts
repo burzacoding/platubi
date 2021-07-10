@@ -50,7 +50,7 @@ const axiosConfig = {
   }
 };
 
-export const updateCryptos = functions.pubsub.schedule("*/15 * * * *").onRun(async () => {
+export const updateCryptos = functions.pubsub.schedule("*/5 * * * *").onRun(async () => {
   try {
     const res = await axios.get(apiUrl, axiosConfig);
     const data = res.data as cryptoApiInterface;

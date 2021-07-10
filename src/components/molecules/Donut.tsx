@@ -94,7 +94,7 @@ const Donut: React.FC<DonutProps> = () => {
       symbol: '$'
     })
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [detailedArray])
+  }, [setTooltipData])
   
   
   return (

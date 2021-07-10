@@ -1,6 +1,5 @@
 import React from 'react';
 import Select, { GroupTypeBase, Styles, NamedProps } from 'react-select'
-import { SelectComponentsProps } from 'react-select/src/Select';
 import  { useTheme } from "styled-components";
 import { useApi } from '../../../Contexts/ApiContext';
 import { CurrenciesOptions } from '../../../Utils/LabelsAndOptions';

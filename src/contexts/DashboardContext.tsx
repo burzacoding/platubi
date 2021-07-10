@@ -2,11 +2,12 @@ import { useContext } from "react";
 import { createContext } from "react";
 import { useState } from "react";
 import firebase from 'firebase/app'
-import { db, FirebaseTimeStamp, registersCollectionRef, userDocumentRef } from "../firebase/Firebase";
+import { db, registersCollectionRef, userDocumentRef } from "../firebase/Firebase";
 import { useEffect } from "react";
 import { useAuth } from "./AuthContext";
 import { buildRegisterSchema, mapRegistersWithId, stateSetter } from "../Utils/Utils";
 import { TooltipsPropsWithIndex } from "../components/molecules/Donut";
+import { newUserData, registerOne, registerOneRemote, registerTwo, registerTwoRemote } from "../Utils/newUserValues";
 
 
 // import Axios from 'axios'
@@ -157,11 +158,11 @@ export const DashboardProvider: React.FC = ({children}) => {
       return registersCollectionRef(currentUser!.uid).doc(key).delete()
       .then(() => {
         const stagedRegisters = [...userData!.registers!].filter(el => el.key !== key)
-        console.log(`
-        Registro a ser removido: ${key}.
-        Registros anteriores: ${userData!.registers!.map(el => el.key)}
-        Registros nuevos: ${stagedRegisters.map(el => el.key)}
-      `);
+      //   console.log(`
+      //   Registro a ser removido: ${key}.
+      //   Registros anteriores: ${userData!.registers!.map(el => el.key)}
+      //   Registros nuevos: ${stagedRegisters.map(el => el.key)}
+      // `);
         setUserData(prev => ({
           ...prev,
           registers: stagedRegisters
@@ -183,35 +184,18 @@ export const DashboardProvider: React.FC = ({children}) => {
       if (!userData && currentUser) {
         let userDocument = await userDocumentRef(currentUser.uid).get()
         let registersCollection = await registersCollectionRef(currentUser.uid).orderBy('createdAt', 'desc').get()
-        if (!userDocument.data()) {
-          await userDocumentRef(currentUser.uid).set({
-            wealthViewSymbols: ['ARSBL', 'USD', '74'],
-            trackedStocks: ['74', '1', 'ARSBL', '', '' ,'']
-          })
+        let formattedRegisters: registerSchemaTypesWithId[];
+        if (userDocument.data() === undefined) {
+          await userDocumentRef(currentUser.uid).set(newUserData)
           await Promise.all([
-            registersCollectionRef(currentUser.uid).add({
-                operation: 'add',
-                symbol: 'ARSBL',
-                value: 1000,
-                createdAt: FirebaseTimeStamp,
-                favorite: false,
-                visible: true,
-                isCrypto: false,
-            }),
-            registersCollectionRef(currentUser.uid).add({
-              operation: 'add',
-              symbol: 'USD',
-              value: 20,
-              createdAt: FirebaseTimeStamp,
-              favorite: true,
-              visible: true,
-              isCrypto: false,
-            })])
-          userDocument = await userDocumentRef(currentUser.uid).get()
-          registersCollection = await registersCollectionRef(currentUser.uid).orderBy('createdAt', 'desc').get()
+            registersCollectionRef(currentUser.uid).doc("registerone").set(registerOneRemote),
+            registersCollectionRef(currentUser.uid).doc("registertwo").set(registerTwoRemote)])
+          formattedRegisters = [registerTwo, registerOne]
+          setUserData({...newUserData, registers: formattedRegisters})
+        } else {
+          formattedRegisters = registersCollection.docs.map(element => mapRegistersWithId(element))
+          setUserData({...userDocument.data(), registers: formattedRegisters})
         }
-        const formattedRegisters = registersCollection.docs.map(element => mapRegistersWithId(element))
-        setUserData({...userDocument.data(), registers: formattedRegisters})
       }
     }
     catch (error) {

@@ -36,7 +36,7 @@ export const mapRegistersWithId = (element: QuerySnapshotDocumentData): register
 
 export const checkIsCrypto = (probablyNumericValue: string) => /^\d+$/.test(probablyNumericValue)
 
-function getFormattedDateFromMill (miliseconds: number) {
+export function getFormattedDateFromMill (miliseconds: number) {
   const date = new Date(miliseconds)
   const day = date.getDate()
   const month = date.getMonth() + 1

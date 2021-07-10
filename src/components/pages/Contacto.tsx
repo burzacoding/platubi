@@ -12,15 +12,15 @@ import { db } from "../../firebase/Firebase";
 import { useState } from "react";
 
 
+const color = {
+  dark: '#096635',
+  light: '#1C4B73'
+  }
 
 const ContactoPage: React.FC = () => {
 
   const [sent, setSent] = useState(false)
   const [status, setStatus] = useState('pending')
-  const color = {
-  dark: '#096635',
-  light: '#1C4B73'
-  }
   
   return (
     <AuthFrame>
@@ -29,8 +29,6 @@ const ContactoPage: React.FC = () => {
         <Formik
           initialValues={contactInitialValues}
           onSubmit={(values, { setSubmitting, resetForm}) => {
-            console.log(sent);
-            
             setSubmitting(true)
             db.collection('mail').add(values)
             .then(() => {

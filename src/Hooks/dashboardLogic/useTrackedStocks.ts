@@ -25,6 +25,13 @@ export const useTrackedStocks = () => {
       if (el !== '') {
         if (checkIsCrypto(el)) {
           const obj = cryptoPrices.data.filter(eli => el === String(eli.id))[0]
+          if (obj.name === "SHIBA INU") {
+            return {
+              symbol: obj.name,
+              value: `USD ${obj.prices.price.toFixed(8)}`,
+              change: +obj.prices.change.toFixed(2)
+            }
+          }
           return {
             symbol: obj.name,
             value: `USD ${obj.prices.price.toFixed(4)}`,

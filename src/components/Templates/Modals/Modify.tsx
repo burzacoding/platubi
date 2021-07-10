@@ -11,6 +11,7 @@ import OpRemove from "../../atoms/SVG/Modals/OpRemove";
 import OpExchange from "../../atoms/SVG/Modals/OpExchange";
 import SelectComponent from "../../molecules/Selects/SelectComponent";
 import { useApi } from "../../../Contexts/ApiContext";
+import { checkIsCrypto } from "../../../Utils/Utils";
 
 
 
@@ -79,7 +80,8 @@ const ModifyRegisterModal = forwardRef<HTMLDivElement, ModifyRegisterModalProps>
         const schema = {
           operation: values.operation,
           symbol: values.symbol,
-          value: parseFloat(values.value as unknown as string)
+          value: parseFloat(values.value as unknown as string),
+          isCrypto: checkIsCrypto(values.symbol)
         }
         const bool = await updateRegister(regSchema.key, schema)
         if (bool && userData?.registers) {

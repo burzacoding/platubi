@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import MobileNavItem from './MobileNavItem'
 
 interface isLogged {
   logged?: string
@@ -22,6 +21,13 @@ export const NavBarDesktopContainer = styled.div`
   @media screen and (min-width: 768px) {
     display: flex;
   };
+`
+
+export const OptionNavContainer = styled.div`
+  width: 28px;
+  height: 28px;
+  margin: auto;
+  margin-bottom: 4px;
 `
 
 export const NavBarDesktop = styled.div`
@@ -292,6 +298,7 @@ export const MenuMobileNav = styled(motion.div)<mobileNav>`
   }
 `
 export const SwitchContainerStyled = styled.div`
+  cursor: pointer;
   svg {
     @media screen and (min-height: 570px) {
       transform: scale(1.1);
