@@ -109,6 +109,9 @@ export const useMainCalc = () => {
           }))
           return worthsArray.reduce((a, b) => a + b, 0)})
         // console.log(+totalWorth.toFixed(2));
+      } else {
+        setTotalWorth(0)
+        setDetailedArray([])
       }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
