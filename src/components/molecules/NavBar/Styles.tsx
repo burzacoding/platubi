@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import MobileNavItem from './MobileNavItem'
 
 interface isLogged {
   logged?: string
@@ -99,7 +100,6 @@ export const ButtonsDesktopNav = styled.div<isLogged>`
     margin-right: 36px;
   }
 `
-
 interface buttonColor {
   blue?: string
 }
@@ -243,6 +243,7 @@ export const OptionNavMobile = styled(Link)<NavMobileProps>`
     font-weight: 500;
   }
 `
+
 export const OptionsContainer = styled.div`
   display: flex;
 

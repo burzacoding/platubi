@@ -1,8 +1,9 @@
 import { Container } from "../../elements/Dashboard/Donut";
 import { Doughnut, Chart } from 'react-chartjs-2'
 // import { useDashboard } from "../../Contexts/DashboardContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Tooltips from "./Tooltips";
+import { useMainCalc } from "../../Hooks/dashboardLogic/useMainCalc";
 
 Chart.defaults.plugins.legend.display = false
 export interface DonutProps {
@@ -16,27 +17,34 @@ export interface TooltipsPropsWithIndex {
   value: number
 }
 
-const data = {
-  labels: ['ARS', 'USD', 'BTC', 'Otros'],
-  datasets: [
-    {
-      label: '%',
-      data: [75, 12, 8, 5],
-      backgroundColor: ['#3480C1', '#0E4777', '#03A63C', '#006523'],
-      hoverOffset: 16,
-      offset: 8,
-      borderRadius: 2,
-      borderWidth: 0,
-      borderAlign: 'center',
-    },
-  ],
-};
 
 const Donut: React.FC<DonutProps> = () => {
 
-  // const { userData } = useDashboard()
+  const { detailedArray } = useMainCalc()
+
+  const sortedArray = detailedArray.sort((a, b) => b.percentage - a.percentage)
+
+  const labels = sortedArray.map(el => el.symbol)
+  const percentages = sortedArray.map(el => el.percentage)
+
+  const data = {
+    labels: [labels[0], labels[1], labels[2], 'Otros'],
+    datasets: [
+      {
+        label: '%',
+        data: [percentages[0], percentages[1], percentages[2], (100 - percentages[0] - percentages[1] - percentages[2])],
+        backgroundColor: ['#3480C1', '#0E4777', '#03A63C', '#006523'],
+        hoverOffset: 16,
+        offset: 8,
+        borderRadius: 2,
+        borderWidth: 0,
+        borderAlign: 'center',
+      },
+    ],
+  };
   
   const [tooltipData, setTooltipData] = useState<TooltipsPropsWithIndex>()
+  
   const startingOptions = {
     cutout: '65%',
     rotation: 90,
@@ -62,14 +70,23 @@ const Donut: React.FC<DonutProps> = () => {
         dataIndex: tooltip.dataIndex,
         label: tooltip.label,
         percentage: tooltip.raw,
-        value: 5000,
+        value: +sortedArray[tooltip.dataIndex].valueUSD.toFixed(2),
         symbol: '$'
       });
       return
     }
   }
 
-  // console.log('rerender');
+  useEffect(() => {
+    setTooltipData({
+      dataIndex: 0,
+      label: labels[0],
+      percentage: percentages[0],
+      value: sortedArray[0] ? +sortedArray[0].valueUSD.toFixed(2) : 0,
+      symbol: '$'
+    })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sortedArray])
   
   
   return (

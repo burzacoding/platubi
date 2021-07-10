@@ -26,7 +26,8 @@ const SecondArticleContainer: React.FC<SecondArticleContainerProps> = () => {
         <ImgCont>
           <img src={item3} alt="market" />
         </ImgCont>
-        <Text>Platubi siempre esta conectado a los mercados, así que te muestra el valor de tu patrimonio en tiempo real.</Text>
+        <Text>Platubi siempre esta conectado a los mercados y actualiza todas sus cotizaciones cada cinco minutos.</Text>
+        {/* <Text>Platubi siempre esta conectado a los mercados, así que te muestra el valor de tu patrimonio en tiempo real.</Text> */}
       </Item>
     </MainContent>
   );

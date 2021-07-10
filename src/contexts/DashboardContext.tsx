@@ -75,12 +75,12 @@ interface dashboardContextInterface {
   addRegister: (values: newRegisterValuesInterface) => Promise<boolean>;
   updateRegister: (key: string, newValues: object) => Promise<boolean>;
   deleteRegister(key: string): Promise<boolean>;
-  updateWealthViewer(document: [wealthViewerItem, wealthViewerItem, wealthViewerItem]): Promise<boolean>;
+  updateWealthViewer(document: string[]): Promise<boolean>;
   updateTrackedStocks(document: any): Promise<boolean>;
 }
 
 interface userDocumentTypes {
-  wealthViewSymbols?: [wealthViewerItem, wealthViewerItem, wealthViewerItem];
+  wealthViewSymbols?: string[];
   wealthTrackedSymbols?: string[];
   registers?: registerSchemaTypesWithId[];
   trackedStocks?: string[];
@@ -203,12 +203,13 @@ export const DashboardProvider: React.FC = ({children}) => {
 
   async function updateWealthViewer (document: WealthViewSymbolsType ) {
     try {
+      const sanitized = document.map(el => el === undefined ? '' : el)
       await userDocumentRef(currentUser!.uid).update({
-        wealthViewSymbols: document
+        wealthViewSymbols: sanitized
       })
       setUserData(prev => ({
         ...prev,
-        wealthViewSymbols: document
+        wealthViewSymbols: sanitized
       }))
       return true
     } catch (error) {
@@ -218,12 +219,13 @@ export const DashboardProvider: React.FC = ({children}) => {
   
   async function updateTrackedStocks (document: string[] ) {
     try {
+      const sanitized = document.map(el => el === undefined ? '' : el)
       await userDocumentRef(currentUser!.uid).update({
-        trackedStocks: document
+        trackedStocks: sanitized
       })
       setUserData(prev => ({
         ...prev,
-        trackedStocks: document
+        trackedStocks: sanitized
       }))
       return true
     } catch (error) {

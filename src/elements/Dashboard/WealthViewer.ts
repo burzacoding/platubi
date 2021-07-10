@@ -24,13 +24,14 @@ const SmallContainer = styled.div`
   display: grid;
   height: 100%;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 96px 96px;
   gap: 8px;
   font-size: 20px;
   @media screen and (min-width: 768px) {
     font-size: 24px;
   }
   @media screen and (min-width: 1366px) {
+    grid-template-rows: 1fr 1fr;
     font-size: 32px;
   }
 `
@@ -43,11 +44,12 @@ const Card = styled.div`
   position: relative;
   flex-direction: column;
   justify-content: center;
-  padding: 6px 0 12px 0;
+  padding: 6px 0;
   background-color: ${p => p.theme.divDarkerBackground};
   transition: background-color 0.25s;
   border-radius: 8px;
   width: 100%;
+  height: 100%;
   font-size: 16px;
   @media screen and (min-width: 360px) {
     font-size: 18px;
@@ -61,6 +63,7 @@ const Card = styled.div`
 `
 const BigCard = styled(Card)`
   grid-column-start: span 2;
+  padding: 6px 0;
 `
 const Title = styled.h3`
   background-image: linear-gradient(to right, #1269B4, #3BBC76);

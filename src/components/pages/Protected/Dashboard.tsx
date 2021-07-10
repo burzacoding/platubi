@@ -1,5 +1,5 @@
 // import { useDashboard } from "../../../contexts/DashboardContext";
-import { Container, Frame } from "../../../elements/Dashboard";
+import { BackToDashboard, Container, Frame } from "../../../elements/Dashboard";
 import { useDashboard } from "../../../Contexts/DashboardContext";
 import Registers from "../../Templates/Registers";
 import WealthViewer from "../../molecules/WealthViewer";
@@ -11,7 +11,7 @@ import { ContainerBase, Title } from "../Auth/Styles";
 
  
 const Dashboard: React.FC = () => {
-  const { page } = useDashboard()
+  const { page, setPage } = useDashboard()
   const withAds = () => 'false'
   return (
     <Container>
@@ -29,6 +29,9 @@ const Dashboard: React.FC = () => {
           <ContainerBase>
             <Title>Ajustes</Title>
             <h1 style={{textAlign: 'center'}}>Sitio en construcción.</h1>
+            <br />
+            <br />
+            <BackToDashboard onClick={() => setPage(0)}>&gt;Volver al panel principal&lt;</BackToDashboard>
           </ContainerBase>
         </AuthFrame>
       )}

@@ -16,6 +16,15 @@ const Container = styled.div`
   };
 `
 
+export const BackToDashboard = styled.h2`
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.2s;
+  &:hover {
+    transform: scale(1.1);
+  }
+`
+
 const Frame = styled.div<FrameProps>`
   grid-area: dashboard;
   width: 100%;

@@ -12,6 +12,7 @@
 /build
 
 # misc
+/.vscode/*
 .DS_Store
 .env.local
 .env.development.local
@@ -30,3 +31,4 @@ firestore.rules
 hosting.*.cache
 .firebase/*
 *-debug.log
+/.vscode/settings.json

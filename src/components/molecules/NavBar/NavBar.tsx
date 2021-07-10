@@ -3,11 +3,12 @@ import loginMobile from '../../../res/Landing/login-mobile.svg'
 import help from '../../../res/Landing/help-circle.svg'
 import mail from '../../../res/ri_mail-send-line.svg'
 
-import { HorizontalBar, NavBarDesktop, NavBarDesktopContent, NavBarDesktopContainer, NavBarMobileBottom, NavBarMobileContainer, NavBarMobileTop, ContentTop, ContentBottom, OptionNavMobile, MenuMobileNav, LogoNav, OptionsNav, OptionNav, ButtonsDesktopNav, ButtonDesktopNav  } from './Styles';
+import { HorizontalBar, NavBarDesktop, NavBarDesktopContent, NavBarDesktopContainer, NavBarMobileBottom, NavBarMobileContainer, NavBarMobileTop, ContentTop, ContentBottom, OptionNavMobile, MenuMobileNav, LogoNav, OptionsNav, OptionNav, ButtonsDesktopNav, ButtonDesktopNav } from './Styles';
 import { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 
 import MobileNavItem from './MobileNavItem';
+import SettingsNavItem from './SettingsNavItem'
 import ThemeToggle from '../../atoms/ThemeToggle/ThemeToggle'
 import SwitchMenu from './SwitchMenu'
 import LogoPlatubi from './LogoPlatubi';
@@ -64,6 +65,7 @@ const NavBar:React.FC<NavBarProps> = ({ setTheme, theme }) => {
           <MenuMobileNav logged={currentUser ? true : false} desktop variants={variantsMenu} initial={false} animate={isOpen} ref={MenuRef}>
             <MobileNavItem text='FAQ' toUrl='/faq' func={ToggleMenu} />
             <MobileNavItem text='Contacto' alt='help' toUrl='/contacto' func={ToggleMenu} />
+            {currentUser && <SettingsNavItem />}
           </MenuMobileNav>
         {/*SLIDER APPEARING ON THE RIGHT*/}
         {/*THIS IS THE BOX INSIDE THE CONTAINER THAT HAS A BACKGROUND COLOR*/}
