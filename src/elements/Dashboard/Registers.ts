@@ -29,8 +29,9 @@ interface BottomProps {
 
 const Bottom = styled.div<BottomProps>`
   width: 100%;
+  height: 100%;
   margin-right: -8px;
-  padding-right: 4px;
+  padding-right: ${p => p.registerExists === 'true' ? '4px' : '0'};
   overflow-y: ${p => p.registerExists === 'true' ? 'scroll' : 'hidden'};
 
 
