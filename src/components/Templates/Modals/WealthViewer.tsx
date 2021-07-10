@@ -42,9 +42,7 @@ const WealthViewerModal = forwardRef<HTMLDivElement, WealthViewerProps>((props, 
         }
       }
     }
-    return {
-      value: '', label: ''
-    }
+    return undefined
   })
 
   return (

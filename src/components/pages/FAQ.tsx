@@ -16,8 +16,8 @@ const FAQPage: React.FC = () => {
             </P>
             <Subtitle>¿Y si quiero mi cuenta en pesos pero con dólares cotizados a valor blue?</Subtitle>
             <P>Si una vez agregados tus registros, preferís conocer tu saldo en pesos argentinos y que tus activos valuados en dólares se coticen a precio de dolar blue, solo necesitás seleccionarlo en el ícono de engranaje que se encuentra en tu visualizador de patrimonio.</P>
-            <Subtitle>¿Qué sucede si quiero restar de mi patrimonio?</Subtitle>
-            <P>En el caso de que quieras restar de tu patrimonio tenés dos maneras: podés simplemente añadir un registro indicando que se trata de una operación de RESTA y automáticamente se te va a descontar de tu patrimonio final, y la otra manera es modificando algún registro que ya tengas, aunque no es muy recomendable ya que podría llevar a confundirte, nosotros te recomendamos la primer forma.</P>
+            {/* <Subtitle>¿Qué sucede si quiero restar de mi patrimonio?</Subtitle>
+            <P>En el caso de que quieras restar de tu patrimonio tenés dos maneras: podés simplemente añadir un registro indicando que se trata de una operación de RESTA y automáticamente se te va a descontar de tu patrimonio final, y la otra manera es modificando algún registro que ya tengas, aunque no es muy recomendable ya que podría llevar a confundirte, nosotros te recomendamos la primer forma.</P> */}
           </Article>
           <Article id="tyc">
             <Title>Términos y condiciones.</Title>

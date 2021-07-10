@@ -38,9 +38,7 @@ const TrackedStocksModal = forwardRef<HTMLDivElement, WealthViewerProps>((props,
           }
         }
       }
-      return {
-        value: '', label: ''
-      }
+      return undefined
     })
 
   const initialValues = {

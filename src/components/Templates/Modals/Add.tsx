@@ -106,8 +106,10 @@ const AddRegisterModal = forwardRef<HTMLDivElement>((props, ref) => {
         <Content>
           <OperationsContainer>
             <SymbolSvgContainer isCurrent={isCurrent(0)} onClick={() => setCurrent(0)} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.85 }}><OpAdd /></SymbolSvgContainer>
-            <SymbolSvgContainer isCurrent={isCurrent(1)} onClick={() => setCurrent(1)} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.85 }}><OpRemove /></SymbolSvgContainer>
-            <SymbolSvgContainer isCurrent={isCurrent(2)} onClick={() => setCurrent(2)} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.85 }}><OpExchange /></SymbolSvgContainer>
+            <SymbolSvgContainer title="Proximamente" isCurrent={isCurrent(1)}><OpRemove /></SymbolSvgContainer>
+            <SymbolSvgContainer title="Proximamente" isCurrent={isCurrent(2)}><OpExchange /></SymbolSvgContainer>
+            {/* <SymbolSvgContainer isCurrent={isCurrent(1)} onClick={() => setCurrent(1)} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.85 }}><OpRemove /></SymbolSvgContainer>
+            <SymbolSvgContainer isCurrent={isCurrent(2)} onClick={() => setCurrent(2)} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.85 }}><OpExchange /></SymbolSvgContainer> */}
           </OperationsContainer>
           <Form>
             <ValueContainer isGettingErrors={isGettingError('symbol')}>

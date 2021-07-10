@@ -89,7 +89,8 @@ const SymbolSvgContainer = styled(motion.div)<SymbolSvgContainerProps>`
   -webkit-tap-highlight-color: transparent;
   user-select: none;
   svg {
-    fill: ${p => p.isCurrent === 'true' ? '#0F954E' : '#3480C1'};
+    /* fill: ${p => p.isCurrent === 'true' ? '#0F954E' : '#3480C1'}; */
+    fill: ${p => p.isCurrent === 'true' ? '#0F954E' : '#666666'};
     transition: fill 0.25s;
   }
 `
