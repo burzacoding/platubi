@@ -1,12 +1,13 @@
 import React from 'react';
 import Select, { GroupTypeBase, Styles, NamedProps } from 'react-select'
+import { SelectComponentsProps } from 'react-select/src/Select';
 import  { useTheme } from "styled-components";
 import { useApi } from '../../../Contexts/ApiContext';
 import { CurrenciesOptions } from '../../../Utils/LabelsAndOptions';
 import { ThemeColorPicker } from "../../../Utils/Utils";
 
-export interface SelectComponentProps {
-  props: NamedProps
+export interface SelectComponentProps extends NamedProps {
+  marginLeft?: boolean
 }
 
 export type selectStylesProp = Partial<Styles<{
@@ -18,12 +19,18 @@ export type selectStylesProp = Partial<Styles<{
 }>>> | undefined
 
 
-
-
-
-const SelectComponent: React.FC<NamedProps> = ({...props}) => {
+const SelectComponent: React.FC<SelectComponentProps> = ({marginLeft, ...rest}) => {
 
   //const { apiOptions } = useApi()
+  const onMenuOpen = () => {
+    setTimeout(()=>{
+      const selectedEl = document.getElementsByClassName(" css-1b14d03-option")[0];
+      if(selectedEl){
+        selectedEl.scrollIntoView({behavior:'smooth', block:'nearest', inline: 'start'});
+      }
+    },15);
+  };
+  
 
   const theme = useTheme()
   const { options } = useApi()
@@ -53,7 +60,7 @@ const SelectComponent: React.FC<NamedProps> = ({...props}) => {
     option: (provided, stats) => ({
       ...provided,
       color: theme.fontContrastTwo,
-      backgroundColor: stats.isFocused ? theme.divDarkerBackground : theme.divBackground,
+      backgroundColor: stats.isSelected ? theme.divDarkerBackground : theme.divBackground,
       opacity: 0.7,
       fontSize: '12px',
       '@media (min-width: 360px)': {
@@ -68,7 +75,7 @@ const SelectComponent: React.FC<NamedProps> = ({...props}) => {
       fontFamily: 'Montserrat',
       color: theme.fontContrastTwo,
       width: '100%',
-      marginLeft: '12px',
+      marginLeft: `${marginLeft ? '12px' : '0'}`,
       '@media (min-width: 768px)': {
         fontSize: '16px',
       },
@@ -130,7 +137,9 @@ const SelectComponent: React.FC<NamedProps> = ({...props}) => {
       noOptionsMessage={() => 'No se encontró el activo.'}
       placeholder="Buscar activo financiero..."
       blurInputOnSelect={false}
-      {...props}
+      isClearable={true}
+      onMenuOpen={onMenuOpen}
+      {...rest}
       />
   );
 }
