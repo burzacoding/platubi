@@ -14,6 +14,7 @@ interface detailedArrayProps {
 
 export const useMainCalc = () => {
 
+
   const [totalWorth, setTotalWorth] = useState(0)
   const [detailedArray, setDetailedArray] = useState<detailedArrayProps[]>([] as detailedArrayProps[])
   
@@ -33,13 +34,15 @@ export const useMainCalc = () => {
   
 
   useMemo(() => {
+
+    
     
     if (userData && userData.registers) {
       const registers = userData.registers.filter(el => el.visible === true)
       
-      if (registers?.length !== 0) {
+      
+      if (userData.registers.length !== 0) {
         for (let register of registers!) {
-          // console.log(register.symbol);
           if (register.isCrypto) {
             if (symbolsArray.indexOf(getSymbolFromCryptoId(parseInt(register.symbol))) === -1) {
               symbolsArray.push(getSymbolFromCryptoId(parseInt(register.symbol)))
@@ -49,10 +52,7 @@ export const useMainCalc = () => {
               symbolsArray.push(register.symbol)
             }
           }
-          // console.log('Vuelta: ', register.symbol, 'symbolsArray: ', symbolsArray);
         }
-        // console.log('symbolsArray: ', symbolsArray);
-        
         for (let symbolIndx = 0; symbolIndx < symbolsArray.length; symbolIndx++) {
           for (let register of registers) {
             if (!register.isCrypto) {
@@ -110,14 +110,12 @@ export const useMainCalc = () => {
             price: pricesArray[index]
           }
         }))
-        console.log('usememo run');
-        
       }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userData, cryptoPrices.data, currenciesPrices.data])
 
-  console.log('WorthsArray: ', worthsArray, '\n Total worth: ', totalWorth);
+  // console.log('WorthsArray: ', worthsArray, '\n Total worth: ', totalWorth);
 
   return { detailedArray, totalWorth }
 }

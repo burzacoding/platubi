@@ -53,19 +53,18 @@ const ModifyRegisterModal = forwardRef<HTMLDivElement, ModifyRegisterModalProps>
   //ESTE OBJECTO OPTIONS TIENE QUE SER ACCEDIDO MEDIANTE EL CONTEXTO DEL MODAL
   const { currenciesList, cryptoList } = useApi()
 
-
   const getOptionByID = () => {
     const result = currenciesList.data.filter(el => el.symbol === regSchema.symbol)[0]
     if (!result) {
       const newRes = cryptoList.data.filter(el => el.value === regSchema.symbol)[0]
         return {
-          value: newRes.symbol,
+          value: regSchema.symbol,
           label: `${newRes.symbol} - ${newRes.name}`
         }
     }
     else {
       return {
-        value: result.symbol,
+        value: regSchema.symbol,
         label: `${result.symbol} - ${result.name}`
       }
     }
@@ -144,7 +143,7 @@ const ModifyRegisterModal = forwardRef<HTMLDivElement, ModifyRegisterModalProps>
       const setValueValue = (value: any) => {
         formik.setFieldValue('symbol', value?.value)
       }
-
+      
       return(
       <ModalContainer ref={ref}>
         <Cross onClick={closeCurrentModal}>
@@ -161,7 +160,7 @@ const ModifyRegisterModal = forwardRef<HTMLDivElement, ModifyRegisterModalProps>
           <Form>
             <ValueContainer isGettingErrors={isGettingError('symbol')}>
               <TextPlaceholder>Símbolo:</TextPlaceholder>
-              <SelectComponent onChange={setValueValue} defaultValue={getOptionByID()} />
+              <SelectComponent marginLeft onChange={setValueValue} defaultValue={getOptionByID()} />
             </ValueContainer>
               <Error><ErrorMessage name="symbol"/></Error>
             <ValueContainer isGettingErrors={isGettingError('value')}>

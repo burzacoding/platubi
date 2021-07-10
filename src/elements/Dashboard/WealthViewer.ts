@@ -36,7 +36,7 @@ const SmallContainer = styled.div`
 `
 const MainTitle = styled.p `
   font-size: 24px;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 `
 const Card = styled.div`
   display:flex;

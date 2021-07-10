@@ -76,6 +76,7 @@ interface dashboardContextInterface {
   updateRegister: (key: string, newValues: object) => Promise<boolean>;
   deleteRegister(key: string): Promise<boolean>;
   updateWealthViewer(document: [wealthViewerItem, wealthViewerItem, wealthViewerItem]): Promise<boolean>;
+  updateTrackedStocks(document: any): Promise<boolean>;
 }
 
 interface userDocumentTypes {
@@ -181,10 +182,10 @@ export const DashboardProvider: React.FC = ({children}) => {
     try {
       if (!userData && currentUser) {
         const userDocument = await userDocumentRef(currentUser.uid).get()
-        setUserData(userDocument.data() as userDocumentTypes)
         const registersCollection = await registersCollectionRef(currentUser.uid).orderBy('createdAt', 'desc').get()
+        
         const formattedRegisters = registersCollection.docs.map(element => mapRegistersWithId(element))
-        setUserData(prev => ({...prev, registers: formattedRegisters}))
+        setUserData({...userDocument.data(), registers: formattedRegisters})
       }
     }
     catch (error) {
@@ -207,6 +208,23 @@ export const DashboardProvider: React.FC = ({children}) => {
       throw new Error(`Error actualizando las cotizaciones mostradas: ${error}.`)
     }
   }
+  
+  async function updateTrackedStocks (document: string[] ) {
+    try {
+      await userDocumentRef(currentUser!.uid).update({
+        trackedStocks: document
+      })
+      setUserData(prev => ({
+        ...prev,
+        trackedStocks: document
+      }))
+      return true
+    } catch (error) {
+      throw new Error(`Error actualizando los activos seguidos: ${error}.`)
+    }
+  }
+
+
 
   useEffect(() => {
     retrieveDataFromUser()
@@ -216,7 +234,7 @@ export const DashboardProvider: React.FC = ({children}) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser])
 
-  const value = { page, setPage, userData, setUserData, addRegister, deleteRegister, updateRegister, updateWealthViewer}
+  const value = { page, setPage, userData, setUserData, addRegister, deleteRegister, updateRegister, updateWealthViewer, updateTrackedStocks}
 
   const [tooltipData, setTooltipData] = useState<TooltipsPropsWithIndex>({} as TooltipsPropsWithIndex)
 

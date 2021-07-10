@@ -10,7 +10,7 @@ export interface TrackedStocksProps {
  
 const TrackedStocks: React.FC<TrackedStocksProps> = ({trackedStocks}) => {
 
-
+  // const data = useTrackedStocks()
 
   return (
     <Container>
