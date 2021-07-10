@@ -17,12 +17,20 @@ export interface TooltipsPropsWithIndex {
   value: number
 }
 
+const empty = {
+  symbol: '--',
+  value: 0,
+  valueUSD: 0,
+  name: '--',
+  percentage: 0,
+  price: 0
+}
 
 const Donut: React.FC<DonutProps> = () => {
 
   const { detailedArray } = useMainCalc()
 
-  const sortedArray = detailedArray.sort((a, b) => b.percentage - a.percentage)
+  const sortedArray = [...detailedArray.sort((a, b) => b.percentage - a.percentage), empty, empty, empty, empty]
 
   const labels = sortedArray.map(el => el.symbol)
   const percentages = sortedArray.map(el => el.percentage)
@@ -86,7 +94,7 @@ const Donut: React.FC<DonutProps> = () => {
       symbol: '$'
     })
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sortedArray])
+  }, [detailedArray])
   
   
   return (
