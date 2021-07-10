@@ -6,6 +6,7 @@ import GearSVG from "../atoms/SVG/Gear";
 
 const WealthViewer: React.FC = () => {
   const data = useWealthViewSymbols()
+  
   const { openModal } = useModal()
   // const symbols = [['Pesos*', 10000, '$'], ['Dólares', 2500, '$'], ['Bitcoin', 0.045]]
   return (

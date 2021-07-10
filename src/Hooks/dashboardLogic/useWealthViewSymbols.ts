@@ -14,14 +14,12 @@ export const useWealthViewSymbols = () => {
   
   const getObjectFromCryptoID = (id: number) => cryptoPrices.data.filter(el => el.id === id)[0]
   const getObjectFromCurrencySymbol = (id: string) => currenciesPrices.data.filter(el => el.symbol === id)[0]
-  
- 
-  if (userData && userData.wealthViewSymbols) {
-    
+
+  if (userData && userData.wealthViewSymbols && cryptoPrices.data && currenciesPrices.data) {
     if (totalWorth === 0) {
       return [['Añada registros!', 'Haga click en el boton "Añadir registro"', ''], ...emptys]
     } else {
-      const wealthViewSymbols = [...userData.wealthViewSymbols.reverse()]
+      const wealthViewSymbols = userData.wealthViewSymbols.map(el => el)
       const result = wealthViewSymbols.map(el => {
         if (el) {
           if (checkIsCrypto(el)) {

@@ -185,7 +185,7 @@ export const DashboardProvider: React.FC = ({children}) => {
         let registersCollection = await registersCollectionRef(currentUser.uid).orderBy('createdAt', 'desc').get()
         if (!userDocument.data()) {
           await userDocumentRef(currentUser.uid).set({
-            wealthViewSymbols: ['ARSBL', 'USD', '74 '],
+            wealthViewSymbols: ['ARSBL', 'USD', '74'],
             trackedStocks: ['74', '1', 'ARSBL', '', '' ,'']
           })
           await Promise.all([
