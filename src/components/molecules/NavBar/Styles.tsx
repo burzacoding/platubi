@@ -221,6 +221,7 @@ interface NavMobileProps {
 export const OptionNavMobile = styled(Link)<NavMobileProps>`
   text-decoration: none;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
+  display: block;
 
   &:focus, &:hover, &:visited, &:link, &:active {
     text-decoration: none;
