@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useContext } from "react";
 import { createContext } from "react";
-import { db } from "../firebase/Firebase";
+import { db, FirebaseTimeStamp } from "../firebase/Firebase";
 import firebase from 'firebase/app'
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
@@ -113,27 +113,30 @@ export const ApiProvider: React.FC = ({children}) => {
   ]
   
   useEffect(() => {
-    const unsuscribeCryptoPrices = db.collection('api').doc('crypto').onSnapshot((doc) => {
-      const data = doc.data() as CryptoPricesInterface
-      cryptoPricesSet(data)
-      // console.log(`PRECIOS ACTUALIZADOS. \n Nueva fecha: ${data.status.lastUpdated.toDate()}`);
-    })
-    const unsuscribeCurrenciesPrices = db.collection('api').doc('currencies').onSnapshot((doc) => {
-      const data = doc.data() as CurrenciesPricesInterface
-      currenciesPricesSet(data)
-    })
-    db.collection('api').doc('cryptoAux').get()
-    .then(res => {
-      db.collection('api').doc('currenciesAux').get()
-      .then(resun => {
-        currenciesListSet(resun.data() as currenciesOptionsInterface)
-      })
-      cryptoListSet(res.data() as cryptoOptionsInterface)
+    // const unsuscribeCryptoPrices = db.collection('api').doc('crypto').onSnapshot((doc) => {
+    //   const data = doc.data() as CryptoPricesInterface
+    //   cryptoPricesSet(data)
+    //   // console.log(`PRECIOS ACTUALIZADOS. \n Nueva fecha: ${data.status.lastUpdated.toDate()}`);
+    // })
+    // const unsuscribeCurrenciesPrices = db.collection('api').doc('currencies').onSnapshot((doc) => {
+    //   const data = doc.data() as CurrenciesPricesInterface
+    //   currenciesPricesSet(data)
+    // })
+    // db.collection('api').doc('cryptoAux').get()
+    // .then(res => {
+    //   db.collection('api').doc('currenciesAux').get()
+    //   .then(resun => {
+    //     currenciesListSet(resun.data() as currenciesOptionsInterface)
+    //   })
+    //   cryptoListSet(res.data() as cryptoOptionsInterface)
+    // })
+    db.collection('api').doc('currenciesAux').set({
+      data: 
     })
 
     return () => {
-      unsuscribeCryptoPrices()
-      unsuscribeCurrenciesPrices()
+      // unsuscribeCryptoPrices()
+      // unsuscribeCurrenciesPrices()
     }
 
   }, [])
