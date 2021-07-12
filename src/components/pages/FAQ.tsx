@@ -1,5 +1,5 @@
 import { Article, MainContent, P, Subtitle, Title } from "../../elements/FAQ";
-import { ArticleContainer, LandingPageContainer } from "../../elements/LandingPage";
+import { ArticleContainer, LandingPageContainer, NavSpacer } from "../../elements/LandingPage";
 import Footer from "../molecules/Footer";
  
 const FAQPage: React.FC = () => {
@@ -41,6 +41,7 @@ const FAQPage: React.FC = () => {
         </MainContent>
       </ArticleContainer>
       <Footer />
+      <NavSpacer desktop bottom />
     </LandingPageContainer>
   );
 }
