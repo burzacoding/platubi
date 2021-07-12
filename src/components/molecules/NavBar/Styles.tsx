@@ -299,6 +299,7 @@ export const MenuMobileNav = styled(motion.div)<mobileNav>`
   }
 `
 export const SwitchContainerStyled = styled.div`
+  -webkit-tap-highlight-color: transparent;
   cursor: pointer;
   svg {
     @media screen and (min-height: 570px) {
