@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useContext } from "react";
 import { createContext } from "react";
-import { db } from "../firebase/Firebase";
+import { db, FirebaseTimeStamp } from "../firebase/Firebase";
 import firebase from 'firebase/app'
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
@@ -130,7 +130,6 @@ export const ApiProvider: React.FC = ({children}) => {
       })
       cryptoListSet(res.data() as cryptoOptionsInterface)
     })
-
     return () => {
       unsuscribeCryptoPrices()
       unsuscribeCurrenciesPrices()
