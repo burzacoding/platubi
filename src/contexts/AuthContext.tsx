@@ -61,7 +61,6 @@ export const AuthProvider: React.FC = ({children}) => {
     })
     .catch(error => {
       console.log(error);
-      
     })
   }
 

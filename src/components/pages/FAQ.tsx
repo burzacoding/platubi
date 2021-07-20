@@ -41,7 +41,7 @@ const FAQPage: React.FC = () => {
         </MainContent>
       </ArticleContainer>
       <Footer />
-      <NavSpacer desktop bottom/>
+      <NavSpacer desktop bottom />
     </LandingPageContainer>
   );
 }

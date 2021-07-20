@@ -20,7 +20,6 @@ const TrackedStocksModal = forwardRef<HTMLDivElement, WealthViewerProps>((props,
   
   const trackedStocksSymbols = userData && userData.trackedStocks ? [...userData.trackedStocks, '', '', '', ''] : ['', '', '', '', '', '']
   // const trackedStocksSymbols =  ['', '', '', '', '', '']
-  console.log();
   
   const defaultValues = trackedStocksSymbols.map(el => {
       if (el !== '') {
@@ -31,7 +30,9 @@ const TrackedStocksModal = forwardRef<HTMLDivElement, WealthViewerProps>((props,
             label: `${obj.symbol} - ${obj.name}`
           }
         } else {
-          const obj = currenciesList.data.filter(eli => eli.symbol === el)[0]
+          const obj = currenciesList.data.filter(eli => {
+            return eli.symbol === el
+          })[0]
           return {
             value: obj.symbol,
             label: `${obj.symbol} - ${obj.name}`

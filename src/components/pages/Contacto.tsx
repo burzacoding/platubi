@@ -33,12 +33,12 @@ const ContactoPage: React.FC = () => {
             db.collection('mail').add(values)
             .then(() => {
               setStatus('resolved')
-              console.log(sent);
+              // console.log(sent);
               resetForm()
             })
             .catch(err => {
               setStatus('rejected')
-              console.log(sent);
+              // console.log(sent);
               setSubmitting(false)
             })
           }}
