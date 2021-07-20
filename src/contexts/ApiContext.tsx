@@ -5,7 +5,18 @@ import { createContext } from "react";
 import { db } from "../firebase/Firebase";
 import firebase from 'firebase/app'
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import Loader from "react-loader-spinner";
+import styled from "styled-components";
+import { useAuth } from "./AuthContext";
+
+export const LoaderContainer = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: ${p => p.theme.fontContrastFive};
+`
 
 export interface ApiContextInterface {
   cryptoPrices: CryptoPricesInterface;
@@ -19,6 +30,7 @@ export interface ApiContextInterface {
         label: string;
     }[];
 }[];
+  isAllTrue: boolean;
 }
 
 export interface currenciesOptionsInterface {
@@ -84,16 +96,15 @@ export function useApi() {
  
 export const ApiProvider: React.FC = ({children}) => {
 
-  // const { userData } = useDashboard()
-
+  const { currentUser } = useAuth()
   const [cryptoPrices, cryptoPricesSet] = useState<CryptoPricesInterface>({} as CryptoPricesInterface)
   const [cryptoList, cryptoListSet] = useState<cryptoOptionsInterface>({} as cryptoOptionsInterface)
   const [currenciesPrices, currenciesPricesSet] = useState<CurrenciesPricesInterface>({} as CurrenciesPricesInterface)
   const [currenciesList, currenciesListSet] = useState<currenciesOptionsInterface>({} as currenciesOptionsInterface)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const allTrue = () => cryptoPrices.data !== undefined && cryptoList.data !== undefined && currenciesPrices.data !== undefined && currenciesList.data !== undefined
+  const [isAllTrue, setIsAllTrue] = useState<boolean>(false)
 
-  const allTrue = () => {
-    return cryptoPrices.data !== undefined && cryptoList.data !== undefined && currenciesPrices.data !== undefined && currenciesList.data !== undefined
-  }
 
   const options = allTrue() && [
     {
@@ -112,42 +123,45 @@ export const ApiProvider: React.FC = ({children}) => {
     }
   ]
   
+
+  const retrieveDataFromAPi = async () => {
+      const AuxData = await Promise.all([
+        db.collection('api').doc('cryptoAux').get(),
+        db.collection('api').doc('currenciesAux').get()
+      ])
+      cryptoListSet(AuxData[0].data() as cryptoOptionsInterface)
+      currenciesListSet(AuxData[1].data() as currenciesOptionsInterface)
+      
+  }
+  
   useEffect(() => {
-    const unsuscribeCryptoPrices = db.collection('api').doc('crypto').onSnapshot((doc) => {
-      const data = doc.data() as CryptoPricesInterface
-      cryptoPricesSet(data)
-      // console.log(`PRECIOS ACTUALIZADOS. \n Nueva fecha: ${data.status.lastUpdated.toDate()}`);
-    })
-    const unsuscribeCurrenciesPrices = db.collection('api').doc('currencies').onSnapshot((doc) => {
-      const data = doc.data() as CurrenciesPricesInterface
-      currenciesPricesSet(data)
-    })
-    db.collection('api').doc('cryptoAux').get()
-    .then(res => {
-      db.collection('api').doc('currenciesAux').get()
-      .then(resun => {
-        currenciesListSet(resun.data() as currenciesOptionsInterface)
+      const unsuscribeOne = currentUser && db.collection('api').doc('crypto').onSnapshot((doc) => {
+        const data = doc.data() as CryptoPricesInterface
+        cryptoPricesSet(data)
+        // console.log(`PRECIOS ACTUALIZADOS. \n Nueva fecha: ${data.status.lastUpdated.toDate()}`);
       })
-      cryptoListSet(res.data() as cryptoOptionsInterface)
-    })
-
+      const unsuscribeTwo = currentUser && db.collection('api').doc('currencies').onSnapshot((doc) => {
+        const data = doc.data() as CurrenciesPricesInterface
+        currenciesPricesSet(data)
+      })
+      retrieveDataFromAPi()
     return () => {
-      unsuscribeCryptoPrices()
-      unsuscribeCurrenciesPrices()
+      unsuscribeOne && unsuscribeOne()
+      unsuscribeTwo && unsuscribeTwo()
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentUser])
+  
+  useEffect(() => {
+      setIsAllTrue(allTrue())
+  }, [allTrue, currenciesList.data])
 
-  }, [])
 
-
-  const values = {cryptoPrices, cryptoList, currenciesPrices, currenciesList, options}
+  const values = {cryptoPrices, cryptoList, currenciesPrices, currenciesList, options, isAllTrue}
 
   return (
     <ApiContext.Provider value={values}>
-      {allTrue() ? children : (
-      <div style={{width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-        <Loader type="Oval" />
-      </div>
-      )}
+      {children}
     </ApiContext.Provider>
   );
 }
