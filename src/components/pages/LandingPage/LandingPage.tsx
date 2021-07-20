@@ -14,7 +14,9 @@ const LandingPage: React.FC = () => {
   return (
     <>
     { currentUser ? (
-      <Dashboard />
+      navigator.onLine ?
+        <Dashboard /> :
+        <h1>Conéctate a internet y recarga la página.</h1>
     ) : (
       <LandingPageContainer>
         <NavSpacer desktop/>
