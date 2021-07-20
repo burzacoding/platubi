@@ -34,9 +34,6 @@ export const useMainCalc = () => {
   
 
   useMemo(() => {
-
-    
-    
     if (userData && userData.registers) {
       const registers = userData.registers.filter(el => el.visible === true && (el.operation === 'add' || el.operation === 'exchange'))
       

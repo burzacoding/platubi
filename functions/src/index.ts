@@ -74,7 +74,7 @@ export const updateCryptos = functions.pubsub.schedule("*/5 * * * *").onRun(asyn
       data: newList
     };
     const result = await db.collection("api").doc("crypto").set(list);
-    console.log("Precios de CRYPTOS actualizadas, tiempo: ", result.writeTime.toDate());
+    // console.log("Precios de CRYPTOS actualizadas, tiempo: ", result.writeTime.toDate());
   } catch (err) {
     console.log("Error:" ,err);
   }

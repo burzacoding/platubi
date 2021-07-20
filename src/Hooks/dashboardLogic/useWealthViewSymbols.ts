@@ -9,7 +9,9 @@ const emptys = [empty, empty, empty]
 export const useWealthViewSymbols = () => {
 
   const { totalWorth } = useMainCalc()
+  
   const { cryptoPrices, currenciesPrices, currenciesList } = useApi()
+  
   const { userData } = useDashboard()
   
   const getObjectFromCryptoID = (id: number) => cryptoPrices.data.filter(el => el.id === id)[0]
@@ -29,6 +31,7 @@ export const useWealthViewSymbols = () => {
           } else {
             const object = getObjectFromCurrencySymbol(el)
             const totalValue = +(totalWorth * object.price).toFixed(2)
+            
             const name = currenciesList.data.filter(ele => ele.symbol === el)[0].name
             return [name, totalValue, '$']
           }

@@ -63,8 +63,7 @@ const WealthViewerModal = forwardRef<HTMLDivElement, WealthViewerProps>((props, 
 
         const onchange = (value: {label: string;value: string;} | null, slotNumber: number) => {
           formik.setFieldValue(`slot${slotNumber}`, value?.value)
-          console.log(formik.values);
-          
+          // console.log(formik.values);
         }
 
         return (
