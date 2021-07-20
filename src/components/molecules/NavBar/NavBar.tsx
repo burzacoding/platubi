@@ -126,13 +126,13 @@ const NavBar:React.FC<NavBarProps> = ({ setTheme, theme }) => {
         <NavBarMobileBottom>
           <HorizontalBar />
           <ContentBottom>
-              <OptionNavMobile current={page === 0 ? true : false} to="/" onClick={() => {setPage(0)}}>
+              <OptionNavMobile current={page === 0 ? 'true' : 'false'} to="/" onClick={() => {setPage(0)}}>
                 <OptionNavContainer>
                   <Wallet current={page === 0 ? true : false} />
                 </OptionNavContainer>
                 <span>Panel principal</span>
               </OptionNavMobile>
-              <OptionNavMobile current={page === 1 ? true : false} to="/" onClick={() => {setPage(1)}}>
+              <OptionNavMobile current={page === 1 ? 'true' : 'false'} to="/" onClick={() => {setPage(1)}}>
                 <OptionNavContainer>
                   <GearNav current={page === 1 ? true : false} />
                 </OptionNavContainer>
