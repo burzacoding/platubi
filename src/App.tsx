@@ -27,14 +27,16 @@ function App() {
   if (theme === 'light') {
     document.body.classList.add('lightBody')
   }
-  useEffect(() => {document.body.classList.add('transition')}, [])
+  useEffect(() => {
+    document.body.classList.add('transition')
+}, [])
 
   return (
     <Router>
       <ThemeProvider theme={themes[theme]}>
       <AuthProvider>
-      <DashboardProvider>
       <ApiProvider>
+      <DashboardProvider>
       <ModalProvider>
         <NavBar setTheme={setTheme} theme={theme} />
         <Switch>
@@ -46,8 +48,8 @@ function App() {
           <Route path="/" component={LandingPage} />
         </Switch>
       </ModalProvider>
-      </ApiProvider>
       </DashboardProvider>
+      </ApiProvider>
       </AuthProvider>
       </ThemeProvider>
     </Router>
