@@ -18,12 +18,12 @@ const Footer: React.FC = () => {
         <SmallLogo />
         {currentUser ? (
           <ItemsContainer>
-          <a href="https://github.com/argie2099/platubi" target="_blank" rel="noreferrer">Ver proyecto en github</a>
+          <a href="https://github.com/burzacoding/platubi" target="_blank" rel="noreferrer">Ver proyecto en github</a>
           <Item as="span" onClick={logout}>Cerrar sesión</Item>
         </ItemsContainer>
         ) : (
           <ItemsContainer>
-          <a href="https://github.com/argie2099/platubi" target="_blank" rel="noreferrer">Ver proyecto en github</a>
+          <a href="https://github.com/burzacoding/platubi" target="_blank" rel="noreferrer">Ver proyecto en github</a>
           <Item to="/registrarse">Registrarse</Item>
           <Item to="/login">Iniciar sesión</Item>
         </ItemsContainer>
