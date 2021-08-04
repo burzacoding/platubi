@@ -1,13 +1,8 @@
 import styled from "styled-components";
 import { Title, Body } from "../../elements/Dashboard/TrackedStocks";
+import { useDonutStore } from "../../zustand/stores/Donut";
+import { TooltipsPropsWithIndex } from "./Donut";
 
-export interface TooltipsProps {
-  label: string,
-  percentage: number,
-  symbol?: string,
-  value: number
-}
- 
 const Container = styled.div`
   position: absolute;
   display: none;
@@ -28,7 +23,12 @@ const Container = styled.div`
   };
 `
 
-const Tooltips: React.FC<TooltipsProps> = ({label, percentage, symbol = '', value}) => {
+const Tooltips: React.FC = () => {
+
+  const tooltipData = useDonutStore(state => state.tooltipData)
+
+  const { label, symbol, value, percentage } = tooltipData as TooltipsPropsWithIndex
+
   return (
     <Container>
       <Title>{label}</Title>

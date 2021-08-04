@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDashboard } from "../../Contexts/DashboardContext";
 import { useModal } from "../../Contexts/ModalContext";
 import { Container, Top, Bottom, Text, SVGContainer, AddRegisterButton, TopText } from '../../elements/Dashboard/Registers'
-import { useWindowSize } from "../../Hooks/useWindowSize";
+import { useWindowSize } from "../../hooks/useWindowSize";
 import { arrayPopulateWithEmpties } from "../../Utils/Utils";
 import StarSVG from "../atoms/SVG/StarSVG";
 import NoRegisters from "../molecules/NoRegisters";

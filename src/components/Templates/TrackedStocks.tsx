@@ -1,5 +1,5 @@
 import { Container } from '../../elements/Dashboard/TrackedStocks'
-import { useTrackedStocks } from '../../Hooks/dashboardLogic/useTrackedStocks';
+import { useTrackedStocks } from '../../hooks/dashboardLogic/useTrackedStocks';
 import TrackedStocksCard from '../molecules/TrackedStocksCard';
 
 const TrackedStocks: React.FC = () => {

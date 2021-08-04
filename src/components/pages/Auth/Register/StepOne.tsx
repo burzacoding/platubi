@@ -1,4 +1,4 @@
-import useStepUpdater from "../../../../Hooks/useStepNumber";
+import useStepUpdater from "../../../../hooks/useStepNumber";
 import FacebookSVG from '../../../atoms/SVG/FacebookSVG';
 import GoogleSVG from '../../../atoms/SVG/GoogleSVG';
 import SocialAuthButton from '../SocialAuthButton';
