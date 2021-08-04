@@ -1,9 +1,11 @@
 import { Container } from "../../elements/Dashboard/Donut";
 import { Doughnut, Chart } from 'react-chartjs-2'
 // import { useDashboard } from "../../Contexts/DashboardContext";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Tooltips from "./Tooltips";
-import { useMainCalc } from "../../Hooks/dashboardLogic/useMainCalc";
+import { useMainCalc } from "../../hooks/dashboardLogic/useMainCalc";
+import { useDonutStore } from "../../zustand/stores/Donut";
+import { useMemo } from "react";
 
 Chart.defaults.plugins.legend.display = false
 export interface DonutProps {
@@ -29,8 +31,9 @@ const empty = {
 const Donut: React.FC<DonutProps> = () => {
 
   const { detailedArray } = useMainCalc()
+  const setTooltipData = useDonutStore(state => state.setTooltipData)
 
-  const sortedArray = [...detailedArray.sort((a, b) => b.percentage - a.percentage), empty, empty, empty, empty]
+  const sortedArray = useMemo(() => [...detailedArray.sort((a, b) => b.percentage - a.percentage), empty, empty, empty, empty], [detailedArray])
 
   const labels = sortedArray.map(el => el.symbol)
   const percentages = sortedArray.map(el => el.percentage)
@@ -51,11 +54,8 @@ const Donut: React.FC<DonutProps> = () => {
     ],
   };
   
-  const [tooltipData, setTooltipData] = useState<TooltipsPropsWithIndex>()
-  
   const startingOptions = {
     cutout: '65%',
-    rotation: 90,
     layout: {
       padding: 12,
     },
@@ -66,46 +66,30 @@ const Donut: React.FC<DonutProps> = () => {
       tooltip: {
         backgroundColor: 'rgba(0,0,0,0)',
         callbacks: {
-          label: function (tooltip: any) {labelTooltip(tooltip)}
+          label: function (tooltip: any) {
+            setTooltipData(tooltip, sortedArray)
+          }
         },
       }
     },
   }
 
-  const labelTooltip = (tooltip: any) => {
-    if (tooltipData?.dataIndex !== tooltip.dataIndex) {
-      setTooltipData({
-        dataIndex: tooltip.dataIndex,
-        label: tooltip.label,
-        percentage: tooltip.raw,
-        value: +sortedArray[tooltip.dataIndex].valueUSD.toFixed(2),
-        symbol: '$'
-      });
-      return
-    }
-  }
-
   useEffect(() => {
-    setTooltipData({
-      dataIndex: 0,
-      label: labels[0],
-      percentage: percentages[0],
-      value: sortedArray[0] ? +sortedArray[0].valueUSD.toFixed(2) : 0,
-      symbol: '$'
-    })
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [detailedArray])
+    if (sortedArray[0].valueUSD) {
+      setTooltipData({
+        dataIndex: 0,
+        label: labels[0],
+        raw: percentages[0],
+        value: +sortedArray[0].valueUSD.toFixed(2)
+      }, sortedArray)
+    }
+  }, [labels, percentages, setTooltipData, sortedArray])
   
   
   return (
     <Container>
       <Doughnut type data={data} width={236} height={236} options={startingOptions} redraw={false}/>
-      {tooltipData && <Tooltips 
-                        label={tooltipData.label} 
-                        percentage={tooltipData.percentage} 
-                        value={tooltipData.value}
-                        symbol={tooltipData.symbol}
-                        />}
+      <Tooltips />
     </Container>
   );
 }
