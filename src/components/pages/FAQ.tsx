@@ -32,7 +32,6 @@ const FAQPage: React.FC = () => {
             <Subtitle>Enlaces a terceros</Subtitle>
             <P>Esta web NO contiene enlaces a terceros, a excepción de enlaces que dirigen al perfil de github del creador de Platubi solamente con fines de promoción personal.</P>
             <Subtitle>Control de su información personal</Subtitle>
-            <P>En cualquier momento usted puede restringir la recopilación o el uso de la información personal que es proporcionada a nuestro sitio web. En el caso de querer eliminar su cuenta, la misma quedará activa durante 30 días desde el momento en que se complete el formulario de desactivación de cuenta con el fin de agilizar el proceso de volver a su cuenta ante un arrepentimiento. Pasados estos 30 días su cuenta quedará eliminada definitivamente y todos sus datos serán eliminados.</P>
             <P>Platubi no venderá, cederá ni distribuirá la información personal que es recopilada sin su consentimiento, salvo que sea requerido por un juez con un orden judicial.</P>
             <br />
             <br />

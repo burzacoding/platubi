@@ -1,6 +1,6 @@
 import { useModal } from "../../Contexts/ModalContext";
 import {  MainContainer, SmallContainer, MainTitle, Card, Title, Budget, BigCard, BigTitle } from "../../elements/Dashboard/WealthViewer";
-import { useWealthViewSymbols } from "../../Hooks/dashboardLogic/useWealthViewSymbols";
+import { useWealthViewSymbols } from "../../hooks/dashboardLogic/useWealthViewSymbols";
 import GearSVG from "../atoms/SVG/Gear";
 
 

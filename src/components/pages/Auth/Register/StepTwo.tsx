@@ -3,7 +3,7 @@ import { Variants } from 'framer-motion';
 import { useState } from 'react';
 import { ButtonSubmit, Checkbox, CheckboxContainer, CheckboxText, Container as ContainerInput, Error, ErrorCheckbox, Input, InputContainer, Label, Password, SvgContainer, TyC, CheckboxInputContainer } from '../../../../elements/AuthStyles';
 import { ButtonBack, ButtonsContainer } from '../../../../elements/RegStep';
-import useStepUpdater from '../../../../Hooks/useStepNumber';
+import useStepUpdater from '../../../../hooks/useStepNumber';
 import { selectBorders } from '../../../../Utils/Utils';
 import BackArrow from '../../../atoms/SVG/BackArrow';
 import Check from '../../../atoms/SVG/Check';
