@@ -30,11 +30,7 @@ interface cryptoApiInterface {
   }
 }
 
-interface mailData {
-  author: string,
-  email: string,
-  message: string
-}
+
 
 admin.initializeApp();
 
