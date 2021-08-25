@@ -32,6 +32,15 @@ const LoginPage: React.FC = () => {
           <Text>O introduce tus datos de acceso</Text>
           <Side />
         </Separador>
+        Entra como una cuenta de invitado
+        <br />
+        <br />
+        Email: invitado@gmail.com
+        <br />
+        <br />
+        Contraseña: entrevista
+        <br />
+        <br />
         <LoginForm />
         <AuthAlternateAction type="login" />
       </ContainerBase>

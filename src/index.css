@@ -7,6 +7,7 @@
 body {
   font-family: 'Montserrat';
   background-color: #050D16;
+  overflow-y: overlay;
 }
 
 .lightBody {
