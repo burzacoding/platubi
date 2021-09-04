@@ -1,4 +1,12 @@
-# Welcome to the Platubi public repo
+## How I worked on this project
+
+My goal was to build something useful for people that own cryptocurrencies.
+
+ - I built this web app from a design made by me. [Link](https://www.figma.com/file/sOsL9kBkhNnoFDfTcpyVAg/Platubi?node-id=801%3A973)
+
+
+
+## What is Platubi
 
 I invite you to check [Platubi](https://platubi.com) online.
 
