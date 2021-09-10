@@ -8,7 +8,7 @@ My goal was to build something useful for people living in latin america that ow
 
 # How to navigate this project
 
- - Styled-components constants are stored in the Elemets folder, they also feature responsive CSS: [Example code](https://github.com/burzacoding/platubi/blob/main/src/elements/Dashboard.ts).
+ - Styled-components constants are stored in the Elements folder, they also feature responsive CSS: [Example code](https://github.com/burzacoding/platubi/blob/main/src/elements/Dashboard.ts).
  - The application fetches data from the Firestore database when the user logs in: [Example code](https://github.com/burzacoding/platubi/blob/main/src/contexts/ApiContext.tsx).
  - The cloud-functions run every certain given minutes to update crypto's prices every 5 minutes and worldwide currencies every day (API keys are stored in enviroment variables): [Example code](https://github.com/burzacoding/platubi/blob/main/functions/src/index.ts).
  - Complex mathematical logic is made using custom hooks and are optimised with memoization: [Example code](https://github.com/burzacoding/platubi/blob/main/src/Hooks/dashboardLogic/useMainCalc.ts).
