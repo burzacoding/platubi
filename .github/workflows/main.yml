@@ -1,0 +1,10 @@
+name: Platubi CI/CD
+on: workflow_dispatch
+jobs:
+  first-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Hello
+        run: echo "Hello World"
+      - name: Print goodbye platubot
+        run: echo "Goodbye to a world" 
